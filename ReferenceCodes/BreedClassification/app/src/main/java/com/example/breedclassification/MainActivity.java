@@ -28,6 +28,7 @@ import android.os.SystemClock;
 import android.widget.Toast;
 
 import org.tensorflow.lite.Interpreter;
+import org.tensorflow.lite.Tensor;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -54,12 +55,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    int imgsize = 299; //flower 224
     private ByteBuffer preprocessImg(Bitmap bmp) {
-        Bitmap bitmap = Bitmap.createScaledBitmap(bmp, 224, 224, true);
+        Bitmap bitmap = Bitmap.createScaledBitmap(bmp, imgsize, imgsize, true);
         Bitmap tmp = bitmap.copy(Bitmap.Config.RGBA_F16, true);
-        ByteBuffer input = ByteBuffer.allocateDirect(224 * 224 * 3 * 4).order(ByteOrder.nativeOrder());
-        for (int y = 0; y < 224; y++) {
-            for (int x = 0; x < 224; x++) {
+        ByteBuffer input = ByteBuffer.allocateDirect(299 * 299 * 3 * 4).order(ByteOrder.nativeOrder());
+        for (int y = 0; y < imgsize; y++) {
+            for (int x = 0; x < imgsize; x++) {
                 int px = tmp.getPixel(x, y);
 
                 // Get channel values from the pixel value.
@@ -154,7 +156,8 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException ex) {
             }
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(Objects.requireNonNull(getApplicationContext()), BuildConfig.APPLICATION_ID + ".provider", photoFile);
+                Uri photoURI = FileProvider.getUriForFile(Objects.requireNonNull(getApplicationContext()), "com.example.breedclassification" + ".provider", photoFile);
+//                Uri photoURI = FileProvider.getUriForFile(Objects.requireNonNull(getApplicationContext()), BuildConfig.APPLICATION_ID + ".provider", photoFile);
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(cameraIntent, REQUEST_TAKE_PHOTO);
             }
@@ -199,21 +202,27 @@ public class MainActivity extends AppCompatActivity {
             error.printStackTrace();
         }
 
-//        int bufferSize = 1000 * java.lang.Float.SIZE / java.lang.Byte.SIZE;
-        int bufferSize = 20;
-        ByteBuffer modelOutput = ByteBuffer.allocateDirect(bufferSize).order(ByteOrder.nativeOrder());
-
+        int breedCount = 120;
+        float[][] modelOutput = new float[1][breedCount];
         ByteBuffer input = preprocessImg(bitmap);
 
-        Log.d("TFLITE", "Camera 1");
-        Interpreter tflite = getTfliteInterpreter("flower.tflite");
-        Log.d("TFLITE", "Camera 2 : output - " + modelOutput.capacity() + " " + modelOutput.get(0) + " " + modelOutput.get(1));
-        Toast.makeText(getApplicationContext(), modelOutput.get(0) + " " + modelOutput.get(1) + " " + modelOutput.get(2) + " " + modelOutput.get(3) + " " + modelOutput.get(4), Toast.LENGTH_SHORT).show();
+        Interpreter tflite = getTfliteInterpreter("breed.tflite");
+        if (tflite == null) {
+            Log.d("TFLITE", "MODEL NULL!!!");
+        }
+
+        Tensor outputTensor = tflite.getOutputTensor(0);
+        int[] outputShape = outputTensor.shape();
+        int modelOutputClasses = outputShape[1];
 
         long startTime = SystemClock.uptimeMillis();
         tflite.run(input, modelOutput);
         long endTime = SystemClock.uptimeMillis();
         Log.d("TIME", "Inference Time: " + Long.toString(endTime - startTime));
+
+        for(int i=0;i<modelOutputClasses;i++) {
+            Log.d("TFLITE", "Result :" + modelOutput[0][i]);
+        }
 
         final TextView tv_output = findViewById(R.id.tv_output);
         //tv_output.setText(output);
