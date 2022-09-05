@@ -1,37 +1,40 @@
 package com.example.breedclassification;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.FileProvider;
-
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.ImageDecoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-
-import android.app.Activity;
-import android.content.res.AssetFileDescriptor;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.os.SystemClock;
 import android.widget.Toast;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
 import org.tensorflow.lite.Interpreter;
 import org.tensorflow.lite.Tensor;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -43,6 +46,13 @@ import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
+    final static int REQUEST_TAKE_PHOTO = 1;
+    final static int REQUEST_GALLERY = 2;
+
+    final static String[] breeds = {"Maltese", "Golden", "Pug", "Pome", "Poodle"};
+
+    final static int breedCount = 5;
+
     private int argmax(float[][] target) {
         int idx = 0;
         int maxIdx = idx;
@@ -50,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         for(idx = 1; idx < target[0].length; idx++) {
             if (target[0][idx] > max) {
                 maxIdx = idx;
+                max = target[0][idx];
             }
         }
         return maxIdx;
@@ -106,8 +117,17 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button_1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Read the data(Picture) from the Gallery
                 openCamera();
+            }
+        });
+
+        findViewById(R.id.button_2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Read the data(Picture) from the Gallery
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, REQUEST_GALLERY);
             }
         });
     }
@@ -138,10 +158,7 @@ public class MainActivity extends AppCompatActivity {
     private File mPhotoFile = null;
     private Uri imageUri;
 
-    final static int TAKE_PICTURE = 1;
-
     String mCurrentPhotoPath;
-    final static int REQUEST_TAKE_PHOTO = 1;
 
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -180,12 +197,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         ImageView capturedImg = findViewById(R.id.capturedImg);
-        File file = new File(mCurrentPhotoPath);
         Bitmap bitmap = null;
         try {
             switch (requestCode) {
                 case REQUEST_TAKE_PHOTO: {
                     if (resultCode == RESULT_OK) {
+                        File file = new File(mCurrentPhotoPath);
                         if (Build.VERSION.SDK_INT >= 29) {
                             ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), Uri.fromFile(file));
                             try {
@@ -209,12 +226,34 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 }
+                case REQUEST_GALLERY: {
+                    if (resultCode == RESULT_OK) {
+                        Uri selectedImageUri = data.getData();
+                        capturedImg.setImageURI(selectedImageUri);
+                        if (Build.VERSION.SDK_INT >= 29) {
+                            ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), selectedImageUri);
+                            try {
+                                bitmap = ImageDecoder.decodeBitmap(source);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            try {
+                                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),selectedImageUri);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    } else {
+                        Log.d("GAL", "GAL FAIL :  " + requestCode);
+                    }
+                    break;
+                }
             }
         }  catch (Exception error) {
             error.printStackTrace();
         }
 
-        int breedCount = 120;
         float[][] modelOutput = new float[1][breedCount];
         ByteBuffer input = preprocessImg(bitmap);
 
@@ -232,9 +271,9 @@ public class MainActivity extends AppCompatActivity {
         long endTime = SystemClock.uptimeMillis();
         Log.d("TIME", "Inference Time: " + Long.toString(endTime - startTime));
 
-        Log.d("TFLITE", "Result :" + argmax(modelOutput));
+        Toast.makeText(getApplicationContext(), "Result : " + String.format("%.3f", modelOutput[0][0]) + " "+ String.format("%.3f", modelOutput[0][1]) + " "+ String.format("%.3f", modelOutput[0][2]) + " "+ String.format("%.3f", modelOutput[0][3]) + " "+ String.format("%.3f", modelOutput[0][4]) + " ", Toast.LENGTH_LONG).show();
 
         final TextView tv_output = findViewById(R.id.tv_output);
-        //tv_output.setText(output);
+        tv_output.setText(breeds[argmax(modelOutput)]);
     }
 }
