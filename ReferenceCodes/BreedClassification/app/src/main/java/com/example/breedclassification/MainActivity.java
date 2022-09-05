@@ -43,6 +43,18 @@ import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
+    private int argmax(float[][] target) {
+        int idx = 0;
+        int maxIdx = idx;
+        float max = target[0][0];
+        for(idx = 1; idx < target[0].length; idx++) {
+            if (target[0][idx] > max) {
+                maxIdx = idx;
+            }
+        }
+        return maxIdx;
+    }
+
     private void checkPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED &&
@@ -220,9 +232,7 @@ public class MainActivity extends AppCompatActivity {
         long endTime = SystemClock.uptimeMillis();
         Log.d("TIME", "Inference Time: " + Long.toString(endTime - startTime));
 
-        for(int i=0;i<modelOutputClasses;i++) {
-            Log.d("TFLITE", "Result :" + modelOutput[0][i]);
-        }
+        Log.d("TFLITE", "Result :" + argmax(modelOutput));
 
         final TextView tv_output = findViewById(R.id.tv_output);
         //tv_output.setText(output);
