@@ -103,8 +103,8 @@ public class CameraActivity extends AppCompatActivity {
         imageAnalysis.setAnalyzer(
                 executor,
                 (image) -> {
-                    System.out.println("Image height: " + image.getHeight());
-                    System.out.println("Image width: " + image.getWidth());
+//                    System.out.println("Image height: " + image.getHeight());
+//                    System.out.println("Image width: " + image.getWidth());
                     image.close();
                 });
 
@@ -144,29 +144,6 @@ public class CameraActivity extends AppCompatActivity {
                                 image.close();
                             }
                         });
-                        imageCapture.takePicture(
-                                outputFileOptions,
-                                executor,
-                                new ImageCapture.OnImageSavedCallback() {
-                                    @Override
-                                    public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-
-                                        Handler mHandler = new Handler(Looper.getMainLooper());
-                                        Log.d(TAG, "Saved File :" + Uri.fromFile(file));
-                                        mHandler.postDelayed(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                Toast.makeText(CameraActivity.this, "Image Saved successfully ",
-                                                        Toast.LENGTH_SHORT).show();
-                                            }
-                                        }, 0);
-                                    }
-
-                                    @Override
-                                    public void onError(@NonNull ImageCaptureException exception) {
-                                        exception.printStackTrace();
-                                    }
-                                });
                     }
                 });
         // Show all supported output sizes.
