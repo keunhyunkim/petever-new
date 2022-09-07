@@ -4,6 +4,7 @@ package com.example.petever.oobe;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
@@ -17,6 +18,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.util.Size;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -136,12 +138,21 @@ public class CameraActivity extends AppCompatActivity {
                         imageCapture.takePicture(executor, new ImageCapture.OnImageCapturedCallback() {
                             @Override
                             public void onCaptureSuccess(@NonNull ImageProxy image) {
-                                super.onCaptureSuccess(image);
                                 //Run Inference for Breed Classification
                                 MLClass inf = new MLClass();
-                                String breed = inf.runBreedClassification(image);
-                                Log.d("JCKIM", "RESULT : " + breed);
+                                Bitmap btmImg = ImageUtils.convertImageProxyToBitmap(image);
+                                String breed = inf.runBreedClassification(btmImg);
+                                Log.d("RESULT", "RESULT : " + breed);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ImageView previewImage = findViewById(R.id.previewImage);
+                                        previewImage.setVisibility(View.VISIBLE);
+                                        previewImage.setImageBitmap(ImageUtils.rotateImage(btmImg, 90));
+                                    }
+                                });
                                 image.close();
+                                super.onCaptureSuccess(image);
                             }
                         });
                     }

@@ -28,6 +28,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
+        <ImageView
+            android:id="@+id/previewImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="@+id/container"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/container"
+            app:layout_constraintVertical_bias="0.35"
+            />
+
     </FrameLayout>
 
     <ImageView
@@ -54,7 +67,6 @@
         app:layout_constraintBottom_toBottomOf="@id/container"
         app:layout_constraintVertical_bias="0.95"
         />
-
 
     <TextView
         android:id="@+id/text_camera_guide"
