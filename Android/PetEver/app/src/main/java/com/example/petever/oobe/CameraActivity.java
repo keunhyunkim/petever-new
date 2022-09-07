@@ -16,6 +16,7 @@ import android.os.Bundle;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.util.Size;
 import android.view.View;
@@ -138,9 +139,14 @@ public class CameraActivity extends AppCompatActivity {
                         imageCapture.takePicture(executor, new ImageCapture.OnImageCapturedCallback() {
                             @Override
                             public void onCaptureSuccess(@NonNull ImageProxy image) {
+                                super.onCaptureSuccess(image);
                                 //Run Inference for Breed Classification
                                 MLClass inf = new MLClass();
-                                Bitmap btmImg = ImageUtils.convertImageProxyToBitmap(image);
+                                Bitmap btmImg = ImageUtils.rotateImage(ImageUtils.convertImageProxyToBitmap(image), 90);
+
+                                SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
+                                MediaStore.Images.Media.insertImage(getContentResolver(), btmImg,  dataFormat.format(new Date()) + ".png", "taken by petEver");
+
                                 String breed = inf.runBreedClassification(btmImg);
                                 Log.d("RESULT", "RESULT : " + breed);
                                 runOnUiThread(new Runnable() {
@@ -148,11 +154,10 @@ public class CameraActivity extends AppCompatActivity {
                                     public void run() {
                                         ImageView previewImage = findViewById(R.id.previewImage);
                                         previewImage.setVisibility(View.VISIBLE);
-                                        previewImage.setImageBitmap(ImageUtils.rotateImage(btmImg, 90));
+                                        previewImage.setImageBitmap(btmImg);
                                     }
                                 });
                                 image.close();
-                                super.onCaptureSuccess(image);
                             }
                         });
                     }
