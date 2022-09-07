@@ -4,6 +4,7 @@ package com.example.petever.oobe;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
@@ -17,6 +18,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.util.Size;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -29,6 +31,7 @@ import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
+import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
@@ -54,10 +57,13 @@ public class CameraActivity extends AppCompatActivity {
     private PreviewView previewView;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
 
+    public static Context context;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         checkPermission();
+        context = this;
         setContentView(R.layout.activity_camera);
         requestProcessCameraProvider();
         initView();
@@ -99,8 +105,8 @@ public class CameraActivity extends AppCompatActivity {
         imageAnalysis.setAnalyzer(
                 executor,
                 (image) -> {
-                    System.out.println("Image height: " + image.getHeight());
-                    System.out.println("Image width: " + image.getWidth());
+//                    System.out.println("Image height: " + image.getHeight());
+//                    System.out.println("Image width: " + image.getWidth());
                     image.close();
                 });
 
@@ -117,7 +123,6 @@ public class CameraActivity extends AppCompatActivity {
 
         Camera camera = cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalysis, imageCapture);
 
-
         btn_camera.setOnClickListener(
                 (unused) -> {
                     File dir =
@@ -130,29 +135,26 @@ public class CameraActivity extends AppCompatActivity {
                         ImageCapture.OutputFileOptions outputFileOptions =
                                 new ImageCapture.OutputFileOptions.Builder(file).build();
 
-                        imageCapture.takePicture(
-                                outputFileOptions,
-                                executor,
-                                new ImageCapture.OnImageSavedCallback() {
+                        imageCapture.takePicture(executor, new ImageCapture.OnImageCapturedCallback() {
+                            @Override
+                            public void onCaptureSuccess(@NonNull ImageProxy image) {
+                                //Run Inference for Breed Classification
+                                MLClass inf = new MLClass();
+                                Bitmap btmImg = ImageUtils.convertImageProxyToBitmap(image);
+                                String breed = inf.runBreedClassification(btmImg);
+                                Log.d("RESULT", "RESULT : " + breed);
+                                runOnUiThread(new Runnable() {
                                     @Override
-                                    public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-
-                                        Handler mHandler = new Handler(Looper.getMainLooper());
-                                        Log.d(TAG, "Saved File :" + Uri.fromFile(file));
-                                        mHandler.postDelayed(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                Toast.makeText(CameraActivity.this, "Image Saved successfully ",
-                                                        Toast.LENGTH_SHORT).show();
-                                            }
-                                        }, 0);
-                                    }
-
-                                    @Override
-                                    public void onError(@NonNull ImageCaptureException exception) {
-                                        exception.printStackTrace();
+                                    public void run() {
+                                        ImageView previewImage = findViewById(R.id.previewImage);
+                                        previewImage.setVisibility(View.VISIBLE);
+                                        previewImage.setImageBitmap(ImageUtils.rotateImage(btmImg, 90));
                                     }
                                 });
+                                image.close();
+                                super.onCaptureSuccess(image);
+                            }
+                        });
                     }
                 });
         // Show all supported output sizes.
