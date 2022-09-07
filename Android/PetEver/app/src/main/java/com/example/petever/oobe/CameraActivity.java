@@ -29,6 +29,7 @@ import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
+import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
@@ -54,10 +55,13 @@ public class CameraActivity extends AppCompatActivity {
     private PreviewView previewView;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
 
+    public static Context context;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         checkPermission();
+        context = this;
         setContentView(R.layout.activity_camera);
         requestProcessCameraProvider();
         initView();
@@ -117,7 +121,6 @@ public class CameraActivity extends AppCompatActivity {
 
         Camera camera = cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalysis, imageCapture);
 
-
         btn_camera.setOnClickListener(
                 (unused) -> {
                     File dir =
@@ -130,6 +133,17 @@ public class CameraActivity extends AppCompatActivity {
                         ImageCapture.OutputFileOptions outputFileOptions =
                                 new ImageCapture.OutputFileOptions.Builder(file).build();
 
+                        imageCapture.takePicture(executor, new ImageCapture.OnImageCapturedCallback() {
+                            @Override
+                            public void onCaptureSuccess(@NonNull ImageProxy image) {
+                                super.onCaptureSuccess(image);
+                                //Run Inference for Breed Classification
+                                MLClass inf = new MLClass();
+                                String breed = inf.runBreedClassification(image);
+                                Log.d("JCKIM", "RESULT : " + breed);
+                                image.close();
+                            }
+                        });
                         imageCapture.takePicture(
                                 outputFileOptions,
                                 executor,
