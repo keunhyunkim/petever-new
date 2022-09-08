@@ -9,7 +9,7 @@
         android:id="@+id/viewUpper"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:background="@color/white"
+        android:background="@color/white_normal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -70,12 +70,11 @@
 
     <TextView
         android:id="@+id/text_camera_guide"
-        style="@style/Text.GrayStyle"
+        style="@style/Text.Main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/oobe_start2"
-        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -87,12 +86,11 @@
 
     <Button
         android:id="@+id/btn_camera"
-        style="@style/Text.GrayStyle"
+        style="@style/Text.MainTextBold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_oobe"
+        android:background="@drawable/button_yellow"
         android:text="@string/btn_album"
-        android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_camera_guide"
