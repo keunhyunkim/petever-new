@@ -89,7 +89,7 @@ public class CameraActivity extends AppCompatActivity {
 
     private void bindPreview(@NonNull ProcessCameraProvider cameraProvider) throws
             CameraAccessException {
-        Size targetResolution = new Size(960, 720);
+        Size targetResolution = new Size(720, 1600);
         Preview preview = new Preview.Builder().setTargetResolution(targetResolution).build();
 
         CameraSelector cameraSelector =
