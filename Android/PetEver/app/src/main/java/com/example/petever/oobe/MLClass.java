@@ -22,7 +22,7 @@ public class MLClass {
     final static int breedCount = 5;
     final static float breedThreshold = 0.75F;
 
-    private int breedargmax(float[][] target) {
+    private int getBreedArgmax(float[][] target) {
         int idx = 0;
         int maxIdx = idx;
         float max = target[0][0];
@@ -75,10 +75,11 @@ public class MLClass {
         long endTime = SystemClock.uptimeMillis();
         Log.d("TIME", "Inference Time: " + Long.toString(endTime - startTime));
 
-        if (modelOutput[0][breedargmax(modelOutput)] > breedThreshold) {
-            return breeds[breedargmax(modelOutput)];
+        int breedArgmax = getBreedArgmax(modelOutput);
+        if (modelOutput[0][breedArgmax] > breedThreshold) {
+            return breeds[breedArgmax];
         } else {
-            Log.d("NO_BREED", "Invalid : " + modelOutput[0][breedargmax(modelOutput)]);
+            Log.d("NO_BREED", "Invalid : " + modelOutput[0][breedArgmax]);
             return "Retry";
         }
 
