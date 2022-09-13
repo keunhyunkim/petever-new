@@ -148,6 +148,17 @@ public class CameraActivity extends AppCompatActivity {
                                 String breed = inf.runBreedClassification(btmImg);
                                 Handler mHandler = new Handler(Looper.getMainLooper());
                                 Log.d("RESULT", "RESULT : " + breed);
+                                if (breed.equals("Retry")) {
+                                    mHandler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(CameraActivity.this, "Invalid, Try Again T.T",
+                                                    Toast.LENGTH_SHORT).show();
+                                        }
+                                    }, 0);
+                                    image.close();
+                                    return;
+                                }
                                 mHandler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
@@ -177,9 +188,9 @@ public class CameraActivity extends AppCompatActivity {
             StreamConfigurationMap configMap =
                     cameraCharacteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
             Size[] outputSizes = configMap.getOutputSizes(SurfaceTexture.class);
-            for (Size size : outputSizes) {
-                System.out.println("Camera " + cameraId + " output size: " + String.valueOf(size));
-            }
+//            for (Size size : outputSizes) {
+//                System.out.println("Camera " + cameraId + " output size: " + String.valueOf(size));
+//            }
         }
     }
 
