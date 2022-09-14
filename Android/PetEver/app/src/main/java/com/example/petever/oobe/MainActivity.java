@@ -4,6 +4,7 @@ package com.example.petever.oobe;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.ImageDecoder;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -23,61 +24,61 @@ import com.example.petever.R;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-    Bitmap bitmap = null;
+
     ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
+    Bitmap bitmap = null;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
         initView();
+        registerMediaPick();
 
-        // https://developer.android.com/training/data-storage/shared/photopicker#custom-select-single
-        // Registers a photo picker activity launcher in single-select mode.
-        pickMedia =
-                registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
-                    // Callback is invoked after the user selects a media item or closes the
-                    // photo picker.
-                    if (uri != null) {
-                        Log.d("PhotoPicker", "Selected URI: " + uri);
-                        try {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                                bitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(getContentResolver(), uri));
-
-                            } else {
-                                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+    }
+    private void photoPicked(Uri uri){
+        {
+            // Callback is invoked after the user selects a media item or closes the
+            // photo picker.
+            if (uri != null) {
+                Log.d("PhotoPicker", "Selected URI: " + uri);
+                try {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                        bitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(getContentResolver(), uri));
 
                     } else {
-                        Log.d("PhotoPicker", "No media selected");
+                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                     }
-                });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            } else {
+                Log.d("PhotoPicker", "No media selected");
+            }
+        }
+    }
+    private void registerMediaPick() {
+        // https://developer.android.com/training/data-storage/shared/photopicker#custom-select-single
+        // Registers a photo picker activity launcher in single-select mode.
+        pickMedia = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> photoPicked(uri));
     }
 
     private void initView() {
         Button btn_camera = findViewById(R.id.btn_camera);
-        btn_camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, CameraActivity.class);
-                startActivity(intent);
-            }
+        btn_camera.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, CameraActivity.class);
+            startActivity(intent);
         });
 
 
         Button btn_album = findViewById(R.id.btn_album);
-        btn_album.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                // Launch the photo picker and allow the user to choose only images.
-                pickMedia.launch(new PickVisualMediaRequest.Builder()
-                        .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
-                        .build());
-            }
+        btn_album.setOnClickListener(view -> {
+            // Launch the photo picker and allow the user to choose only images.
+            pickMedia.launch(new PickVisualMediaRequest.Builder()
+                    .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
+                    .build());
         });
     }
 
