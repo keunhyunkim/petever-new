@@ -5,7 +5,9 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.SurfaceTexture;
+import android.graphics.drawable.Drawable;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
@@ -19,7 +21,9 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.util.Size;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -50,13 +54,20 @@ import java.util.concurrent.Executors;
 
 
 public class CameraActivity extends AppCompatActivity {
-    private Executor executor = Executors.newSingleThreadExecutor();
     public static final String TAG = "CameraActivity";
-    private ImageView btn_camera;
-    private PreviewView previewView;
-    private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
-
     public static Context context;
+
+    private Executor executor = Executors.newSingleThreadExecutor();
+    private ImageView btn_camera;
+    private Button btn_retry;
+    private View view_dimmed;
+    private Button btn_character;
+    private PreviewView previewView;
+    private TextView text_breed;
+    private TextView text_camera_guide;
+    private ImageView image_breed_bubble;
+    private ImageView previewImage;
+    private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,8 +95,14 @@ public class CameraActivity extends AppCompatActivity {
     private void initView() {
         btn_camera = findViewById(R.id.btn_take_camera);
         previewView = findViewById(R.id.previewView);
+        btn_retry = findViewById(R.id.btn_retry);
+        btn_character = findViewById(R.id.btn_character);
+        view_dimmed = findViewById(R.id.view_dimmed);
+        text_breed = findViewById(R.id.text_breed);
+        image_breed_bubble = findViewById(R.id.image_bubble);
+        text_camera_guide = findViewById(R.id.text_camera_guide);
+        previewImage = findViewById(R.id.previewImage);
     }
-
 
     private void bindPreview(@NonNull ProcessCameraProvider cameraProvider) throws
             CameraAccessException {
@@ -104,8 +121,6 @@ public class CameraActivity extends AppCompatActivity {
         imageAnalysis.setAnalyzer(
                 executor,
                 (image) -> {
-//                    System.out.println("Image height: " + image.getHeight());
-//                    System.out.println("Image width: " + image.getWidth());
                     image.close();
                 });
 
@@ -142,39 +157,23 @@ public class CameraActivity extends AppCompatActivity {
                                 MLClass inf = new MLClass();
                                 Bitmap btmImg = ImageUtils.rotateImage(ImageUtils.convertImageProxyToBitmap(image), 90);
 
-                                SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
-                                MediaStore.Images.Media.insertImage(getContentResolver(), btmImg,  dataFormat.format(new Date()) + ".png", "taken by petEver");
+                                SimpleDateFormat dataFormat = new SimpleDateFormat(String.valueOf(R.string.time_format), Locale.KOREA);
+                                MediaStore.Images.Media.insertImage(getContentResolver(), btmImg, dataFormat.format(new Date()) + ".png", "taken by petEver");
 
                                 String breed = inf.runBreedClassification(btmImg, CameraActivity.this);
                                 Handler mHandler = new Handler(Looper.getMainLooper());
                                 Log.d("RESULT", "RESULT : " + breed);
                                 if (breed.equals("Retry")) {
-                                    mHandler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Toast.makeText(CameraActivity.this, "Invalid, Try Again T.T",
-                                                    Toast.LENGTH_SHORT).show();
-                                        }
-                                    }, 0);
+                                    mHandler.postDelayed(() ->
+                                            Toast.makeText(CameraActivity.this, String.valueOf(R.string.invalid_value),
+                                                    Toast.LENGTH_SHORT).show(), 0
+                                    );
                                     image.close();
                                     return;
                                 }
-                                mHandler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(CameraActivity.this, "Breed : " + breed,
-                                                Toast.LENGTH_SHORT).show();
-                                    }
-                                }, 0);
+                                runOnUiThread(() ->
 
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        ImageView previewImage = findViewById(R.id.previewImage);
-                                        previewImage.setVisibility(View.VISIBLE);
-                                        previewImage.setImageBitmap(btmImg);
-                                    }
-                                });
+                                        updateViewByBreed(btmImg, breed));
                                 image.close();
                             }
                         });
@@ -187,13 +186,33 @@ public class CameraActivity extends AppCompatActivity {
                     cameraManager.getCameraCharacteristics(cameraId);
             StreamConfigurationMap configMap =
                     cameraCharacteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
-            Size[] outputSizes = configMap.getOutputSizes(SurfaceTexture.class);
-//            for (Size size : outputSizes) {
-//                System.out.println("Camera " + cameraId + " output size: " + String.valueOf(size));
-//            }
         }
     }
 
+    private void updateViewByBreed(Bitmap btmImg, String breed) {
+        text_camera_guide.setVisibility(View.INVISIBLE);
+        btn_camera.setVisibility(View.INVISIBLE);
+        btn_character.setBackgroundResource(R.drawable.button_yellow);
+        btn_character.setTextColor(getResources().getColor(R.color.black_text));
+        previewImage.setImageBitmap(btmImg);
+        text_breed.setText(setBreed(breed));
+        previewImage.setVisibility(View.VISIBLE);
+        btn_retry.setVisibility(View.VISIBLE);
+        image_breed_bubble.setVisibility(View.VISIBLE);
+        view_dimmed.setVisibility(View.VISIBLE);
+        text_breed.setVisibility(View.VISIBLE);
+    }
+
+    private String setBreed(String breed) { // TODO : convert to enum
+        switch (breed) {
+            case "Pome":
+                return getResources().getString((R.string.breed_pome));
+            case "Maltese":
+                return getResources().getString((R.string.breed_maltese));
+            default:
+                return breed;
+        }
+    }
 
     private void checkPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
