@@ -11,6 +11,8 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -49,6 +51,18 @@ public class MainActivity extends AppCompatActivity {
 
                     } else {
                         bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                    }
+                    MLClass inf = new MLClass();
+                    String breed = inf.runBreedClassification(bitmap, MainActivity.this);
+                    if (breed.equals("Retry")) {
+                        Toast.makeText(MainActivity.this, "Invalid, Try Again T.T",
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, "Breed : " + breed,
+                                Toast.LENGTH_SHORT).show();
+//                        ImageView previewImage = findViewById(R.id.previewImage);
+//                        previewImage.setVisibility(View.VISIBLE);
+//                        previewImage.setImageBitmap(bitmap);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

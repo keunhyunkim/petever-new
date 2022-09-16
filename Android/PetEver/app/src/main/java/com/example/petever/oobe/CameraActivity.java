@@ -145,7 +145,7 @@ public class CameraActivity extends AppCompatActivity {
                                 SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
                                 MediaStore.Images.Media.insertImage(getContentResolver(), btmImg,  dataFormat.format(new Date()) + ".png", "taken by petEver");
 
-                                String breed = inf.runBreedClassification(btmImg);
+                                String breed = inf.runBreedClassification(btmImg, CameraActivity.this);
                                 Handler mHandler = new Handler(Looper.getMainLooper());
                                 Log.d("RESULT", "RESULT : " + breed);
                                 if (breed.equals("Retry")) {

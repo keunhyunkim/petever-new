@@ -36,9 +36,9 @@ public class MLClass {
     }
 
     // Function to Create TF Interpreter with model
-    private Interpreter getTfliteInterpreter(String modelPath) {
+    private Interpreter getTfliteInterpreter(String modelPath, Activity activity) {
         try {
-            return new Interpreter(loadModelFile((Activity) CameraActivity.context, modelPath));
+            return new Interpreter(loadModelFile(activity, modelPath));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -56,12 +56,12 @@ public class MLClass {
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
     }
 
-    public String runBreedClassification(Bitmap bitmap) {
+    public String runBreedClassification(Bitmap bitmap, Activity activity) {
         float[][] modelOutput = new float[1][breedCount];
 
         ByteBuffer input = ImageUtils.preprocessImg(bitmap, imgsize);
 
-        Interpreter tflite = getTfliteInterpreter("breed.tflite");
+        Interpreter tflite = getTfliteInterpreter("breed.tflite", activity);
         if (tflite == null) {
             Log.d("TFLITE", "MODEL NULL!!!");
         }
