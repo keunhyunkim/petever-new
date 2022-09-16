@@ -54,7 +54,8 @@ import java.util.concurrent.Executors;
 
 
 public class CameraActivity extends AppCompatActivity {
-    public static final String TAG = "CameraActivity";
+    private static final String TAG = "CameraActivity";
+    private static final String timeFormat = "yyyy-MM-dd HH:mm:ss";
     public static Context context;
 
     private Executor executor = Executors.newSingleThreadExecutor();
@@ -66,7 +67,6 @@ public class CameraActivity extends AppCompatActivity {
     private TextView text_breed;
     private TextView text_camera_guide;
     private ImageView image_breed_bubble;
-    private ImageView previewImage;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
 
     @Override
@@ -101,7 +101,6 @@ public class CameraActivity extends AppCompatActivity {
         text_breed = findViewById(R.id.text_breed);
         image_breed_bubble = findViewById(R.id.image_bubble);
         text_camera_guide = findViewById(R.id.text_camera_guide);
-        previewImage = findViewById(R.id.previewImage);
     }
 
     private void bindPreview(@NonNull ProcessCameraProvider cameraProvider) throws
@@ -139,10 +138,7 @@ public class CameraActivity extends AppCompatActivity {
 
         btn_camera.setOnClickListener(
                 (unused) -> {
-                    File dir =
-                            new File(
-                                    getApplicationContext().getExternalCacheDir(),
-                                    "PetEver");
+                    File dir = new File(getApplicationContext().getExternalCacheDir(), "PetEver");
                     if (dir.exists() || dir.mkdirs()) {
                         SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
                         File file = new File(dir, dataFormat.format(new Date()) + ".png");
@@ -157,7 +153,7 @@ public class CameraActivity extends AppCompatActivity {
                                 MLClass inf = new MLClass();
                                 Bitmap btmImg = ImageUtils.rotateImage(ImageUtils.convertImageProxyToBitmap(image), 90);
 
-                                SimpleDateFormat dataFormat = new SimpleDateFormat(String.valueOf(R.string.time_format), Locale.KOREA);
+                                SimpleDateFormat dataFormat = new SimpleDateFormat(timeFormat, Locale.KOREA);
                                 MediaStore.Images.Media.insertImage(getContentResolver(), btmImg, dataFormat.format(new Date()) + ".png", "taken by petEver");
 
                                 String breed = inf.runBreedClassification(btmImg, CameraActivity.this);
@@ -165,15 +161,20 @@ public class CameraActivity extends AppCompatActivity {
                                 Log.d("RESULT", "RESULT : " + breed);
                                 if (breed.equals("Retry")) {
                                     mHandler.postDelayed(() ->
-                                            Toast.makeText(CameraActivity.this, String.valueOf(R.string.invalid_value),
+                                            Toast.makeText(CameraActivity.this, getResources().getString(R.string.invalid_value),
                                                     Toast.LENGTH_SHORT).show(), 0
                                     );
                                     image.close();
                                     return;
                                 }
-                                runOnUiThread(() ->
-
-                                        updateViewByBreed(btmImg, breed));
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ImageView previewImage = findViewById(R.id.previewImage);
+                                        previewImage.setVisibility(View.VISIBLE);
+                                        previewImage.setImageBitmap(btmImg);
+                                    }
+                                });
                                 image.close();
                             }
                         });
@@ -189,14 +190,13 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-    private void updateViewByBreed(Bitmap btmImg, String breed) {
+    private void updateViewByBreed(String breed) {
         text_camera_guide.setVisibility(View.INVISIBLE);
         btn_camera.setVisibility(View.INVISIBLE);
         btn_character.setBackgroundResource(R.drawable.button_yellow);
         btn_character.setTextColor(getResources().getColor(R.color.black_text));
-        previewImage.setImageBitmap(btmImg);
+
         text_breed.setText(setBreed(breed));
-        previewImage.setVisibility(View.VISIBLE);
         btn_retry.setVisibility(View.VISIBLE);
         image_breed_bubble.setVisibility(View.VISIBLE);
         view_dimmed.setVisibility(View.VISIBLE);
