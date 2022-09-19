@@ -5,9 +5,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.SurfaceTexture;
-import android.graphics.drawable.Drawable;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
@@ -59,14 +56,15 @@ public class CameraActivity extends AppCompatActivity {
     public static Context context;
 
     private Executor executor = Executors.newSingleThreadExecutor();
-    private ImageView btn_camera;
-    private Button btn_retry;
     private View view_dimmed;
-    private Button btn_character;
+    private Button btnCharacter;
+    private Button btnRetry;
     private PreviewView previewView;
-    private TextView text_breed;
-    private TextView text_camera_guide;
-    private ImageView image_breed_bubble;
+    private TextView textBreed;
+    private TextView textCameraGuide;
+    private ImageView imgBreedBubble;
+    private ImageView imgPreview;
+    private ImageView btnCamera;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
 
     @Override
@@ -93,14 +91,18 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        btn_camera = findViewById(R.id.btn_take_camera);
+        btnCamera = findViewById(R.id.btn_take_camera);
         previewView = findViewById(R.id.previewView);
-        btn_retry = findViewById(R.id.btn_retry);
-        btn_character = findViewById(R.id.btn_character);
+        btnRetry = findViewById(R.id.btn_retry);
+        btnCharacter = findViewById(R.id.btn_character);
         view_dimmed = findViewById(R.id.view_dimmed);
-        text_breed = findViewById(R.id.text_breed);
-        image_breed_bubble = findViewById(R.id.image_bubble);
-        text_camera_guide = findViewById(R.id.text_camera_guide);
+        textBreed = findViewById(R.id.text_breed);
+        imgBreedBubble = findViewById(R.id.image_bubble);
+        textCameraGuide = findViewById(R.id.text_camera_guide);
+        imgPreview = findViewById(R.id.previewImage);
+        btnRetry.setOnClickListener(view -> {
+            updateViewRetry();
+        });
     }
 
     private void bindPreview(@NonNull ProcessCameraProvider cameraProvider) throws
@@ -108,8 +110,7 @@ public class CameraActivity extends AppCompatActivity {
         Size targetResolution = new Size(720, 1600);
         Preview preview = new Preview.Builder().setTargetResolution(targetResolution).build();
 
-        CameraSelector cameraSelector =
-                new CameraSelector.Builder().build();
+        CameraSelector cameraSelector = new CameraSelector.Builder().build();
 
         ImageAnalysis imageAnalysis =
                 new ImageAnalysis.Builder()
@@ -117,11 +118,9 @@ public class CameraActivity extends AppCompatActivity {
                         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                         .build();
         // Image analysis sample.
-        imageAnalysis.setAnalyzer(
-                executor,
-                (image) -> {
-                    image.close();
-                });
+        imageAnalysis.setAnalyzer(executor, (image) -> {
+            image.close();
+        });
 
         ImageCapture.Builder imageCaptureBuilder =
                 new ImageCapture.Builder().setTargetResolution(targetResolution);
@@ -136,7 +135,7 @@ public class CameraActivity extends AppCompatActivity {
 
         Camera camera = cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalysis, imageCapture);
 
-        btn_camera.setOnClickListener(
+        btnCamera.setOnClickListener(
                 (unused) -> {
                     File dir = new File(getApplicationContext().getExternalCacheDir(), "PetEver");
                     if (dir.exists() || dir.mkdirs()) {
@@ -167,14 +166,7 @@ public class CameraActivity extends AppCompatActivity {
                                     image.close();
                                     return;
                                 }
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        ImageView previewImage = findViewById(R.id.previewImage);
-                                        previewImage.setVisibility(View.VISIBLE);
-                                        previewImage.setImageBitmap(btmImg);
-                                    }
-                                });
+                                runOnUiThread(() -> updateViewByBreed(btmImg, breed));
                                 image.close();
                             }
                         });
@@ -190,17 +182,30 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-    private void updateViewByBreed(String breed) {
-        text_camera_guide.setVisibility(View.INVISIBLE);
-        btn_camera.setVisibility(View.INVISIBLE);
-        btn_character.setBackgroundResource(R.drawable.button_yellow);
-        btn_character.setTextColor(getResources().getColor(R.color.black_text));
-
-        text_breed.setText(setBreed(breed));
-        btn_retry.setVisibility(View.VISIBLE);
-        image_breed_bubble.setVisibility(View.VISIBLE);
+    private void updateViewByBreed(Bitmap btmImg, String breed) {
+        imgPreview.setVisibility(View.VISIBLE);
+        imgPreview.setImageBitmap(btmImg);
+        textCameraGuide.setVisibility(View.INVISIBLE);
+        btnRetry.setVisibility(View.VISIBLE);
+        btnCamera.setVisibility(View.INVISIBLE);
+        btnCharacter.setBackgroundResource(R.drawable.button_yellow);
+        btnCharacter.setTextColor(getResources().getColor(R.color.black_text));
+        textBreed.setText(setBreed(breed));
+        textBreed.setVisibility(View.VISIBLE);
+        imgBreedBubble.setVisibility(View.VISIBLE);
         view_dimmed.setVisibility(View.VISIBLE);
-        text_breed.setVisibility(View.VISIBLE);
+    }
+
+    private void updateViewRetry() {
+        imgPreview.setVisibility(View.INVISIBLE);
+        textCameraGuide.setVisibility(View.VISIBLE);
+        btnRetry.setVisibility(View.INVISIBLE);
+        btnCamera.setVisibility(View.VISIBLE);
+        btnCharacter.setBackgroundResource(R.drawable.button_gray);
+        btnCharacter.setTextColor(getResources().getColor(R.color.gray_dimmed));
+        textBreed.setVisibility(View.INVISIBLE);
+        imgBreedBubble.setVisibility(View.INVISIBLE);
+        view_dimmed.setVisibility(View.INVISIBLE);
     }
 
     private String setBreed(String breed) { // TODO : convert to enum
