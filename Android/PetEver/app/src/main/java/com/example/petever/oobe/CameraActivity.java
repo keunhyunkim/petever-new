@@ -14,6 +14,8 @@ import android.os.Bundle;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.util.Size;
@@ -56,7 +58,7 @@ public class CameraActivity extends AppCompatActivity {
     public static Context context;
 
     private Executor executor = Executors.newSingleThreadExecutor();
-    private View view_dimmed;
+    private View viewDimmed;
     private Button btnCharacter;
     private Button btnRetry;
     private PreviewView previewView;
@@ -77,6 +79,15 @@ public class CameraActivity extends AppCompatActivity {
         initView();
     }
 
+    private void cameraHaptic() {
+        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if (Build.VERSION.SDK_INT >= 26) {
+            vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            vibrator.vibrate(50);
+        }
+    }
+
     private void requestProcessCameraProvider() {
         cameraProviderFuture = ProcessCameraProvider.getInstance(this);
         cameraProviderFuture.addListener(() -> {
@@ -95,7 +106,7 @@ public class CameraActivity extends AppCompatActivity {
         previewView = findViewById(R.id.previewView);
         btnRetry = findViewById(R.id.btn_retry);
         btnCharacter = findViewById(R.id.btn_character);
-        view_dimmed = findViewById(R.id.view_dimmed);
+        viewDimmed = findViewById(R.id.view_dimmed);
         textBreed = findViewById(R.id.text_breed);
         imgBreedBubble = findViewById(R.id.image_bubble);
         textCameraGuide = findViewById(R.id.text_camera_guide);
@@ -135,43 +146,44 @@ public class CameraActivity extends AppCompatActivity {
 
         Camera camera = cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalysis, imageCapture);
 
-        btnCamera.setOnClickListener(
-                (unused) -> {
-                    File dir = new File(getApplicationContext().getExternalCacheDir(), "PetEver");
-                    if (dir.exists() || dir.mkdirs()) {
-                        SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
-                        File file = new File(dir, dataFormat.format(new Date()) + ".png");
-                        ImageCapture.OutputFileOptions outputFileOptions =
-                                new ImageCapture.OutputFileOptions.Builder(file).build();
+        btnCamera.setOnClickListener((view) -> {
+            cameraHaptic();
 
-                        imageCapture.takePicture(executor, new ImageCapture.OnImageCapturedCallback() {
-                            @Override
-                            public void onCaptureSuccess(@NonNull ImageProxy image) {
-                                super.onCaptureSuccess(image);
-                                //Run Inference for Breed Classification
-                                MLClass inf = new MLClass();
-                                Bitmap btmImg = ImageUtils.rotateImage(ImageUtils.convertImageProxyToBitmap(image), 90);
+            File dir = new File(getApplicationContext().getExternalCacheDir(), "PetEver");
+            if (dir.exists() || dir.mkdirs()) {
+                SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+                File file = new File(dir, dataFormat.format(new Date()) + ".png");
+                ImageCapture.OutputFileOptions outputFileOptions =
+                        new ImageCapture.OutputFileOptions.Builder(file).build();
 
-                                SimpleDateFormat dataFormat = new SimpleDateFormat(timeFormat, Locale.KOREA);
-                                MediaStore.Images.Media.insertImage(getContentResolver(), btmImg, dataFormat.format(new Date()) + ".png", "taken by petEver");
+                imageCapture.takePicture(executor, new ImageCapture.OnImageCapturedCallback() {
+                    @Override
+                    public void onCaptureSuccess(@NonNull ImageProxy image) {
+                        super.onCaptureSuccess(image);
+                        //Run Inference for Breed Classification
+                        MLClass inf = new MLClass();
+                        Bitmap btmImg = ImageUtils.rotateImage(ImageUtils.convertImageProxyToBitmap(image), 90);
 
-                                String breed = inf.runBreedClassification(btmImg, CameraActivity.this);
-                                Handler mHandler = new Handler(Looper.getMainLooper());
-                                Log.d("RESULT", "RESULT : " + breed);
-                                if (breed.equals("Retry")) {
-                                    mHandler.postDelayed(() ->
-                                            Toast.makeText(CameraActivity.this, getResources().getString(R.string.invalid_value),
-                                                    Toast.LENGTH_SHORT).show(), 0
-                                    );
-                                    image.close();
-                                    return;
-                                }
-                                runOnUiThread(() -> updateViewByBreed(btmImg, breed));
-                                image.close();
-                            }
-                        });
+                        SimpleDateFormat dataFormat = new SimpleDateFormat(timeFormat, Locale.KOREA);
+                        MediaStore.Images.Media.insertImage(getContentResolver(), btmImg, dataFormat.format(new Date()) + ".png", "taken by petEver");
+
+                        String breed = inf.runBreedClassification(btmImg, CameraActivity.this);
+                        Handler mHandler = new Handler(Looper.getMainLooper());
+                        Log.d("RESULT", "RESULT : " + breed);
+                        if (breed.equals("Retry")) {
+                            mHandler.postDelayed(() ->
+                                    Toast.makeText(CameraActivity.this, getResources().getString(R.string.invalid_value),
+                                            Toast.LENGTH_SHORT).show(), 0
+                            );
+                            image.close();
+                            return;
+                        }
+                        runOnUiThread(() -> updateViewByBreed(btmImg, breed));
+                        image.close();
                     }
                 });
+            }
+        });
         // Show all supported output sizes.
         CameraManager cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
         for (String cameraId : cameraManager.getCameraIdList()) {
@@ -193,7 +205,7 @@ public class CameraActivity extends AppCompatActivity {
         textBreed.setText(setBreed(breed));
         textBreed.setVisibility(View.VISIBLE);
         imgBreedBubble.setVisibility(View.VISIBLE);
-        view_dimmed.setVisibility(View.VISIBLE);
+        viewDimmed.setVisibility(View.VISIBLE);
     }
 
     private void updateViewRetry() {
@@ -205,7 +217,7 @@ public class CameraActivity extends AppCompatActivity {
         btnCharacter.setTextColor(getResources().getColor(R.color.gray_dimmed));
         textBreed.setVisibility(View.INVISIBLE);
         imgBreedBubble.setVisibility(View.INVISIBLE);
-        view_dimmed.setVisibility(View.INVISIBLE);
+        viewDimmed.setVisibility(View.INVISIBLE);
     }
 
     private String setBreed(String breed) { // TODO : convert to enum
