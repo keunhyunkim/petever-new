@@ -54,7 +54,7 @@ import java.util.concurrent.Executors;
 public class CameraActivity extends AppCompatActivity {
     private static final String TAG = "CameraActivity";
     private static final String timeFormat = "yyyy-MM-dd HH:mm:ss";
-    public static Context context;
+    private static Context context;
 
     private ExecutorService executor = Executors.newSingleThreadExecutor();
 
@@ -159,7 +159,7 @@ public class CameraActivity extends AppCompatActivity {
                             image.close();
                             return;
                         }
-                        IntentUtil.intentBreedActivity(context, uri, breed);
+                        IntentUtil.intentBreedActivity(TAG, context, uri, breed);
                         image.close();
                     }
                 });

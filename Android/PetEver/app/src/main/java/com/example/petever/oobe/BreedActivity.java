@@ -41,11 +41,16 @@ public class BreedActivity extends AppCompatActivity {
         });
         Intent extras = getIntent();
         if (extras != null) {
+            String activity = extras.getStringExtra("activity");
             String imagePath = extras.getStringExtra("image");
             String breed = extras.getStringExtra("breed");
             Uri fileUri = Uri.parse(imagePath);
             imgPreview.setImageURI(fileUri);
             textBreed.setText(setBreed(breed));
+            if ("MainActivity".equals(activity)) {
+                btnRetry.setText(R.string.btn_retry_album);
+            }
+
         }
     }
 

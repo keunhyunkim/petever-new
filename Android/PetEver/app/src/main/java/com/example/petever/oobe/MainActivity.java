@@ -27,10 +27,9 @@ import com.example.petever.util.IntentUtil;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-
-    ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
-
-    public static Context context;
+    private static final String TAG = "MainActivity";
+    private ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
+    private static Context context;
 
 
     @Override
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Invalid, Try Again T.T",
                                 Toast.LENGTH_SHORT).show();
                     } else {
-                        IntentUtil.intentBreedActivity(context, uri, breed);
+                        IntentUtil.intentBreedActivity(TAG, context, uri, breed);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
