@@ -7,6 +7,8 @@ import android.os.SystemClock;
 import android.util.Log;
 
 
+import com.example.petever.oobe.util.ImageUtil;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -59,7 +61,7 @@ public class MLClass {
     public String runBreedClassification(Bitmap bitmap, Activity activity) {
         float[][] modelOutput = new float[1][breedCount];
 
-        ByteBuffer input = ImageUtils.preprocessImg(bitmap, imgsize);
+        ByteBuffer input = ImageUtil.preprocessImg(bitmap, imgsize);
 
         Interpreter tflite = getTfliteInterpreter("breed.tflite", activity);
         if (tflite == null) {

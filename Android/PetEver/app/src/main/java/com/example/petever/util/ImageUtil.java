@@ -1,4 +1,4 @@
-package com.example.petever.oobe;
+package com.example.petever.oobe.util;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,7 +10,7 @@ import androidx.camera.core.ImageProxy;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-public class ImageUtils {
+public class ImageUtil {
     public static ByteBuffer preprocessImg(Bitmap bmp, int imgsize) {
         Bitmap bitmap = Bitmap.createScaledBitmap(bmp, imgsize, imgsize, true);
         Bitmap tmp = null;
