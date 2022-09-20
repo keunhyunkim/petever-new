@@ -1,6 +1,7 @@
 package com.example.petever.oobe;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.ImageDecoder;
@@ -11,7 +12,6 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -22,29 +22,34 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.petever.R;
+import com.example.petever.oobe.util.IntentUtil;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
-    Bitmap bitmap = null;
+
+    public static Context context;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        context = this;
         setContentView(R.layout.activity_main);
         initView();
         registerMediaPick();
-
     }
-    private void photoPicked(Uri uri){
+
+    private void photoPicked(Uri uri) {
         {
             // Callback is invoked after the user selects a media item or closes the
             // photo picker.
             if (uri != null) {
                 Log.d("PhotoPicker", "Selected URI: " + uri);
+                Bitmap bitmap = null;
                 try {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                         bitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(getContentResolver(), uri));
@@ -58,11 +63,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Invalid, Try Again T.T",
                                 Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(MainActivity.this, "Breed : " + breed,
-                                Toast.LENGTH_SHORT).show();
-//                        ImageView previewImage = findViewById(R.id.previewImage);
-//                        previewImage.setVisibility(View.VISIBLE);
-//                        previewImage.setImageBitmap(bitmap);
+                        IntentUtil.intentBreedActivity(context, uri, breed);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
     private void registerMediaPick() {
         // https://developer.android.com/training/data-storage/shared/photopicker#custom-select-single
         // Registers a photo picker activity launcher in single-select mode.
@@ -95,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
                     .build());
         });
     }
-
 
     //https://developer.android.com/training/system-ui/immersive#java
     @Override
@@ -122,5 +123,6 @@ public class MainActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
+
 
 }
