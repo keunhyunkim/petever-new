@@ -7,7 +7,7 @@ import android.os.SystemClock;
 import android.util.Log;
 
 
-import com.example.petever.oobe.util.ImageUtil;
+import com.example.petever.util.ImageUtil;
 
 import java.io.FileInputStream;
 import java.io.IOException;

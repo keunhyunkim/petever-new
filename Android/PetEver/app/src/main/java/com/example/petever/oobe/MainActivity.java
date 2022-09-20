@@ -22,9 +22,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.petever.R;
-import com.example.petever.oobe.util.IntentUtil;
+import com.example.petever.util.IntentUtil;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {

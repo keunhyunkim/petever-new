@@ -1,4 +1,4 @@
-package com.example.petever.oobe.domain;
+package com.example.petever.domain;
 
 public class Breed {
     private String name;

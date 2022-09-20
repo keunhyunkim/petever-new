@@ -3,7 +3,6 @@ package com.example.petever.oobe;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.hardware.camera2.CameraAccessException;
@@ -39,8 +38,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.petever.R;
-import com.example.petever.oobe.util.ImageUtil;
-import com.example.petever.oobe.util.IntentUtil;
+import com.example.petever.util.ImageUtil;
+import com.example.petever.util.IntentUtil;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.io.File;

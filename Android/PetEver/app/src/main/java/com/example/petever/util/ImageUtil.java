@@ -1,4 +1,4 @@
-package com.example.petever.oobe.util;
+package com.example.petever.util;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
