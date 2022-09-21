@@ -5,7 +5,7 @@ from pascal_voc_writer import Writer
 #print(os.getcwd())
 #파일 읽어오는 부분
 for i in range(1,5):
-    im = cv2.imread('.\data\oxford_pomeranian\pomeranian_' + str(i) + '.jpg')
+    im = cv2.imread('./input/pome_short_' + str(i) + '.jpg')
     #print(type(im))
     #print(im.shape)
     #print(type(im.shape))
@@ -13,8 +13,8 @@ for i in range(1,5):
     height, width, depth = im.shape
     #print(height, width, depth)
 #xml 파일로 annotation 저장
-    writer = Writer('.\data\oxford_pomeranian\pomeranian_' + str(i) + '.jpg', width, height, depth)
+    writer = Writer('./annotation/pome_short_' + str(i) + '.jpg', width, height, depth)
     writer.addObject('pomeranian',193, 47, 340, 150)
 
-    writer.save('.\data\pomeranian_' + str(i) + '.xml')
+    writer.save('./annotation/pome_short_' + str(i))
 
