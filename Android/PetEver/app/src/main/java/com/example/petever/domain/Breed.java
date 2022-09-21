@@ -16,7 +16,7 @@ public enum Breed {
 
     // long컷 : 1
     // 곰돌이컷 : 2
-    // 말티즈 기본 :
+    // 말티즈 기본 : 1
 
     MALTESE(100021, "MALTESE", R.string.breed_maltese), POME_LONG(100011, "POME_LONG", R.string.breed_pome), POME_SHORT(100012, "POME_SHORT", R.string.breed_pome);
     private int code;
