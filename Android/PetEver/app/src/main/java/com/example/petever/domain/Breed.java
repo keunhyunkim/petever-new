@@ -25,12 +25,12 @@ public enum Breed {
     MALTESE(100021, "MALTESE", R.string.breed_maltese), POME_LONG(100011, "POME_LONG", R.string.breed_pome), POME_SHORT(100012, "POME_SHORT", R.string.breed_pome);
     private int code;
     private String name;
-    private int bubbleText;
+    private int bubbleStringCode;
 
-    Breed(int code, String name, int bubbleText) {
+    Breed(int code, String name, int bubbleStringCode) {
         this.code = code;
         this.name = name;
-        this.bubbleText = bubbleText;
+        this.bubbleStringCode = bubbleStringCode;
     }
 
 
@@ -42,8 +42,8 @@ public enum Breed {
         return name;
     }
 
-    public int getBubbleTextCode() {
-        return bubbleText;
+    public int getBubbleStringCode() {
+        return bubbleStringCode;
     }
 
     private static final Map<String, Breed> lookup = new HashMap<>();
