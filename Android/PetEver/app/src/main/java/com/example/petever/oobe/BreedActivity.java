@@ -48,7 +48,7 @@ public class BreedActivity extends AppCompatActivity {
             Uri fileUri = Uri.parse(imagePath);
             imgPreview.setImageURI(fileUri);
             try {
-                int textCode = Breed.get(breed).getBubbleTextCode();
+                int textCode = Breed.get(breed).getBubbleStringCode();
                 if (textCode != 0) {
                     textBreed.setText(getResources().getString(textCode));
                 }
