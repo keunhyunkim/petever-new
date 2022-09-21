@@ -19,10 +19,10 @@ import org.tensorflow.lite.Interpreter;
 import org.tensorflow.lite.Tensor;
 
 public class MLClass {
-    final static String[] breeds = {"Maltese", "Golden", "Pug", "Pome", "Poodle"};
+    final static String[] breeds = {"MALTESE", "POME_LONG", "POME_SHORT"};
     final static int imgsize = 299;
-    final static int breedCount = 5;
-    final static float breedThreshold = 0.75F;
+    final static int breedCount = 3;
+    final static float breedThreshold = 0.6F;
 
     private int getBreedArgmax(float[][] target) {
         int idx = 0;
@@ -63,7 +63,7 @@ public class MLClass {
 
         ByteBuffer input = ImageUtil.preprocessImg(bitmap, imgsize);
 
-        Interpreter tflite = getTfliteInterpreter("breed.tflite", activity);
+        Interpreter tflite = getTfliteInterpreter("breed3_short.tflite", activity);
         if (tflite == null) {
             Log.d("TFLITE", "MODEL NULL!!!");
         }
@@ -79,9 +79,11 @@ public class MLClass {
 
         int breedArgmax = getBreedArgmax(modelOutput);
         if (modelOutput[0][breedArgmax] > breedThreshold) {
+            Log.d("BREED", breeds[breedArgmax]);
             return breeds[breedArgmax];
         } else {
-            Log.d("NO_BREED", "Invalid : " + modelOutput[0][breedArgmax]);
+//            Log.d("NO_BREED", "Invalid : " + modelOutput[0][breedArgmax]);
+            Log.d("NO_BREED", "Invalid : " + modelOutput[0][0]+ modelOutput[0][1]+ modelOutput[0][2]);
             return "Retry";
         }
 
