@@ -1,12 +1,9 @@
 package com.example.petever.oobe;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.petever.R;
+import com.example.petever.domain.Breed;
 
 public class BreedActivity extends AppCompatActivity {
     private static final String TAG = "BreedActivity";
@@ -22,13 +20,13 @@ public class BreedActivity extends AppCompatActivity {
     private ImageView imgPreview;
     private Button btnRetry;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breed);
         initView();
-
-
+        processIntentData();
     }
 
 
@@ -39,6 +37,9 @@ public class BreedActivity extends AppCompatActivity {
         btnRetry.setOnClickListener(view -> {
             finish();
         });
+    }
+
+    private void processIntentData() {
         Intent extras = getIntent();
         if (extras != null) {
             String activity = extras.getStringExtra("activity");
@@ -46,22 +47,18 @@ public class BreedActivity extends AppCompatActivity {
             String breed = extras.getStringExtra("breed");
             Uri fileUri = Uri.parse(imagePath);
             imgPreview.setImageURI(fileUri);
-            textBreed.setText(setBreed(breed));
+            try {
+                int textCode = Breed.get(breed).getBubbleTextCode();
+                if (textCode != 0) {
+                    textBreed.setText(getResources().getString(textCode));
+                }
+            } catch (NullPointerException e) {
+                Log.e(TAG, e.toString());
+            }
+
             if ("MainActivity".equals(activity)) {
                 btnRetry.setText(R.string.btn_retry_album);
             }
-
-        }
-    }
-
-    private String setBreed(String breed) { // TODO : convert to enum
-        switch (breed) {
-            case "Pome":
-                return getResources().getString((R.string.breed_pome));
-            case "Maltese":
-                return getResources().getString((R.string.breed_maltese));
-            default:
-                return breed;
         }
     }
 
