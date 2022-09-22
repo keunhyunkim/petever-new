@@ -144,7 +144,7 @@ public class CameraActivity extends AppCompatActivity {
                     public void onCaptureSuccess(@NonNull ImageProxy image) {
                         super.onCaptureSuccess(image);
                         //Run Inference for Breed Classification
-                        MLClass inf = new MLClass();
+                        MLClass inf = MLClass.getInstance();
                         Bitmap btmImg = ImageUtil.rotateImage(ImageUtil.convertImageProxyToBitmap(image), 90);
 
                         SimpleDateFormat dataFormat = new SimpleDateFormat(timeFormat, Locale.KOREA);

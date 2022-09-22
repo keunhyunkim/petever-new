@@ -25,6 +25,17 @@ public class MLClass {
     final static int breedCount = 3;
     final static float breedThreshold = 0.6F;
 
+    private static MLClass mlInstance = null;
+
+    private MLClass() {};
+
+    public static synchronized MLClass getInstance() {
+        if (mlInstance == null) {
+            return new MLClass();
+        }
+        return mlInstance;
+    }
+
     private int getBreedArgmax(float[][] target) {
         int idx = 0;
         int maxIdx = idx;

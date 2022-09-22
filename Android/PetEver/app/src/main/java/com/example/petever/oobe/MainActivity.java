@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                     }
-                    MLClass inf = new MLClass();
+                    MLClass inf = MLClass.getInstance();
                     String breed = inf.runBreedClassification(bitmap, MainActivity.this);
                     if (breed.equals("Retry")) {
                         Toast.makeText(MainActivity.this, "Invalid, Try Again T.T",
