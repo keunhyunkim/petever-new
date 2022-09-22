@@ -23,7 +23,7 @@ public class MLClass {
     //Breed order for Breed Classification Model : MALTESE, POME_LONG, POME_SHORT
     final static int imgsize = 299;
     final static int breedCount = 3;
-    final static float breedThreshold = 0.6F;
+    final static float breedThreshold = 0.9F;
 
     private static MLClass mlInstance = null;
 
@@ -91,13 +91,18 @@ public class MLClass {
 
         int breedArgmax = getBreedArgmax(modelOutput);
         if (modelOutput[0][breedArgmax] > breedThreshold) {
-            Log.d("BREED", Breed.getNameWithMLCode(breedArgmax) + " : " + modelOutput[0][breedArgmax] );
-            return Breed.getNameWithMLCode(breedArgmax);
-        } else {
-//            Log.d("NO_BREED", "Invalid : " + modelOutput[0][breedArgmax]);
-            Log.d("NO_BREED", "Invalid : " + modelOutput[0][0]+ modelOutput[0][1]+ modelOutput[0][2]);
-            return "Retry";
+            String breedName = Breed.getNameWithMLCode(breedArgmax);
+            if (!breedName.equals("Retry")) {
+                Log.d("BREED", breedName + " : " + modelOutput[0][breedArgmax]);
+                return breedName;
+            }
+        } else if ((modelOutput[0][1] > breedThreshold/2) && (modelOutput[0][2] > breedThreshold/2) && (modelOutput[0][1] + modelOutput[0][2]) > breedThreshold) {
+            Log.d("BREED", "POME_LONG(UNDEF)" + " : " + modelOutput[0][1] + " " + modelOutput[0][2]);
+            return Breed.getNameWithMLCode(1);
         }
+//        Log.d("NO_BREED", "Invalid : " + modelOutput[0][breedArgmax]);
+        Log.d("NO_BREED", "Invalid : " + modelOutput[0][0] + " " + modelOutput[0][1] + " " + modelOutput[0][2]);
+        return "Retry";
 
     }
 }
