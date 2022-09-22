@@ -7,6 +7,7 @@ import android.os.SystemClock;
 import android.util.Log;
 
 
+import com.example.petever.domain.Breed;
 import com.example.petever.util.ImageUtil;
 
 import java.io.FileInputStream;
@@ -19,7 +20,7 @@ import org.tensorflow.lite.Interpreter;
 import org.tensorflow.lite.Tensor;
 
 public class MLClass {
-    final static String[] breeds = {"MALTESE", "POME_LONG", "POME_SHORT"};
+    //Breed order for Breed Classification Model : MALTESE, POME_LONG, POME_SHORT
     final static int imgsize = 299;
     final static int breedCount = 3;
     final static float breedThreshold = 0.6F;
@@ -79,8 +80,8 @@ public class MLClass {
 
         int breedArgmax = getBreedArgmax(modelOutput);
         if (modelOutput[0][breedArgmax] > breedThreshold) {
-            Log.d("BREED", breeds[breedArgmax]);
-            return breeds[breedArgmax];
+            Log.d("BREED", Breed.getNameWithMLCode(breedArgmax) + " : " + modelOutput[0][breedArgmax] );
+            return Breed.getNameWithMLCode(breedArgmax);
         } else {
 //            Log.d("NO_BREED", "Invalid : " + modelOutput[0][breedArgmax]);
             Log.d("NO_BREED", "Invalid : " + modelOutput[0][0]+ modelOutput[0][1]+ modelOutput[0][2]);

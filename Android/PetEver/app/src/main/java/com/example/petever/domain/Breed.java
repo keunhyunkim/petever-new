@@ -22,15 +22,17 @@ public enum Breed {
     // | 고양이(11) |                   |                  |
     // ---------------------------------------------------
 
-    MALTESE(100021, "MALTESE", R.string.breed_maltese), POME_LONG(100011, "POME_LONG", R.string.breed_pome), POME_SHORT(100012, "POME_SHORT", R.string.breed_pome);
+    MALTESE(100021, "MALTESE", R.string.breed_maltese, 1), POME_LONG(100011, "POME_LONG", R.string.breed_pome, 2), POME_SHORT(100012, "POME_SHORT", R.string.breed_pome, 3);
     private int code;
     private String name;
     private int bubbleStringCode;
+    private int mlCode;
 
-    Breed(int code, String name, int bubbleStringCode) {
+    Breed(int code, String name, int bubbleStringCode, int mlCode) {
         this.code = code;
         this.name = name;
         this.bubbleStringCode = bubbleStringCode;
+        this.mlCode = mlCode;
     }
 
 
@@ -41,6 +43,8 @@ public enum Breed {
     public String getName() {
         return name;
     }
+
+    public int getMLCode() { return mlCode; }
 
     public int getBubbleStringCode() {
         return bubbleStringCode;
@@ -58,4 +62,12 @@ public enum Breed {
         return lookup.get(name);
     }
 
+    public static String getNameWithMLCode(int code) {
+        for (Breed b : Breed.values()) {
+            if (b.getMLCode() == code) {
+                return b.getName();
+            }
+        }
+        return "Retry";
+    }
 }
