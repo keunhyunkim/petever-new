@@ -19,7 +19,7 @@ for i in range(1,5):
     #print(height, width, depth)
 #xml 파일로 annotation 저장
     writer = Writer(annotation_file_path + str(i) + '.jpg', width, height, depth)
-    writer.addObject(breed_name ,193, 47, 340, 150)
+    # bound box - 전체 이미지 size로 지정 
+    writer.addObject(breed_name,0, 0, width, height)
 
     writer.save(annotation_file_path + str(i))
-
