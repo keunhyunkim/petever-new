@@ -75,7 +75,7 @@ public class MLClass {
 
         ByteBuffer input = ImageUtil.preprocessImg(bitmap, imgsize);
 
-        Interpreter tflite = getTfliteInterpreter("dog_breed3.tflite", activity);
+        Interpreter tflite = getTfliteInterpreter("dog_breed_3.tflite", activity);
         if (tflite == null) {
             Log.d("TFLITE", "MODEL NULL!!!");
         }
@@ -96,9 +96,14 @@ public class MLClass {
                 Log.d("BREED", breedName + " : " + modelOutput[0][breedArgmax]);
                 return breedName;
             }
-        } else if ((modelOutput[0][1] > breedThreshold/2) && (modelOutput[0][2] > breedThreshold/2) && (modelOutput[0][1] + modelOutput[0][2]) > breedThreshold) {
-            Log.d("BREED", "POME_LONG(UNDEF)" + " : " + modelOutput[0][1] + " " + modelOutput[0][2]);
-            return Breed.getNameWithMLCode(1);
+        } else if (modelOutput[0][1] + modelOutput[0][2] > breedThreshold) {
+            if (modelOutput[0][1] > modelOutput[0][2]) {
+                Log.d("BREED", "POME_LONG" + " : " + modelOutput[0][1]);
+                return Breed.getNameWithMLCode(1);
+            } else {
+                Log.d("BREED", "POME_SHORT" + " : " + modelOutput[0][2]);
+                return Breed.getNameWithMLCode(2);
+            }
         }
 //        Log.d("NO_BREED", "Invalid : " + modelOutput[0][breedArgmax]);
         Log.d("NO_BREED", "Invalid : " + modelOutput[0][0] + " " + modelOutput[0][1] + " " + modelOutput[0][2]);
