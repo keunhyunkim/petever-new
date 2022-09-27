@@ -22,7 +22,7 @@ public enum Breed {
     // | 고양이(11) |                   |                  |
     // ---------------------------------------------------
 
-    MALTESE(100021, "MALTESE", R.string.breed_maltese, 1), POME_LONG(100011, "POME_LONG", R.string.breed_pome, 2), POME_SHORT(100012, "POME_SHORT", R.string.breed_pome, 3);
+    MALTESE(100021, "MALTESE", R.string.breed_maltese, 0), POME_LONG(100011, "POME_LONG", R.string.breed_pome, 1), POME_SHORT(100012, "POME_SHORT", R.string.breed_pome, 2);
     private int code;
     private String name;
     private int bubbleStringCode;
