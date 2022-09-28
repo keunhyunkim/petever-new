@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.petever"
-        minSdk 21
+        minSdk 22
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -28,6 +28,8 @@ android {
 }
 
 dependencies {
+    implementation project(':unityLibrary')
+
     implementation 'androidx.activity:activity-ktx:1.6.0-alpha05'
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'

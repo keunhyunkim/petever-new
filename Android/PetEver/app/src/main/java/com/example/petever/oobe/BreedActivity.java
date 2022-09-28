@@ -13,12 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.petever.R;
 import com.example.petever.domain.Breed;
+import com.unity3d.player.UnityPlayerActivity;
 
 public class BreedActivity extends AppCompatActivity {
     private static final String TAG = "BreedActivity";
     private TextView textBreed;
     private ImageView imgPreview;
     private Button btnRetry;
+    private Button btnCharacter;
 
 
     @Override
@@ -31,11 +33,16 @@ public class BreedActivity extends AppCompatActivity {
 
 
     private void initView() {
+        btnCharacter = findViewById(R.id.btn_character);
         btnRetry = findViewById(R.id.btn_retry);
         imgPreview = findViewById(R.id.previewImage);
         textBreed = findViewById(R.id.text_breed);
         btnRetry.setOnClickListener(view -> {
             finish();
+        });
+        btnCharacter.setOnClickListener(view -> {
+            Intent intent = new Intent(this, UnityPlayerActivity.class);
+            startActivity(intent);
         });
     }
 
