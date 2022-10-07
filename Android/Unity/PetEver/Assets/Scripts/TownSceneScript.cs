@@ -16,15 +16,4 @@ public class TownSceneScript : MonoBehaviour
     {
         
     }
-
-    public void OnClickQuestBtn()
-    {
-        PopUpSystem pop = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PopUpSystem>();
-        pop.PopUp();
-    }
-    
-    public void OnClickMailBoxBtn()
-    {
-
-    }
 }
