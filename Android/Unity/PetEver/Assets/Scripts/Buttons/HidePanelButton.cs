@@ -2,20 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PopUpSystem : MonoBehaviour
+public class HidePanelButton : MonoBehaviour
 {
-
-    public string PanelId;
-
     private PanelManager _panelManager;
 
     public void Start()
     {
         _panelManager = PanelManager.Instance;
     }
-    public void DoShowPanel()
+    public void DoHidePanel()
     {
-        _panelManager.ShowPanel(PanelId);
+        _panelManager.HideLastPanel();
     }
 
 }

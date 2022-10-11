@@ -28,24 +28,24 @@ public class PanelManager : Singleton<PanelManager>
 			
     }
 
-	public void HidePanel(string panelId) {
+	public void HideLastPanel()
+	{
 
-		PanelModel panelModel = Panels.FirstOrDefault(panel => panel.PanelId == panelId);
-
-		
-
-		if (panelModel != null)
+		if (AnyPanelShowing())
 		{
 			var lastPanel = _queue.Dequeue();
-
-			Debug.LogWarning($"Trying to use panelId = {panelId}, {lastPanel.PanelId}");
-	
 			Destroy(lastPanel.PanelInstance);
-
-		}
-		else
-		{
-			Debug.LogWarning($"Trying to use panelId = {panelId}, but this is not found in Panels");
 		}
 	}
+
+	public bool AnyPanelShowing()
+    {
+		return GetAmountPanelsInQueue() > 0;
+    }
+
+	public int GetAmountPanelsInQueue()
+    {
+		int count = _queue.Count;
+		return _queue.Count;
+    }
 }
