@@ -2,6 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+
 
 public class VoiceButton : MonoBehaviour
 {
@@ -10,9 +13,28 @@ public class VoiceButton : MonoBehaviour
     private AndroidJavaClass javaClass = null;
     private AndroidJavaObject javaClassInstance = null;
 
+    public Image dimImage;
 
+    public void HideImage()
+    {
+        dimImage.enabled = false;
+
+    }
+
+    public void ShowImage()
+    {
+        dimImage.enabled = true;
+
+    }
     void Awake()
     {
+        GameObject imageObject = GameObject.FindGameObjectWithTag("DimImage");
+        if (imageObject != null)
+        {
+            dimImage = imageObject.GetComponent<Image>();
+        }
+
+        HideImage();
 
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {
@@ -40,11 +62,12 @@ public class VoiceButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public void OnClickVoiceButton()
     {
+
+        ShowImage();
         Debug.Log("OnClickVoiceButton!!");
         if (javaClass != null && activityContext != null)
         {
