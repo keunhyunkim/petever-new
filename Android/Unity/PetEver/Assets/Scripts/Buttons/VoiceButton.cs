@@ -13,28 +13,16 @@ public class VoiceButton : MonoBehaviour
     private AndroidJavaClass javaClass = null;
     private AndroidJavaObject javaClassInstance = null;
 
-    public Image dimImage;
+    public GameObject dimImageObject;
+    public GameObject voiceBtnImageObject;
+    public Sprite voiceBtnOverrideSprite;
+    public Sprite voiceBtnOriginSprite;
 
-    public void HideImage()
-    {
-        dimImage.enabled = false;
 
-    }
-
-    public void ShowImage()
-    {
-        dimImage.enabled = true;
-
-    }
     void Awake()
     {
-        GameObject imageObject = GameObject.FindGameObjectWithTag("DimImage");
-        if (imageObject != null)
-        {
-            dimImage = imageObject.GetComponent<Image>();
-        }
-
         HideImage();
+
 
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {
@@ -66,17 +54,14 @@ public class VoiceButton : MonoBehaviour
 
     public void OnClickVoiceButton()
     {
-
         ShowImage();
-        Debug.Log("OnClickVoiceButton!!");
+
         if (javaClass != null && activityContext != null)
         {
             javaClass.CallStatic("startVoiceRecognition", activityContext);
         }
         else
         {
-            Debug.Log("javaClass or activityContext null");
-
             if (javaClass == null)
             {
                 Debug.Log("javaClass null");
@@ -86,6 +71,25 @@ public class VoiceButton : MonoBehaviour
                 Debug.Log("activityContext null");
             }
         }
+    }
+
+
+    IEnumerator ShowAndHide(float delay)
+    {
+        dimImageObject.SetActive(true);
+        voiceBtnImageObject.GetComponent<Image>().sprite = voiceBtnOverrideSprite;
+        yield return new WaitForSeconds(delay);
+        dimImageObject.SetActive(false);
+        voiceBtnImageObject.GetComponent<Image>().sprite = voiceBtnOriginSprite;
+    }
+    public void HideImage()
+    {
+        dimImageObject.SetActive(false);
+    }
+
+    public void ShowImage()
+    {
+        StartCoroutine(ShowAndHide(2.0f));
     }
 
 }
