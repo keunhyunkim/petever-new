@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PetEver">
         <activity
-            android:name=".oobe.MainActivity"
+            android:name=".oobe.NameActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
@@ -26,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".oobe.MainActivity" />
         <activity android:name=".oobe.CameraActivity" />
         <activity android:name=".oobe.BreedActivity" />
         <activity
