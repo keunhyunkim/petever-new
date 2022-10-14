@@ -39,7 +39,8 @@ public class NameActivity extends AppCompatActivity {
     private SharedPreferences pf;
 
     private void hideKeyboard() {
-        InputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        InputManager.hideSoftInputFromWindow(this.getWindow().getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     public String getPetName() {
@@ -64,6 +65,7 @@ public class NameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name);
+
 
         name_new = findViewById(R.id.name_new);
         relation_new = findViewById(R.id.name_relation_new);
