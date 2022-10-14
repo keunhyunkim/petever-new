@@ -15,8 +15,8 @@ public class VoiceButton : MonoBehaviour
 
     public GameObject dimImageObject;
     public GameObject voiceBtnImageObject;
+    public GameObject voiceText;
     public Sprite voiceBtnOverrideSprite;
-    public Sprite voiceBtnOriginSprite;
 
 
     void Awake()
@@ -74,22 +74,23 @@ public class VoiceButton : MonoBehaviour
     }
 
 
-    IEnumerator ShowAndHide(float delay)
+    IEnumerator ShowAndHide()
     {
         dimImageObject.SetActive(true);
         voiceBtnImageObject.GetComponent<Image>().sprite = voiceBtnOverrideSprite;
-        yield return new WaitForSeconds(delay);
-        dimImageObject.SetActive(false);
-        voiceBtnImageObject.GetComponent<Image>().sprite = voiceBtnOriginSprite;
+        yield return new WaitForSeconds(1.5f);
+
+        voiceText.SetActive(true);
     }
     public void HideImage()
     {
         dimImageObject.SetActive(false);
+        voiceText.SetActive(false);
     }
 
     public void ShowImage()
     {
-        StartCoroutine(ShowAndHide(2.0f));
+        StartCoroutine(ShowAndHide());
     }
 
 }
