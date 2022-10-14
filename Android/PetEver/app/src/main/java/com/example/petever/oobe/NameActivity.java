@@ -36,6 +36,14 @@ public class NameActivity extends AppCompatActivity {
         InputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
+    public String getPetName() {
+        return this.petName;
+    }
+
+    public String getPetRelationship() {
+        return this.petRelationship;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
