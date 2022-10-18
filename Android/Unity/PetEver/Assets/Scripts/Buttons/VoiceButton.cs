@@ -10,6 +10,7 @@ public class VoiceButton : MonoBehaviour
 {
 
     private AndroidJavaObject activityContext = null;
+    private String returnVoiceStr = null;
     private AndroidJavaClass javaClass = null;
     private AndroidJavaObject javaClassInstance = null;
 
@@ -22,7 +23,6 @@ public class VoiceButton : MonoBehaviour
     void Awake()
     {
         HideImage();
-
 
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {
@@ -79,11 +79,20 @@ public class VoiceButton : MonoBehaviour
         dimImageObject.SetActive(true);
         voiceBtnImageObject.GetComponent<Image>().sprite = voiceBtnOverrideSprite;
         yield return new WaitForSeconds(1.5f);
-
+        try
+        {
+            returnVoiceStr = javaClass.Call<String>("returnVoiceStr", "");
+            voiceText.GetComponent<Text>().text = returnVoiceStr;
+        }
+        catch (Exception e){
+            Debug.Log("Exception " + e.ToString());
+        }
         voiceText.SetActive(true);
     }
     public void HideImage()
     {
+        returnVoiceStr = "";
+
         dimImageObject.SetActive(false);
         voiceText.SetActive(false);
     }
