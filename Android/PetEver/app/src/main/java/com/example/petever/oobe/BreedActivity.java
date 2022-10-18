@@ -21,14 +21,19 @@ public class BreedActivity extends AppCompatActivity {
     private ImageView imgPreview;
     private Button btnRetry;
     private Button btnCharacter;
+    private String activity;
+    private String imagePath;
+    private String breed;
+    private Uri fileUri;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breed);
-        initView();
         processIntentData();
+        initView();
+        processView();
     }
 
 
@@ -42,6 +47,7 @@ public class BreedActivity extends AppCompatActivity {
         });
         btnCharacter.setOnClickListener(view -> {
             Intent intent = new Intent(this, UnityPlayerActivity.class);
+            intent.putExtra("breed", breed);
             startActivity(intent);
         });
     }
@@ -49,25 +55,26 @@ public class BreedActivity extends AppCompatActivity {
     private void processIntentData() {
         Intent extras = getIntent();
         if (extras != null) {
-            String activity = extras.getStringExtra("activity");
-            String imagePath = extras.getStringExtra("image");
-            String breed = extras.getStringExtra("breed");
-            Uri fileUri = Uri.parse(imagePath);
-            imgPreview.setImageURI(fileUri);
-            try {
-                int textCode = Breed.get(breed).getBubbleStringCode();
-                if (textCode != 0) {
-                    textBreed.setText(getResources().getString(textCode));
-                }
-            } catch (NullPointerException e) {
-                Log.e(TAG, e.toString());
-            }
-
-            if ("MainActivity".equals(activity)) {
-                btnRetry.setText(R.string.btn_retry_album);
-            }
+            activity = extras.getStringExtra("activity");
+            imagePath = extras.getStringExtra("image");
+            breed = extras.getStringExtra("breed");
+            fileUri = Uri.parse(imagePath);
         }
     }
 
+    private void processView() {
+        imgPreview.setImageURI(fileUri);
+        try {
+            int textCode = Breed.get(breed).getBubbleStringCode();
+            if (textCode != 0) {
+                textBreed.setText(getResources().getString(textCode));
+            }
+        } catch (NullPointerException e) {
+            Log.e(TAG, e.toString());
+        }
 
+        if ("MainActivity".equals(activity)) {
+            btnRetry.setText(R.string.btn_retry_album);
+        }
+    }
 }
