@@ -24,9 +24,16 @@ public class VoiceButton : MonoBehaviour
     {
         HideImage();
 
-        using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+        try
         {
-            activityContext = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
+            using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+            {
+                activityContext = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.ToString());
         }
 
 
@@ -84,7 +91,8 @@ public class VoiceButton : MonoBehaviour
             returnVoiceStr = javaClass.Call<String>("returnVoiceStr", "");
             voiceText.GetComponent<Text>().text = returnVoiceStr;
         }
-        catch (Exception e){
+        catch (Exception e)
+        {
             Debug.Log("Exception " + e.ToString());
         }
         voiceText.SetActive(true);
