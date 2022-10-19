@@ -10,8 +10,9 @@ public class GameManager : MonoBehaviour
     public GameObject pomeLongPrefab;
     public GameObject pomeShortPrefab;
 
-    // Start is called before the first frame update
-    void Start()
+    public GameObject dogModel;
+    public Animator anim;
+    void Awake()
     {
         Vector3 dogScale = new Vector3(1.0f, 1.0f, 1.0f);
 
@@ -56,21 +57,82 @@ public class GameManager : MonoBehaviour
             dog.transform.localScale = dogScale;
         }
     }
-        }
-        catch (Exception e)
-        {
-            Debug.Log("GameManager Exception : " + e.ToString());
-        }
-
-
-        //GameObject dog = Instantiate(pomeShortPrefab, GameObject.Find("Object Parent").transform) as GameObject;
-        //dog.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+    // Start is called before the first frame update
+    void Start()
+    {
+        dogModel = GameObject.FindGameObjectWithTag("Dog");
+        anim = this.dogModel.GetComponent<Animator>();
 
     }
+
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+
+    public void OnClicktakeWalk()
+    {
+        try
+        {
+            if (anim != null)
+            {
+                anim.Play("metarig|feetup_2");
+            }
+
+        }
+        catch (Exception e)
+        {
+            Debug.Log("OnClicktakeWalk Exception : " + e.ToString());
+        }
+    }
+
+    public void OnClickTreat()
+    {
+        try
+        {
+            if (anim != null)
+            {
+                anim.Play("metarig|idle_2_sniffing");
+            }
+
+        }
+        catch (Exception e)
+        {
+            Debug.Log("OnClickTreat Exception : " + e.ToString());
+        }
+    }
+    public void OnClickCheerUp()
+    {
+        try
+        {
+            if (anim != null)
+            {
+                anim.Play("metarig|tailing");
+            }
+
+        }
+        catch (Exception e)
+        {
+            Debug.Log("OnClickCheerUp Exception : " + e.ToString());
+        }
+    }
+
+    public void OnClickCharacter()
+    {
+        try
+        {
+            if (anim != null)
+            {
+                anim.Play("metarig|givehand");
+            }
+
+        }
+        catch (Exception e)
+        {
+            Debug.Log("OnClickCharacter Exception : " + e.ToString());
+        }
     }
 }

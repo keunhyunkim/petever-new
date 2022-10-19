@@ -668,10 +668,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: Play
-        m_Mode: 5
+      - m_Target: {fileID: 1508835393}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnClickTreat
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -959,63 +959,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615781238}
   m_CullTransparentMesh: 1
---- !u!1001 &645574334
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 782578419}
-    m_Modifications:
-    - target: {fileID: 8406034249869203930, guid: a2f4d7ce5e0743a43b1ea300a3bef94f, type: 3}
-      propertyPath: m_Name
-      value: Pomeranian_long
-      objectReference: {fileID: 0}
-    - target: {fileID: 9215467855591031648, guid: a2f4d7ce5e0743a43b1ea300a3bef94f, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9215467855591031648, guid: a2f4d7ce5e0743a43b1ea300a3bef94f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9215467855591031648, guid: a2f4d7ce5e0743a43b1ea300a3bef94f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9215467855591031648, guid: a2f4d7ce5e0743a43b1ea300a3bef94f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9215467855591031648, guid: a2f4d7ce5e0743a43b1ea300a3bef94f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9215467855591031648, guid: a2f4d7ce5e0743a43b1ea300a3bef94f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9215467855591031648, guid: a2f4d7ce5e0743a43b1ea300a3bef94f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9215467855591031648, guid: a2f4d7ce5e0743a43b1ea300a3bef94f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9215467855591031648, guid: a2f4d7ce5e0743a43b1ea300a3bef94f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9215467855591031648, guid: a2f4d7ce5e0743a43b1ea300a3bef94f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9215467855591031648, guid: a2f4d7ce5e0743a43b1ea300a3bef94f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a2f4d7ce5e0743a43b1ea300a3bef94f, type: 3}
 --- !u!1 &651810692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,10 +1063,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: Play
-        m_Mode: 5
+      - m_Target: {fileID: 1508835393}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnClickCharacter
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1170,11 +1113,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651810692}
   m_CullTransparentMesh: 1
---- !u!4 &669625851 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9215467855591031648, guid: a2f4d7ce5e0743a43b1ea300a3bef94f, type: 3}
-  m_PrefabInstance: {fileID: 645574334}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &693675357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1493,8 +1431,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -349}
   m_LocalScale: {x: 1.433, y: 1.433, z: 1.433}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 669625851}
+  m_Children: []
   m_Father: {fileID: 1189776660}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 6.38, y: 189, z: 0.26}
@@ -1609,8 +1546,6 @@ GameObject:
   - component: {fileID: 958094015}
   - component: {fileID: 958094014}
   - component: {fileID: 958094016}
-  - component: {fileID: 958094018}
-  - component: {fileID: 958094017}
   m_Layer: 5
   m_Name: TakeWalkBtn
   m_TagString: Untagged
@@ -1720,10 +1655,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: Play
-        m_Mode: 5
+      - m_Target: {fileID: 1508835393}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnClicktakeWalk
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1732,39 +1667,6 @@ MonoBehaviour:
           m_StringArgument: metarig|feetup_2
           m_BoolArgument: 0
         m_CallState: 2
---- !u!95 &958094017
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958094012}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b6cf867e15ae9ab44a7c80bd1a873daf, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &958094018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958094012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cff04ce76bb9edd499343369b83dbbf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  takeWalk: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2177,6 +2079,8 @@ MonoBehaviour:
   maltesePrefab: {fileID: 4248904962339559856, guid: 4e58e4ab573124f4a8eeffa01d0bc385, type: 3}
   pomeLongPrefab: {fileID: 8406034249869203930, guid: a2f4d7ce5e0743a43b1ea300a3bef94f, type: 3}
   pomeShortPrefab: {fileID: 6440183779588317654, guid: fc8ad8bb12b790843b4ffb3a6b678d9f, type: 3}
+  dogModel: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!1 &1630308560
 GameObject:
   m_ObjectHideFlags: 0
@@ -2595,10 +2499,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: Play
-        m_Mode: 5
+      - m_Target: {fileID: 1508835393}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnClickCheerUp
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
