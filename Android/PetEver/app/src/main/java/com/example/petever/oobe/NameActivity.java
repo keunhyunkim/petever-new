@@ -3,6 +3,8 @@ package com.example.petever.oobe;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.TorchState;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -42,6 +45,16 @@ public class NameActivity extends AppCompatActivity {
 
     public String getPetRelationship() {
         return this.petRelationship;
+    }
+
+    void keyBordHide() {
+        Window window = getWindow();
+        new WindowInsetsControllerCompat(window, window.getDecorView()).hide(WindowInsetsCompat.Type.ime());
+    }
+
+    void keyBordShow() {
+        Window window = getWindow();
+        new WindowInsetsControllerCompat(window, window.getDecorView()).show(WindowInsetsCompat.Type.ime());
     }
 
     @Override
@@ -104,9 +117,11 @@ public class NameActivity extends AppCompatActivity {
         name_new.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                keyBordShow();
                 switch (actionId) {
                     case EditorInfo.IME_ACTION_DONE:
-                        hideKeyboard();
+//                        hideKeyboard();
+                        keyBordHide();
                     case EditorInfo.IME_ACTION_NEXT:
                     default:
                         // Save the Pet Name into global variable, petName
@@ -131,10 +146,12 @@ public class NameActivity extends AppCompatActivity {
         relation_new.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                keyBordShow();
                 switch (actionId) {
                     case EditorInfo.IME_ACTION_NEXT:
                     case EditorInfo.IME_ACTION_DONE:
-                        hideKeyboard();
+//                        hideKeyboard();
+                        keyBordHide();
                     default:
                         // Save the Relationship into global variable, petRelationship
                         petRelationship = v.getText().toString();
