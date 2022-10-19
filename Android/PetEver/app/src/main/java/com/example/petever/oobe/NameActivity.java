@@ -50,12 +50,12 @@ public class NameActivity extends AppCompatActivity {
         return this.petRelationship;
     }
 
-    void keyBordHide() {
+    void keyBoardHide() {
         Window window = getWindow();
         new WindowInsetsControllerCompat(window, window.getDecorView()).hide(WindowInsetsCompat.Type.ime());
     }
 
-    void keyBordShow() {
+    void keyBoardShow() {
         Window window = getWindow();
         new WindowInsetsControllerCompat(window, window.getDecorView()).show(WindowInsetsCompat.Type.ime());
     }
@@ -83,7 +83,7 @@ public class NameActivity extends AppCompatActivity {
                     case MotionEvent.ACTION_DOWN:
                     case MotionEvent.ACTION_UP:
                         hidden_layer.setVisibility(View.INVISIBLE);
-                        hideKeyboard();
+                        keyBoardHide();
                 }
                 return false;
             }
@@ -122,11 +122,9 @@ public class NameActivity extends AppCompatActivity {
         name_new.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                keyBordShow();
                 switch (actionId) {
                     case EditorInfo.IME_ACTION_DONE:
-//                        hideKeyboard();
-                        keyBordHide();
+                        keyBoardHide();
                     case EditorInfo.IME_ACTION_NEXT:
                     default:
                         // Save the Pet Name into global variable, petName
@@ -154,12 +152,10 @@ public class NameActivity extends AppCompatActivity {
         relation_new.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                keyBordShow();
                 switch (actionId) {
                     case EditorInfo.IME_ACTION_NEXT:
                     case EditorInfo.IME_ACTION_DONE:
-//                        hideKeyboard();
-                        keyBordHide();
+                        keyBoardHide();
                     default:
                         // Save the Relationship into global variable, petRelationship
                         petRelationship = v.getText().toString();
