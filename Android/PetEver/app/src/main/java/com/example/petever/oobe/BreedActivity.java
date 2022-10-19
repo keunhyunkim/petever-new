@@ -68,6 +68,8 @@ public class BreedActivity extends AppCompatActivity {
             breed = extras.getStringExtra("breed");
             fileUri = Uri.parse(imagePath);
         }
+
+        pf = getSharedPreferences("PetInfo", MODE_PRIVATE);
     }
 
     private void processView() {
