@@ -1,6 +1,7 @@
 package com.example.petever.oobe;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,7 +25,10 @@ public class BreedActivity extends AppCompatActivity {
     private String activity;
     private String imagePath;
     private String breed;
+    private String petName;
+    private String petRelationship;
     private Uri fileUri;
+    private SharedPreferences pf;
 
 
     @Override
@@ -48,6 +52,10 @@ public class BreedActivity extends AppCompatActivity {
         btnCharacter.setOnClickListener(view -> {
             Intent intent = new Intent(this, UnityPlayerActivity.class);
             intent.putExtra("breed", breed);
+            petName = pf.getString("PetName", "NoName");
+            petRelationship = pf.getString("PetRelationship", "NoRelationship");
+            intent.putExtra("petname", petName);
+            intent.putExtra("petrelationship", petRelationship);
             startActivity(intent);
         });
     }
