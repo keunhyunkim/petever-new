@@ -178,6 +178,7 @@ public class PetEverVoice {
             isRecogDone = true;
             mRecognizer.cancel();
             mRecognizer.destroy();
+            mRecognizer = null;
         }
 
         @Override
