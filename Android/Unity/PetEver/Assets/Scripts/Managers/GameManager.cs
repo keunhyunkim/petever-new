@@ -21,9 +21,11 @@ public class GameManager : MonoBehaviour
 
                 AndroidJavaObject intent = activityContext.Call<AndroidJavaObject>("getIntent");
 
-                String arguments = intent.Call<String>("getStringExtra", "breed");
+                String breed = intent.Call<String>("getStringExtra", "breed");
+                String petName = intent.Call<String>("getStringExtra", "petname");
 
-                Debug.Log("[breed] arguments : " + arguments);
+                Debug.Log("[intent data] arguments : " + breed);
+                Debug.Log("[intent data] arguments : " + petName);
             }
         }
         catch (Exception e)
@@ -32,8 +34,8 @@ public class GameManager : MonoBehaviour
         }
 
 
-        GameObject dog = Instantiate(maltesePrefab, GameObject.Find("Object Parent").transform) as GameObject;
-        dog.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        //GameObject dog = Instantiate(pomeShortPrefab, GameObject.Find("Object Parent").transform) as GameObject;
+        //dog.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
     }
 
