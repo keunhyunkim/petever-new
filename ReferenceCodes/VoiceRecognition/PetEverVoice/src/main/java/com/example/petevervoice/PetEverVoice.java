@@ -23,6 +23,7 @@ public class PetEverVoice {
     private static Intent voiceIntent;
     private static Context voiceCtx;
     private static String voiceResultStr = "오류";
+    private static String voiceOriginStr = "산책 가자";
     private static boolean isRecogDone = false;
 
     public PetEverVoice() {}
@@ -68,36 +69,36 @@ public class PetEverVoice {
     }
 
     private static void analyzeSpeech(String speech) {
+        voiceOriginStr = speech;
+
         // Keyword
         // 산책, 밥 or 간식, 빵(개인기), 기다려, 손(개인기)
         if (speech.contains("산책") == true) {
             voiceResultStr = "산책";
-            Toast.makeText(voiceCtx, "산책",
-                    Toast.LENGTH_SHORT).show();
         } else if (speech.contains("밥") == true || speech.contains("간식") == true) {
             voiceResultStr = "밥";
-            Toast.makeText(voiceCtx, "밥/간식",
-                    Toast.LENGTH_SHORT).show();
         } else if (speech.contains("빵") == true) {
             voiceResultStr = "빵";
-            Toast.makeText(voiceCtx, "빵",
-                    Toast.LENGTH_SHORT).show();
         } else if (speech.contains("기다려") == true) {
             voiceResultStr = "기다려";
-            Toast.makeText(voiceCtx, "기다려",
-                    Toast.LENGTH_SHORT).show();
         } else if (speech.contains("손") == true) {
             voiceResultStr = "손";
-            Toast.makeText(voiceCtx, "손",
-                    Toast.LENGTH_SHORT).show();
         } else {
             voiceResultStr = "오류";
-            Log.d("voice", "Unrecognizable command");
         }
+        Log.d("voice", voiceResultStr);
     }
 
-    private static String returnVoiceStr(String str) {
+    private static String getVoiceResultStr() {
         return voiceResultStr;
+    }
+
+    private static String getVoiceOriginStr() {
+        return voiceOriginStr;
+    }
+
+    private static boolean getVoiceFlag() {
+        return isRecogDone;
     }
 
     private static RecognitionListener listener = new RecognitionListener() {
@@ -108,7 +109,7 @@ public class PetEverVoice {
 
         @Override
         public void onBeginningOfSpeech() {
-            Toast.makeText(voiceCtx, "지금부터 말을 해주세요!", Toast.LENGTH_SHORT).show();
+            System.out.println("onBeginningOfSpeech.......");
         }
 
         @Override
@@ -167,7 +168,6 @@ public class PetEverVoice {
 
         @Override
         public void onResults(Bundle results) {
-
             String key = "";
             key = SpeechRecognizer.RESULTS_RECOGNITION;
             ArrayList<String> mResult = results.getStringArrayList(key);
