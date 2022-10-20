@@ -12,13 +12,14 @@ public class GameManager : MonoBehaviour
 
     public GameObject dogModel;
     public Animator anim;
+    String breed = "";
     void Awake()
     {
         Vector3 dogScale = new Vector3(0.8f, 0.8f, 0.8f);
 
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {
-            String breed = "";
+            breed = "";
             GameObject dogPrefab;
             try
             {
@@ -69,9 +70,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
 
     }
-
 
     public void OnClicktakeWalk()
     {
@@ -79,7 +80,19 @@ public class GameManager : MonoBehaviour
         {
             if (anim != null)
             {
-                anim.Play("metarig|tailing");
+                if(breed == "POME_SHORT")
+                {
+                    anim.Play("metarig|tilting");
+                } 
+                else if(breed =="POME_LONG")
+                {
+                    anim.Play("metarig|feetup_2");
+                }
+                else
+                {
+                    anim.Play("metarig|feetup_2");
+                }
+
             }
 
         }
@@ -110,7 +123,7 @@ public class GameManager : MonoBehaviour
         {
             if (anim != null)
             {
-                anim.Play("metarig|feetup_2");
+                anim.Play("metarig|tailing");
             }
             
         }

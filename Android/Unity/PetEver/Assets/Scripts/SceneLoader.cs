@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class SceneLoader : MonoBehaviour
 {
-    private float secondsToLoadNextScene = 0.5f;
+    private float secondsToLoadNextScene = 0.1f;
     private static int lastScene;
     private int mainScene = 1;
     private int currentScene;
