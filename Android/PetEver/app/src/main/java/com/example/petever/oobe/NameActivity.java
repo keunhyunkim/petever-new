@@ -38,11 +38,6 @@ public class NameActivity extends AppCompatActivity {
 
     private SharedPreferences pf;
 
-    private void hideKeyboard() {
-        InputManager.hideSoftInputFromWindow(this.getWindow().getCurrentFocus().getWindowToken(),
-                InputMethodManager.HIDE_NOT_ALWAYS);
-    }
-
     public String getPetName() {
         return this.petName;
     }
