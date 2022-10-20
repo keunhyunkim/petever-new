@@ -1125,6 +1125,7 @@ GameObject:
   - component: {fileID: 693675360}
   - component: {fileID: 693675359}
   - component: {fileID: 693675361}
+  - component: {fileID: 693675362}
   m_Layer: 5
   m_Name: UniverseBtn
   m_TagString: Untagged
@@ -1233,7 +1234,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 693675359}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 693675362}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: LandingScene
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &693675362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693675357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 146e621e6ff11264097f5a51eb5c6e15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,7 +1288,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.26
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1273,9 +1298,9 @@ Light:
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_Bias: 0.399
+    m_NormalBias: 0.788
+    m_NearPlane: 0.8
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -1302,7 +1327,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -1428,7 +1453,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782578418}
   m_LocalRotation: {x: -0.002107566, y: 0.99538, z: -0.055653293, w: -0.078211375}
-  m_LocalPosition: {x: 0, y: 0, z: -349}
+  m_LocalPosition: {x: 0, y: 0, z: -238}
   m_LocalScale: {x: 1.433, y: 1.433, z: 1.433}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1437,7 +1462,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 6.38, y: 189, z: 0.26}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8, y: -429}
+  m_AnchoredPosition: {x: 61, y: -353}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &924089635
@@ -1484,7 +1509,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 2
   m_Range: 6.45
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2015,7 +2040,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 5
   m_Depth: 0
   m_CullingMask:
@@ -2076,9 +2101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a101f52b0a086564897a847fb8b00495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maltesePrefab: {fileID: 4248904962339559856, guid: 4e58e4ab573124f4a8eeffa01d0bc385, type: 3}
-  pomeLongPrefab: {fileID: 8406034249869203930, guid: a2f4d7ce5e0743a43b1ea300a3bef94f, type: 3}
-  pomeShortPrefab: {fileID: 6440183779588317654, guid: fc8ad8bb12b790843b4ffb3a6b678d9f, type: 3}
+  maltesePrefab: {fileID: 6290088024673282113, guid: 35dcba19d72881e4d95f697e3f3c81a4, type: 3}
+  pomeLongPrefab: {fileID: 1825141007464751810, guid: 39169a8ceb3db744483472b60b3ede82, type: 3}
+  pomeShortPrefab: {fileID: 8621427732924711260, guid: 6349b240f4b49a24388469d10ab57427, type: 3}
   dogModel: {fileID: 0}
   anim: {fileID: 0}
 --- !u!1 &1630308560

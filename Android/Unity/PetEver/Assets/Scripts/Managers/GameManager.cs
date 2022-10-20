@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public Animator anim;
     void Awake()
     {
-        Vector3 dogScale = new Vector3(1.0f, 1.0f, 1.0f);
+        Vector3 dogScale = new Vector3(0.8f, 0.8f, 0.8f);
 
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         {
             if (anim != null)
             {
-                anim.Play("metarig|feetup_2");
+                anim.Play("metarig|tailing");
             }
 
         }
@@ -110,9 +110,9 @@ public class GameManager : MonoBehaviour
         {
             if (anim != null)
             {
-                anim.Play("metarig|tailing");
+                anim.Play("metarig|feetup_2");
             }
-
+            
         }
         catch (Exception e)
         {
