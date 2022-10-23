@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-
+using TMPro;
 
 public class VoiceButton : MonoBehaviour
 {
@@ -17,12 +16,15 @@ public class VoiceButton : MonoBehaviour
     public GameObject dimImageObject;
     public GameObject voiceBtnImageObject;
     public GameObject voiceText;
-    public Sprite voiceBtnOverrideSprite;
+    private TextMeshProUGUI tmpText;
 
+    public Sprite voiceBtnOverrideSprite;
+    public Sprite voiceBtnOriginSprite;
 
     void Awake()
     {
         HideImage();
+        
 
         try
         {
@@ -54,6 +56,10 @@ public class VoiceButton : MonoBehaviour
 
     }
 
+    private void Start() {
+        tmpText = voiceText.GetComponent<TextMeshProUGUI>();
+    }
+     
     // Update is called once per frame
     void Update()
     {
@@ -87,16 +93,20 @@ public class VoiceButton : MonoBehaviour
         dimImageObject.SetActive(true);
         voiceBtnImageObject.GetComponent<Image>().sprite = voiceBtnOverrideSprite;
         yield return new WaitForSeconds(1.5f);
+        
         try
         {
             returnVoiceStr = javaClass.Call<String>("returnVoiceStr", "");
-            voiceText.GetComponent<Text>().text = returnVoiceStr;
+            tmpText.text = returnVoiceStr;
         }
         catch (Exception e)
         {
             Debug.Log("Exception " + e.ToString());
         }
         voiceText.SetActive(true);
+
+        yield return new WaitForSeconds(2.0f);
+        HideImage();
     }
     public void HideImage()
     {
@@ -104,6 +114,8 @@ public class VoiceButton : MonoBehaviour
 
         dimImageObject.SetActive(false);
         voiceText.SetActive(false);
+        
+        voiceBtnImageObject.GetComponent<Image>().sprite = voiceBtnOriginSprite;
     }
 
     public void ShowImage()

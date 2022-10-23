@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18291953, g: 0.22861303, b: 0.30688646, a: 1}
+  m_IndirectSpecularColor: {r: 0.18298735, g: 0.22868836, b: 0.3069885, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -239,8 +239,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c15ed59ad452548b4f5ae23a958c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StatusBarImage: {fileID: 1846770117}
-  StatusText: {fileID: 240888755}
 --- !u!1 &139811417
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,7 +848,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615781238}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 210}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1961,6 +1959,7 @@ RectTransform:
   - {fileID: 381247644}
   - {fileID: 1630308561}
   - {fileID: 2082553091}
+  - {fileID: 2011838014}
   m_Father: {fileID: 128736968}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2101,9 +2100,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a101f52b0a086564897a847fb8b00495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StatusBarImage: {fileID: 1846770117}
+  StatusText: {fileID: 240888755}
   maltesePrefab: {fileID: 6290088024673282113, guid: 35dcba19d72881e4d95f697e3f3c81a4, type: 3}
   pomeLongPrefab: {fileID: 1825141007464751810, guid: 39169a8ceb3db744483472b60b3ede82, type: 3}
   pomeShortPrefab: {fileID: 8621427732924711260, guid: 6349b240f4b49a24388469d10ab57427, type: 3}
+  heartPrefab: {fileID: 8332400014773519015, guid: 48852ac4d54ac465492ad5858c653b65, type: 3}
   dogModel: {fileID: 0}
   anim: {fileID: 0}
 --- !u!1 &1630308560
@@ -2134,7 +2136,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630308560}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -827}
+  m_LocalPosition: {x: 0, y: 0, z: -964}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2843,6 +2845,42 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1473823799486648175, guid: 3a879960651f19a4a94147a31f59dd05, type: 3}
   m_PrefabInstance: {fileID: 1473823798629397480}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2011838013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2011838014}
+  m_Layer: 5
+  m_Name: Hearts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2011838014
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011838013}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1007}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1189776660}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2082553090
 GameObject:
   m_ObjectHideFlags: 0
@@ -3005,6 +3043,7 @@ MonoBehaviour:
   voiceBtnImageObject: {fileID: 2082553090}
   voiceText: {fileID: 615781238}
   voiceBtnOverrideSprite: {fileID: 21300000, guid: e8fa6feb47f473140a910ed03b785c2b, type: 3}
+  voiceBtnOriginSprite: {fileID: 21300000, guid: 3ba3a98f924dc1947b2c0cfa1f827899, type: 3}
 --- !u!1001 &1473823798629397480
 PrefabInstance:
   m_ObjectHideFlags: 0
