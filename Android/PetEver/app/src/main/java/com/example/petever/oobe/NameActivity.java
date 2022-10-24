@@ -127,9 +127,7 @@ public class NameActivity extends AppCompatActivity {
                         // Save the Pet Name into global variable, petName
                         petName = v.getText().toString();
                         isNameSet = true;
-                        SharedPreferences.Editor editor = pf.edit();
-                        editor.putString("PetName", petName);
-                        editor.commit();
+
                         hidden_layer.setVisibility(View.INVISIBLE);
                 }
                 name_new.setTranslationZ(-1);
@@ -157,9 +155,6 @@ public class NameActivity extends AppCompatActivity {
                         // Save the Relationship into global variable, petRelationship
                         petRelationship = v.getText().toString();
                         isRelationSet = true;
-                        SharedPreferences.Editor editor = pf.edit();
-                        editor.putString("PetRelationship", petRelationship);
-                        editor.commit();
                         hidden_layer.setVisibility(View.INVISIBLE);
                 }
                 relation_new.setTranslationZ(-1);
@@ -171,6 +166,11 @@ public class NameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(NameActivity.this, MainActivity.class);
+
+                SharedPreferences.Editor editor = pf.edit();
+                editor.putString("PetName", name_new.getText().toString());
+                editor.putString("PetRelationship", relation_new.getText().toString());
+                editor.commit();
                 startActivity(intent);
             }
         });

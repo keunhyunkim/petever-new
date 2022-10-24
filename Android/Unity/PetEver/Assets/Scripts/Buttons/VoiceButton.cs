@@ -10,6 +10,7 @@ public class VoiceButton : MonoBehaviour
 
     private AndroidJavaObject activityContext = null;
     private String returnVoiceStr = null;
+    private String originVoiceStr = null;
     private AndroidJavaClass javaClass = null;
     private AndroidJavaObject javaClassInstance = null;
 
@@ -17,10 +18,26 @@ public class VoiceButton : MonoBehaviour
     public GameObject voiceBtnImageObject;
     public GameObject voiceText;
     private TextMeshProUGUI tmpText;
+    public GameObject statusBarText;
+    private TextMeshProUGUI tmpStatusBarText;
+
+    public GameObject dogModel;
+    public Animator anim;
 
     public Sprite voiceBtnOverrideSprite;
     public Sprite voiceBtnOriginSprite;
 
+    private bool getVoiceFlag = false;
+    private bool voiceBtnClicked = false;
+
+    
+    public GameObject heartPrefab;
+    GameObject heart;
+    
+    bool heartAnimate = false;
+
+    String breed = "";
+    String petName = "";
     void Awake()
     {
         HideImage();
@@ -31,6 +48,14 @@ public class VoiceButton : MonoBehaviour
             using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
             {
                 activityContext = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
+                                AndroidJavaObject intent = activityContext.Call<AndroidJavaObject>("getIntent");
+                breed = intent.Call<String>("getStringExtra", "breed");
+                petName = intent.Call<String>("getStringExtra", "petname");
+
+                Debug.Log("[intent data] arguments : " + breed);
+                Debug.Log("[intent data] arguments : " + petName);
+            
+            
             }
         }
         catch (Exception e)
@@ -58,21 +83,102 @@ public class VoiceButton : MonoBehaviour
 
     private void Start() {
         tmpText = voiceText.GetComponent<TextMeshProUGUI>();
+        tmpStatusBarText = statusBarText.GetComponent<TextMeshProUGUI>();
+
+        dogModel = GameObject.FindGameObjectWithTag("Dog");
+        anim = this.dogModel.GetComponent<Animator>();
     }
-     
+    
+    private float movementSpeed = 2f;
     // Update is called once per frame
     void Update()
     {
-       
-    }
+        if(voiceBtnClicked == true)
+        {
+            Debug.Log("[DEBUG TEST] Update : voiceBtnClickeds");
+            if (javaClass != null && activityContext != null)
+            {
+                getVoiceFlag = javaClass.CallStatic<bool>("getVoiceFlag");
+                Debug.Log("getVoiceFlag : " +getVoiceFlag);
+                if(getVoiceFlag == true){
+                    try
+                    {
+                        originVoiceStr = javaClass.CallStatic<String>("getVoiceOriginStr");
+                        Debug.Log("[DEBUG TEST] getVoiceOriginStr() : " + originVoiceStr);
 
+                        returnVoiceStr = javaClass.CallStatic<String>("getVoiceResultStr");
+                        Debug.Log("[DEBUG TEST] getVoiceResultStr() : " + returnVoiceStr);
+                        tmpText.text = originVoiceStr;
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.Log("Exception " + e.ToString());
+                    }
+                    voiceText.SetActive(true);
+                    
+                    voiceBtnClicked = false;
+                }
+            } else {
+                Debug.Log("[DEBUG TEST] Update javaClass activityContext Null");
+            }
+        }
+
+        if (heartAnimate == true)
+        {
+            if (heart.transform.position.y < 2)
+            {
+                heart.transform.position = heart.transform.position + new Vector3(0, 1 * movementSpeed * Time.deltaTime, 0);
+            }
+            else
+            {
+                heartAnimate = false;
+                heart.SetActive(false);
+            }
+        }
+    }
+    public void CreateHeart()
+    {
+        heart = Instantiate(heartPrefab, GameObject.Find("Hearts").transform) as GameObject;
+        heartAnimate = true;
+    }
+    public void OnClicktakeWalk()
+    {
+        tmpStatusBarText.text = petName+"가 산책을 시작했어요!";
+        try
+        {
+            if (anim != null)
+            {
+                if (breed == "POME_SHORT")
+                {
+                    anim.Play("metarig|feetup_2");
+                }
+                else if (breed == "POME_LONG")
+                {
+                    anim.Play("metarig|tilting");
+                }
+                else
+                {
+                    anim.Play("metarig|feetup_2");
+                }
+                CreateHeart();
+            }
+            HideImage();
+        }
+        catch (Exception e)
+        {
+            Debug.Log("OnClicktakeWalk Exception : " + e.ToString());
+        }
+    }
     public void OnClickVoiceButton()
     {
-        ShowImage();
+        Debug.Log("[DEBUG TEST] OnClickVoiceButton()");
 
         if (javaClass != null && activityContext != null)
         {
+            
+            Debug.Log("[DEBUG TEST] startVoiceRecognition()");
             javaClass.CallStatic("startVoiceRecognition", activityContext);
+            voiceBtnClicked = true;
         }
         else
         {
@@ -85,6 +191,7 @@ public class VoiceButton : MonoBehaviour
                 Debug.Log("activityContext null");
             }
         }
+        ShowImage();
     }
 
 
@@ -92,25 +199,17 @@ public class VoiceButton : MonoBehaviour
     {
         dimImageObject.SetActive(true);
         voiceBtnImageObject.GetComponent<Image>().sprite = voiceBtnOverrideSprite;
-        yield return new WaitForSeconds(1.5f);
-        
-        try
-        {
-            returnVoiceStr = javaClass.Call<String>("returnVoiceStr", "");
-            tmpText.text = returnVoiceStr;
-        }
-        catch (Exception e)
-        {
-            Debug.Log("Exception " + e.ToString());
-        }
-        voiceText.SetActive(true);
 
-        yield return new WaitForSeconds(2.0f);
+
+        yield return new WaitForSeconds(3.0f);
         HideImage();
+        OnClicktakeWalk();
     }
     public void HideImage()
     {
-        returnVoiceStr = "";
+        
+        Debug.Log("[DEBUG TEST] HideImage()");
+        originVoiceStr = "";
 
         dimImageObject.SetActive(false);
         voiceText.SetActive(false);

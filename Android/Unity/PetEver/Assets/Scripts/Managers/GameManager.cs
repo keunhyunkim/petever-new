@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class GameManager : MonoBehaviour
-{   public GameObject StatusBarImage;
+{
+    public GameObject StatusBarImage;
     public GameObject StatusText;
     private TextMeshProUGUI tmpText;
 
@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public GameObject dogModel;
     public Animator anim;
     String breed = "";
+    String petName = "";
+    bool heartAnimate = false;
     GameObject heart;
     void Awake()
     {
@@ -26,15 +28,15 @@ public class GameManager : MonoBehaviour
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {
             breed = "";
+            petName = "";
             GameObject dogPrefab;
             try
             {
                 activityContext = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
 
                 AndroidJavaObject intent = activityContext.Call<AndroidJavaObject>("getIntent");
-
                 breed = intent.Call<String>("getStringExtra", "breed");
-                String petName = intent.Call<String>("getStringExtra", "petname");
+                petName = intent.Call<String>("getStringExtra", "petname");
 
                 Debug.Log("[intent data] arguments : " + breed);
                 Debug.Log("[intent data] arguments : " + petName);
@@ -63,7 +65,7 @@ public class GameManager : MonoBehaviour
             GameObject dog = Instantiate(dogPrefab, GameObject.Find("Object Parent").transform) as GameObject;
             dog.transform.localScale = dogScale;
 
-            
+
         }
     }
     // Start is called before the first frame update
@@ -71,7 +73,8 @@ public class GameManager : MonoBehaviour
     {
         tmpText = StatusText.GetComponent<TextMeshProUGUI>();
 
-        
+        tmpText.text = petName+"는 기분이 좋아요!";
+
         dogModel = GameObject.FindGameObjectWithTag("Dog");
         anim = this.dogModel.GetComponent<Animator>();
 
@@ -80,7 +83,7 @@ public class GameManager : MonoBehaviour
     IEnumerator HideAfterSec(float delay)
     {
         StatusBarImage.SetActive(true);
-        tmpText.text = "머루가 산책을 시작했어요!";
+        tmpText.text = petName+"가 산책을 시작했어요!";
         yield return new WaitForSeconds(delay);
         StatusBarImage.SetActive(false);
     }
@@ -94,42 +97,49 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(HideAfterSec(10.0f));
     }
-   
+    private float movementSpeed = 2f;
     // Update is called once per frame
     void Update()
     {
-           
-    
+        if (heartAnimate == true)
+        {
+            if (heart.transform.position.y < 2)
+            {
+                heart.transform.position = heart.transform.position + new Vector3(0, 1 * movementSpeed * Time.deltaTime, 0);
+            }
+            else
+            {
+                heartAnimate = false;
+                heart.SetActive(false);
+            }
+        }
     }
 
     //movement speed in units per second
-    private float movementSpeed = 2f;
-    public void CreateHeart(){
 
-            heart = Instantiate(heartPrefab, GameObject.Find("Hearts").transform) as GameObject;
-
-            for(int i=0;i<100;i++){
-                heart.transform.position = heart.transform.position + new Vector3(0, 1 * movementSpeed * Time.deltaTime, 0);
-
-            }
+    public void CreateHeart()
+    {
+        heart = Instantiate(heartPrefab, GameObject.Find("Hearts").transform) as GameObject;
+        heartAnimate = true;
     }
+
     public void OnClicktakeWalk()
     {
         try
         {
             if (anim != null)
             {
-                if(breed == "POME_SHORT")
-                {
-                    anim.Play("metarig|tilting");
-                } 
-                else if(breed =="POME_LONG")
+                if (breed == "POME_SHORT")
                 {
                     anim.Play("metarig|feetup_2");
                 }
+                else if (breed == "POME_LONG")
+                {
+                    anim.Play("metarig|tilting");
+                }
                 else
                 {
-                    anim.Play("metarig|feetup_2");
+                    anim.Play("metarig|tilting");
                 }
                 CreateHeart();
             }
@@ -140,7 +150,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("OnClicktakeWalk Exception : " + e.ToString());
         }
     }
-
     public void OnClickTreat()
     {
         try
@@ -164,7 +173,7 @@ public class GameManager : MonoBehaviour
             {
                 anim.Play("metarig|tailing");
             }
-            
+
         }
         catch (Exception e)
         {

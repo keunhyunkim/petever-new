@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18298735, g: 0.22868836, b: 0.3069885, a: 1}
+  m_IndirectSpecularColor: {r: 0.18291953, g: 0.22861303, b: 0.30688646, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "5\uBD84 \uC804"
+  m_text: "1\uBD84 \uC804"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5afb8afa73244a645b8338fcbfc4ccb6, type: 2}
   m_sharedMaterial: {fileID: 6457400929453644768, guid: 5afb8afa73244a645b8338fcbfc4ccb6, type: 2}
@@ -3042,8 +3042,12 @@ MonoBehaviour:
   dimImageObject: {fileID: 1630308560}
   voiceBtnImageObject: {fileID: 2082553090}
   voiceText: {fileID: 615781238}
+  statusBarText: {fileID: 240888755}
+  dogModel: {fileID: 0}
+  anim: {fileID: 0}
   voiceBtnOverrideSprite: {fileID: 21300000, guid: e8fa6feb47f473140a910ed03b785c2b, type: 3}
   voiceBtnOriginSprite: {fileID: 21300000, guid: 3ba3a98f924dc1947b2c0cfa1f827899, type: 3}
+  heartPrefab: {fileID: 8332400014773519015, guid: 48852ac4d54ac465492ad5858c653b65, type: 3}
 --- !u!1001 &1473823798629397480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3463,6 +3467,14 @@ PrefabInstance:
     - target: {fileID: 4055594241248794793, guid: 99687c5c9b38c6249b625c5fe9d780ce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4303394484692862422, guid: 99687c5c9b38c6249b625c5fe9d780ce, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 4303394484692862422, guid: 99687c5c9b38c6249b625c5fe9d780ce, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 7286035846665594766, guid: 99687c5c9b38c6249b625c5fe9d780ce, type: 3}
       propertyPath: m_AnchorMax.y
