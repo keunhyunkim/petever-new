@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject maltesePrefab;
     public GameObject pomeLongPrefab;
     public GameObject pomeShortPrefab;
+
     public GameObject heartPrefab;
 
     public GameObject dogModel;
@@ -21,6 +22,11 @@ public class GameManager : MonoBehaviour
     String petName = "";
     bool heartAnimate = false;
     GameObject heart;
+    float offsetTime = 5.5f;
+    private float timer = 0f;
+    GameObject bone;
+    public GameObject bonePrefab;
+    bool boneCreate = false;
     void Awake()
     {
         Vector3 dogScale = new Vector3(0.8f, 0.8f, 0.8f);
@@ -73,7 +79,7 @@ public class GameManager : MonoBehaviour
     {
         tmpText = StatusText.GetComponent<TextMeshProUGUI>();
 
-        tmpText.text = petName+"는 기분이 좋아요!";
+        tmpText.text = petName + "는 기분이 좋아요!";
 
         dogModel = GameObject.FindGameObjectWithTag("Dog");
         anim = this.dogModel.GetComponent<Animator>();
@@ -83,7 +89,7 @@ public class GameManager : MonoBehaviour
     IEnumerator HideAfterSec(float delay)
     {
         StatusBarImage.SetActive(true);
-        tmpText.text = petName+"가 산책을 시작했어요!";
+        tmpText.text = petName + "가 산책을 시작했어요!";
         yield return new WaitForSeconds(delay);
         StatusBarImage.SetActive(false);
     }
@@ -101,6 +107,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (boneCreate == true)
+        {
+            timer += Time.deltaTime;
+            if (timer > offsetTime)
+            {
+                timer = 0f;
+                bone.SetActive(false);
+            }
+        }
+
         if (heartAnimate == true)
         {
             if (heart.transform.position.y < 2)
@@ -150,10 +167,16 @@ public class GameManager : MonoBehaviour
             Debug.Log("OnClicktakeWalk Exception : " + e.ToString());
         }
     }
+    public void CreateBone()
+    {
+        bone = Instantiate(bonePrefab, GameObject.Find("Hearts").transform) as GameObject;
+        boneCreate = true;
+    }
     public void OnClickTreat()
     {
         try
         {
+            CreateBone();
             if (anim != null)
             {
                 anim.Play("metarig|idle_2_sniffing");
