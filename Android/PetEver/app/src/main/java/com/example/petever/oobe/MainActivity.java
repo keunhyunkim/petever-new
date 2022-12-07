@@ -22,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.petever.R;
+import com.example.petever.domain.Breed;
 import com.example.petever.util.IntentUtil;
 
 import java.io.IOException;

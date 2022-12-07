@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,13 +51,18 @@ public class BreedActivity extends AppCompatActivity {
             finish();
         });
         btnCharacter.setOnClickListener(view -> {
-            Intent intent = new Intent(this, UnityPlayerActivity.class);
-            intent.putExtra("breed", breed);
-            petName = pf.getString("PetName", "NoName");
-            petRelationship = pf.getString("PetRelationship", "NoRelationship");
-            intent.putExtra("petname", petName);
-            intent.putExtra("petrelationship", petRelationship);
-            startActivity(intent);
+            if (Breed.get(breed).getMLCode() >= 3) {
+                Toast.makeText(this, "Not Support T.T",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(this, UnityPlayerActivity.class);
+                intent.putExtra("breed", breed);
+                petName = pf.getString("PetName", "NoName");
+                petRelationship = pf.getString("PetRelationship", "NoRelationship");
+                intent.putExtra("petname", petName);
+                intent.putExtra("petrelationship", petRelationship);
+                startActivity(intent);
+            }
         });
     }
 

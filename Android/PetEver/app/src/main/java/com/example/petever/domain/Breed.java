@@ -19,10 +19,29 @@ public enum Breed {
     // ---------------------------------------------------
     // | 강아지(10) | 말티즈(002)        | 기본컷(1)         |
     // ---------------------------------------------------
+    // | 강아지(10) | 치와와(003)        | 기본컷(1)         |
+    // ---------------------------------------------------
+    // | 강아지(10) | 시츄(004)        | 기본컷(1)         |
+    // ---------------------------------------------------
+    // | 강아지(10) | 비글(005)        | 기본컷(1)         |
+    // ---------------------------------------------------
+    // | 강아지(10) | 요크셔테리어(006)        | 기본컷(1)         |
+    // ---------------------------------------------------
+    // | 강아지(10) | 골든리트리버(007)        | 기본컷(1)         |
+    // ---------------------------------------------------
+    // | 강아지(10) | 퍼그(008)        | 기본컷(1)         |
+    // ---------------------------------------------------
+    // | 강아지(10) | 푸들(009)        | 기본컷(1)         |
+    // ---------------------------------------------------
     // | 고양이(11) |                   |                  |
     // ---------------------------------------------------
 
-    MALTESE(100021, "MALTESE", R.string.breed_maltese, 0), POME_LONG(100011, "POME_LONG", R.string.breed_pome, 1), POME_SHORT(100012, "POME_SHORT", R.string.breed_pome, 2);
+    MALTESE(100021, "MALTESE", R.string.breed_maltese, 0), POME_LONG(100011, "POME_LONG", R.string.breed_pome, 1),
+    POME_SHORT(100012, "POME_SHORT", R.string.breed_pome, 2), CHIHUAHUA(100031, "CHIHUAHUA", R.string.breed_chihuahua, 3),
+    SHIHTZU(100041, "SHIHTZU", R.string.breed_shihtzu, 4), BEAGLE(100051, "BEAGLE", R.string.breed_beagle, 5),
+    YORKSHIRE(100061, "YORKSHIRE", R.string.breed_yorkshire, 6), GOLDEN(100071, "GOLDEN", R.string.breed_golden, 7),
+    PUG(100081, "PUG", R.string.breed_pug, 8), POODLE(100091, "POODLE", R.string.breed_poodle, 9);
+
     private int code;
     private String name;
     private int bubbleStringCode;

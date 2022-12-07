@@ -75,7 +75,7 @@ public class MLClass {
 
         ByteBuffer input = ImageUtil.preprocessImg(bitmap, imgsize);
 
-        Interpreter tflite = getTfliteInterpreter("dog_breed_3.tflite", activity);
+        Interpreter tflite = getTfliteInterpreter("dog_breed_10.tflite", activity);
         if (tflite == null) {
             Log.d("TFLITE", "MODEL NULL!!!");
         }
