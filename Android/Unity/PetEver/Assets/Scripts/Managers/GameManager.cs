@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
                     dogPrefab = maltesePrefab;
                     break;
                 default:
-                    dogPrefab = pomeLongPrefab;
+                    dogPrefab = pomeShortPrefab;
                     break;
             }
 

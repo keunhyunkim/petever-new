@@ -970,6 +970,7 @@ GameObject:
   - component: {fileID: 651810697}
   - component: {fileID: 651810696}
   - component: {fileID: 651810694}
+  - component: {fileID: 651810699}
   m_Layer: 5
   m_Name: OnClickCharacter
   m_TagString: Untagged
@@ -994,8 +995,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 33.134167, y: -102.7461}
-  m_SizeDelta: {x: 418.9, y: 600.4}
+  m_AnchoredPosition: {x: -128, y: -365.5}
+  m_SizeDelta: {x: 194, y: 233.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &651810694
 Animator:
@@ -1111,6 +1112,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651810692}
   m_CullTransparentMesh: 1
+--- !u!114 &651810699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651810692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57873fa133705134d8b147e62d179dfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectSwipeAfterRelease: 0
+  SWIPE_THRESHOLD: 20
 --- !u!1 &693675357
 GameObject:
   m_ObjectHideFlags: 0
