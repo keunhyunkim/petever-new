@@ -98,8 +98,6 @@ public class VoiceButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
         if (voiceBtnClicked == true)
         {
             Debug.Log("[DEBUG TEST] Update : voiceBtnClickeds");
@@ -116,7 +114,13 @@ public class VoiceButton : MonoBehaviour
 
                         returnVoiceStr = javaClass.CallStatic<String>("getVoiceResultStr");
                         Debug.Log("[DEBUG TEST] getVoiceResultStr() : " + returnVoiceStr);
-                        tmpText.text = ""+originVoiceStr+"";
+
+                        if (returnVoiceStr != null)
+                        {
+                            processReturnVoiceStr(returnVoiceStr);
+                        }
+
+                        tmpText.text = "\"" + originVoiceStr + "\"";
                     }
                     catch (Exception e)
                     {
@@ -146,16 +150,34 @@ public class VoiceButton : MonoBehaviour
             }
         }
     }
+
+    public void processReturnVoiceStr(String retStr)
+    {
+        switch (retStr)
+        {
+            case "기다려":
+                anim.Play("metarig|sit");
+                break;
+            case "산책":
+                OnClicktakeWalk();
+                break;
+            case "잘했어":
+                anim.Play("metarig|tailing");
+                break;
+            default:
+                anim.Play("metarig|tilting");
+                break;
+        }
+    }
+
     public void CreateHeart()
     {
         heart = Instantiate(heartPrefab, GameObject.Find("Hearts").transform) as GameObject;
         heartAnimate = true;
     }
 
-
     public void OnClicktakeWalk()
     {
-        tmpStatusBarText.text = petName + "가 산책을 시작했어요!";
         try
         {
             if (anim != null)
@@ -170,7 +192,7 @@ public class VoiceButton : MonoBehaviour
                 }
                 else
                 {
-                    anim.Play("metarig|feetup_2");
+                    anim.Play("metarig|tilting");
                 }
                 CreateHeart();
             }
@@ -215,7 +237,7 @@ public class VoiceButton : MonoBehaviour
 
         yield return new WaitForSeconds(4.0f);
         HideImage();
-        OnClicktakeWalk();
+
     }
     public void HideImage()
     {
