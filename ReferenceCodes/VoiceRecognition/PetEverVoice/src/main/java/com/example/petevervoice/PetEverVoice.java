@@ -83,6 +83,8 @@ public class PetEverVoice {
             voiceResultStr = "기다려";
         } else if (speech.contains("손") == true) {
             voiceResultStr = "손";
+        }  else if (speech.contains("잘했어") == true) {
+            voiceResultStr = "잘했어";
         } else {
             voiceResultStr = "오류";
         }
