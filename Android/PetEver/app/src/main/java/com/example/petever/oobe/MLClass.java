@@ -22,7 +22,7 @@ import org.tensorflow.lite.Tensor;
 public class MLClass {
     //Breed order for Breed Classification Model : MALTESE, POME_LONG, POME_SHORT
     final static int imgsize = 299;
-    final static int breedCount = 3;
+    final static int breedCount = 10;
     final static float breedThreshold = 0.9F;
 
     private static MLClass mlInstance = null;
