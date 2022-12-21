@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+
+
+// 출처 : https://scvtwo.tistory.com/111
 public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     RectTransform m_rectBack;
@@ -9,8 +12,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     Transform m_trMan;
     float m_fRadius;
-    float m_fSpeed = 5.0f;
-    float m_fSqr = 0f;
+    float m_fSpeed = 8.0f; // 이동속도 조절
+    float m_fSqr = 0f; //sqareroot(2D 두 점사이 거리-조이스틱 움직임 거리)
 
     Vector3 m_vecMove;
 
