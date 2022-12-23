@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 
-// ÃâÃ³ : https://scvtwo.tistory.com/111
+// ï¿½ï¿½Ã³ : https://scvtwo.tistory.com/111
 public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     RectTransform m_rectBack;
@@ -12,8 +12,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     Transform m_trMan;
     float m_fRadius;
-    float m_fSpeed = 8.0f; // ÀÌµ¿¼Óµµ Á¶Àý
-    float m_fSqr = 0f; //sqareroot(2D µÎ Á¡»çÀÌ °Å¸®-Á¶ÀÌ½ºÆ½ ¿òÁ÷ÀÓ °Å¸®)
+    float m_fSpeed = 8.0f; // ï¿½Ìµï¿½ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
+    float m_fSqr = 0f; //sqareroot(2D ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½-ï¿½ï¿½ï¿½Ì½ï¿½Æ½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½)
 
     Vector3 m_vecMove;
 
@@ -29,7 +29,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
         m_trMan = GameObject.Find("Man").transform;
 
-        // JoystickBackgroundÀÇ ¹ÝÁö¸§ÀÔ´Ï´Ù.
+        // JoystickBackgroundï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
         m_fRadius = m_rectBack.rect.width * 0.5f;
     }
 
@@ -47,14 +47,14 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         Vector2 vec = new Vector2(vecTouch.x - m_rectBack.position.x, vecTouch.y - m_rectBack.position.y);
 
 
-        // vec°ªÀ» m_fRadius ÀÌ»óÀÌ µÇÁö ¾Êµµ·Ï ÇÕ´Ï´Ù.
+        // vecï¿½ï¿½ï¿½ï¿½ m_fRadius ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ ï¿½Õ´Ï´ï¿½.
         vec = Vector2.ClampMagnitude(vec, m_fRadius);
         m_rectJoystick.localPosition = vec;
 
-        // Á¶ÀÌ½ºÆ½ ¹è°æ°ú Á¶ÀÌ½ºÆ½°úÀÇ °Å¸® ºñÀ²·Î ÀÌµ¿ÇÕ´Ï´Ù.
+        // ï¿½ï¿½ï¿½Ì½ï¿½Æ½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½Æ½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Õ´Ï´ï¿½.
         float fSqr = (m_rectBack.position - m_rectJoystick.position).sqrMagnitude / (m_fRadius * m_fRadius);
 
-        // ÅÍÄ¡À§Ä¡ Á¤±ÔÈ­
+        // ï¿½ï¿½Ä¡ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½È­
         Vector2 vecNormal = vec.normalized;
 
         m_vecMove = new Vector3(vecNormal.x * m_fSpeed * Time.deltaTime * fSqr, 0f, vecNormal.y * m_fSpeed * Time.deltaTime * fSqr);
@@ -75,7 +75,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        // ¿ø·¡ À§Ä¡·Î µÇµ¹¸³´Ï´Ù.
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Çµï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
         m_rectJoystick.localPosition = Vector2.zero;
         m_bTouch = false;
     }
