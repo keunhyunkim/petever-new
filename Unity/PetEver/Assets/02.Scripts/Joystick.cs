@@ -24,8 +24,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     void Start()
     {
-        m_rectBack = transform.Find("JoystickBackground").GetComponent<RectTransform>();
-        m_rectJoystick = transform.Find("JoystickBackground/JoystickPad").GetComponent<RectTransform>();
+        m_rectBack = transform.Find("JoystickBGD").GetComponent<RectTransform>();
+        m_rectJoystick = transform.Find("JoystickBGD/JoystickPad").GetComponent<RectTransform>();
 
         m_trMan = GameObject.Find("Man").transform;
 
