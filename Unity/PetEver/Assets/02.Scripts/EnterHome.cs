@@ -7,12 +7,16 @@ public class EnterHome : MonoBehaviour
 {
     
     GameObject ManCharacter;
+    GameObject MainEvent;
+    GameObject MainCanvas;
     private bool isEntered = false;
     private Vector3 m_currentDirection = Vector3.zero;
 
     void Start()
     {
         ManCharacter = GameObject.Find("Man");
+        MainEvent = GameObject.Find("MainEventSystem");
+        MainCanvas = GameObject.Find("MainCanvas");
     }
    
     private void Awake()
@@ -36,6 +40,8 @@ public class EnterHome : MonoBehaviour
  
         // Move the GameObject (you attach this in the Inspector) to the newly loaded Scene
         SceneManager.MoveGameObjectToScene(ManCharacter, SceneManager.GetSceneByName("newScene"));
+        SceneManager.MoveGameObjectToScene(MainEvent, SceneManager.GetSceneByName("newScene"));
+        SceneManager.MoveGameObjectToScene(MainCanvas, SceneManager.GetSceneByName("newScene"));
         // Unload the previous Scene
         SceneManager.UnloadSceneAsync(currentScene);
     }

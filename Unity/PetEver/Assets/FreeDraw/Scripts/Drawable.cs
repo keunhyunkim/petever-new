@@ -125,12 +125,6 @@ public class Drawable : MonoBehaviour
         // PenBrush is the NAME of the method we want to set as our current brush
         current_brush = PenBrush;
     }
-//////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
 
     // This is where the magic happens.
     // Detects when user is left clicking, which then call the appropriate function
