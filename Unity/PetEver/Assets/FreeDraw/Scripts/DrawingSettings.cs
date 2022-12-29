@@ -10,6 +10,21 @@ public class DrawingSettings : MonoBehaviour
     public static bool isCursorOverUI = false;
     public float Transparency = 1f;
 
+    GameObject ManCharacter;
+    GameObject mainCanvas;
+    GameObject mainEventSystem;
+
+    void Start()
+    {
+        ManCharacter = GameObject.Find("Man");
+        mainCanvas = GameObject.Find("MainCanvas");
+        mainEventSystem = GameObject.Find("MainEventSystem");
+
+        ManCharacter.SetActive(false);
+        mainCanvas.SetActive(false);
+        mainEventSystem.SetActive(false);
+    }
+
     // Changing pen settings is easy as changing the static properties Drawable.Pen_Colour and Drawable.Pen_Width
     public void SetMarkerColour(Color new_color)
     {
@@ -71,45 +86,31 @@ public class DrawingSettings : MonoBehaviour
         SetMarkerColour(new Color(255f, 255f, 255f, 0.5f));
     }
 
-    IEnumerator<object> LoadBack()
+    IEnumerator<object> LoadBack(string scene)
     {
-        // Set the current Scene to be able to unload it later
         Scene currentScene = SceneManager.GetActiveScene();
 
-        // The Application loads the Scene in the background at the same time as the current Scene.
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("newScene", LoadSceneMode.Additive);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
 
-        // Wait until the last operation fully loads to return anything
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
 
-        // Unload the previous Scene
+        SceneManager.MoveGameObjectToScene(ManCharacter, SceneManager.GetSceneByName(scene));
+        SceneManager.MoveGameObjectToScene(mainEventSystem, SceneManager.GetSceneByName(scene));
+        SceneManager.MoveGameObjectToScene(mainCanvas, SceneManager.GetSceneByName(scene));
+
         SceneManager.UnloadSceneAsync(currentScene);
-    }
-
-    //Call this whenever you want to load the previous scene
-    //It will remove the current scene from the history and then load the new last scene in the history
-    //It will return false if we have not moved between scenes enough to have stored a previous scene in the history
-    public bool PreviousScene()
-    {
-        bool returnValue = false;
-
-        if (CallCanvas.sceneHistory.Count >= 2)  //Checking that we have actually switched scenes enough to go back to a previous scene
-        {
-            returnValue = true;
-            CallCanvas.sceneHistory.RemoveAt(CallCanvas.sceneHistory.Count - 1);
-            SceneManager.LoadScene(CallCanvas.sceneHistory[CallCanvas.sceneHistory.Count - 1]);
-        }
- 
-        return returnValue;
     }
 
     public void MoveBackToHome()
     {
-        // StartCoroutine(LoadBack());
-        PreviousScene();
+        ManCharacter.SetActive(true);
+        mainCanvas.SetActive(true);
+        mainEventSystem.SetActive(true);
+
+        StartCoroutine(LoadBack("newScene"));
     }
 
     public void CaptureScreen()
