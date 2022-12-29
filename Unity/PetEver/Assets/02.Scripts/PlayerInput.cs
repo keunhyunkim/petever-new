@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 // reference : https://tenlie10.tistory.com/115
 public class PlayerInput : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
