@@ -16,14 +16,7 @@ public class CallCanvas : MonoBehaviour
         mainCanvas = GameObject.Find("MainCanvas");
         mainEventSystem = GameObject.Find("MainEventSystem");
 
-        ManCharacter.SetActive(true);
-        mainCanvas.SetActive(true);
-        mainEventSystem.SetActive(true);
-    }
-
-    public void LoadScene(string drawCanvas)
-    {
-        StartCoroutine(LoadYourAsyncScene(drawCanvas));
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("newScene"));
     }
 
     IEnumerator<object> LoadYourAsyncScene(string drawCanvas)
@@ -36,7 +29,9 @@ public class CallCanvas : MonoBehaviour
         {
             yield return null;
         }
- 
+
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(drawCanvas));
+
         SceneManager.MoveGameObjectToScene(ManCharacter, SceneManager.GetSceneByName(drawCanvas));
         SceneManager.MoveGameObjectToScene(mainEventSystem, SceneManager.GetSceneByName(drawCanvas));
         SceneManager.MoveGameObjectToScene(mainCanvas, SceneManager.GetSceneByName(drawCanvas));
@@ -46,6 +41,6 @@ public class CallCanvas : MonoBehaviour
  
     private void OnCollisionEnter(Collision collision)
     {
-        LoadScene("CanvasScene");
+        StartCoroutine(LoadYourAsyncScene("CanvasScene"));
     }
 }
