@@ -10,19 +10,23 @@ public class DrawingSettings : MonoBehaviour
     public static bool isCursorOverUI = false;
     public float Transparency = 1f;
 
-    GameObject ManCharacter;
-    GameObject mainCanvas;
-    GameObject mainEventSystem;
+    GameObject ManCharacter = null;
+    GameObject ManHead;
+    GameObject mainCanvas = null;
+    GameObject mainEventSystem = null;
 
     void Start()
     {
         ManCharacter = GameObject.Find("Man");
+        ManHead = GameObject.Find("head");
         mainCanvas = GameObject.Find("MainCanvas");
         mainEventSystem = GameObject.Find("MainEventSystem");
 
-        ManCharacter.SetActive(false);
-        mainCanvas.SetActive(false);
-        mainEventSystem.SetActive(false);
+        ManHead.GetComponent<SkinnedMeshRenderer>().enabled = false;
+        mainEventSystem.GetComponent<EventSystem>().enabled = false;
+        mainCanvas.GetComponent<Canvas>().enabled = false;
+
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("CanvasScene"));
     }
 
     // Changing pen settings is easy as changing the static properties Drawable.Pen_Colour and Drawable.Pen_Width
@@ -97,6 +101,8 @@ public class DrawingSettings : MonoBehaviour
             yield return null;
         }
 
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene));
+
         SceneManager.MoveGameObjectToScene(ManCharacter, SceneManager.GetSceneByName(scene));
         SceneManager.MoveGameObjectToScene(mainEventSystem, SceneManager.GetSceneByName(scene));
         SceneManager.MoveGameObjectToScene(mainCanvas, SceneManager.GetSceneByName(scene));
@@ -106,10 +112,10 @@ public class DrawingSettings : MonoBehaviour
 
     public void MoveBackToHome()
     {
-        ManCharacter.SetActive(true);
-        mainCanvas.SetActive(true);
-        mainEventSystem.SetActive(true);
-
+        ManHead.GetComponent<SkinnedMeshRenderer>().enabled = true;
+        mainEventSystem.GetComponent<EventSystem>().enabled = true;
+        mainCanvas.GetComponent<Canvas>().enabled = true;
+        
         StartCoroutine(LoadBack("newScene"));
     }
 
