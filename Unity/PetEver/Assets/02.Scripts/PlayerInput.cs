@@ -15,12 +15,13 @@ public class PlayerInput : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     //assign player's input value for property
     public float joystick_x { get; private set; } // 
     public float joystick_y { get; private set; } // 
-
+    public Vector3 lastpos { get; private set; } // save last joystick vector not to initialize character's direction
 
     void Start()
     {
         JoystickBGD = GetComponent<Image>();
         JoystickPad = transform.GetChild(0).GetComponent<Image>();
+        lastpos = Vector3.one*99999; // put invalid value 
 
     }
 
@@ -51,11 +52,15 @@ public class PlayerInput : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        lastpos = Vector3.one*99999; // put invalid value
         OnDrag(eventData);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
+
+        lastpos = inputVector;
+       
         // reset JoystickPad position 
         inputVector = Vector3.zero;
         JoystickPad.rectTransform.anchoredPosition = Vector3.zero;
