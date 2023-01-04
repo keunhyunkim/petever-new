@@ -12,24 +12,51 @@ public class DogAI : MonoBehaviour
     private NavMeshAgent navMeshAgent; // assign navmeshagent component
     private Animator dogAnimator;
 
+    private float range = 20f;
+    private Vector3 point;
+    private bool arrived = true;
+    private bool trackingOwner = false;
+    private float timer = 0f;
+
     // recognize player is on or not
-    private bool hasOwner 
+
+    private bool meetOwner
     {
         get
         {
-            if (owner != null)
+            if (Mathf.Abs(gameObject.transform.position.x - owner.transform.position.x) < 4f)
             {
                 return true;
             }
 
-            return false; 
+            return false;
         }
     }
 
-    private void Awake()
+    private bool RandomPoint(Vector3 center, float range, out Vector3 result)
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            Vector3 randomPoint = center + Random.insideUnitSphere * range; // take random point from 'range' radious sphere around center
+            NavMeshHit hit;
+
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                result = hit.position;
+                return true;
+            }
+        }
+        result = Vector3.zero;
+        return false;
+    }
+
+
+
+    void Awake()
     {
         dogAnimator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        owner = GameObject.FindGameObjectWithTag("Owner");
 
     }
 
@@ -42,40 +69,76 @@ public class DogAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        timer += Time.deltaTime;
+        TrackingOwner();
     }
 
-    private IEnumerator UpdatePath()
+    IEnumerator UpdatePath()
     {
         while (true)
         {
-            if (hasOwner)
+            if (arrived)
             {
-                navMeshAgent.isStopped = false;
-                navMeshAgent.SetDestination(owner.transform.position);
+                arrived = false;
+                if (RandomPoint(this.gameObject.transform.position, range, out point))
+                {
+                    navMeshAgent.SetDestination(point);
+                    Debug.DrawRay(point, Vector3.up, Color.red, 10.0f);
+                }
             }
 
-            else
+            if ((Mathf.Approximately(gameObject.transform.position.x, point.x) || timer > 3f) && !trackingOwner)
             {
-                navMeshAgent.isStopped = true;
-                Collider[] colliders = Physics.OverlapSphere(transform.position, 20f, isPlayer);
-
-                for (int i=0; i < colliders.Length; i++)
-                {
-                    GameObject gameObject = colliders[i].GetComponent<GameObject>();
-
-
-                    if (gameObject != null)
-                    {
-                        owner = gameObject;
-                        break; 
-                    }
-                }
-
+                arrived = true;
+                timer = 0;
             }
 
             yield return new WaitForSeconds(0.25f);
-            Debug.Log(hasOwner);
         }
     }
+
+    void TrackingOwner()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            trackingOwner = true;
+        }
+
+        if (trackingOwner)
+        {
+            timer = 0;
+            arrived = false;
+            trackingOwner = true;
+
+            point = owner.transform.position;
+            navMeshAgent.SetDestination(owner.transform.position);
+        }
+
+        if (meetOwner)
+        {
+            trackingOwner = false;
+        }
+
+    }
 }
+        /*
+        else
+        {
+            navMeshAgent.isStopped = true;
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 20f);
+
+            for (int i=0; i < colliders.Length; i++)
+            {
+                GameObject gameObject = colliders[i].GetComponent<GameObject>();
+
+
+                if (gameObject.CompareTag("Owner"))
+                {
+                    owner = gameObject;
+                    break; 
+                }
+            }
+
+        }
+        */
+
