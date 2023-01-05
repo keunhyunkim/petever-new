@@ -11,19 +11,26 @@ public class DrawingSettings : MonoBehaviour
     public float Transparency = 1f;
 
     GameObject ManCharacter = null;
-    GameObject ManHead;
+    GameObject ManBody;
     GameObject mainCanvas = null;
     GameObject mainEventSystem = null;
+    GameObject CanvasEventSystem = null;
 
     void Start()
     {
         ManCharacter = GameObject.Find("Man");
-        ManHead = GameObject.Find("head");
+        ManBody = GameObject.Find("body");
         mainCanvas = GameObject.Find("MainCanvas");
         mainEventSystem = GameObject.Find("MainEventSystem");
 
-        ManHead.GetComponent<SkinnedMeshRenderer>().enabled = false;
+        mainEventSystem.SetActive(false);
+
+        CanvasEventSystem = GameObject.Find("DrawCanvasEvent");
+        CanvasEventSystem.SetActive(true);
+
+        ManBody.GetComponent<SkinnedMeshRenderer>().enabled = false;
         mainEventSystem.GetComponent<EventSystem>().enabled = false;
+        
         mainCanvas.GetComponent<Canvas>().enabled = false;
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("CanvasScene"));
@@ -112,10 +119,13 @@ public class DrawingSettings : MonoBehaviour
 
     public void MoveBackToHome()
     {
-        ManHead.GetComponent<SkinnedMeshRenderer>().enabled = true;
+        ManBody.GetComponent<SkinnedMeshRenderer>().enabled = true;
         mainEventSystem.GetComponent<EventSystem>().enabled = true;
         mainCanvas.GetComponent<Canvas>().enabled = true;
-        
+      
+        CanvasEventSystem.SetActive(false);
+        mainEventSystem.SetActive(true);
+       
         StartCoroutine(LoadBack("newScene"));
     }
 
