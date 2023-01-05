@@ -14,9 +14,11 @@ public class DogAI : MonoBehaviour
 
     private float range = 20f;
     private Vector3 point;
+    private Vector3 lastpos;
     private bool arrived = true;
     private bool trackingOwner = false;
     private float timer = 0f;
+
 
     // recognize player is on or not
 
@@ -24,7 +26,7 @@ public class DogAI : MonoBehaviour
     {
         get
         {
-            if (Mathf.Abs(gameObject.transform.position.x - owner.transform.position.x) < 4f)
+            if ((gameObject.transform.position - owner.transform.position).magnitude < 4f)
             {
                 return true;
             }
@@ -32,6 +34,19 @@ public class DogAI : MonoBehaviour
             return false;
         }
     }
+
+    private bool walking
+    {
+        get
+        {
+            if (!(gameObject.transform.position.x == lastpos.x))
+            {
+                return true;
+            }
+            return false;
+        }
+    }
+
 
     private bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
@@ -70,9 +85,16 @@ public class DogAI : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        
         TrackingOwner();
+        DogAnimation();
+
+        lastpos = gameObject.transform.position;
+
+
     }
 
+    // randomly dog moves 
     IEnumerator UpdatePath()
     {
         while (true)
@@ -87,7 +109,7 @@ public class DogAI : MonoBehaviour
                 }
             }
 
-            if ((Mathf.Approximately(gameObject.transform.position.x, point.x) || timer > 3f) && !trackingOwner)
+            if ((Mathf.Approximately(gameObject.transform.position.x, point.x) || timer > 20f) && !trackingOwner)
             {
                 arrived = true;
                 timer = 0;
@@ -113,13 +135,18 @@ public class DogAI : MonoBehaviour
             point = owner.transform.position;
             navMeshAgent.SetDestination(owner.transform.position);
         }
+    }
 
-        if (meetOwner)
-        {
-            trackingOwner = false;
-        }
+    void DogAnimation()
+    {
+
+            dogAnimator.SetBool("meetOwner", meetOwner);
+            dogAnimator.SetBool("walking", walking);
+
 
     }
+
+
 }
         /*
         else
