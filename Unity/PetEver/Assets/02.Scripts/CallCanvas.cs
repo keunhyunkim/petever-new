@@ -7,13 +7,11 @@ using UnityEngine.SceneManagement;
 public class CallCanvas : MonoBehaviour
 {
     GameObject ManCharacter;
-    GameObject mainCanvas;
     GameObject mainEventSystem;
 
     void Start()
     {
         ManCharacter = GameObject.Find("Man");
-        mainCanvas = GameObject.Find("MainCanvas");
         mainEventSystem = GameObject.Find("MainEventSystem");
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("newScene"));
@@ -34,7 +32,6 @@ public class CallCanvas : MonoBehaviour
 
         SceneManager.MoveGameObjectToScene(ManCharacter, SceneManager.GetSceneByName(drawCanvas));
         SceneManager.MoveGameObjectToScene(mainEventSystem, SceneManager.GetSceneByName(drawCanvas));
-        SceneManager.MoveGameObjectToScene(mainCanvas, SceneManager.GetSceneByName(drawCanvas));
 
         SceneManager.UnloadSceneAsync(currentScene);
     }
