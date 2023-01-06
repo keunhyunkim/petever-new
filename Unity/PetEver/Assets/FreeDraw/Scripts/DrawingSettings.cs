@@ -10,30 +10,16 @@ public class DrawingSettings : MonoBehaviour
     public static bool isCursorOverUI = false;
     public float Transparency = 1f;
 
-    GameObject ManCharacter = null;
+    GameObject ManCharacter;
     GameObject ManBody;
-    GameObject mainCanvas = null;
-    GameObject mainEventSystem = null;
-    GameObject CanvasEventSystem = null;
+    GameObject mainCanvas;
+    GameObject mainEventSystem;
+    GameObject CanvasEventSystem;
+    GameObject DrawCanvas;
 
     void Start()
     {
-        ManCharacter = GameObject.Find("Man");
-        ManBody = GameObject.Find("body");
-        mainCanvas = GameObject.Find("MainCanvas");
-        mainEventSystem = GameObject.Find("MainEventSystem");
 
-        mainEventSystem.SetActive(false);
-
-        CanvasEventSystem = GameObject.Find("DrawCanvasEvent");
-        CanvasEventSystem.SetActive(true);
-
-        ManBody.GetComponent<SkinnedMeshRenderer>().enabled = false;
-        mainEventSystem.GetComponent<EventSystem>().enabled = false;
-        
-        mainCanvas.GetComponent<Canvas>().enabled = false;
-
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("CanvasScene"));
     }
 
     // Changing pen settings is easy as changing the static properties Drawable.Pen_Colour and Drawable.Pen_Width
@@ -97,38 +83,6 @@ public class DrawingSettings : MonoBehaviour
         SetMarkerColour(new Color(255f, 255f, 255f, 0.5f));
     }
 
-    IEnumerator<object> LoadBack(string scene)
-    {
-        Scene currentScene = SceneManager.GetActiveScene();
-
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
-
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene));
-
-        SceneManager.MoveGameObjectToScene(ManCharacter, SceneManager.GetSceneByName(scene));
-        SceneManager.MoveGameObjectToScene(mainEventSystem, SceneManager.GetSceneByName(scene));
-        SceneManager.MoveGameObjectToScene(mainCanvas, SceneManager.GetSceneByName(scene));
-
-        SceneManager.UnloadSceneAsync(currentScene);
-    }
-
-    public void MoveBackToHome()
-    {
-        ManBody.GetComponent<SkinnedMeshRenderer>().enabled = true;
-        mainEventSystem.GetComponent<EventSystem>().enabled = true;
-        mainCanvas.GetComponent<Canvas>().enabled = true;
-      
-        CanvasEventSystem.SetActive(false);
-        mainEventSystem.SetActive(true);
-       
-        StartCoroutine(LoadBack("newScene"));
-    }
-
     public void CaptureScreen()
     {
         //Reference - https://eunjin3786.tistory.com/521
@@ -137,7 +91,6 @@ public class DrawingSettings : MonoBehaviour
         
         //FIX ME : Save the captured Image to PC
         CaptureScreenForPC(fileName);
-    
     }
 
     private void CaptureScreenForPC(string fileName)
