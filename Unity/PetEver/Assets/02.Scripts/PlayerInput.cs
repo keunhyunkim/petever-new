@@ -9,13 +9,19 @@ using UnityEngine.SceneManagement;
 public class PlayerInput : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     private Image JoystickBGD;
-    private Image JoystickPad;
-    private Vector3 inputVector;
+    private static Image JoystickPad;
+    private static Vector3 inputVector;
 
     //assign player's input value for property
     public float joystick_x { get; private set; } // 
     public float joystick_y { get; private set; } // 
     public Vector3 lastpos { get; private set; } // save last joystick vector not to initialize character's direction
+
+    public static void InitJoystick()
+    {
+        inputVector = Vector3.zero;
+        JoystickPad.rectTransform.anchoredPosition = Vector3.zero;
+    }
 
     void Start()
     {
@@ -29,7 +35,6 @@ public class PlayerInput : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     {
         joystick_x = inputVector.x;
         joystick_y = inputVector.y;
-
     }
 
     public void OnDrag(PointerEventData eventData)

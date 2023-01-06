@@ -7,37 +7,48 @@ using UnityEngine.SceneManagement;
 public class CallCanvas : MonoBehaviour
 {
     GameObject ManCharacter;
+    GameObject mainCanvas;
     GameObject mainEventSystem;
+    GameObject CanvasEventSystem;
+    GameObject DrawCanvas;
+    GameObject DrawCanvasCamera;
+    GameObject MainCamera;
+
+    private bool checkDraw;
 
     void Start()
     {
+        checkDraw = false;
+
         ManCharacter = GameObject.Find("Man");
         mainEventSystem = GameObject.Find("MainEventSystem");
+        mainCanvas = GameObject.Find("MainCanvas");
+        CanvasEventSystem = GameObject.Find("DrawCanvasEvent");
+        DrawCanvas = GameObject.Find("DrawCanvas");
+        DrawCanvasCamera = GameObject.Find("DrawCanvasCamera");
+        MainCamera = GameObject.Find("MainCamera");
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("newScene"));
     }
 
-    IEnumerator<object> LoadYourAsyncScene(string drawCanvas)
-    {
-        Scene currentScene = SceneManager.GetActiveScene();
- 
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(drawCanvas, LoadSceneMode.Additive);
- 
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(drawCanvas));
-
-        SceneManager.MoveGameObjectToScene(ManCharacter, SceneManager.GetSceneByName(drawCanvas));
-        SceneManager.MoveGameObjectToScene(mainEventSystem, SceneManager.GetSceneByName(drawCanvas));
-
-        SceneManager.UnloadSceneAsync(currentScene);
-    }
- 
     private void OnCollisionEnter(Collision collision)
     {
-        StartCoroutine(LoadYourAsyncScene("CanvasScene"));
+        if (checkDraw == false) {
+            ManCharacter.SetActive(false);
+            mainEventSystem.SetActive(false);
+            mainCanvas.SetActive(false);
+            MainCamera.GetComponent<Camera>().enabled = false;
+
+            CanvasEventSystem.SetActive(true);
+            DrawCanvas.SetActive(true);
+            DrawCanvasCamera.GetComponent<Camera>().enabled = true;
+
+            checkDraw = true;    
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        checkDraw = false;
     }
 }
