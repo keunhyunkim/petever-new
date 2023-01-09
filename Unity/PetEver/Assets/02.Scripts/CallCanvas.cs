@@ -39,6 +39,7 @@ public class CallCanvas : MonoBehaviour
             mainCanvas.SetActive(false);
             MainCamera.GetComponent<Camera>().enabled = false;
 
+            DrawingSettings.SetEraseAll();
             CanvasEventSystem.SetActive(true);
             DrawCanvas.SetActive(true);
             DrawCanvasCamera.GetComponent<Camera>().enabled = true;
