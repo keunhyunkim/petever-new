@@ -73,7 +73,7 @@ public class DrawingSettings : MonoBehaviour
         SetMarkerColour(new Color(255f, 255f, 255f, 255f));
     }
 
-    public void SetEraseAll()
+    public static void SetEraseAll()
     {
         Drawable.drawable.ResetCanvas();
     }
