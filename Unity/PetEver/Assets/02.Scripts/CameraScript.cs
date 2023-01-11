@@ -21,7 +21,7 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
         if (tPlayer == null){
-            tPlayer = GameObject.Find("Man");
+            tPlayer = GameObject.FindGameObjectWithTag("Owner");
             if (tPlayer != null){
                 tFollowTarget = tPlayer.transform;
                 vcam.Follow = tFollowTarget;

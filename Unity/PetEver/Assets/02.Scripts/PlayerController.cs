@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 // reference: https://scvtwo.tistory.com/111
 public class PlayerController : MonoBehaviour
 {
-    float playerSpeed = 5.0f; // Player character speed
+    float playerSpeed = 8.0f; // Player character speed
     private PlayerInput inputValue;
     private Animator playerAnimator;
 
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        Player = GameObject.Find("Man");
+        Player = GameObject.FindGameObjectWithTag("Owner");
         inputValue = GameObject.Find("JoystickBGD").GetComponent<PlayerInput>(); // get joystick input data from 'PlayerInput' class 
         playerAnimator = GetComponent<Animator>();
 

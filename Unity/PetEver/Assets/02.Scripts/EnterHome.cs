@@ -13,7 +13,7 @@ public class EnterHome : MonoBehaviour
 
     void Start()
     {
-        ManCharacter = GameObject.Find("Man");
+        ManCharacter = GameObject.FindGameObjectWithTag("Owner");
         MainEvent = GameObject.Find("MainEventSystem");
     }
    

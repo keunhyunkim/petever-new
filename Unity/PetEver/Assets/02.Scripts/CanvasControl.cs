@@ -14,7 +14,7 @@ public class CanvasControl : MonoBehaviour
 
     void Start()
     {
-        ManCharacter = GameObject.Find("Man");
+        ManCharacter = GameObject.FindGameObjectWithTag("Owner");
         mainEventSystem = GameObject.Find("MainEventSystem");
         mainCanvas = GameObject.Find("MainCanvas");
         CanvasEventSystem = GameObject.Find("DrawCanvasEvent");
