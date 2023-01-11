@@ -83,6 +83,7 @@ public class DogAI : MonoBehaviour
     void Start()
     {
         getCollider = gameObject.GetComponent<GetColliderScript>(); // get collider data from 'GetColliderScript' class 
+
         dogAnimator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         owner = GameObject.FindGameObjectWithTag("Owner");
@@ -132,8 +133,10 @@ public class DogAI : MonoBehaviour
 
     void Tracking()
     {
+
         if (Input.GetKeyDown(KeyCode.Space)) // give priority when Owner calls. When Owner calls, dog only chases Owner even it meets Dog, Flower, Butterfly or etc.   
         {
+            
             trackingOwner = true;
             arrived = false;
         }
