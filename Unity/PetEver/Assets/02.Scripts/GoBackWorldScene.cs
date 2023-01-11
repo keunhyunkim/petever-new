@@ -11,7 +11,7 @@ public class GoBackWorldScene : MonoBehaviour
 
     void Start()
     {
-        ManCharacter = GameObject.Find("Man");
+        ManCharacter = GameObject.FindGameObjectWithTag("Owner");
         MainEvent = GameObject.Find("MainEventSystem");
     }
 
