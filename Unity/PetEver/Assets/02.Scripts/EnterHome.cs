@@ -45,7 +45,6 @@ public class EnterHome : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision Enter Home");
        if (isEntered == false) {   
             StartCoroutine(LoadYourAsyncScene());
             isEntered = true;
