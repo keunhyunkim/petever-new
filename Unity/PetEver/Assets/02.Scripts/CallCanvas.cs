@@ -21,7 +21,7 @@ public class CallCanvas : MonoBehaviour
         checkDraw = false;
 
         ManCharacter = GameObject.FindGameObjectWithTag("Owner");
-        mainEventSystem = GameObject.Find("MainEventSystem");
+        mainEventSystem = GameObject.FindGameObjectWithTag("MainEventSystem");
         mainCanvas = GameObject.Find("MainCanvas");
         CanvasEventSystem = GameObject.Find("DrawCanvasEvent");
         DrawCanvas = GameObject.Find("DrawCanvas");

@@ -13,7 +13,7 @@ public class GoBackWorldScene : MonoBehaviour
     {
         ManCharacter = GameObject.FindGameObjectWithTag("Owner");
         MainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
-        MainEvent = GameObject.Find("MainEventSystem");
+        MainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
     }
 
     IEnumerator<object> GoWorldScene(string SceneName)
@@ -38,7 +38,6 @@ public class GoBackWorldScene : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     { 
-        Debug.Log("Collision has enter");
         StartCoroutine(GoWorldScene("WorldScene"));
     }
 }

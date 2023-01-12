@@ -16,7 +16,7 @@ public class EnterHome : MonoBehaviour
     {
         ManCharacter = GameObject.FindGameObjectWithTag("Owner");      
         MainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
-        MainEvent = GameObject.Find("MainEventSystem");
+        MainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
     }
    
     private void Awake()

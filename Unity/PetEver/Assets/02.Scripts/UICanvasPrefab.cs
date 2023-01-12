@@ -7,25 +7,22 @@ public class UICanvasPrefab : MonoBehaviour
 {
 
     public GameObject canvasPrefab;
+    public GameObject eventSystemPrefab;
 
-    public GameObject previousCanvas;
-    public 
+    GameObject previousCanvas;
+    GameObject previouEventSystem;
 
     void Awake()
     {
         previousCanvas = GameObject.FindGameObjectWithTag("UICanvas");
+        previouEventSystem = GameObject.FindGameObjectWithTag("MainEventSystem");
         if (previousCanvas == null)
         {
-
-            try
-            {
-                GameObject canvas = Instantiate(canvasPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-            }
-            catch (Exception e)
-            {
-                Debug.Log(e);
-            }
-
+            GameObject canvas = Instantiate(canvasPrefab) as GameObject;
+        }
+        if (previouEventSystem == null)
+        {
+            GameObject eSystem = Instantiate(eventSystemPrefab) as GameObject;
         }
     }
 
