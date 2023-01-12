@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System;
 
 public class GoBackWorldScene : MonoBehaviour
 {
-
     GameObject ManCharacter;
+    GameObject MainCanvas;
     GameObject MainEvent;
 
     void Start()
     {
         ManCharacter = GameObject.FindGameObjectWithTag("Owner");
+        MainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
         MainEvent = GameObject.Find("MainEventSystem");
     }
 
@@ -30,7 +30,7 @@ public class GoBackWorldScene : MonoBehaviour
         
         SceneManager.MoveGameObjectToScene(ManCharacter, SceneManager.GetSceneByName(SceneName));
         SceneManager.MoveGameObjectToScene(MainEvent, SceneManager.GetSceneByName(SceneName));
-        
+        SceneManager.MoveGameObjectToScene(MainCanvas, SceneManager.GetSceneByName(SceneName));
         SceneManager.UnloadSceneAsync(currentScene);
         
        
