@@ -185,7 +185,6 @@ public class DogAI : MonoBehaviour
         {
             
             // limit number of playing animation when meet Owner
-            Debug.Log(dogAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime);
             if (dogAnimator.GetCurrentAnimatorStateInfo(0).IsName("turn_around") &&
                      (dogAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f))
             {
