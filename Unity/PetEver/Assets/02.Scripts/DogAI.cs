@@ -199,9 +199,7 @@ public class DogAI : MonoBehaviour
 
         
         if (meetOwner)
-        {
-            navMeshAgent.isStopped = true;
-           
+        {           
             if (dogAnimator.GetCurrentAnimatorStateInfo(0).IsName("turn_around") &&
                      (dogAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f))
             {
