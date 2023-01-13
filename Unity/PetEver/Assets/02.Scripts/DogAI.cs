@@ -26,7 +26,7 @@ public class DogAI : MonoBehaviour
     private bool trackingOwner = false;
     private float timer = 0f;
     private float escapeCount = 0f;
-
+    private int collided_tag_number = -1; // give never-using value to initialize
 
     private bool meetOwner
     {
@@ -134,42 +134,56 @@ public class DogAI : MonoBehaviour
     void Tracking()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space)) // give priority when Owner calls. When Owner calls, dog only chases Owner even it meets Dog, Flower, Butterfly or etc.   
-        {
-            
-            trackingOwner = true;
-            arrived = false;
-        }
-
-        if (trackingOwner)
-        {
-            timer = 0;
-            navMeshAgent.speed = dog_trackingSpeed;
-            navMeshAgent.SetDestination(owner.transform.position);
-        }
-
-        else
-        {
-            switch (getCollider.collided_tag)
+            if (Input.GetKeyDown(KeyCode.Space)) // give priority when Owner calls. When Owner calls, dog only chases Owner even it meets Dog, Flower, Butterfly or etc.   
             {
-                case ("Dog"):
-                    {
-                        break;
-                    }
+                if (!meetOwner)
+                { 
+                    trackingOwner = true;
+                    arrived = false;
+                }
 
-                case ("Flower"):
-                    {
-                        break;
-                    }
-
-                case ("Butterfly"):
-                    {
-                        navMeshAgent.speed = dog_trackingSpeed;
-                        navMeshAgent.SetDestination(getCollider.collided_object.transform.position);
-                        break;
-                    }
+                else
+                {
+                    trackingOwner = false;
+                    arrived = true;
+                }
             }
-        }
+
+            if (trackingOwner)
+            {
+                timer = 0;
+                navMeshAgent.speed = dog_trackingSpeed;
+                navMeshAgent.SetDestination(owner.transform.position);
+            }
+
+            else
+            {
+                switch (getCollider.collided_tag)
+                {
+                    case ("Flower"): // enum value in 'GetColliderScript' (int -> 1)
+                        {                       
+                            navMeshAgent.SetDestination(getCollider.collided_object.transform.position);
+                            collided_tag_number = 1;
+                            arrived = true;
+                            break;
+                        }
+
+                    case ("Butterfly"): // enum value in 'GetColliderScript' (int -> 2)
+                        {
+                            collided_tag_number = 2;
+                            navMeshAgent.speed = dog_trackingSpeed;
+                            navMeshAgent.SetDestination(getCollider.collided_object.transform.position);
+                            break;
+                        }
+
+                    case ("Dog"): // enum value in 'GetColliderScript' (int -> 3)
+                        {
+                            collided_tag_number = 3;
+                            break;
+                        }
+                }
+            }
+        
     }
 
 
@@ -178,21 +192,27 @@ public class DogAI : MonoBehaviour
         dogAnimator.SetBool("arrived", arrived);
         dogAnimator.SetBool("meetOwner", meetOwner);
         dogAnimator.SetBool("walking", walking);
+        dogAnimator.SetBool("trackingOwner", trackingOwner);
         dogAnimator.SetFloat("escapeCount", escapeCount);
-        
+        dogAnimator.SetFloat("dogSpeed", navMeshAgent.velocity.magnitude);
+        dogAnimator.SetInteger("whatCollided", collided_tag_number);
 
+        
         if (meetOwner)
         {
-            
-            // limit number of playing animation when meet Owner
+            navMeshAgent.isStopped = true;
+           
             if (dogAnimator.GetCurrentAnimatorStateInfo(0).IsName("turn_around") &&
                      (dogAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f))
             {
                 escapeCount++;
-
+                Debug.Log(escapeCount);
                 if (escapeCount > 3)
                 {
                     arrived = true;
+                    escapeCount = 0;
+                    navMeshAgent.isStopped = false;
+
                 }
             }
         }
