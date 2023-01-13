@@ -5,7 +5,7 @@ using UnityEngine;
 public class GetColliderScript : MonoBehaviour
 {
     private float colliderRadius = 5f;
-    public enum Sorting { Owner, Flower, Butterfly, Dog }; //list of GameObjects' name that dog can collide
+    public enum Sorting { Owner = 0, Flower, Butterfly, Dog }; //list of GameObjects' name that dog can collide
 
     public string collided_tag { get; private set; } // 
     public GameObject collided_object { get; private set; } // 
