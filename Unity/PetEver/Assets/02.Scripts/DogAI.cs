@@ -204,7 +204,6 @@ public class DogAI : MonoBehaviour
                      (dogAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f))
             {
                 escapeCount++;
-                Debug.Log(escapeCount);
                 if (escapeCount > 3)
                 {
                     arrived = true;
