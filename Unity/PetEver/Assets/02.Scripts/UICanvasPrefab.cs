@@ -20,12 +20,12 @@ public class UICanvasPrefab : MonoBehaviour
         {
             GameObject canvas = Instantiate(canvasPrefab) as GameObject;
         }
+
         if (previouEventSystem == null)
         {
             GameObject eSystem = Instantiate(eventSystemPrefab) as GameObject;
         }
     }
-
 
     // Update is called once per frame
     void Update()
