@@ -7,10 +7,13 @@ using UnityEngine.EventSystems;
 // reference: https://scvtwo.tistory.com/111
 public class PlayerController : MonoBehaviour
 {
-    float playerSpeed = 8.0f; // Player character speed
     private PlayerInput inputValue;
     private Animator playerAnimator;
-
+    
+    public static float playerSpeed = 8.0f; // Player character speed
+    public static bool isForest;
+    public static float mov_x;
+    public static float mov_y;
 
     Vector3 move;
 
@@ -27,8 +30,13 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        move = new Vector3(inputValue.joystick_x * playerSpeed * Time.deltaTime, 0f, inputValue.joystick_y * playerSpeed * Time.deltaTime);
-        Player.transform.eulerAngles = new Vector3(0f, Mathf.Atan2(-inputValue.joystick_x, -inputValue.joystick_y) * Mathf.Rad2Deg, 0f);
+        if (isForest != true) {
+            mov_x = inputValue.joystick_x;
+            mov_y = inputValue.joystick_y;
+        }
+
+        move = new Vector3(mov_x * playerSpeed * Time.deltaTime, 0f, mov_y * playerSpeed * Time.deltaTime);
+        Player.transform.eulerAngles = new Vector3(0f, Mathf.Atan2(-mov_x, -mov_y) * Mathf.Rad2Deg, 0f);
 
         if (inputValue.lastpos != (Vector3.one)*99999)
         {
