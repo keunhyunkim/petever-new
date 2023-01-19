@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour
 {
     private PlayerInput inputValue;
-    private Animator playerAnimator;
+    public static Animator playerAnimator;
     
     public static float playerSpeed = 8.0f; // Player character speed
     public static bool isForest;
