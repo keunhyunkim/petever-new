@@ -48,8 +48,7 @@ public class CanvasControl : MonoBehaviour
         treeBtn.GetComponent<Button>().onClick.AddListener(() =>
         {
             createTreeInfrontOfCharacter();
-        }
-        );
+        });
     }
 
     void createTreeInfrontOfCharacter()
