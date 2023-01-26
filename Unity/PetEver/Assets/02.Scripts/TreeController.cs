@@ -22,7 +22,7 @@ namespace BitBenderGames
         {
             Application.targetFrameRate = 60;
 
-            cam =  GameObject.Find("newFollowCam").GetComponent<Camera>();
+            cam =  GameObject.Find("MainCamera").GetComponent<Camera>();
             mobileTouchCamera = cam.GetComponent<MobileTouchCamera>();
             touchInputController = cam.GetComponent<TouchInputController>();
             mobilePickingController = cam.GetComponent<MobilePickingController>();
@@ -166,28 +166,28 @@ namespace BitBenderGames
         #region detail messages
         private void OnInputClick(Vector3 clickScreenPosition, bool isDoubleClick, bool isLongTap)
         {
-            Debug.Log("OnInputClick(clickScreenPosition: " + clickScreenPosition + ", isDoubleClick: " + isDoubleClick + ", isLongTap: " + isLongTap + ")");
+            //Debug.Log("OnInputClick(clickScreenPosition: " + clickScreenPosition + ", isDoubleClick: " + isDoubleClick + ", isLongTap: " + isLongTap + ")");
         }
 
 
         private void OnDragStart(Vector3 pos, bool isLongTap)
         {
-            Debug.Log("OnDragStart(pos: " + pos + ", isLongTap: " + isLongTap + ")");
+            //Debug.Log("OnDragStart(pos: " + pos + ", isLongTap: " + isLongTap + ")");
         }
 
         private void OnFingerDown(Vector3 screenPosition)
         {
-            Debug.Log("OnFingerDown(screenPosition: " + screenPosition + ")");
+            //Debug.Log("OnFingerDown(screenPosition: " + screenPosition + ")");
         }
 
         private void OnDragUpdate(Vector3 dragPosStart, Vector3 dragPosCurrent, Vector3 correctionOffset)
         {
-            Debug.Log("OnDragUpdate(dragPosStart: " + dragPosStart + ", dragPosCurrent: " + dragPosCurrent + ")");
+            //Debug.Log("OnDragUpdate(dragPosStart: " + dragPosStart + ", dragPosCurrent: " + dragPosCurrent + ")");
         }
 
         private void OnDragStop(Vector3 dragStopPos, Vector3 dragFinalMomentum)
         {
-            Debug.Log("OnDragStop(dragStopPos: " + dragStopPos + ", dragFinalMomentum: " + dragFinalMomentum + ")");
+            //Debug.Log("OnDragStop(dragStopPos: " + dragStopPos + ", dragFinalMomentum: " + dragFinalMomentum + ")");
         }
 
         #endregion
