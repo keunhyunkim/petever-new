@@ -91,14 +91,8 @@ namespace BitBenderGames {
     [Tooltip("Here you can set up callbacks to be invoked when an item with Collider is tapped on.")]
     private UnityEventWithRaycastHit OnPickItem;
     [SerializeField]
-    [Tooltip("Here you can set up callbacks to be invoked when an item with Collider2D is tapped on.")]
-    private UnityEventWithRaycastHit2D OnPickItem2D;
-    [SerializeField]
     [Tooltip("Here you can set up callbacks to be invoked when an item with Collider is double-tapped on.")]
     private UnityEventWithRaycastHit OnPickItemDoubleClick;
-    [SerializeField]
-    [Tooltip("Here you can set up callbacks to be invoked when an item with Collider2D is double-tapped on.")]
-    private UnityEventWithRaycastHit2D OnPickItem2DDoubleClick;
 #pragma warning restore 649
 
     [Header("Keyboard & Mouse Input")]
@@ -1484,19 +1478,6 @@ namespace BitBenderGames {
           if (isDoubleClick == true) {
             if (OnPickItemDoubleClick != null) {
               OnPickItemDoubleClick.Invoke(hitInfo);
-            }
-          }
-        }
-      }
-      if (OnPickItem2D != null || OnPickItem2DDoubleClick != null) {
-        RaycastHit2D hitInfo2D = Physics2D.Raycast(camRay.origin, camRay.direction);
-        if (hitInfo2D == true) {
-          if (OnPickItem2D != null) {
-            OnPickItem2D.Invoke(hitInfo2D);
-          }
-          if (isDoubleClick == true) {
-            if (OnPickItem2DDoubleClick != null) {
-              OnPickItem2DDoubleClick.Invoke(hitInfo2D);
             }
           }
         }
