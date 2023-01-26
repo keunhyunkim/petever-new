@@ -13,6 +13,7 @@ public class CallCanvas : MonoBehaviour
     GameObject DrawCanvas;
     GameObject DrawCanvasCamera;
     GameObject MainCamera;
+    GameObject readWriteEnabledImageToDrawOn;
 
     private bool checkDraw;
 
@@ -27,6 +28,7 @@ public class CallCanvas : MonoBehaviour
         DrawCanvas = GameObject.Find("DrawCanvas");
         DrawCanvasCamera = GameObject.Find("DrawCanvasCamera");
         MainCamera = GameObject.Find("MainCamera");
+        readWriteEnabledImageToDrawOn = GameObject.Find("ReadWriteEnabledImageToDrawOn");
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("newScene"));
     }
@@ -38,10 +40,11 @@ public class CallCanvas : MonoBehaviour
             mainEventSystem.SetActive(false);
             mainCanvas.SetActive(false);
             MainCamera.GetComponent<Camera>().enabled = false;
-
+            
             DrawingSettings.SetEraseAll();
             CanvasEventSystem.SetActive(true);
             DrawCanvas.SetActive(true);
+            readWriteEnabledImageToDrawOn.SetActive(true);
             DrawCanvasCamera.GetComponent<Camera>().enabled = true;
 
             checkDraw = true;    
