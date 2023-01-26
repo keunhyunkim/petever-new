@@ -10,12 +10,16 @@ public class ForestSetting : MonoBehaviour
     GameObject manCharacter;
     GameObject mainEvent;
     GameObject mainCanvas;
+    GameObject popupBack;
 
     void Start() {
         manCharacter = GameObject.FindGameObjectWithTag("Owner");
         mainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
         mainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
         mainCanvas.SetActive(false);
+
+        popupBack = GameObject.FindGameObjectWithTag("WalkTag");
+        popupBack.SetActive(false);
 
         forestCanvas = GameObject.FindGameObjectWithTag("ForestCanvas");
     }
@@ -50,7 +54,18 @@ public class ForestSetting : MonoBehaviour
 
     public void onForestBackClick()
     {
+        popupBack.SetActive(true);
+    }
+
+    public void onForestQuitClick()
+    {
         mainCanvas.SetActive(true);
+        popupBack.SetActive(false);
         StartCoroutine(GoWorldScene("WorldScene"));
+    }
+
+    public void onForestGoingClick()
+    {
+        popupBack.SetActive(false);
     }
 }
