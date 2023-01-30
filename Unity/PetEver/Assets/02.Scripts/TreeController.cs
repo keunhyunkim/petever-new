@@ -7,6 +7,16 @@ namespace BitBenderGames
 {
     public class TreeController : MonoBehaviour
     {
+        private GameObject manCharacter;
+        private GameObject mainCanvas;
+        private GameObject createTreeBtn;
+        private GameObject exitBtn;
+        private GameObject popupBack;
+
+        public GameObject treePrefab;
+        private GameObject treeDetailUIPanel;
+        private CanvasGroup treePopupCanvasGroup;
+
         private TouchInputController touchInputController;
 
         private MobileTouchCamera mobileTouchCamera;
@@ -22,12 +32,12 @@ namespace BitBenderGames
         {
             Application.targetFrameRate = 60;
 
-            cam =  GameObject.Find("MainCamera").GetComponent<Camera>();
+            cam = GameObject.Find("Main Camera").GetComponent<Camera>();
             mobileTouchCamera = cam.GetComponent<MobileTouchCamera>();
             touchInputController = cam.GetComponent<TouchInputController>();
             mobilePickingController = cam.GetComponent<MobilePickingController>();
 
-            
+
 
             #region detail callbacks
             touchInputController.OnInputClick += OnInputClick;
@@ -39,26 +49,79 @@ namespace BitBenderGames
 
         }
 
+        void Start()
+        {
+
+            treePopupCanvasGroup = GameObject.Find("TreePopupPannel").GetComponent<CanvasGroup>();
+            manCharacter = GameObject.FindGameObjectWithTag("Owner");
+            exitBtn = GameObject.Find("ExitBtn");
+            exitBtn.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                ExitTreePopup();
+            });
+            popupBack = GameObject.Find("TreePopupPannel");
+            popupBack.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                ExitTreePopup();
+            });
+            mainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
+            createTreeBtn = GameObject.Find("Plus");
+            createTreeBtn.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                createTreeInfrontOfCharacter();
+            });
+
+        }
+        void OnClickTree()
+        {
+            treePopupCanvasGroup.alpha = 1;
+            treePopupCanvasGroup.interactable = true;
+            treePopupCanvasGroup.blocksRaycasts = true;
+        }
+
+        void ExitTreePopup()
+        {
+            treePopupCanvasGroup.alpha = 0;
+            treePopupCanvasGroup.interactable = false;
+            treePopupCanvasGroup.blocksRaycasts = false;
+        }
+
+
+        void createTreeInfrontOfCharacter()
+        {
+            Vector3 pos = manCharacter.transform.position - (manCharacter.transform.forward * 5);
+            pos.y = 0;
+            GameObject newTree = Instantiate(treePrefab);
+            newTree.transform.SetParent(GameObject.Find("GameObject").transform);
+            newTree.transform.position = pos;
+        }
 
 
         public void OnPickItem(RaycastHit hitInfo)
         {
-            // Debug.Log("Picked a collider: " + hitInfo.collider);
+            Debug.Log("OnPickItem a collider: " + hitInfo.collider);
         }
 
         public void OnPickableTransformSelected(Transform pickableTransform)
         {
-            if (pickableTransform != selectedPickableTransform)
-            {
-                StartCoroutine(AnimateScaleForSelection(pickableTransform));
-            }
-            SetItemColor(pickableTransform, Color.green);
-            selectedPickableTransform = pickableTransform;
+           
         }
 
         public void OnPickableTransformSelectedExtended(PickableSelectedData data)
         {
-            Debug.Log("OnPickableTransformSelectedExtended() - SelectedTransform: " + data.SelectedTransform + ", IsLongTap: " + data.IsLongTap);
+            if (data.IsLongTap)
+            {
+                Debug.Log("OnPickableTransformSelectedExtended() - SelectedTransform: " + data.SelectedTransform + ", IsLongTap: " + data.IsLongTap);
+                if (data.SelectedTransform != selectedPickableTransform)
+                {
+                    StartCoroutine(AnimateScaleForSelection(data.SelectedTransform));
+                }
+                SetItemColor(data.SelectedTransform, Color.green);
+                selectedPickableTransform = data.SelectedTransform;
+            } else {
+                
+                 OnClickTree();
+            }
         }
 
         public void OnPickableTransformDeselected(Transform pickableTransform)
