@@ -8,7 +8,6 @@ public class GoBackWorldScene : MonoBehaviour
     GameObject ManCharacter;
     GameObject MainCanvas;
     GameObject MainEvent;
-    GameObject plusBtn;
 
     void Start()
     {
@@ -21,9 +20,6 @@ public class GoBackWorldScene : MonoBehaviour
     {
         
         Scene currentScene = SceneManager.GetActiveScene();
-
-        plusBtn = GameObject.Find("Plus(Clone)");
-        plusBtn.SetActive(false);
         
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive);
  

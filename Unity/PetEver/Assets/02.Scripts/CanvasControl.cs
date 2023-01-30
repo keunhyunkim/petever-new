@@ -13,8 +13,7 @@ public class CanvasControl : MonoBehaviour
     GameObject DrawCanvasCamera;
     GameObject MainCamera;
     GameObject readWriteEnabledImageToDrawOn;
-    public GameObject createTreeButtonPrefab;
-    public GameObject treePrefab;
+    // public GameObject createTreeButtonPrefab;
 
     void Start()
     {
@@ -32,7 +31,6 @@ public class CanvasControl : MonoBehaviour
         readWriteEnabledImageToDrawOn.SetActive(false);
         DrawCanvasCamera.GetComponent<Camera>().enabled = false;
 
-        createTreeBtn();
     }
 
 
@@ -41,24 +39,6 @@ public class CanvasControl : MonoBehaviour
 
     }
 
-    void createTreeBtn()
-    {
-        GameObject treeBtn = Instantiate(createTreeButtonPrefab);
-        treeBtn.transform.SetParent(mainCanvas.transform);
-        treeBtn.GetComponent<Button>().onClick.AddListener(() =>
-        {
-            createTreeInfrontOfCharacter();
-        });
-    }
-
-    void createTreeInfrontOfCharacter()
-    {
-        Vector3 pos = manCharacter.transform.position - (manCharacter.transform.forward * 5);
-        pos.y = 0;
-        GameObject newTree = Instantiate(treePrefab);
-        newTree.transform.SetParent(GameObject.Find("GameObject").transform);
-        newTree.transform.position = pos;
-    }
     public void MoveBackToHome()
     {
         CanvasEventSystem.SetActive(false);
