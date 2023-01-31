@@ -4,23 +4,43 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/* reference : https://jacobjea.tistory.com/7 */
 public class ShowHouseName : MonoBehaviour
 {
-    // GameObject bubble;
-    // Text bubbleTxt;
-    // void Start() {
-    //     bubble = GameObject.FindGameObjectWithTag("SpeechBubble");
-    //     bubbleTxt = GameObject.Find("BubbleText").GetComponent<Text>();
-    // }
+    /** SHOULD BE CHANGED **/
 
-    // private void OnCollisionEnter(Collision collision)
-    // {
-    //     bubbleTxt.text = "병원";
-    //     bubble.SetActive(true);
-    // }
+    /* House Information */
+    private string houseName = "병원정보\n공유의집";
+    private string bubbleName = "SpeechBubble";
+    private string bubbleTxtName = "BubbleText";
+    /*********************/
 
-    // private void OnCollisionExit(Collision collision)
-    // {
-    //     bubble.SetActive(false);
-    // }
+    GameObject bubble;
+    GameObject bubbleBox;
+    GameObject bubbleTxtBox;
+    TextMeshProUGUI bubbleTxt;
+
+    void Start() {
+        bubble = GameObject.FindGameObjectWithTag(bubbleName);
+        bubbleBox = GameObject.Find("BubbleImage");
+        bubbleTxtBox = GameObject.Find(bubbleTxtName);
+        bubbleTxt = GameObject.Find(bubbleTxtName).GetComponent<TextMeshProUGUI>();
+        bubbleBox.SetActive(false);
+        bubble.SetActive(false);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        bubble.SetActive(true);
+        bubbleBox.SetActive(true);
+        bubbleTxt.text = houseName;
+        bubbleTxtBox.SetActive(true);
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        bubbleTxtBox.SetActive(false);
+        bubbleBox.SetActive(false);
+        bubble.SetActive(false);
+    }
 }
