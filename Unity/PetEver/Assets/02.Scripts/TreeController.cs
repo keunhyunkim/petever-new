@@ -8,6 +8,7 @@ namespace BitBenderGames
     public class TreeController : MonoBehaviour
     {
         private GameObject manCharacter;
+        private GameObject treeZone;
         private GameObject mainCanvas;
         private GameObject createTreeBtn;
         private GameObject exitBtn;
@@ -54,6 +55,7 @@ namespace BitBenderGames
 
             treePopupCanvasGroup = GameObject.Find("TreePopupPannel").GetComponent<CanvasGroup>();
             manCharacter = GameObject.FindGameObjectWithTag("Owner");
+            treeZone = GameObject.Find("TreeZone2");
             exitBtn = GameObject.Find("ExitBtn");
             exitBtn.GetComponent<Button>().onClick.AddListener(() =>
             {
@@ -68,11 +70,11 @@ namespace BitBenderGames
             createTreeBtn = GameObject.Find("Plus");
             createTreeBtn.GetComponent<Button>().onClick.AddListener(() =>
             {
-                createTreeInfrontOfCharacter();
+                createTree();
             });
 
         }
-        void OnClickTree()
+        void ShowTreeDetail()
         {
             treePopupCanvasGroup.alpha = 1;
             treePopupCanvasGroup.interactable = true;
@@ -87,12 +89,13 @@ namespace BitBenderGames
         }
 
 
-        void createTreeInfrontOfCharacter()
+        void createTree()
         {
-            Vector3 pos = manCharacter.transform.position - (manCharacter.transform.forward * 5);
-            pos.y = 0;
+            createTreeBtn.SetActive(false);
+            treeZone.SetActive(false);
+            Vector3 pos = treeZone.transform.position;
             GameObject newTree = Instantiate(treePrefab);
-            newTree.transform.SetParent(GameObject.Find("GameObject").transform);
+            newTree.transform.SetParent(GameObject.Find("TreeArea").transform);
             newTree.transform.position = pos;
         }
 
@@ -111,6 +114,8 @@ namespace BitBenderGames
         {
             if (data.IsLongTap)
             {
+                 ShowTreeDetail();
+            } else {
                 Debug.Log("OnPickableTransformSelectedExtended() - SelectedTransform: " + data.SelectedTransform + ", IsLongTap: " + data.IsLongTap);
                 if (data.SelectedTransform != selectedPickableTransform)
                 {
@@ -118,9 +123,6 @@ namespace BitBenderGames
                 }
                 SetItemColor(data.SelectedTransform, Color.green);
                 selectedPickableTransform = data.SelectedTransform;
-            } else {
-                
-                 OnClickTree();
             }
         }
 
