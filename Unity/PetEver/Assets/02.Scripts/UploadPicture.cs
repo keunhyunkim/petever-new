@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
-
+using UnityEngine.EventSystems;
 
 // Reference : https://greenapple16.tistory.com/275
 //             https://www.youtube.com/watch?v=H2TpEq0Hr2g
+
 public class UploadPicture : MonoBehaviour
 {
     public RawImage rawImage; // take image RawImage
+    public Button PlusBtn;
+
 
     // Start is called before the first frame update
     void Start()
     {
-
+        PlusBtn.onClick.AddListener(delegate { GetImage(); });
     }
 
     // Update is called once per frame
