@@ -7,40 +7,57 @@ using TMPro;
 /* reference : https://jacobjea.tistory.com/7 */
 public class ShowHouseName : MonoBehaviour
 {
-    /** SHOULD BE CHANGED **/
+    /**
+     * Informations like below should be filled in order into Component<Text> of the house
+     * if want to show the house info.
+     *
+     * <Information order>
+     * House Title,Bubble Group Name,Bubble Text Name
+    **/
 
-    /* House Information */
-    private string houseName = "병원정보\n공유의집";
-    private string bubbleName = "SpeechBubble";
-    private string bubbleTxtName = "BubbleText";
-    /*********************/
+    private CanvasGroup bubbleGroup;
+    private GameObject bubbleTxtBox;
+    private TextMeshProUGUI bubbleTxt;
+    private string[] houseInfo;
 
-    GameObject bubble;
-    GameObject bubbleBox;
-    GameObject bubbleTxtBox;
-    TextMeshProUGUI bubbleTxt;
+    private void parsingHouseInfo(string info)
+    {
+        houseInfo = info.Split(',');
+    }
+
+    private void ShowBubble()
+    {
+        bubbleGroup.alpha = 1;
+        bubbleGroup.interactable = true;
+        bubbleGroup.blocksRaycasts = true;
+    }
+
+    private void HideBubble()
+    {
+        bubbleGroup.alpha = 0;
+        bubbleGroup.interactable = false;
+        bubbleGroup.blocksRaycasts = false;
+    }
 
     void Start() {
-        bubble = GameObject.FindGameObjectWithTag(bubbleName);
-        bubbleBox = GameObject.Find("BubbleImage");
-        bubbleTxtBox = GameObject.Find(bubbleTxtName);
-        bubbleTxt = GameObject.Find(bubbleTxtName).GetComponent<TextMeshProUGUI>();
-        bubbleBox.SetActive(false);
-        bubble.SetActive(false);
+        parsingHouseInfo(GetComponent<Text>().text);
+
+        bubbleGroup = GameObject.Find(houseInfo[1]).GetComponent<CanvasGroup>();
+
+        bubbleTxtBox = GameObject.Find(houseInfo[2]);
+        bubbleTxt = bubbleTxtBox.GetComponent<TextMeshProUGUI>();
+
+        HideBubble();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        bubble.SetActive(true);
-        bubbleBox.SetActive(true);
-        bubbleTxt.text = houseName;
-        bubbleTxtBox.SetActive(true);
+        ShowBubble();
+        bubbleTxt.text = houseInfo[0];
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        bubbleTxtBox.SetActive(false);
-        bubbleBox.SetActive(false);
-        bubble.SetActive(false);
+        HideBubble();
     }
 }
