@@ -14,7 +14,7 @@ namespace BitBenderGames
         private GameObject exitBtn;
         private GameObject popupBack;
 
-        public GameObject treePrefab;
+        private GameObject treePrefab;
         private GameObject treeDetailUIPanel;
         private CanvasGroup treePopupCanvasGroup;
         private CanvasGroup treeCreatePopupPanelCanvasGroup;
@@ -53,7 +53,7 @@ namespace BitBenderGames
 
         void Start()
         {
-
+            treePrefab = Resources.Load<GameObject>("Prefabs/tree5");
             treePopupCanvasGroup = GameObject.Find("TreePopupPannel").GetComponent<CanvasGroup>();
             treeCreatePopupPanelCanvasGroup = GameObject.Find("TreeCreatePopupPannel").GetComponent<CanvasGroup>();
             manCharacter = GameObject.FindGameObjectWithTag("Owner");
@@ -97,10 +97,15 @@ namespace BitBenderGames
             treeZone.SetActive(false);
             Vector3 pos = treeZone.transform.position;
             Vector3 scale = new Vector3(0.8f, 0.8f, 0.8f);
-            GameObject newTree = Instantiate(treePrefab);
-            newTree.transform.SetParent(GameObject.Find("TreeArea").transform);
-            newTree.transform.position = pos;
-            newTree.transform.localScale = scale;
+            if (treePrefab)
+            {
+
+                GameObject newTree = Instantiate(treePrefab);
+
+                newTree.transform.SetParent(GameObject.Find("TreeArea").transform);
+                newTree.transform.position = pos;
+                newTree.transform.localScale = scale;
+            }
         }
 
 
@@ -111,13 +116,13 @@ namespace BitBenderGames
 
         public void OnPickableTransformSelected(Transform pickableTransform)
         {
-           
+
         }
 
         public void OnPickableTransformSelectedExtended(PickableSelectedData data)
         {
 
-             ShowPopUpDetail(treePopupCanvasGroup);
+            ShowPopUpDetail(treePopupCanvasGroup);
         }
 
         public void OnPickableTransformDeselected(Transform pickableTransform)
