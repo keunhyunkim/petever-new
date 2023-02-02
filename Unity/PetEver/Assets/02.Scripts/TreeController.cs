@@ -17,6 +17,7 @@ namespace BitBenderGames
         public GameObject treePrefab;
         private GameObject treeDetailUIPanel;
         private CanvasGroup treePopupCanvasGroup;
+        private CanvasGroup treeCreatePopupPanelCanvasGroup;
 
         private TouchInputController touchInputController;
 
@@ -54,17 +55,18 @@ namespace BitBenderGames
         {
 
             treePopupCanvasGroup = GameObject.Find("TreePopupPannel").GetComponent<CanvasGroup>();
+            treeCreatePopupPanelCanvasGroup = GameObject.Find("TreeCreatePopupPannel").GetComponent<CanvasGroup>();
             manCharacter = GameObject.FindGameObjectWithTag("Owner");
-            treeZone = GameObject.Find("TreeZone2");
+            treeZone = GameObject.Find("TreeZone");
             exitBtn = GameObject.Find("ExitBtn");
             exitBtn.GetComponent<Button>().onClick.AddListener(() =>
             {
-                ExitTreePopup();
+                ExitPopup(treePopupCanvasGroup);
             });
             popupBack = GameObject.Find("TreePopupPannel");
             popupBack.GetComponent<Button>().onClick.AddListener(() =>
             {
-                ExitTreePopup();
+                ExitPopup(treePopupCanvasGroup);
             });
             mainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
             createTreeBtn = GameObject.Find("Plus");
@@ -74,18 +76,18 @@ namespace BitBenderGames
             });
 
         }
-        void ShowTreeDetail()
+        void ShowPopUpDetail(CanvasGroup canvasGroup)
         {
-            treePopupCanvasGroup.alpha = 1;
-            treePopupCanvasGroup.interactable = true;
-            treePopupCanvasGroup.blocksRaycasts = true;
+            canvasGroup.alpha = 1;
+            canvasGroup.interactable = true;
+            canvasGroup.blocksRaycasts = true;
         }
 
-        void ExitTreePopup()
+        void ExitPopup(CanvasGroup canvasGroup)
         {
-            treePopupCanvasGroup.alpha = 0;
-            treePopupCanvasGroup.interactable = false;
-            treePopupCanvasGroup.blocksRaycasts = false;
+            canvasGroup.alpha = 0;
+            canvasGroup.interactable = false;
+            canvasGroup.blocksRaycasts = false;
         }
 
 
@@ -94,9 +96,11 @@ namespace BitBenderGames
             createTreeBtn.SetActive(false);
             treeZone.SetActive(false);
             Vector3 pos = treeZone.transform.position;
+            Vector3 scale = new Vector3(0.8f, 0.8f, 0.8f);
             GameObject newTree = Instantiate(treePrefab);
             newTree.transform.SetParent(GameObject.Find("TreeArea").transform);
             newTree.transform.position = pos;
+            newTree.transform.localScale = scale;
         }
 
 
@@ -112,18 +116,8 @@ namespace BitBenderGames
 
         public void OnPickableTransformSelectedExtended(PickableSelectedData data)
         {
-            if (data.IsLongTap)
-            {
-                 ShowTreeDetail();
-            } else {
-                Debug.Log("OnPickableTransformSelectedExtended() - SelectedTransform: " + data.SelectedTransform + ", IsLongTap: " + data.IsLongTap);
-                if (data.SelectedTransform != selectedPickableTransform)
-                {
-                    StartCoroutine(AnimateScaleForSelection(data.SelectedTransform));
-                }
-                SetItemColor(data.SelectedTransform, Color.green);
-                selectedPickableTransform = data.SelectedTransform;
-            }
+
+             ShowPopUpDetail(treePopupCanvasGroup);
         }
 
         public void OnPickableTransformDeselected(Transform pickableTransform)
