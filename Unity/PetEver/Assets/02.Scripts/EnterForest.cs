@@ -48,9 +48,11 @@ public class EnterForest : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-       if (isEntered == false) {   
-            StartCoroutine(LoadYourAsyncScene());
-            isEntered = true;
-       }
+        if (collision.gameObject.tag == "Owner") {
+            if (isEntered == false) {   
+                    StartCoroutine(LoadYourAsyncScene());
+                    isEntered = true;
+            }
+        }
     }
 }

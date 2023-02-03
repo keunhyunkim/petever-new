@@ -52,12 +52,17 @@ public class ShowHouseName : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        ShowBubble();
-        bubbleTxt.text = houseInfo[0];
+        if (collision.gameObject.tag == "Owner") {
+            ShowBubble();
+            bubbleTxt.text = houseInfo[0];
+        }
+
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        HideBubble();
+        if (collision.gameObject.tag == "Owner") {
+            HideBubble();
+        }
     }
 }
