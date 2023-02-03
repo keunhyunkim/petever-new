@@ -8,7 +8,7 @@ public class GoBackWorldScene : MonoBehaviour
     GameObject ManCharacter;
     GameObject MainCanvas;
     GameObject MainEvent;
-
+    private bool isEntered = false;
     void Start()
     {
         ManCharacter = GameObject.FindGameObjectWithTag("Owner");
@@ -16,21 +16,22 @@ public class GoBackWorldScene : MonoBehaviour
         MainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
     }
 
-    IEnumerator<object> GoWorldScene(string SceneName)
+    IEnumerator<object> GoWorldScene()
     {
+        string sceneName = "WorldScene";
         
         Scene currentScene = SceneManager.GetActiveScene();
         
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
  
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
         
-        SceneManager.MoveGameObjectToScene(ManCharacter, SceneManager.GetSceneByName(SceneName));
-        SceneManager.MoveGameObjectToScene(MainEvent, SceneManager.GetSceneByName(SceneName));
-        SceneManager.MoveGameObjectToScene(MainCanvas, SceneManager.GetSceneByName(SceneName));
+        SceneManager.MoveGameObjectToScene(ManCharacter, SceneManager.GetSceneByName(sceneName));
+        SceneManager.MoveGameObjectToScene(MainEvent, SceneManager.GetSceneByName(sceneName));
+        SceneManager.MoveGameObjectToScene(MainCanvas, SceneManager.GetSceneByName(sceneName));
         SceneManager.UnloadSceneAsync(currentScene);
         
        
@@ -38,6 +39,13 @@ public class GoBackWorldScene : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     { 
-        StartCoroutine(GoWorldScene("WorldScene"));
+         if (collision.gameObject.tag == "Owner")
+        {
+            if (isEntered == false)
+            {
+                StartCoroutine(GoWorldScene());
+                isEntered = true;
+            }
+        }
     }
 }
