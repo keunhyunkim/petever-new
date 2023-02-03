@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; //namespace for using UI system
-//using UnityEngine.Events; //namespace for using Event system API
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 
@@ -19,15 +18,17 @@ public class MemorialUIManager : MonoBehaviour
     void Awake()
     {
         createPoint = GameObject.Find("MemorialSceneCanvas").GetComponent<RectTransform>().anchoredPosition;
-      //  NewpageUI = GameObject.Find("NewpageUI");
+        LoadNewButton = GameObject.Find("LoadNewButton").GetComponent<Button>();
+ 
+        NewpageUI = GameObject.Find("NewpageUI");
     }
 
-// Start is called before the first frame update
+    // Start is called before the first frame update
     void Start()
     {
         // ImageBtn is not operate here. refer to the "UploadPicture" Script
-        TextBtn.onClick.AddListener(delegate { GetText(); });
-        StickerBtn.onClick.AddListener(delegate { GetSticker(); });
+      //  TextBtn.onClick.AddListener(delegate { GetText(); });
+       // StickerBtn.onClick.AddListener(delegate { GetSticker(); });
         LoadNewButton.onClick.AddListener(delegate { LoadNewpage(); });
     }
 
@@ -49,10 +50,7 @@ public class MemorialUIManager : MonoBehaviour
 
     public void LoadNewpage()
     {
-        Debug.Log("click");
         Instantiate(NewpageUI, createPoint, Quaternion.identity, GameObject.Find("MemorialSceneCanvas").GetComponent<RectTransform>());
-
-
 
     }
 }
