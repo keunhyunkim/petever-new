@@ -2102,7 +2102,8 @@ GameObject:
   - component: {fileID: 725336801}
   - component: {fileID: 725336808}
   - component: {fileID: 725336809}
-  m_Layer: 10
+  - component: {fileID: 725336810}
+  m_Layer: 5
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2175,8 +2176,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725336800}
-  m_LocalRotation: {x: -0.022767074, y: 0.7069914, z: 0.024739956, w: 0.7064226}
-  m_LocalPosition: {x: -243.73, y: 11.93, z: 31.8}
+  m_LocalRotation: {x: -0.007047065, y: 0.7042821, z: 0.008691241, w: 0.70983213}
+  m_LocalPosition: {x: -243.73, y: 12.54, z: 31.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2250,6 +2251,22 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &725336810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725336800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1001 &763165406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2876,15 +2893,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 944752768}
-  m_LocalRotation: {x: -0.022767074, y: 0.7069914, z: 0.024739956, w: 0.7064226}
-  m_LocalPosition: {x: -243.73, y: 11.93, z: 31.8}
+  m_LocalRotation: {x: -0.007047065, y: 0.7042821, z: 0.008691241, w: 0.70983213}
+  m_LocalPosition: {x: -243.73, y: 12.54, z: 31.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1346649457}
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -3.85, y: 90.041, z: 0.159}
+  m_LocalEulerAnglesHint: {x: -1.275, y: 89.549, z: 0.138}
 --- !u!114 &944752771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2985,7 +3002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
+  m_IgnoreReversedGraphics: 0
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
@@ -3954,7 +3971,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1329702893}
-  - component: {fileID: 1329702895}
   - component: {fileID: 1329702894}
   m_Layer: 0
   m_Name: MemorySceneUIManager
@@ -3992,23 +4008,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NewpageUI: {fileID: 146399956504885600, guid: 7eaa1ca773426544cb8609985e1f0fa9, type: 3}
   LoadNewButton: {fileID: 0}
-  ImageBtn: {fileID: 0}
-  TextBtn: {fileID: 0}
-  StickerBtn: {fileID: 0}
---- !u!114 &1329702895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1329702892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2461c24d14c0dfa45b75e59c72ea496b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rawImage: {fileID: 0}
-  ImageBtn: {fileID: 0}
 --- !u!4 &1332988560 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 442594, guid: 1a5e2f40365fe44ada271dd97ea7506f, type: 3}
