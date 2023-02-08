@@ -11,7 +11,6 @@ public class MemorialUIManager : MonoBehaviour
     private Vector3 createPoint;
 
     public Button LoadNewButton;
-    public Button ImageBtn, TextBtn, StickerBtn;
 
     // public UnityAction action;
 
@@ -20,15 +19,12 @@ public class MemorialUIManager : MonoBehaviour
         createPoint = GameObject.Find("MemorialSceneCanvas").GetComponent<RectTransform>().anchoredPosition;
         LoadNewButton = GameObject.Find("LoadNewButton").GetComponent<Button>();
  
-        NewpageUI = GameObject.Find("NewpageUI");
+        NewpageUI = Resources.Load<GameObject>("Prefabs/NewpageUI");
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        // ImageBtn is not operate here. refer to the "UploadPicture" Script
-      //  TextBtn.onClick.AddListener(delegate { GetText(); });
-       // StickerBtn.onClick.AddListener(delegate { GetSticker(); });
         LoadNewButton.onClick.AddListener(delegate { LoadNewpage(); });
     }
 
@@ -38,19 +34,8 @@ public class MemorialUIManager : MonoBehaviour
 
     }
 
-    public void GetText()
-    {
-
-    }
-
-    public void GetSticker()
-    {
-
-    }
-
     public void LoadNewpage()
     {
         Instantiate(NewpageUI, createPoint, Quaternion.identity, GameObject.Find("MemorialSceneCanvas").GetComponent<RectTransform>());
-
     }
 }
