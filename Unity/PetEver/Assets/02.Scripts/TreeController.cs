@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System;
 
 namespace BitBenderGames
 {
@@ -14,7 +15,14 @@ namespace BitBenderGames
         private GameObject exitBtn;
         private GameObject popupBack;
 
-        private GameObject treePrefab;
+        private GameObject selectTreeBtn;
+        private string[] treeName = { "tree0", "tree1", "tree2" };
+        private string selectedTree = null;
+        private Sprite selectedBtnSprite;
+        private Sprite originalBtnSprite;
+
+        private Dictionary<string, GameObject> treePrefabs;
+        private GameObject[] treeButtons;
         private GameObject treeDetailUIPanel;
         private CanvasGroup treePopupCanvasGroup;
         private CanvasGroup treeCreatePopupPanelCanvasGroup;
@@ -53,28 +61,84 @@ namespace BitBenderGames
 
         void Start()
         {
-            treePrefab = Resources.Load<GameObject>("Prefabs/tree5");
+            LoadTreeResoures();
+            initTreeButtons();
             treePopupCanvasGroup = GameObject.Find("TreePopupPannel").GetComponent<CanvasGroup>();
             treeCreatePopupPanelCanvasGroup = GameObject.Find("TreeCreatePopupPannel").GetComponent<CanvasGroup>();
             manCharacter = GameObject.FindGameObjectWithTag("Owner");
+            mainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
             treeZone = GameObject.Find("TreeZone");
             exitBtn = GameObject.Find("ExitBtn");
             exitBtn.GetComponent<Button>().onClick.AddListener(() =>
             {
-                ExitPopup(treePopupCanvasGroup);
+                ExitOpenedPopup();
             });
             popupBack = GameObject.Find("TreePopupPannel");
             popupBack.GetComponent<Button>().onClick.AddListener(() =>
             {
-                ExitPopup(treePopupCanvasGroup);
+                ExitOpenedPopup();
             });
-            mainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
             createTreeBtn = GameObject.Find("Plus");
             createTreeBtn.GetComponent<Button>().onClick.AddListener(() =>
             {
-                createTree();
+                ShowPopUpDetail(treeCreatePopupPanelCanvasGroup);
             });
+            selectTreeBtn = GameObject.Find("SelectTreeBtn");
+            selectTreeBtn.GetComponent<Button>().onClick.AddListener(() =>
+            {
 
+                ExitOpenedPopup();
+                if (selectedTree != null)
+                {
+                    createTree(selectedTree);
+                    selectedTree = null;
+                }
+            });
+        }
+
+        void initTreeButtons()
+        {
+            int treeBtnSize = 3;
+            treeButtons = new GameObject[treeBtnSize];
+            for (int i = 0; i < treeBtnSize; i++)
+            {
+                treeButtons[i] = GameObject.Find("TreeSelectItem" + i);
+            }
+            foreach (GameObject treeBtn in treeButtons)
+            {
+                treeBtn.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    string id = treeBtn.name;
+                    string treeIndex = id.Substring(id.Length - 1);
+                    setOutlineInTreeBtns(treeIndex);
+                    selectedTree = "tree" + treeIndex;
+                });
+            }
+        }
+        void setOutlineInTreeBtns(string id)
+        {
+            int btnNumber = int.Parse(id);
+            int treeBtnSize = 3;
+            for (int i = 0; i < treeBtnSize; i++)
+            {
+                if (i == btnNumber)
+                {
+                    treeButtons[i].GetComponent<Image>().sprite = selectedBtnSprite;
+                }
+                else
+                {
+                    treeButtons[i].GetComponent<Image>().sprite = originalBtnSprite;
+                }
+            }
+        }
+        void LoadTreeResoures()
+        {
+            treePrefabs = new Dictionary<string, GameObject>();
+            treePrefabs.Add(treeName[0], Resources.Load<GameObject>("Prefabs/" + treeName[0]));
+            treePrefabs.Add(treeName[1], Resources.Load<GameObject>("Prefabs/" + treeName[1]));
+            treePrefabs.Add(treeName[2], Resources.Load<GameObject>("Prefabs/" + treeName[2]));
+            selectedBtnSprite = Resources.Load<Sprite>("SelectedBtnBackground");
+            originalBtnSprite = Resources.Load<Sprite>("OriginalBtnBackground");
         }
         void ShowPopUpDetail(CanvasGroup canvasGroup)
         {
@@ -83,7 +147,24 @@ namespace BitBenderGames
             canvasGroup.blocksRaycasts = true;
         }
 
-        void ExitPopup(CanvasGroup canvasGroup)
+        void ExitOpenedPopup()
+        {
+
+            if (treeCreatePopupPanelCanvasGroup.interactable)
+            {
+                ExitPopupByCanvas(treeCreatePopupPanelCanvasGroup);
+            }
+            else if (treePopupCanvasGroup.interactable)
+            {
+                ExitPopupByCanvas(treePopupCanvasGroup);
+            }
+            else
+            {
+                Debug.Log("There isn't opend Popup");
+            }
+
+        }
+        void ExitPopupByCanvas(CanvasGroup canvasGroup)
         {
             canvasGroup.alpha = 0;
             canvasGroup.interactable = false;
@@ -91,16 +172,16 @@ namespace BitBenderGames
         }
 
 
-        void createTree()
+        void createTree(string treePrefabName)
         {
             createTreeBtn.SetActive(false);
             treeZone.SetActive(false);
             Vector3 pos = treeZone.transform.position;
             Vector3 scale = new Vector3(0.8f, 0.8f, 0.8f);
-            if (treePrefab)
-            {
 
-                GameObject newTree = Instantiate(treePrefab);
+            if (treePrefabs[treePrefabName])
+            {
+                GameObject newTree = Instantiate(treePrefabs[treePrefabName]);
 
                 newTree.transform.SetParent(GameObject.Find("TreeArea").transform);
                 newTree.transform.position = pos;
@@ -122,7 +203,7 @@ namespace BitBenderGames
         public void OnPickableTransformSelectedExtended(PickableSelectedData data)
         {
 
-            ShowPopUpDetail(treePopupCanvasGroup);
+
         }
 
         public void OnPickableTransformDeselected(Transform pickableTransform)
