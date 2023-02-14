@@ -16,7 +16,7 @@ public class DogAI : MonoBehaviour
 
     private float dog_normalSpeed = 3.5f;
     private float dog_trackingSpeed = 8f;
-    private float dog_collisionValue = 4.5f;
+   // private float dog_collisionValue = 4.5f;
 
 
     private float range = 20f; // standard range for generating random point  

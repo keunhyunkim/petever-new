@@ -3,14 +3,14 @@ using UnityEngine;
 
 using UnityEngine.SceneManagement;
 
-public class SceneManageScript : MonoBehaviour
+public class EnterMemorialScene : MonoBehaviour
 {
 
     GameObject ManCharacter;
     GameObject MainCanvas;
     GameObject MainEvent;
     private bool isEntered = false;
-    private Vector3 m_currentDirection = Vector3.zero;
+   //private Vector3 m_currentDirection = Vector3.zero;
 
     void Start()
     {
