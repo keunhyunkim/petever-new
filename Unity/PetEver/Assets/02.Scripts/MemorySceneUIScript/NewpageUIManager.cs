@@ -11,10 +11,10 @@ using UnityEngine.EventSystems;
 
 public class NewpageUIManager : MonoBehaviour
 {
-    public RawImage rawImage; // take image RawImage
+    public RawImage rawImage, rawImageBGD; // take image RawImage
     public Button ImageBtn, StickerBtn, TextBtn, CompleteBtn, XBtn;
     public Toggle UploadToggle;
-    public static GameObject UserInputTextBundle, StickerInventory;
+    public static GameObject UserInputTextBundle, StickerInventory, rawImageText;
     private Vector3 createPoint, stickercreatePoint;
 
     // for screen capture value
@@ -46,6 +46,10 @@ public class NewpageUIManager : MonoBehaviour
         StickerBtn = GameObject.Find("StickerBtn").GetComponent<Button>();
         CompleteBtn = GameObject.Find("CompleteBtn").GetComponent<Button>();
         createPoint = GameObject.Find("MemorialSceneCanvas").GetComponent<RectTransform>().anchoredPosition;
+        rawImage = GameObject.Find("AddpicOutline").GetComponent<RawImage>();
+        rawImageText = GameObject.Find("AddpicOutline").transform.GetChild(0).gameObject;
+        rawImageBGD = GameObject.Find("AddpicOutline").GetComponent<RawImage>();
+
 
 
         UserInputTextBundle = Resources.Load<GameObject>("Prefabs/UserInputTextBundle");
@@ -151,7 +155,27 @@ public class NewpageUIManager : MonoBehaviour
         texture.LoadImage(tempImage); // transfer byte array to texture 2D
 
         rawImage.texture = texture;
+        rawImage.SetNativeSize();
+        ImageSizeSetting(rawImage, 1130, 1376);
+        Destroy(rawImageText);
 
         yield return null;
+    }
+
+    void ImageSizeSetting(RawImage img, float x, float y)
+    {
+        var imgX = img.rectTransform.sizeDelta.x;
+        var imgY = img.rectTransform.sizeDelta.y;
+
+        if (x / y > imgX / imgY) // if image height is longer than width 
+        {
+            img.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,y);
+            img.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,imgX*(y/imgY));
+        }
+        else // if image width is longer than height 
+        {
+            img.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,x);
+            img.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,imgY*(x/imgX)); 
+        }
     }
 }
