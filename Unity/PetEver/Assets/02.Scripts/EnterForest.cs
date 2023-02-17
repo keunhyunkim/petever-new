@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EnterForest : MonoBehaviour
 {
-    
+
     GameObject ManCharacter;
     GameObject MainCanvas;
     GameObject MainEvent;
@@ -13,14 +13,14 @@ public class EnterForest : MonoBehaviour
 
     void Start()
     {
-        ManCharacter = GameObject.FindGameObjectWithTag("Owner");      
+        ManCharacter = GameObject.FindGameObjectWithTag("Owner");
         MainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
         MainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
     }
-   
+
     private void Awake()
     {
-    
+
     }
 
     IEnumerator<object> LoadYourAsyncScene()
@@ -28,10 +28,10 @@ public class EnterForest : MonoBehaviour
         string sceneName = "TherapyForest";
         // Set the current Scene to be able to unload it later
         Scene currentScene = SceneManager.GetActiveScene();
- 
+
         // The Application loads the Scene in the background at the same time as the current Scene.
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
- 
+
         // Wait until the last operation fully loads to return anything
         while (!asyncLoad.isDone)
         {
@@ -46,13 +46,16 @@ public class EnterForest : MonoBehaviour
         SceneManager.UnloadSceneAsync(currentScene);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Owner") {
-            if (isEntered == false) {   
-                    StartCoroutine(LoadYourAsyncScene());
-                    isEntered = true;
+        if (collision.gameObject.tag == "Owner")
+        {
+            if (isEntered == false)
+            {
+                StartCoroutine(LoadYourAsyncScene());
+                isEntered = true;
             }
         }
+
     }
 }
