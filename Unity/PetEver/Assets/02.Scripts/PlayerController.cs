@@ -36,11 +36,11 @@ public class PlayerController : MonoBehaviour
         }
 
         move = new Vector3(mov_x * playerSpeed * Time.deltaTime, 0f, mov_y * playerSpeed * Time.deltaTime);
-        Player.transform.eulerAngles = new Vector3(0f, Mathf.Atan2(-mov_x, -mov_y) * Mathf.Rad2Deg, 0f);
+        Player.transform.eulerAngles = new Vector3(0f, Mathf.Atan2(mov_x, mov_y) * Mathf.Rad2Deg, 0f);
 
         if (inputValue.lastpos != (Vector3.one)*99999)
         {
-            Player.transform.eulerAngles = new Vector3(0f, Mathf.Atan2(-inputValue.lastpos.x, -inputValue.lastpos.y) * Mathf.Rad2Deg, 0f);
+            Player.transform.eulerAngles = new Vector3(0f, Mathf.Atan2(inputValue.lastpos.x, inputValue.lastpos.y) * Mathf.Rad2Deg, 0f);
         }
 
         Player.transform.position += move;
