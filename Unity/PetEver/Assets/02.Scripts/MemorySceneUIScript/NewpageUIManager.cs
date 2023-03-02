@@ -5,12 +5,18 @@ using UnityEngine.UI;
 using System;
 using System.IO;
 using UnityEngine.EventSystems;
+using UnityEngine.Android;
+
+
 
 // Reference : https://greenapple16.tistory.com/275
 //             https://www.youtube.com/watch?v=H2TpEq0Hr2g
 
 public class NewpageUIManager : MonoBehaviour
 {
+
+
+
     public RawImage rawImage, rawImageBGD; // take image RawImage
     public Button ImageBtn, StickerBtn, TextBtn, CompleteBtn, XBtn;
     public Toggle UploadToggle;
@@ -26,15 +32,15 @@ public class NewpageUIManager : MonoBehaviour
             get
             {
             //if UNITY_EDITOR || UNITY_STANDALONE 
-            return Application.persistentDataPath;
-            //elif UNITY_ANDROID
-            //return $"/storage/emulated/0/DCIM/{Application.productName}/";
             //return Application.persistentDataPath;
+            //elif UNITY_ANDROID
+            return $"/storage/emulated/0/DCIM/{Application.productName}/";
             }
         }
     private string FolderPath => $"{RootPath}/{folderName}";
     private string TotalPath => $"{FolderPath}/{fileName}_{DateTime.Now.ToString("MMdd_HHmmss")}.{extName}";
-    
+   // public ScreenShotFlash flash;
+    private string lastSavedPath;
 
 
     // Start is called before the first frame update
@@ -74,6 +80,8 @@ public class NewpageUIManager : MonoBehaviour
         StartCoroutine(TakeScreenShotRoutine());
     }
 
+
+    //https://rito15.github.io/posts/unity-save-screen-shot/#%EC%A0%84%EC%B2%B4-%EC%86%8C%EC%8A%A4-%EC%BD%94%EB%93%9C
     private IEnumerator TakeScreenShotRoutine()
     { 
             yield return new WaitForEndOfFrame();
@@ -87,15 +95,36 @@ public class NewpageUIManager : MonoBehaviour
 
 
             // if folder doesn't exist, make new folder
-            if (Directory.Exists(FolderPath) == false)
+            bool succeeded = true;
+
+            try
             {
-                Directory.CreateDirectory(FolderPath);
+                if (Directory.Exists(FolderPath) == false)
+                {
+                    Directory.CreateDirectory(FolderPath);
+                }
+
+                // save screenshot
+                File.WriteAllBytes(FolderPath, screenTex.EncodeToPNG());
+
             }
 
-            // save screenshot
-            File.WriteAllBytes(FolderPath, screenTex.EncodeToPNG());
+            catch (Exception e)
+            {
+                succeeded = false;
+                Debug.LogWarning($"Screen Shot Save Failed : {totalPath}");
+                Debug.LogWarning(e);
+            }
+            
 
             Destroy(screenTex);
+
+            if (succeeded)
+            {
+                Debug.Log($"Screen Shot Saved : {totalPath}");
+               // flash.Show(); //flash 
+                lastSavedPath = totalPath; // save in recent path
+            }
     }
 
     public void CloseUI()
