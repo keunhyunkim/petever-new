@@ -29,11 +29,10 @@ public class StickerCtrlScript : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.clickCount == 2)
+        if (eventData.clickCount == 1)
         {
             gameObject.transform.SetParent(MemorialSceneCanvas.transform);
             Destroy(NewpageUIManager.StickerInventory);
-
         }
 
     }

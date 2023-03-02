@@ -7,14 +7,21 @@ using UnityEngine.SceneManagement;
 
 public class CameraScript : MonoBehaviour
 {
-    private CinemachineVirtualCamera vcam;
+    private CinemachineVirtualCamera vcam, cineCam;
+    private CinemachineTransposer cineTransposer;
     public GameObject tPlayer;
     public Transform tFollowTarget;
     private Scene nowScene;
 
+
+
+
     // Start is called before the first frame update
     void Start()
     {
+        cineCam = this.GetComponent<CinemachineVirtualCamera>();
+        cineTransposer = cineCam.GetCinemachineComponent<CinemachineTransposer>();
+
         nowScene = SceneManager.GetActiveScene();
         vcam = GetComponent<CinemachineVirtualCamera>();
         tPlayer = null;
@@ -24,12 +31,13 @@ public class CameraScript : MonoBehaviour
             if (tPlayer != null){
                 tFollowTarget = tPlayer.transform;
                 vcam.Follow = tFollowTarget;
-
+                vcam.LookAt = tFollowTarget;
+/*
                 if (nowScene.name == "MemorialScene")
-                    vcam.LookAt = tFollowTarget;
-
-                else 
-                    vcam.LookAt = tFollowTarget;
+                {
+                    cineTransposer.m_FollowOffset = new Vector3(0f, 3f, 16.2f);
+                }
+*/                
             }
         }      
 
@@ -39,6 +47,14 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+/*
+
+        nowScene = SceneManager.GetActiveScene();
+        if (nowScene.name == "MemorialScene")
+        {
+            cineTransposer.m_FollowOffset = new Vector3(0f, 3f, 16.2f);
+        }
+*/                
 
     }
 }
