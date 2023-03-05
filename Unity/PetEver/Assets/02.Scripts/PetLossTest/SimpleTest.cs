@@ -56,7 +56,6 @@ public class SimpleTest : MonoBehaviour
 
         // Add the score for this group to the total score.
         totalScore += score;
-        Debug.Log(SimpleTest.totalScore);
     }
 
     // Returns the value of the button at the given index.
