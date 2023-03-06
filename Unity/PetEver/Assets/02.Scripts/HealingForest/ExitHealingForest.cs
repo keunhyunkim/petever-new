@@ -21,7 +21,6 @@ public class ExitHealingForest : MonoBehaviour
     {
         if (collision.gameObject.tag == "Owner")
         {
-            Debug.Log("Hi");
             if (EnterHealingForest.isHFEntered == true)
             {
                 collision.transform.position = VillageBackPoint.transform.position;
