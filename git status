@@ -1,0 +1,516 @@
+[33mcommit 5cce415a360c0c48279523ca3e6a6253abefcb57[m[33m ([m[1;36mHEAD -> [m[1;32mMemoryScene0208[m[33m)[m
+Author: keunhyunkim <keunhyun12@gmail.com>
+Date:   Fri Mar 3 08:58:58 2023 +0900
+
+    0303 Memorial Scene + Man character change
+
+[33mcommit b255ce5b7a15f70bf31ed00a295425e92dbcf704[m
+Author: keunhyunkim <keunhyun12@gmail.com>
+Date:   Tue Feb 21 10:46:03 2023 +0900
+
+    backup before reinstall unityhub
+
+[33mcommit 2af9d3e2242e1f633a93440ecd96bee87626ff23[m[33m ([m[1;31mupstream/world/main[m[33m, [m[1;32mworld/main[m[33m)[m
+Author: 김정찬/C-Lab/삼성전자 <jc_.kim@samsung.com>
+Date:   Thu Mar 2 17:00:03 2023 +0900
+
+    Unity/SimpleTest : Add SimpleTest UI
+    
+    When enter to TherapyForest, User can do the Simple Test.
+    <ToDo>
+     Add code which score user pressed
+    
+    Signed-off-by: 김정찬/C-Lab/삼성전자 <jc_.kim@samsung.com>
+
+[33mcommit 0fad06bbfdf769ad64f7a0180fbdb2152c38f004[m
+Author: 김정찬/C-Lab/삼성전자 <jc_.kim@samsung.com>
+Date:   Thu Mar 2 15:45:34 2023 +0900
+
+    Unity/WorldScene : Show each house name
+    
+    Show houses name : OldDog, Walk
+    
+    Signed-off-by: 김정찬/C-Lab/삼성전자 <jc_.kim@samsung.com>
+
+[33mcommit 29b7860ff288a71cdc70cc651e4dffa73ed66b33[m
+Author: 김정찬/C-Lab/삼성전자 <jc_.kim@samsung.com>
+Date:   Thu Mar 2 11:40:33 2023 +0900
+
+    Unity/MemorialWalk : Fix to show collect img
+    
+    There was missing to show the collect img when quit
+    
+    Signed-off-by: 김정찬/C-Lab/삼성전자 <jc_.kim@samsung.com>
+
+[33mcommit b9c321cfe121037693c3d9c999d8269fbeef4ba1[m
+Author: 김정찬/C-Lab/삼성전자 <jc_.kim@samsung.com>
+Date:   Thu Mar 2 11:21:11 2023 +0900
+
+    Unity/MemorialWalk : Change Guide color and Add img on canvas
+    
+    1) Change Guide color to yellow as following UIGuide
+    2) Show collected image on quit canvas
+    
+    Signed-off-by: 김정찬/C-Lab/삼성전자 <jc_.kim@samsung.com>
+
+[33mcommit d5d19ef32372a25ccf05badf15a826418ef1b6f5[m
+Author: 김정찬/C-Lab/삼성전자 <jc_.kim@samsung.com>
+Date:   Thu Mar 2 09:59:42 2023 +0900
+
+    Unity/TherapyForest : Fix to enter Memorial Forest
+    
+    There was a missing to enter MemorialForest, so add collider to enter
+    
+    Signed-off-by: 김정찬/C-Lab/삼성전자 <jc_.kim@samsung.com>
+
+[33mcommit c4dee0925b2b395da07dfb073d11206d8efa5737[m
+Author: jungining <jungin641@gmail.com>
+Date:   Tue Feb 21 18:15:45 2023 +0900
+
+    ADD NetworkRequestSample : request /GET to get dog table information
+
+[33mcommit 0cb77c60ead68e67b8c77cdb9632f56f12bbcba0[m
+Author: jungining <jungin641@gmail.com>
+Date:   Tue Feb 21 18:14:45 2023 +0900
+
+    ADD node sample project : get Dog info from mariadb
+    
+    - test uri : http://localhost:3000/petever/
+
+[33mcommit 068685a7621dcda9800661b9a1ea952e57d9ecd7[m
+Author: jungining <jungin641@gmail.com>
+Date:   Fri Feb 17 11:17:15 2023 +0900
+
+    ADD portals to healing forest
+
+[33mcommit 3361a25f259c32eb40e4ff1b6caa414384e68e2a[m
+Author: jungining <jungin641@gmail.com>
+Date:   Fri Feb 17 09:50:05 2023 +0900
+
+    grouping gameobjects hierarchy
+
+[33mcommit 334ee7f4bfa7d4f65df56781d6e4500b21d93506[m
+Author: jungining <jungin641@gmail.com>
+Date:   Wed Feb 15 18:23:45 2023 +0900
+
+    ADD other islands, low poly water to WorldScene
+
+[33mcommit e7bdf5b44ce8a4f80a4f54f86567d75897fb2d58[m
+Author: keunhyunkim <keunhyun12@gmail.com>
+Date:   Tue Feb 14 15:29:47 2023 +0900
+
+    MemoryScene Update + add WorldScene -> MemoryScene portal
+
+[33mcommit 297e9f094dd9be385cff7aaaaaf68ebd6839afbc[m
+Author: keunhyunkim <keunhyun12@gmail.com>
+Date:   Wed Feb 8 13:41:26 2023 +0900
+
+    MemorialScene-UI update (sticker, text controller)
+
+[33mcommit 0f90e5cf7da95cea689f998830a65303c0656788[m
+Author: keunhyunkim <keunhyun12@gmail.com>
+Date:   Fri Feb 3 09:37:44 2023 +0900
+
+    MemorialScene - modifying
+
+[33mcommit 89760c20dfa7e073e305c6fc55117caa13eb94d1[m
+Author: jungining <jungin641@gmail.com>
+Date:   Fri Feb 10 16:31:14 2023 +0900
+
+    ADD tree selection UI Logic : TreeController.cs
+
+[33mcommit 6c6be46f903efb1402f91e4ae2260c6a36959ac3[m
+Author: jungining <jungin641@gmail.com>
+Date:   Fri Feb 3 16:18:38 2023 +0900
+
+    fixture newScene bug : check collider
+
+[33mcommit 9bcd2e0cc6956aa2f797be92266a0b4e7d1fdc31[m
+Author: jeongchanKim <jc_.kim@samsung.com>
+Date:   Fri Feb 3 14:21:25 2023 +0900
+
+    Unity/Scripts : Modify to check the collider
+    
+    Only act the collision when the character makes collision
+    
+    Signed-off-by: jeongchanKim <jc_.kim@samsung.com>
+
+[33mcommit 1a95253e880b6d1e81caa9793817e99de939d3a5[m
+Author: jungining <jungin641@gmail.com>
+Date:   Thu Feb 2 17:27:55 2023 +0900
+
+    MOD using prefab : Resources.Load()
+    - https://learnandcreate.tistory.com/753
+
+[33mcommit 16924ea3f086ad23cd3bdfa82749313d5e0f64b3[m
+Author: jungining <jungin641@gmail.com>
+Date:   Thu Feb 2 16:49:27 2023 +0900
+
+    ADD selection UI Panel when create tree
+    
+    - using canvas group
+
+[33mcommit 8099a9d52331b5edcc72f71b2318acbd55bfe41d[m
+Author: keunhyunkim <keunhyun12@gmail.com>
+Date:   Thu Feb 2 10:47:48 2023 +0900
+
+    MemoryArea-update
+
+[33mcommit 5b1087ab63e5fe3269ffbf1c4dff8b3898011749[m
+Author: keunhyunkim <keunhyun12@gmail.com>
+Date:   Thu Feb 2 10:04:50 2023 +0900
+
+    02.02 MemorialScene+Resources folder
+
+[33mcommit 15338bc651b3ba8828c63565ab8e8eeefbb738a5[m
+Author: keunhyunkim <keunhyun12@gmail.com>
+Date:   Tue Jan 31 10:44:24 2023 +0900
+
+    MemorialScene
+
+[33mcommit 7b407d08d380a714f01a4379db286ec4b3f81a63[m
+Author: jeongchanKim <jc_.kim@samsung.com>
+Date:   Wed Feb 1 14:42:39 2023 +0900
+
+    Unity/WorldScene : Refactor the speech-bubble as common module
+    
+    Refactor the ShowHouseName.cs to use common for all houses.
+    To use,
+    Just apply the script into the target house, and add the text component
+    into the house. And fill the house information in order like below.
+    "HouseTitle,BubbleCanvasName,BubbleText"
+    This information string will be parsed with ','.
+    
+    Signed-off-by: jeongchanKim <jc_.kim@samsung.com>
+
+[33mcommit 1d5d4e0eee38abd2ea8444a8ddaddb5c4ac5292a[m
+Author: jeongchanKim <jc_.kim@samsung.com>
+Date:   Tue Jan 31 17:12:28 2023 +0900
+
+    Unity/WorldScene : Show House Info as Hospital
+    
+    When character enter the region of the house, it shows the speech-bubble
+    about the information of that house, for example, hospital.
+    
+    Signed-off-by: jeongchanKim <jc_.kim@samsung.com>
+
+[33mcommit fb2b80c9dc06839fccca587cf891bd3e309b398a[m
+Author: jungining <jungin641@gmail.com>
+Date:   Tue Jan 31 16:47:02 2023 +0900
+
+    ADD createTreePlusButton Prefab to Overlay canvas
+
+[33mcommit 64acd2d689721b9bfdb3211e1565ce82e45edc71[m
+Author: jungining <jungin641@gmail.com>
+Date:   Tue Jan 31 14:46:19 2023 +0900
+
+    MOD village scene prefab
+
+[33mcommit d46c5e9b99aa4ca1b0fd82397b03ca88cb9a5a1a[m
+Author: jeongchanKim <jc_.kim@samsung.com>
+Date:   Tue Jan 31 15:13:13 2023 +0900
+
+    Unity/PetEver/WorldScene : Fix invalid collision between house and tree
+    
+    Move TherapyForest Entry-Tree and Purple house.
+    
+    Signed-off-by: jeongchanKim <jc_.kim@samsung.com>
+
+[33mcommit 3f23802bb431f44ddc47f2811dccdbcc001dd347[m
+Author: jeongchanKim <jc_.kim@samsung.com>
+Date:   Tue Jan 31 14:32:58 2023 +0900
+
+    Unity/PetEver : Add SpeechBubble
+    
+    To create speechbubble, add shader, material and sample speech-bubble.
+    
+    Signed-off-by: jeongchanKim <jc_.kim@samsung.com>
+
+[33mcommit a5b73e6c9f50d26b4f512e115b62b79a4fec0499[m
+Author: jeongchanKim <jc_.kim@samsung.com>
+Date:   Tue Jan 31 10:12:07 2023 +0900
+
+    Unity/PetEver/MainCanvas : Add Tag for UICanvas
+    
+    There was a missing tag on Main UI Canvas, so added.
+    
+    Signed-off-by: jeongchanKim <jc_.kim@samsung.com>
+
+[33mcommit 7daa3de52e0bde5630cc5f8ef7442df564634a2c[m
+Author: jungining <jungin641@gmail.com>
+Date:   Mon Jan 30 19:09:31 2023 +0900
+
+    ADD Tree Detail Popup to WorldScene
+    
+    - using canvas group to set visibl/invisible of ui components
+    - https://wergia.tistory.com/177
+
+[33mcommit ff5e1690be9c4ae65bc72c27a416763b1cf0e1b6[m
+Author: jeongchanKim <jc_.kim@samsung.com>
+Date:   Mon Jan 30 14:13:07 2023 +0900
+
+    Unity/PetEver/TherapyForest : Add functionality of guide button
+    
+    There are many buttons on forest guide.
+    Add the functionality of its own, for example, see next, skip the guide
+    and close the guide.
+    
+    Signed-off-by: jeongchanKim <jc_.kim@samsung.com>
+
+[33mcommit e0e35230e592b62625d42ddb26daff09f90b62b7[m
+Author: jeongchanKim <jc_.kim@samsung.com>
+Date:   Mon Jan 30 14:11:40 2023 +0900
+
+    Unity/PetEver/Asset/04.Images/UIResource : Add/Mod navigator arrow
+    
+    There are two types of arrow, right and left.
+    Add navigator left arrow and rename all arrows.
+    
+    Signed-off-by: jeongchanKim <jc_.kim@samsung.com>
+
+[33mcommit 98f81092fe572acde2e01518608c9976fda1c5f9[m
+Author: jeongchanKim <jc_.kim@samsung.com>
+Date:   Mon Jan 30 11:09:33 2023 +0900
+
+    Unity/PetEver : Add TherapyForest Guide Template
+    
+    When enter to Therapy Forest, User can read the Guide
+    1) Add Guide Page(Prefabs)
+    2) Add UIResources like navigator, guidechat and so on.
+    
+    [ToDo]
+    Add code to show the guide by sequence.
+    
+    Signed-off-by: jeongchanKim <jc_.kim@samsung.com>
+
+[33mcommit db34ee3abf64966a1e6fa405084e0314011043ff[m
+Author: jeongchanKim <jc_.kim@samsung.com>
+Date:   Thu Jan 26 18:21:54 2023 +0900
+
+    Unity/PetEver/TherapyForest : Add Guide when exiting
+    
+    When click the quit button, show the guide
+    
+    Signed-off-by: jeongchanKim <jc_.kim@samsung.com>
+
+[33mcommit abd93f2c97923c7cd9d25caa441d4af1d6b78fab[m
+Author: jungining <jungin641@gmail.com>
+Date:   Thu Jan 26 15:31:44 2023 +0900
+
+    SET soft village materials to Simple shader
+
+[33mcommit c7ac2872c041abecdec1ced1f12ebd4389ecf4c8[m
+Author: jungining <jungin641@gmail.com>
+Date:   Thu Jan 26 15:22:43 2023 +0900
+
+    setActive(false) when goBackWorldScene
+
+[33mcommit ec28b0fac80be5deb6975c791e698f1ebecacf23[m
+Author: jungining <jungin641@gmail.com>
+Date:   Thu Jan 26 14:53:23 2023 +0900
+
+    DEL useless files in mobile-touch-camera Asset
+
+[33mcommit 14e0d59654de2336da3b4a510957461a9890ba4e[m
+Author: jungining <jungin641@gmail.com>
+Date:   Thu Jan 26 14:37:37 2023 +0900
+
+    ADD createTree() to newScene
+    
+    - create tree in front of character
+
+[33mcommit 1b9501c36da936c64ad9fb9d9907232d324bfbc3[m
+Author: jungining <jungin641@gmail.com>
+Date:   Wed Jan 25 15:22:59 2023 +0900
+
+    DEL useless files
+
+[33mcommit 55cbb56be3a8a1ca0476f1e67192779dbe753108[m
+Author: jungining <jungin641@gmail.com>
+Date:   Wed Jan 25 15:22:22 2023 +0900
+
+    ADD mobile touch camera asset
+
+[33mcommit b9d2bd745b7d4f2dbb5b2ca8fc48890ed53d3ef4[m
+Author: jeongchanKim <jc_.kim@samsung.com>
+Date:   Thu Jan 26 11:00:26 2023 +0900
+
+    Unity/PetEver/TherapyForest : Fix the charater rotation
+    
+    1. Change the character to see his own way
+    2. Show the sample Pome image when walking the forest
+    
+    Signed-off-by: jeongchanKim <jc_.kim@samsung.com>
+
+[33mcommit 0b73348e35ab55e4af593049b0ad587b986f3d6b[m
+Author: keunhyunkim <keunhyun12@gmail.com>
+Date:   Thu Jan 26 09:29:53 2023 +0900
+
+    MemorialScene 추가
+    Asset 추가 - memorialScene공간 kit / pictureframe / native gallery / particle collection
+
+[33mcommit 077edb44a6fefef9ae8148cfa6e12c19e1ebd2d7[m
+Author: keunhyunkim <keunhyun12@gmail.com>
+Date:   Tue Jan 17 17:33:22 2023 +0900
+
+    ADD MemoryScene
+
+[33mcommit 7c3f60a8cc27ddad95fb87bc2dec3c89353ee4f0[m
+Author: jungining <jungin641@gmail.com>
+Date:   Tue Jan 17 17:01:11 2023 +0900
+
+    3D Free Modular Kit
+
+[33mcommit dce1e449e35d8ea82db60d60927dd7da3c111bfa[m
+Author: jeongchanKim <jc_.kim@samsung.com>
+Date:   Thu Jan 19 14:21:53 2023 +0900
+
+    Unity/PetEver : Add TherapyForest Scene
+    
+    When enter to TherapyForest, character walks followed by gyro sensor
+    data
+    
+    <ToDo>
+    - Change Gyro to StepCounter
+    - Fix the character rotation
+    - Fill the trees
+    
+    Signed-off-by: jeongchanKim <jc_.kim@samsung.com>
+
+[33mcommit ace840771582eb89294dd177163d46eb1739266e[m
+Author: jungining <jungin641@gmail.com>
+Date:   Tue Jan 17 16:36:53 2023 +0900
+
+    DEL capsule in WorldScene, MOD material of starting point
+
+[33mcommit 1cb7e6c97a65b02b7697370b7668bc24a914b9a0[m
+Author: jungining <jungin641@gmail.com>
+Date:   Tue Jan 17 15:50:05 2023 +0900
+
+    ADD ChatManager.cs, ChatInputManager.cs to set chat/notice UI
+    
+    - input field by keyboard, hide/show by onclick chat/notice ui
+
+[33mcommit 057e3cbfd19a1a268d8b8e9985b361ec45766baf[m
+Author: jungining <jungin641@gmail.com>
+Date:   Tue Jan 17 15:41:45 2023 +0900
+
+    SET vscode debug option for unity
+
+[33mcommit 4d1d2de93a6ad9ac969442ab42605703235bcc98[m
+Author: jeongchanKim <jc_.kim@samsung.com>
+Date:   Tue Jan 17 16:02:01 2023 +0900
+
+    Unity/Asset/TherapyForest : Add TherapyForest Scene
+    
+    1. In TherapyForest, Character can walk thorugh Android Gyro sensor
+    [ToDo]
+    - Re-map the Forest
+    - Set the direction
+    
+    Signed-off-by: jeongchanKim <jc_.kim@samsung.com>
+
+[33mcommit 8c4eaf295a82d7c95880702741b54afed354fb6c[m[33m ([m[1;32m0110_DogAI+Prefab[m[33m)[m
+Author: jungining <jungin641@gmail.com>
+Date:   Mon Jan 16 16:39:28 2023 +0900
+
+    MOD Enterhome : check collision of gameobject
+
+[33mcommit 04f0ba188cb5ea3ab193367628f7efff69b990d1[m
+Author: jungining <jungin641@gmail.com>
+Date:   Mon Jan 16 16:38:29 2023 +0900
+
+    ADD create Owner Dog Model dynamically by prefab
+
+[33mcommit d80a22405c4f9065aa09e7aba59af8c0106035dc[m
+Author: jungining <jungin641@gmail.com>
+Date:   Mon Jan 16 13:23:22 2023 +0900
+
+    MOD hierarchy : move 3D model gameobejcts to GameObject
+
+[33mcommit ae0be1bdfc4d945f06f70592d3e68dd898e83702[m
+Author: jungining <jungin641@gmail.com>
+Date:   Fri Jan 13 13:54:07 2023 +0900
+
+    ADD Player Settings to native build in Android Phone
+
+[33mcommit 266efa573a89d091d93377b59c8e4125b4d31ad5[m
+Author: keunhyunkim <keunhyun12@gmail.com>
+Date:   Fri Jan 13 14:28:16 2023 +0900
+
+    Add Dog animation - run, snuffing, turn
+    Update Dog AI - snuffing when meet flower
+
+[33mcommit ea5ce49dfb46beae4c944a4d73c26f7a86de7378[m
+Author: keunhyunkim <keunhyun12@gmail.com>
+Date:   Fri Jan 13 11:56:17 2023 +0900
+
+    ADD animations for Dog
+
+[33mcommit 59e373ce0d40bd3e2c3de987ad0e1e6a2a87d13d[m
+Author: keunhyunkim <keunhyun12@gmail.com>
+Date:   Fri Jan 13 11:53:26 2023 +0900
+
+    ADD Dog Collider
+
+[33mcommit 7458357a7a9725dfd9a7a59b154cfcbaacc434f5[m
+Author: jungining <jungin641@gmail.com>
+Date:   Thu Jan 12 17:42:50 2023 +0900
+
+    Bug fixture on CallCanvas&CanvasControl : find Canvas Object By TAG
+
+[33mcommit e0d8c98fed506a8491ad70aa8228a5dab9a7862d[m
+Author: jungining <jungin641@gmail.com>
+Date:   Thu Jan 12 17:33:07 2023 +0900
+
+    Create / Manage MainEventSystem dynamically by code, prefabs
+
+[33mcommit 9660f08de1ec6911ba6afe0fbc94359aa9c8ab81[m
+Author: jungining <jungin641@gmail.com>
+Date:   Thu Jan 12 17:15:00 2023 +0900
+
+    DEL logs for debug
+
+[33mcommit 60b2abe12c9ba06ade391064ae8ae05fc736b592[m
+Author: jungining <jungin641@gmail.com>
+Date:   Thu Jan 12 16:58:14 2023 +0900
+
+    ADD nullcheck to PlayerPrefab : Bug fixture of duplicated creating Man
+
+[33mcommit f2a41d6d761e7243262fc1941a6283d5a1c671b5[m
+Author: jungining <jungin641@gmail.com>
+Date:   Thu Jan 12 16:56:59 2023 +0900
+
+    ADD UICanvas Prefab to dynamically create UI Canvas
+    
+    - toss UICanvas when EnterHome, GobackWorldScene
+
+[33mcommit da7e9605bc7c4169a12f03cfd28c5d17c2ba207f[m
+Author: jungining <jungin641@gmail.com>
+Date:   Thu Jan 12 13:34:20 2023 +0900
+
+    SET vscode debugging
+
+[33mcommit c28fb2d058f85e070a78fceaf5064d96de25c0c9[m
+Author: jungining <jungin641@gmail.com>
+Date:   Thu Jan 12 13:32:08 2023 +0900
+
+    ADD toon shader to Man's material
+
+[33mcommit 478bdcabf2626945be9dcfecfb564571a8bc2659[m
+Author: jungining <jungin641@gmail.com>
+Date:   Wed Jan 11 17:26:37 2023 +0900
+
+    resolve conflicts by geunhyun
+
+[33mcommit ccce4491be0bed7d18ff9709f941ebf46e3335d5[m
+Author: jungining <jungin641@gmail.com>
+Date:   Wed Jan 11 16:06:53 2023 +0900
+
+    DEL useless files in MK toon
+
+[33mcommit dacc29759e9718936aaddf7f0a50e34e757098b8[m
+Author: jungining <jungin641@gmail.com>
+Date:   Wed Jan 11 15:55:42 2023 +0900
+
+    fix
