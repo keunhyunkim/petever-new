@@ -14,13 +14,12 @@ using UnityEngine.Android;
 
 public class NewpageUIManager : MonoBehaviour
 {
-
-
-
     public RawImage rawImage, rawImageBGD; // take image RawImage
     public Button ImageBtn, StickerBtn, TextBtn, CompleteBtn, XBtn;
     public Toggle UploadToggle;
     public static GameObject UserInputTextBundle, StickerInventory, rawImageText;
+    public Transform[] trashCan;
+
     private Vector3 createPoint, stickercreatePoint;
 
     // for screen capture value
@@ -55,8 +54,6 @@ public class NewpageUIManager : MonoBehaviour
         rawImage = GameObject.Find("AddpicOutline").GetComponent<RawImage>();
         rawImageText = GameObject.Find("AddpicOutline").transform.GetChild(0).gameObject;
         rawImageBGD = GameObject.Find("AddpicOutline").GetComponent<RawImage>();
-
-
 
         UserInputTextBundle = Resources.Load<GameObject>("Prefabs/UserInputTextBundle");
         StickerInventory = Resources.Load<GameObject>("Prefabs/StickerInventory");
@@ -129,7 +126,16 @@ public class NewpageUIManager : MonoBehaviour
 
     public void CloseUI()
     {
-        Destroy(gameObject);
+        trashCan = GameObject.Find("MemorialSceneCanvas").GetComponentsInChildren<Transform>();    
+
+        if(trashCan != null)
+        {
+            for(int i = 1; i < trashCan.Length; i++)
+            {
+                Destroy(trashCan[i].gameObject);
+            }
+        }
+
     }
 
     public void GetText()
