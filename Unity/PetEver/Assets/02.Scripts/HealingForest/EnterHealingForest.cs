@@ -6,16 +6,24 @@ public class EnterHealingForest : MonoBehaviour
 {
     public static bool isHFEntered = false;
     GameObject HealingForestStartPoint;
+
+    public GameObject guidePrefab;
+
     // Start is called before the first frame update
     void Start()
     {
         HealingForestStartPoint = GameObject.Find("HealingForestStartPoint");
     }
 
-    // Update is called once per frame
-    void Update()
+    void showHealingForestGuide()
     {
-        
+        GameObject previousCanvas;
+
+        previousCanvas = GameObject.FindGameObjectWithTag("HealingForestGuide");
+        if (previousCanvas == null)
+        {
+            GameObject canvas = Instantiate(guidePrefab) as GameObject;
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -26,6 +34,8 @@ public class EnterHealingForest : MonoBehaviour
                 //When try to enter Healing-Forest, move the position
                 collision.transform.position = HealingForestStartPoint.transform.position;
                 isHFEntered = true;
+
+                showHealingForestGuide();
             }
         }
 

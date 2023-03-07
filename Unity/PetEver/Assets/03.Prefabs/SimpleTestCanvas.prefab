@@ -917,7 +917,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 514802922865161266}
-  - component: {fileID: 4461552375773228855}
+  - component: {fileID: 7438813945476055360}
   m_Layer: 0
   m_Name: SimpleTestScript
   m_TagString: Untagged
@@ -940,7 +940,7 @@ Transform:
   m_Father: {fileID: 744720040122711440}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4461552375773228855
+--- !u!114 &7438813945476055360
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -952,7 +952,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9e9ba479007d1841bf7f2a6c0460055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasPrefab: {fileID: 0}
 --- !u!1 &1357473778685906903
 GameObject:
   m_ObjectHideFlags: 0
@@ -5485,7 +5484,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4461552375773228855}
+      - m_Target: {fileID: 7438813945476055360}
         m_TargetAssemblyTypeName: SimpleTestControl, Assembly-CSharp
         m_MethodName: OnExitClicked
         m_Mode: 1
@@ -6948,7 +6947,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4461552375773228855}
+      - m_Target: {fileID: 7438813945476055360}
         m_TargetAssemblyTypeName: SimpleTestControl, Assembly-CSharp
         m_MethodName: OnExitClicked
         m_Mode: 1
