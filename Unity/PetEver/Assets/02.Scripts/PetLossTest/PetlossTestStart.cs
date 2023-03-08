@@ -7,12 +7,14 @@ public class PetlossTestStart : MonoBehaviour
     Vector3 StartPoint;
     public GameObject petlossTestPrefab;
     CanvasGroup testCanvas;
+    CanvasGroup testGuide;
     CanvasGroup chatNnoti;
 
 
     void Start()
     {
         testCanvas = GameObject.Find("PetLossTestPannel").GetComponent<CanvasGroup>();
+        testGuide = GameObject.Find("PetLossTestGuide").GetComponent<CanvasGroup>();
         chatNnoti = GameObject.Find("ChatAndNoti").GetComponent<CanvasGroup>();
     }
 
@@ -38,8 +40,16 @@ public class PetlossTestStart : MonoBehaviour
         chatNnoti.blocksRaycasts = true;
     }
 
-    private void hideGuide() {
-        GameObject.Find("PetLossTestGuide").SetActive(false);
+    void hideTestGuide()
+    {
+        testGuide.alpha = 0;
+        testGuide.interactable = false;
+        testGuide.blocksRaycasts = false;
+    }
+
+    private void hideGuideNstartTest() {
+        hideTestGuide();
+        showPetLossTest();
     }
 
     public void startPetlossTest()
@@ -47,10 +57,8 @@ public class PetlossTestStart : MonoBehaviour
         // StartPoint = GameObject.Find("TestPosition").transform.position;
         // collision.transform.position = StartPoint;
 
-        //Hide the Guide after 2 seconds
-        Invoke("hideGuide", 2.0f);
-
-        showPetLossTest();
+        //When touching the screen, hide the Guide
+        hideGuideNstartTest();
     }
 
     private void OnTriggerEnter(Collider collision)
