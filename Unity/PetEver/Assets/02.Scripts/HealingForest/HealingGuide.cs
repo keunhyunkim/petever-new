@@ -42,14 +42,14 @@ public class HealingGuide : MonoBehaviour
         mainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
         mainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
         if (mainCanvas) {
-            mainCanvas.SetActive(false);
+            mainCanvas.GetComponent<Canvas>().enabled = false;
         }
 
         healingGuide = GameObject.FindGameObjectWithTag("HealingForestGuide");
         if (isHealingGuided == true) {
             //FIX ME : Allocate when first enter
             Destroy(healingGuide);
-            mainCanvas.SetActive(true);
+            mainCanvas.GetComponent<Canvas>().enabled = true;
         } else {
             isHealingGuided = true;
 
@@ -92,7 +92,7 @@ public class HealingGuide : MonoBehaviour
 
     public static void OnSimpleTestExitClicked()
     {
-        mainCanvas.SetActive(true);
+        mainCanvas.GetComponent<Canvas>().enabled = true;
     }
 
     public void onhealingGuideExit()

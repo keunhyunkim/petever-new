@@ -11,7 +11,7 @@ public class SimpleTestControl : MonoBehaviour
         // Initialize the totalScore
         SimpleTest.totalScore = SimpleTest.DEFAULT_TOTALSCORE;
         GameObject previousCanvas = GameObject.FindGameObjectWithTag("SimpleTest");
-        Destroy(previousCanvas, 0.5f);
+        Destroy(previousCanvas);
         HealingGuide.OnSimpleTestExitClicked();
     }
 }
