@@ -15,40 +15,30 @@ public class SimpleTestControl : MonoBehaviour
         chatNnoti = GameObject.Find("ChatAndNoti").GetComponent<CanvasGroup>();
     }
 
-    IEnumerator OneSecDelay()
-    {
-        yield return new WaitForSeconds(3.0f);
-    }
+    // IEnumerator OneSecDelay()
+    // {
+    //     yield return new WaitForSeconds(3.0f);
+    // }
 
-    void showTestGuide(bool showing)
+    void showTestGuide()
     {
-        if (showing == true) {
-            testGuide.alpha = 1;
-        } else {
-            testGuide.alpha = 0;
-        }
-        testGuide.interactable = showing;
-        testGuide.blocksRaycasts = showing;
+        testGuide.alpha = 1;
+        testGuide.interactable = true;
+        testGuide.blocksRaycasts = true;
     }
-
-    
 
     public void OnExitClicked()
     {
         // Debug.Log(SimpleTest.totalScore);
-        
+ 
         // Initialize the totalScore
         SimpleTest.totalScore = SimpleTest.DEFAULT_TOTALSCORE;
         GameObject previousCanvas = GameObject.FindGameObjectWithTag("SimpleTest");
         Destroy(previousCanvas);
         HealingGuide.OnSimpleTestExitClicked();
         
-        StartCoroutine(OneSecDelay());
-        showTestGuide(true);
-        StartCoroutine(OneSecDelay());
-        showTestGuide(false);
-
-        showPetLossTest();
+        showTestGuide();
+        // StartCoroutine(OneSecDelay());
     }
 
     // private void startPetlossTest()
@@ -58,30 +48,4 @@ public class SimpleTestControl : MonoBehaviour
 
     //     showPetLossTest();
     // }
-
-    private void showPetLossTest()
-    {
-        testCanvas.alpha = 1;
-        testCanvas.interactable = true;
-        testCanvas.blocksRaycasts = true;
-
-        chatNnoti.alpha = 0;
-        chatNnoti.interactable = false;
-        chatNnoti.blocksRaycasts = false;
-    }
-
-    private void hidePetLossTest()
-    {
-        testCanvas.alpha = 0;
-        testCanvas.interactable = false;
-        testCanvas.blocksRaycasts = false;
-
-        chatNnoti.alpha = 1;
-        chatNnoti.interactable = true;
-        chatNnoti.blocksRaycasts = true;
-    }
-
-    private void hideGuide() {
-        GameObject.Find("PetLossTestGuide").SetActive(false);
-    }
 }
