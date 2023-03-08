@@ -15,12 +15,23 @@ public class SimpleTestControl : MonoBehaviour
         chatNnoti = GameObject.Find("ChatAndNoti").GetComponent<CanvasGroup>();
     }
 
-    private void showTestGuide()
+    IEnumerator OneSecDelay()
     {
-        testGuide.alpha = 1;
-        testGuide.interactable = true;
-        testGuide.blocksRaycasts = true;
+        yield return new WaitForSeconds(3.0f);
     }
+
+    void showTestGuide(bool showing)
+    {
+        if (showing == true) {
+            testGuide.alpha = 1;
+        } else {
+            testGuide.alpha = 0;
+        }
+        testGuide.interactable = showing;
+        testGuide.blocksRaycasts = showing;
+    }
+
+    
 
     public void OnExitClicked()
     {
@@ -32,20 +43,21 @@ public class SimpleTestControl : MonoBehaviour
         Destroy(previousCanvas);
         HealingGuide.OnSimpleTestExitClicked();
         
-        showTestGuide();
-        Invoke("showPetLossTest", 3.0f);
-        
-    }
-
-
-
-    private void startPetlossTest()
-    {
-        // StartPoint = GameObject.Find("TestPosition").transform.position;
-        // collision.transform.position = StartPoint;
+        StartCoroutine(OneSecDelay());
+        showTestGuide(true);
+        StartCoroutine(OneSecDelay());
+        showTestGuide(false);
 
         showPetLossTest();
     }
+
+    // private void startPetlossTest()
+    // {
+    //     // StartPoint = GameObject.Find("TestPosition").transform.position;
+    //     // collision.transform.position = StartPoint;
+
+    //     showPetLossTest();
+    // }
 
     private void showPetLossTest()
     {
