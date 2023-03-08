@@ -6,19 +6,15 @@ public class PetlossTest : MonoBehaviour
 {
     private const int TESTNUM = 3;
     
-    private int yesCnt = 0;
-    private int unknownCnt = 0;
-    private int noCnt = 0;
-
     private void OnTriggerEnter(Collider collision)
     {
         PetlossTestClass.testCnt++;
         if (this.name == "Yes") {
-            yesCnt++;
+            PetlossTestClass.yesCnt++;
         } else if (this.name == "Unknown") {
-            unknownCnt++;
+            PetlossTestClass.unknownCnt++;
         } else if (this.name == "No") {
-            noCnt++;
+            PetlossTestClass.noCnt++;
         }
 
         if (PetlossTestClass.testCnt == TESTNUM) {
