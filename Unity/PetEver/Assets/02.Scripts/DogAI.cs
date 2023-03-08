@@ -96,8 +96,16 @@ public class DogAI : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        Tracking();
-        DogAnimation();
+
+        if (!gameObject.CompareTag("NPC"))
+        {
+            Tracking();
+            DogAnimation();
+        }
+        else
+        {
+            DogAnimation();
+        }
 
         lastpos = gameObject.transform.position;
 
