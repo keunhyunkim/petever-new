@@ -10,17 +10,30 @@ public class PlayerPrefab : MonoBehaviour
     GameObject manCharacter;
     GameObject dogCharacter;
 
+    private string[] objectName;
+
     void Awake()
     {
-        manCharacter = GameObject.FindGameObjectWithTag("Owner");
-        if (manCharacter == null)
+        objectName = gameObject.name.Split('_');
+
+
+        if (objectName[1]=="Man")
         {
-            Instantiate(playerPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            manCharacter = GameObject.FindGameObjectWithTag("Owner");
+            if (manCharacter == null)
+            {
+                Instantiate(playerPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            }
         }
-        dogCharacter = GameObject.FindGameObjectWithTag("OwnerDog");
-        if (dogCharacter == null)
+
+
+        else if(objectName[1]=="Dog")
         {
-            Instantiate(dogPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            dogCharacter = GameObject.FindGameObjectWithTag("OwnerDog");
+            if (dogCharacter == null)
+            {
+                Instantiate(dogPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            }
         }
     }
 
