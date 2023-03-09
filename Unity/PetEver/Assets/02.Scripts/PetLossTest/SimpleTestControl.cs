@@ -7,6 +7,7 @@ public class SimpleTestControl : MonoBehaviour
     CanvasGroup testCanvas;
     CanvasGroup testGuide;
     CanvasGroup chatNnoti;
+    public GameObject simpleCG;
 
     void Start()
     {
@@ -27,16 +28,21 @@ public class SimpleTestControl : MonoBehaviour
         testGuide.blocksRaycasts = true;
     }
 
-    public void OnExitClicked()
+    public void OnSimpleSubmitExitClicked()
     {
         // Debug.Log(SimpleTest.totalScore);
- 
+
         // Initialize the totalScore
         SimpleTest.totalScore = SimpleTest.DEFAULT_TOTALSCORE;
-        GameObject previousCanvas = GameObject.FindGameObjectWithTag("SimpleTest");
-        Destroy(previousCanvas);
-        HealingGuide.OnSimpleTestExitClicked();
         
+        // simpleCG = GameObject.FindGameObjectWithTag("SimpleTest").gameObject.GetComponent<CanvasGroup>();
+        // if(GameObject.FindGameObjectWithTag("SimpleTest").gameObject == null) Debug.Log("KGH!!!");
+        // if (simpleCG == null) Debug.Log("T.T");
+        simpleCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().alpha = 0;
+        simpleCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().interactable = false;
+        simpleCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+        HealingGuide.OnSimpleTestExitClicked();
         showTestGuide();
         // StartCoroutine(OneSecDelay());
     }

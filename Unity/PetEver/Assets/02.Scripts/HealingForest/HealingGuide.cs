@@ -33,6 +33,8 @@ public class HealingGuide : MonoBehaviour
     public GameObject simpleTestPrefab;
     GameObject simpleTestCanvas;
 
+    CanvasGroup healingGuideCG;
+
 
     void Awake() {
         PlayerInput.InitJoystick();
@@ -45,10 +47,10 @@ public class HealingGuide : MonoBehaviour
             mainCanvas.GetComponent<Canvas>().enabled = false;
         }
 
-        healingGuide = GameObject.FindGameObjectWithTag("HealingForestGuide");
+        healingGuideCG = GameObject.FindGameObjectWithTag("HealingForestGuide").GetComponent<CanvasGroup>();
         if (isHealingGuided == true) {
             //FIX ME : Allocate when first enter
-            Destroy(healingGuide);
+            HideCanvasGroup(healingGuideCG);
             mainCanvas.GetComponent<Canvas>().enabled = true;
         } else {
             isHealingGuided = true;
@@ -95,9 +97,17 @@ public class HealingGuide : MonoBehaviour
         mainCanvas.GetComponent<Canvas>().enabled = true;
     }
 
+    private void HideCanvasGroup(CanvasGroup cg)
+    {
+        cg.alpha = 0;
+        cg.interactable = false;
+        cg.blocksRaycasts = false;
+    }
+
     public void onhealingGuideExit()
     {
-        Destroy(healingGuide);
+        healingGuideCG = GameObject.FindGameObjectWithTag("HealingForestGuide").GetComponent<CanvasGroup>();
+        HideCanvasGroup(healingGuideCG);
         showSimpleTest();
     }
 

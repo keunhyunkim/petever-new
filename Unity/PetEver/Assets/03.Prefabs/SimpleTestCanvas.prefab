@@ -549,6 +549,7 @@ GameObject:
   - component: {fileID: 744720040122711441}
   - component: {fileID: 744720040122711438}
   - component: {fileID: 744720040122711439}
+  - component: {fileID: 8268493176471252333}
   m_Layer: 5
   m_Name: SimpleTestCanvas
   m_TagString: SimpleTest
@@ -569,7 +570,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2045591781278029262}
-  - {fileID: 514802922865161266}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -639,6 +639,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &8268493176471252333
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744720040122711436}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 1
 --- !u!1 &831231693649966637
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,9 +930,9 @@ GameObject:
   m_Component:
   - component: {fileID: 514802922865161266}
   - component: {fileID: 7438813945476055360}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SimpleTestScript
-  m_TagString: Untagged
+  m_TagString: SimpleTest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -933,12 +945,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139683852226126360}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -59.35022, y: 166.12776, z: 0}
-  m_LocalScale: {x: 4.1260743, y: 4.1260743, z: 4.1260743}
+  m_LocalPosition: {x: -55.35022, y: 50.999702, z: 0}
+  m_LocalScale: {x: 4.126074, y: 3.4117408, z: 4.126074}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 744720040122711440}
-  m_RootOrder: 1
+  m_Father: {fileID: 2045591781278029262}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7438813945476055360
 MonoBehaviour:
@@ -952,6 +964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9e9ba479007d1841bf7f2a6c0460055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  simpleCG: {fileID: 744720040122711436}
 --- !u!1 &1357473778685906903
 GameObject:
   m_ObjectHideFlags: 0
@@ -2470,6 +2483,7 @@ RectTransform:
   - {fileID: 3656054843304816762}
   - {fileID: 7465745761161434720}
   - {fileID: 1555337812243144080}
+  - {fileID: 514802922865161266}
   m_Father: {fileID: 744720040122711440}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5486,7 +5500,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7438813945476055360}
         m_TargetAssemblyTypeName: SimpleTestControl, Assembly-CSharp
-        m_MethodName: OnExitClicked
+        m_MethodName: OnSimpleSubmitExitClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
