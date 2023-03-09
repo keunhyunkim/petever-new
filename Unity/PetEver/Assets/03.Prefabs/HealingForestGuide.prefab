@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 744720040122711441}
   - component: {fileID: 744720040122711438}
   - component: {fileID: 744720040122711439}
+  - component: {fileID: 6518978604602042728}
   m_Layer: 5
   m_Name: HealingForestGuide
   m_TagString: HealingForestGuide
@@ -272,6 +273,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &6518978604602042728
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744720040122711436}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &861989877384618237
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,8 +682,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 534.3317, y: -1339.201}
-  m_SizeDelta: {x: 266.6634, y: 90.402}
+  m_AnchoredPosition: {x: 431.85507, y: -1388.7314}
+  m_SizeDelta: {x: 471.6166, y: 189.4627}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7594017678386848886
 CanvasRenderer:
