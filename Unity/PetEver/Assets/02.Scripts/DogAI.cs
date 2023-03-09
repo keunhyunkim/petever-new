@@ -123,7 +123,7 @@ public class DogAI : MonoBehaviour
                 {
                     navMeshAgent.speed = dog_normalSpeed;
                     navMeshAgent.SetDestination(point);
-                    Debug.DrawRay(point, Vector3.up, Color.red, 10.0f);
+                    //Debug.DrawRay(point, Vector3.up, Color.red, 10.0f);
                 }
             }
 
