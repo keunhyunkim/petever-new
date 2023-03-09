@@ -35,9 +35,6 @@ public class SimpleTestControl : MonoBehaviour
         // Initialize the totalScore
         SimpleTest.totalScore = SimpleTest.DEFAULT_TOTALSCORE;
         
-        // simpleCG = GameObject.FindGameObjectWithTag("SimpleTest").gameObject.GetComponent<CanvasGroup>();
-        // if(GameObject.FindGameObjectWithTag("SimpleTest").gameObject == null) Debug.Log("KGH!!!");
-        // if (simpleCG == null) Debug.Log("T.T");
         simpleCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().alpha = 0;
         simpleCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().interactable = false;
         simpleCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().blocksRaycasts = false;

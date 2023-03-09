@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PetlossTest : MonoBehaviour
 {
-    private const int TESTNUM = 3;
+    private const int TESTNUM = 1;
     CanvasGroup testCanvas;
     CanvasGroup chatNnoti;
 
@@ -43,6 +43,9 @@ public class PetlossTest : MonoBehaviour
             PetlossTestClass.testCnt = 0;
 
             hidePetLossTest();
+
+            // Move the character to Recommended Course
+            collision.transform.position = GameObject.Find("RecommendPos").transform.position;
         } else {
             collision.transform.position = GameObject.Find("TestPosition").transform.position;
         }
