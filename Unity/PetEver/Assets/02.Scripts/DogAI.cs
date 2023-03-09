@@ -109,7 +109,6 @@ public class DogAI : MonoBehaviour
 
         lastpos = gameObject.transform.position;
 
-
     }
 
     // randomly dog moves 
