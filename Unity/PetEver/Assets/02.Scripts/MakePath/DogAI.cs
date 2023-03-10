@@ -95,20 +95,18 @@ public class DogAI : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        DogAnimation();
 
-
-        if (!gameObject.CompareTag("NPC"))
+        if (!gameObject.CompareTag("NPC") && (DogEscort.welcomeEscort == false))
         {
             Tracking();
-            DogAnimation();
         }
+
         else
-        {
-            DogAnimation();
+        { 
         }
 
         lastpos = gameObject.transform.position;
-
     }
 
     // randomly dog moves 
@@ -116,23 +114,25 @@ public class DogAI : MonoBehaviour
     {
         while (true)
         {
-            if (arrived && !trackingOwner)
+            if (!DogEscort.welcomeEscort)
             {
-                arrived = false;
-                if (RandomPoint(this.gameObject.transform.position, range, out point))
+                if (arrived && !trackingOwner)
                 {
-                    navMeshAgent.speed = dog_normalSpeed;
-                    navMeshAgent.SetDestination(point);
-                    //Debug.DrawRay(point, Vector3.up, Color.red, 10.0f);
+                    arrived = false;
+                    if (RandomPoint(this.gameObject.transform.position, range, out point))
+                    {
+                        navMeshAgent.speed = dog_normalSpeed;
+                        navMeshAgent.SetDestination(point);
+                        //Debug.DrawRay(point, Vector3.up, Color.red, 10.0f);
+                    }
+                }
+
+                if ((Mathf.Approximately(gameObject.transform.position.x, point.x) || timer > 4f) && !trackingOwner)
+                {
+                    arrived = true;
+                    timer = 0;
                 }
             }
-
-            if ((Mathf.Approximately(gameObject.transform.position.x, point.x) || timer > 4f) && !trackingOwner)
-            {
-                arrived = true;
-                timer = 0;
-            }
-
             yield return new WaitForSeconds(0.25f);
         }
     }
@@ -203,7 +203,7 @@ public class DogAI : MonoBehaviour
         dogAnimator.SetFloat("escapeCount", escapeCount);
         dogAnimator.SetFloat("dogSpeed", navMeshAgent.velocity.magnitude);
         dogAnimator.SetInteger("whatCollided", collided_tag_number);
-
+        dogAnimator.SetBool("waitOwner",DogEscort.waitOwner);
         
         if (meetOwner)
         {           

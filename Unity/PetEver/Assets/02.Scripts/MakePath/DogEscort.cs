@@ -5,42 +5,92 @@ using UnityEngine.AI;
 
 public class DogEscort : MonoBehaviour
 {
-    public GameObject target;
-    NavMeshAgent agent;
-    LineRenderer lr;
+    private NavMeshAgent navMeshAgent; 
+    public static bool welcomeEscort;
+    public static bool waitOwner;
+    private Vector3[] escortPoint; 
+    private GameObject owner;
+    private float dis_Owner2Dog; // distance between owner and dog
+    private float dis_Owner2Point; // distance between owner and point
+    private float dis_Dog2Point; // distance between dog and point
 
+    void Awake()
+    {
+        welcomeEscort = true;
+        waitOwner = true;
+        dis_Owner2Point = 10f;
+
+        escortPoint = new Vector3[3]; 
+        escortPoint[0] = GameObject.Find("checkPoint1").GetComponent<Transform>().position;
+        escortPoint[1] = GameObject.Find("checkPoint2").GetComponent<Transform>().position;
+        escortPoint[2] = GameObject.Find("checkPoint3").GetComponent<Transform>().position;
+        //owner = GameObject.FindGameObjectWithTag("Owner");
+
+
+    }
+
+    // Start is called before the first frame update
     void Start()
     {
-        agent = this.GetComponent<NavMeshAgent>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        owner = GameObject.FindGameObjectWithTag("Owner");
+        StartCoroutine(DogEscorting());
 
-        lr = this.GetComponent<LineRenderer>();
-        lr.startWidth = lr.endWidth = 0.1f;
-        lr.material.color = Color.blue;
-        lr.enabled = false;
     }
 
-    public void makePath()
+    // Update is called once per frame
+    void Update()
     {
-        lr.enabled = true;
-        StartCoroutine(makePathCoroutine());
+        Debug.Log(dis_Owner2Point);        
+        Debug.Log(welcomeEscort);
+
+        dis_Owner2Dog = Vector3.Distance(owner.transform.position, gameObject.transform.position);
+        dis_Owner2Point = Vector3.Distance(owner.transform.position, escortPoint[0]);
+        dis_Dog2Point = Vector3.Distance(gameObject.transform.position, escortPoint[0]);
     }
 
-    IEnumerator makePathCoroutine()
+
+    IEnumerator DogEscorting()
     {
-        agent.SetDestination(target.transform.position);
-        lr.SetPosition(0, this.transform.position);
 
-        yield return new WaitForSeconds(0.1f);
+        while(true)
+        {
+            if (welcomeEscort)
+            {
+                if (dis_Owner2Dog > 12f)
+                {
+                    waitOwner = true;
+                    navMeshAgent.enabled = false;
+                    LookOwner();
+                    //gameObject.transform.LookAt(owner.transform);
+                }
 
-        drawPath();
+                else
+                {
+                    waitOwner = false;
+                    navMeshAgent.SetDestination(escortPoint[0]);
+                    navMeshAgent.enabled = true;   
+                }
+
+
+                if (dis_Owner2Point < 2f)
+                {
+                    welcomeEscort = false;
+                }
+            }
+            yield return new WaitForSeconds(0.25f);
+        }
+
+
     }
 
-    void drawPath()
+    void LookOwner()
     {
-        int length = agent.path.corners.Length;
-
-        lr.positionCount = length;
-        for (int i = 1; i < length; i++)
-            lr.SetPosition(i, agent.path.corners[i]);
+        if (owner != null)
+        {
+            Vector3 dir = (owner.transform.position-gameObject.transform.position);
+            gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, Quaternion.LookRotation(dir),Time.deltaTime*50f);
+        }
     }
+
 }
