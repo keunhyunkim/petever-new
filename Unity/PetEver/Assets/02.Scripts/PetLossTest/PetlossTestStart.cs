@@ -10,7 +10,7 @@ public class PetlossTestStart : MonoBehaviour
     CanvasGroup testGuide;
     CanvasGroup chatNnoti;
 
-
+    public static bool isRecommended = false;
     void Start()
     {
         testCanvas = GameObject.Find("PetLossTestPannel").GetComponent<CanvasGroup>();
@@ -57,8 +57,12 @@ public class PetlossTestStart : MonoBehaviour
         // StartPoint = GameObject.Find("TestPosition").transform.position;
         // collision.transform.position = StartPoint;
 
-        //When touching the screen, hide the Guide
-        hideGuideNstartTest();
+        if (isRecommended == false) {
+            //When touching the screen, hide the Guide
+            hideGuideNstartTest();
+        } else {
+            hideTestGuide();
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
