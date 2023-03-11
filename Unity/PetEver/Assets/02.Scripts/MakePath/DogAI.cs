@@ -27,6 +27,7 @@ public class DogAI : MonoBehaviour
     private float timer = 0f;
     private float escapeCount = 0f;
     private int collided_tag_number = -1; // give never-using value to initialize
+    //private float cycleOffset;
 
     private bool meetOwner
     {
@@ -85,8 +86,14 @@ public class DogAI : MonoBehaviour
         getCollider = gameObject.GetComponent<GetColliderScript>(); // get collider data from 'GetColliderScript' class 
 
         dogAnimator = GetComponent<Animator>();
+        dogAnimator.SetFloat("cycleOffset", Random.Range(0f,1/6f));
+        dogAnimator.SetFloat("walkingSpeed", 1/(DogSummonScript.dogRandomScale));
+
+
         navMeshAgent = GetComponent<NavMeshAgent>();
         owner = GameObject.FindGameObjectWithTag("Owner");
+
+
 
         StartCoroutine(UpdatePath());
     }
@@ -114,7 +121,7 @@ public class DogAI : MonoBehaviour
     {
         while (true)
         {
-            if (!DogEscort.welcomeEscort)
+            if (!DogEscort.welcomeEscort || gameObject.CompareTag("NPC"))
             {
                 if (arrived && !trackingOwner)
                 {
@@ -204,6 +211,7 @@ public class DogAI : MonoBehaviour
         dogAnimator.SetFloat("dogSpeed", navMeshAgent.velocity.magnitude);
         dogAnimator.SetInteger("whatCollided", collided_tag_number);
         dogAnimator.SetBool("waitOwner",DogEscort.waitOwner);
+
         
         if (meetOwner)
         {           
