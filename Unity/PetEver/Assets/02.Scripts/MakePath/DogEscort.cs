@@ -9,11 +9,11 @@ public class DogEscort : MonoBehaviour
     public static bool welcomeEscort;
     public static bool waitOwner;
     private Vector3[] escortPoint; 
-    private GameObject owner;
+    private GameObject owner, emotionBubble, questionMark;
     private float dis_Owner2Dog; // distance between owner and dog
     private float dis_Owner2Point; // distance between owner and point
     private float dis_Dog2Point; // distance between dog and point
-
+   
     void Awake()
     {
         welcomeEscort = true;
@@ -34,6 +34,9 @@ public class DogEscort : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         owner = GameObject.FindGameObjectWithTag("Owner");
+        emotionBubble = GameObject.Find("emotionBubble");
+        questionMark = GameObject.Find("questionMark");
+
         StartCoroutine(DogEscorting());
 
     }
@@ -52,6 +55,9 @@ public class DogEscort : MonoBehaviour
 
     IEnumerator DogEscorting()
     {
+        emotionBubble.SetActive(false);
+        questionMark.SetActive(false);
+
 
         while(true)
         {
@@ -61,6 +67,10 @@ public class DogEscort : MonoBehaviour
                 {
                     waitOwner = true;
                     navMeshAgent.enabled = false;
+
+                    emotionBubble.SetActive(true);
+                    questionMark.SetActive(true);
+
                     LookOwner();
                     //gameObject.transform.LookAt(owner.transform);
                 }
@@ -69,6 +79,10 @@ public class DogEscort : MonoBehaviour
                 {
                     waitOwner = false;
                     navMeshAgent.SetDestination(escortPoint[0]);
+
+                    emotionBubble.SetActive(false);
+                    questionMark.SetActive(false);
+
                     navMeshAgent.enabled = true;   
                 }
 
