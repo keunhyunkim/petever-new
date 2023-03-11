@@ -41,8 +41,8 @@ public class DogEscort : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(dis_Owner2Point);        
-        Debug.Log(welcomeEscort);
+        // Debug.Log(dis_Owner2Point);        
+        // Debug.Log(welcomeEscort);
 
         dis_Owner2Dog = Vector3.Distance(owner.transform.position, gameObject.transform.position);
         dis_Owner2Point = Vector3.Distance(owner.transform.position, escortPoint[0]);
