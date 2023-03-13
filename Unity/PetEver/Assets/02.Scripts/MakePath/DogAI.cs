@@ -87,7 +87,7 @@ public class DogAI : MonoBehaviour
 
         dogAnimator = GetComponent<Animator>();
         dogAnimator.SetFloat("cycleOffset", Random.Range(0f,1/6f));
-        dogAnimator.SetFloat("walkingSpeed", 1/(DogSummonScript.dogRandomScale));
+        dogAnimator.SetFloat("walkingSpeed", 1/(DogSummonScript.dogRandomScale)*1.5f);
 
 
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -160,6 +160,7 @@ public class DogAI : MonoBehaviour
                 {
                     trackingOwner = false;
                     arrived = true;
+                    DogEscort.welcomeEscort = true; 
                 }
             }
 
