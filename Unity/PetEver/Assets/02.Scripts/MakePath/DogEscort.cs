@@ -13,12 +13,15 @@ public class DogEscort : MonoBehaviour
     private float dis_Owner2Dog; // distance between owner and dog
     private float dis_Owner2Point; // distance between owner and point
     private float dis_Dog2Point; // distance between dog and point
+    private int escortPointNum;
    
     void Awake()
     {
         welcomeEscort = false;
         waitOwner = false;
         dis_Owner2Point = 10f;
+        escortPointNum = 0;
+
 
         escortPoint = new Vector3[3]; 
         escortPoint[0] = GameObject.Find("checkPoint1").GetComponent<Transform>().position;
@@ -47,14 +50,20 @@ public class DogEscort : MonoBehaviour
         // Debug.Log(dis_Owner2Point);        
         // Debug.Log(welcomeEscort);
 
+
         dis_Owner2Dog = Vector3.Distance(owner.transform.position, gameObject.transform.position);
-        dis_Owner2Point = Vector3.Distance(owner.transform.position, escortPoint[0]);
-        dis_Dog2Point = Vector3.Distance(gameObject.transform.position, escortPoint[0]);
+        dis_Owner2Point = Vector3.Distance(owner.transform.position, escortPoint[escortPointNum]);
+        dis_Dog2Point = Vector3.Distance(gameObject.transform.position, escortPoint[escortPointNum]);
+
+
+
     }
 
 
     IEnumerator DogEscorting()
     {
+
+       // escortPoint.Length    
         emotionBubble.SetActive(false);
         questionMark.SetActive(false);
 
@@ -78,7 +87,7 @@ public class DogEscort : MonoBehaviour
                 else
                 {
                     waitOwner = false;
-                    navMeshAgent.SetDestination(escortPoint[0]);
+                    navMeshAgent.SetDestination(escortPoint[escortPointNum]);
 
                     emotionBubble.SetActive(false);
                     questionMark.SetActive(false);
@@ -89,7 +98,15 @@ public class DogEscort : MonoBehaviour
 
                 if (dis_Owner2Point < 2f)
                 {
-                    welcomeEscort = false;
+                    if (escortPointNum < (escortPoint.Length-1))
+                    {
+                        escortPointNum++; 
+                    }
+
+                    else
+                    {
+                        welcomeEscort = false;
+                    }
                 }
             }
             yield return new WaitForSeconds(0.25f);
