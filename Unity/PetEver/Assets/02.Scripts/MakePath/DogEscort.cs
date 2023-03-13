@@ -16,8 +16,8 @@ public class DogEscort : MonoBehaviour
    
     void Awake()
     {
-        welcomeEscort = true;
-        waitOwner = true;
+        welcomeEscort = false;
+        waitOwner = false;
         dis_Owner2Point = 10f;
 
         escortPoint = new Vector3[3]; 
