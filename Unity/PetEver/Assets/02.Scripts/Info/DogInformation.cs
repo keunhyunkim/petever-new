@@ -9,6 +9,27 @@ public class DogInformation : MonoBehaviour
 
     void Start()
     {
+        GameObject dogInfoCanvas;
+
+        dogInfoCanvas = GameObject.FindGameObjectWithTag("DogInfo");
+        if (dogInfoCanvas == null)
+        {
+            GameObject canvas = Instantiate(dogInfoCG) as GameObject;
+        }
+
+        controlDogInfoCG(false);
+    }
+
+    private void controlDogInfoCG(bool showflag)
+    {
+        dogInfoCG = GameObject.FindGameObjectWithTag("DogInfo");
+        if (showflag == true) {
+            dogInfoCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().alpha = 1;
+        } else {
+            dogInfoCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().alpha = 0;
+        }
+        dogInfoCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().interactable = showflag;
+        dogInfoCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().blocksRaycasts = showflag;
     }
  
     void Update()
@@ -36,13 +57,15 @@ public class DogInformation : MonoBehaviour
             if(Physics.Raycast(ray, out hit))
             {
                 // 어떤 오브젝트인지 로그를 찍습니다.
-                Debug.Log(hit.collider.name);
-                dogInfoCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().alpha = 1;
-                dogInfoCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().interactable = true;
-                dogInfoCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().blocksRaycasts = true;
-
+                //Debug.Log(hit.collider.name);
+                controlDogInfoCG(true);
             }
  
         }
+    }
+
+    public void OnDogInfoXClicked()
+    {
+        controlDogInfoCG(false);
     }
 }
