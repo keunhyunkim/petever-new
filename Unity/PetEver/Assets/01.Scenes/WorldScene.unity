@@ -10106,6 +10106,7 @@ GameObject:
   - component: {fileID: 1605849557}
   - component: {fileID: 1605849556}
   - component: {fileID: 1605849558}
+  - component: {fileID: 1605849559}
   m_Layer: 0
   m_Name: ManSummonPoint _GreenMan
   m_TagString: NPC
@@ -10266,6 +10267,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 27.991724, y: 2.220446e-16, z: 27.15336}
   m_Center: {x: -3.712484, y: 0, z: -2.643185}
+--- !u!114 &1605849559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605849548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b17075ed6aa3445a99d569297989e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1619757905
 PrefabInstance:
   m_ObjectHideFlags: 0
