@@ -65,4 +65,19 @@ public class ShowHouseName : MonoBehaviour
             HideBubble();
         }
     }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Owner") {
+            ShowBubble();
+            bubbleTxt.text = houseInfo[0];
+        }
+    }
+
+    private void OnTriggerExit(Collider collision)
+    {
+        if (collision.gameObject.tag == "Owner") {
+            HideBubble();
+        }
+    }
 }
