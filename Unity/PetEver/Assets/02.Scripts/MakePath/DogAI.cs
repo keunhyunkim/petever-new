@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI; // add AI navigation system
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
 
 
 public class DogAI : MonoBehaviour
@@ -11,6 +14,7 @@ public class DogAI : MonoBehaviour
     private GameObject owner; // tracing target
     private NavMeshAgent navMeshAgent; // assign navmeshagent component
     private Animator dogAnimator;
+    private Button voiceButton; 
 
     public GetColliderScript getCollider; 
 
@@ -24,6 +28,7 @@ public class DogAI : MonoBehaviour
     private Vector3 lastpos; // for determine dog is walking or not  
     private bool arrived = true;
     private bool trackingOwner = false;
+    private bool voiceButton_bool = false; 
     private float timer = 0f;
     private float escapeCount = 0f;
     private int collided_tag_number = -1; // give never-using value to initialize
@@ -88,13 +93,13 @@ public class DogAI : MonoBehaviour
         dogAnimator = GetComponent<Animator>();
         dogAnimator.SetFloat("cycleOffset", Random.Range(0f,1/6f));
         dogAnimator.SetFloat("walkingSpeed", 1/(DogSummonScript.dogRandomScale)*1.5f);
-
+        voiceButton = GameObject.Find("VoiceButton").GetComponent<Button>();
 
         navMeshAgent = GetComponent<NavMeshAgent>();
         owner = GameObject.FindGameObjectWithTag("Owner");
 
 
-
+        voiceButton.onClick.AddListener(delegate { VoiceButton(); });
         StartCoroutine(UpdatePath());
     }
 
@@ -148,7 +153,7 @@ public class DogAI : MonoBehaviour
     void Tracking()
     {
 
-            if (Input.GetKeyDown(KeyCode.Space)) // give priority when Owner calls. When Owner calls, dog only chases Owner even it meets Dog, Flower, Butterfly or etc.   
+            if (voiceButton_bool) // give priority when Owner calls. When Owner calls, dog only chases Owner even it meets Dog, Flower, Butterfly or etc.   
             {
                 if (!meetOwner)
                 { 
@@ -162,6 +167,7 @@ public class DogAI : MonoBehaviour
                     arrived = true;
                     DogEscort.welcomeEscort = true; 
                 }
+                voiceButton_bool = false; 
             }
 
             if (trackingOwner)
@@ -230,5 +236,13 @@ public class DogAI : MonoBehaviour
             }
         }
     }
+
+    void VoiceButton()
+    {
+            voiceButton_bool = true;
+    }
+    
+
+
 }
 
