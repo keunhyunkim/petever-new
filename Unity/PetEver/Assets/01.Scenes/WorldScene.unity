@@ -2169,7 +2169,7 @@ GameObject:
   - component: {fileID: 441085812}
   - component: {fileID: 441085811}
   m_Layer: 0
-  m_Name: BubbleText
+  m_Name: ManChatText
   m_TagString: SpeechBubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2215,7 +2215,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: "\uC548\uB155\uD558\uC138\uC694"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d50f6999ff42eb419823fa7563a00d8, type: 2}
   m_sharedMaterial: {fileID: 6457400929453644768, guid: 7d50f6999ff42eb419823fa7563a00d8, type: 2}
@@ -10244,7 +10244,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC548\uB155\uD558\uC138\uC694,ManChatBubble,BubbleText"
+  m_Text: "\uC548\uB155\uD558\uC138\uC694,ManChatBubble,ManChatText"
 --- !u!222 &1605849557
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10264,8 +10264,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 21.101358, y: 2.220446e-16, z: 19.733051}
-  m_Center: {x: -0.26730302, y: 0, z: 1.0669698}
+  m_Size: {x: 27.991724, y: 2.220446e-16, z: 27.15336}
+  m_Center: {x: -3.712484, y: 0, z: -2.643185}
 --- !u!1001 &1619757905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11581,7 +11581,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -45.8, y: 101.749985}
+  m_AnchoredPosition: {x: -14.2, y: 125.6}
   m_SizeDelta: {x: 1440, y: 3060}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1791243694
