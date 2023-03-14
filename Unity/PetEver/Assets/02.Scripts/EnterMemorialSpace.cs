@@ -3,7 +3,7 @@ using UnityEngine;
 
 using UnityEngine.SceneManagement;
 
-public class EnterHome : MonoBehaviour
+public class EnterMemorialSpace : MonoBehaviour
 {
 
     GameObject ManCharacter;
@@ -26,7 +26,7 @@ public class EnterHome : MonoBehaviour
 
     IEnumerator<object> LoadYourAsyncScene()
     {
-        string sceneName = "newScene";
+        string sceneName = "MemorialSpace";
         // Set the current Scene to be able to unload it later
         Scene currentScene = SceneManager.GetActiveScene();
 
@@ -48,7 +48,7 @@ public class EnterHome : MonoBehaviour
         SceneManager.UnloadSceneAsync(currentScene);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Owner")
         {

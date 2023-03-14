@@ -2423,7 +2423,7 @@ GameObject:
   - component: {fileID: 480230500}
   - component: {fileID: 480230499}
   m_Layer: 0
-  m_Name: Text - Tree
+  m_Name: Text - Memorial Space
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2437,7 +2437,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480230497}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -6.01}
+  m_LocalPosition: {x: 0, y: 0, z: 26.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2446,7 +2446,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.68, y: -3.45}
+  m_AnchoredPosition: {x: 11.02, y: 16.84}
   m_SizeDelta: {x: 5, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &480230499
@@ -2469,7 +2469,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAE30\uC5B5\uC758 \uB098\uBB34"
+  m_text: "\uCD94\uBAA8\uC758 \uACF5\uAC04\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: be840354085997d41b3a86d51252bbbb, type: 2}
   m_sharedMaterial: {fileID: -5431646752294213804, guid: be840354085997d41b3a86d51252bbbb, type: 2}
@@ -3034,31 +3034,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fb378097d3b4d8a44a8529c0b172faba, type: 3}
   m_PrefabInstance: {fileID: 122300812}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &544524068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 544524067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce4a7d50b47d0a541847b9d036994f96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!65 &544524069
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 544524067}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.7851224, y: 3.8396025, z: 3.5680661}
-  m_Center: {x: -0.013885796, y: 1.8922799, z: -0.5085535}
 --- !u!54 &544524073
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7479,9 +7454,9 @@ GameObject:
   - component: {fileID: 1145255634}
   - component: {fileID: 1145255637}
   - component: {fileID: 1145255636}
-  - component: {fileID: 1145255635}
+  - component: {fileID: 1145255638}
   m_Layer: 0
-  m_Name: MemorialTrees
+  m_Name: MemorialSpace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7495,7 +7470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145255633}
   m_LocalRotation: {x: -0, y: 0.3598843, z: -0, w: 0.9329969}
-  m_LocalPosition: {x: 10.73, y: -0.79, z: -9.02}
+  m_LocalPosition: {x: 0.61, y: -0.79, z: 27.66}
   m_LocalScale: {x: 0.6377144, y: 0.63771445, z: 0.6377144}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7504,18 +7479,6 @@ Transform:
   m_Father: {fileID: 656138674}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 42.186, z: 0}
---- !u!114 &1145255635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1145255633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf77522f01503824d84ac7fbc1ca4ff8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1145255636
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7545,6 +7508,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &1145255638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145255633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce4a7d50b47d0a541847b9d036994f96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1245693291
 GameObject:
   m_ObjectHideFlags: 0
