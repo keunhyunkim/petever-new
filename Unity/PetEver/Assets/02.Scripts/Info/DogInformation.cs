@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
  
 public class DogInformation : MonoBehaviour
 {
@@ -49,6 +50,10 @@ public class DogInformation : MonoBehaviour
             if(Input.GetTouch(0).phase != TouchPhase.Began)
                 return;
 #endif
+            // Prevent not to click another object
+            if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
             // 카메라에서 스크린에 마우스 클릭 위치를 통과하는 광선을 반환합니다.
             Ray ray = Camera.main.ScreenPointToRay(m_vecMouseDownPos);
             RaycastHit hit;
@@ -57,8 +62,10 @@ public class DogInformation : MonoBehaviour
             if(Physics.Raycast(ray, out hit))
             {
                 // 어떤 오브젝트인지 로그를 찍습니다.
-                //Debug.Log(hit.collider.name);
-                controlDogInfoCG(true);
+                if (hit.collider.tag == "NPC" || hit.collider.tag == "OwnerDog") {
+                    controlDogInfoCG(true);
+                }
+                
             }
  
         }
