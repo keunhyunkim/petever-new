@@ -1,31 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
  
 public class DogInformation : MonoBehaviour
 {
     Vector3 m_vecMouseDownPos;
     public GameObject dogInfoCG;
+    GameObject dogInfoCanvas;
 
     void Start()
     {
-        GameObject dogInfoCanvas;
-
         dogInfoCanvas = GameObject.FindGameObjectWithTag("DogInfo");
         if (dogInfoCanvas == null)
         {
             GameObject canvas = Instantiate(dogInfoCG) as GameObject;
         }
 
-        controlDogInfoCG(false);
+        controlDogInfoCG(false, null);
     }
 
-    private void controlDogInfoCG(bool showflag)
+    private void controlDogInfoCG(bool showflag, Collider dog)
     {
         dogInfoCG = GameObject.FindGameObjectWithTag("DogInfo");
         if (showflag == true) {
             dogInfoCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().alpha = 1;
+            GameObject targetDog = GameObject.Find(dog.name);
+            dogInfoCG.transform.GetChild(4).GetComponent<Image>().sprite = targetDog.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite;
         } else {
             dogInfoCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().alpha = 0;
         }
@@ -63,7 +65,7 @@ public class DogInformation : MonoBehaviour
             {
                 // 어떤 오브젝트인지 로그를 찍습니다.
                 if (hit.collider.tag == "NPC" || hit.collider.tag == "OwnerDog") {
-                    controlDogInfoCG(true);
+                    controlDogInfoCG(true, hit.collider);
                 }
                 
             }
@@ -73,6 +75,6 @@ public class DogInformation : MonoBehaviour
 
     public void OnDogInfoXClicked()
     {
-        controlDogInfoCG(false);
+        controlDogInfoCG(false, null);
     }
 }
