@@ -1,11 +1,14 @@
 fileFormatVersion: 2
-guid: ec3ef3f3809a5b240a28efc452bb1434
+guid: 2cc2be69ec8bb3f4582e688e9f498fae
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: -8945691123924629249
     second: Armature|Idle
+  - first:
+      74: 213856876459495052
+    second: Armature|Idle2
   - first:
       74: 1303299601406483602
     second: Armature|run
@@ -18,6 +21,21 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: blueglass
     second: {fileID: 2100000, guid: e317f4f97a76c324dba510b1a36add6f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: green
+    second: {fileID: 2100000, guid: 87779b5f6d5868b4b84f54523f832875, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: white
+    second: {fileID: 2100000, guid: 329880815f808934f8239e33d14acd35, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: whiteglass
+    second: {fileID: 2100000, guid: fb4854a8f8d5b464d923babe8e084260, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -51,7 +69,36 @@ ModelImporter:
       takeName: Armature|Idle
       internalID: 0
       firstFrame: 0
-      lastFrame: 210
+      lastFrame: 248
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Idle2
+      takeName: Armature|Idle2
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 119
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -108,7 +155,7 @@ ModelImporter:
       name: Armature|walking
       takeName: Armature|walking
       internalID: 0
-      firstFrame: 1
+      firstFrame: 0
       lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
