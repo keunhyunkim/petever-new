@@ -8,22 +8,23 @@ public class DogInformation : MonoBehaviour
 {
     Vector3 m_vecMouseDownPos;
     public GameObject dogInfoCG;
-    GameObject dogInfoCanvas;
+    static GameObject dogInfoCanvas;
+    static GameObject icanvas;
 
     void Start()
     {
+        GameObject canvas = null;
         dogInfoCanvas = GameObject.FindGameObjectWithTag("DogInfo");
         if (dogInfoCanvas == null)
         {
-            GameObject canvas = Instantiate(dogInfoCG) as GameObject;
+            icanvas = Instantiate(dogInfoCG) as GameObject;
         }
-
         controlDogInfoCG(false, null);
     }
 
     private void controlDogInfoCG(bool showflag, Collider dog)
     {
-        dogInfoCG = GameObject.FindGameObjectWithTag("DogInfo");
+        dogInfoCG = icanvas;
         if (showflag == true) {
             dogInfoCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().alpha = 1;
             GameObject targetDog = GameObject.Find(dog.name);
@@ -67,9 +68,7 @@ public class DogInformation : MonoBehaviour
                 if (hit.collider.tag == "NPC" || hit.collider.tag == "OwnerDog") {
                     controlDogInfoCG(true, hit.collider);
                 }
-                
             }
- 
         }
     }
 
