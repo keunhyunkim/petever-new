@@ -6,10 +6,12 @@ using TMPro;
 public class MemorialSceneUIControl : MonoBehaviour
 {
     CanvasGroup stickyNoteInputPanel;
+    CanvasGroup photoPanel;
     TMP_InputField stickyNoteInput;
     void Start()
     {
         stickyNoteInputPanel = GameObject.Find("StickyNotePanel").GetComponent<CanvasGroup>();
+        photoPanel = GameObject.Find("PhotoPanel").GetComponent<CanvasGroup>();
         stickyNoteInput = GameObject.Find("StickyNoteInput").GetComponent<TMP_InputField>();
 
     }
@@ -17,6 +19,10 @@ public class MemorialSceneUIControl : MonoBehaviour
     public void OnExitClicked()
     {
         hideCanvasGroup(stickyNoteInputPanel);
+    }    
+    public void OnExitPhotoPanelClicked()
+    {
+        hideCanvasGroup(photoPanel);
     }
     public void OnCompleteClicked()
     {
@@ -24,23 +30,10 @@ public class MemorialSceneUIControl : MonoBehaviour
         
         hideCanvasGroup(stickyNoteInputPanel);
     }
-    public void OnStickyNoteInputOpenClicked()
-    {
-        showCanvasGroup(stickyNoteInputPanel);
-    }
-    void showCanvasGroup(CanvasGroup cg)
-    {
-        cg.alpha = 1;
-        cg.interactable = true;
-        cg.blocksRaycasts = true;
-    }
-
     void hideCanvasGroup(CanvasGroup cg)
     {
         cg.alpha = 0;
         cg.interactable = false;
         cg.blocksRaycasts = false;
     }
-
-
 }
