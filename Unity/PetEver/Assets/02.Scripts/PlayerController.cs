@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         }
 
         Player.transform.position += move;
-        playerAnimator.SetFloat("walking", move.magnitude);
+        playerAnimator.SetFloat("walkingSpeed", move.magnitude);
     }
 
 
