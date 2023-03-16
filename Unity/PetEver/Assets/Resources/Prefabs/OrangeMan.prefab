@@ -1340,10 +1340,11 @@ GameObject:
   - component: {fileID: 7500377397834550902}
   - component: {fileID: 2446806362273844276}
   - component: {fileID: 7221706873639548268}
-  - component: {fileID: -8469445713807465577}
+  - component: {fileID: -2202831003357377079}
+  - component: {fileID: -6270773666406886899}
   m_Layer: 0
   m_Name: OrangeMan
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1415,7 +1416,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!195 &-8469445713807465577
+--- !u!114 &-2202831003357377079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8330996505014915204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a047b94e727b7d4d88ed989b8b38d0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!195 &-6270773666406886899
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
