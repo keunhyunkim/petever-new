@@ -101,30 +101,30 @@ public class JoyStickBtnManager : MonoBehaviour
             btn.transform.position = newBtnPos;
         }
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name == "Wall")
-        {
-            showWallIcons();
-        }
-        else if (collision.gameObject.tag == "Frame")
-        {
-            showPhotoIcons();
-        }
-        else if (collision.gameObject.name == "MemorialCube")
-        {
-            showTreeIcons();
-        }
+    // private void OnCollisionEnter(Collision collision)
+    // {
+    //     if (collision.gameObject.name == "Wall")
+    //     {
+    //         showWallIcons();
+    //     }
+    //     else if (collision.gameObject.tag == "Frame")
+    //     {
+    //         showPhotoIcons();
+    //     }
+    //     else if (collision.gameObject.name == "MemorialCube")
+    //     {
+    //         showTreeIcons();
+    //     }
 
-    }
+    // }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        if (Buttons.Count > 0)
-        {
-            deleteIcons();
-        }
-    }
+    // private void OnCollisionExit(Collision collision)
+    // {
+    //     if (Buttons.Count > 0)
+    //     {
+    //         deleteIcons();
+    //     }
+    // }
 
     private void OnTriggerEnter(Collider collision)
     {
