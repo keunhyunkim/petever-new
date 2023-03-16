@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JoyStickBtnManager : MonoBehaviour
 {
     public List<GameObject> Buttons { get; set; } = new List<GameObject>();
     string resourceUrl = "Prefabs/Buttons/";
-    
+    GameObject joyStickBtns;
+
+    CanvasGroup stickyNoteInputPanel;
+    CanvasGroup photoPanel;
+
     void Awake()
     {
         Buttons = new List<GameObject>();
+        joyStickBtns = GameObject.Find("JoystickBtns");
+        stickyNoteInputPanel = GameObject.Find("StickyNotePanel").GetComponent<CanvasGroup>();
+        photoPanel = GameObject.Find("PhotoPanel").GetComponent<CanvasGroup>();
     }
     // Start is called before the first frame update
     void Start()
@@ -25,9 +33,13 @@ public class JoyStickBtnManager : MonoBehaviour
 
     public void showWallIcons()
     {
-        addIcon("PostItBtn");
-        addIcon("CandleBtn");
-        addIcon("FlowerBtn");
+        GameObject postItBtn = addIcon("PostItBtn");
+        postItBtn.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            OnStickyNoteInputOpenClicked();
+        });
+        GameObject candleBtn = addIcon("CandleBtn");
+        GameObject flowerBtn = addIcon("FlowerBtn");
     }
     public void showTreeIcons()
     {
@@ -36,7 +48,11 @@ public class JoyStickBtnManager : MonoBehaviour
     }
     public void showPhotoIcons()
     {
-        addIcon("AlbumBtn");
+        GameObject albumBtn = addIcon("AlbumBtn");
+        albumBtn.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            OnShowPhotoClicked();
+        });
         addIcon("CandleBtn");
         addIcon("FlowerBtn");
     }
@@ -55,14 +71,14 @@ public class JoyStickBtnManager : MonoBehaviour
         Buttons.RemoveAll(item => item == null);
         Buttons.Clear();
     }
-    void addIcon(string btnName)
+    GameObject addIcon(string btnName)
     {
         GameObject btnPrefab = Resources.Load<GameObject>(resourceUrl + btnName);
         GameObject btn = Instantiate(btnPrefab, btnPrefab.transform.position, btnPrefab.transform.rotation) as GameObject;
-        
-        GameObject joyStickBtns = GameObject.Find("JoystickBtns");
+
+
         btn.transform.SetParent(joyStickBtns.transform, false);
-        
+
         if (Buttons.Count > 0)
         {
             setButtonPosition(btn);
@@ -71,6 +87,7 @@ public class JoyStickBtnManager : MonoBehaviour
         {
             Buttons.Add(btn);
         }
+        return btn;
     }
 
     int widthBetween = 60;
@@ -97,58 +114,82 @@ public class JoyStickBtnManager : MonoBehaviour
             Buttons[1].transform.position = pos1;
 
             Vector3 newBtnPos = btn.transform.position;
-            newBtnPos.y = newBtnPos.y - (widthBetween*2);
+            newBtnPos.y = newBtnPos.y - (widthBetween * 2);
             btn.transform.position = newBtnPos;
         }
     }
-    // private void OnCollisionEnter(Collision collision)
-    // {
-    //     if (collision.gameObject.name == "Wall")
-    //     {
-    //         showWallIcons();
-    //     }
-    //     else if (collision.gameObject.tag == "Frame")
-    //     {
-    //         showPhotoIcons();
-    //     }
-    //     else if (collision.gameObject.name == "MemorialCube")
-    //     {
-    //         showTreeIcons();
-    //     }
 
-    // }
-
-    // private void OnCollisionExit(Collision collision)
-    // {
-    //     if (Buttons.Count > 0)
-    //     {
-    //         deleteIcons();
-    //     }
-    // }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.name == "Wall")
+        if (collision.gameObject.tag == "Owner")
         {
-            showWallIcons();
-        }
-        else if (collision.gameObject.tag == "Frame")
-        {
-            showPhotoIcons();
-        }
-        else if (collision.gameObject.name == "MemorialCube")
-        {
-            showTreeIcons();
+            if (this.gameObject.name == "Wall")
+            {
+                showWallIcons();
+            }
+            else if (this.gameObject.tag == "Frame")
+            {
+                showPhotoIcons();
+            }
+            else if (this.gameObject.name == "MemorialCube")
+            {
+                showTreeIcons();
+            }
         }
     }
 
     private void OnTriggerExit(Collider collision)
     {
-
-        if (Buttons.Count > 0)
+        if (collision.gameObject.tag == "Owner")
         {
-            deleteIcons();
+            if (Buttons.Count > 0)
+            {
+                deleteIcons();
+            }
+        }
+    }
+    public void OnStickyNoteInputOpenClicked()
+    {
+        showCanvasGroup(stickyNoteInputPanel);
+    }
+    public void OnShowPhotoClicked()
+    {
+
+        GameObject frameGo = GetChildWithName(this.gameObject, "Plane/FrameImageCanvas/PictureImage");
+        Image uiImage = frameGo.GetComponent<Image>();
+
+        GameObject panelGo = GetChildWithName(photoPanel.gameObject, "Background/Mask Image/MyImage");
+        if (panelGo != null)
+        {
+            Image panelUiImage = panelGo.GetComponent<Image>();
+            panelUiImage.sprite = uiImage.sprite;
+        }
+        else
+        {
+            Debug.Log("panelGo null");
         }
 
+        showCanvasGroup(photoPanel);
+    }
+
+    void showCanvasGroup(CanvasGroup cg)
+    {
+        if (cg != null)
+        {
+            cg.alpha = 1;
+            cg.interactable = true;
+            cg.blocksRaycasts = true;
+        }
+        else
+        {
+            Debug.Log("CanvasGroup null in showCanvasGroup");
+        }
+
+    }
+
+    GameObject GetChildWithName(GameObject obj, string childName)
+    {
+        return obj.transform.Find(childName)?.gameObject;
     }
 }
