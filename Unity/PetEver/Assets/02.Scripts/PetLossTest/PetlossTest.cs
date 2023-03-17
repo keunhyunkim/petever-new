@@ -37,40 +37,40 @@ public class PetlossTest : MonoBehaviour
     
     private void OnTriggerEnter(Collider collision)
     {
-        PetlossTestClass.testCnt++;
-        if (this.name == "Yes") {
-            PetlossTestClass.yesCnt++;
-        } else if (this.name == "Unknown") {
-            PetlossTestClass.unknownCnt++;
-        } else if (this.name == "No") {
-            PetlossTestClass.noCnt++;
+        if (collision.gameObject.tag == "Owner") {
+            PetlossTestClass.testCnt++;
+            if (this.name == "Yes") {
+                PetlossTestClass.yesCnt++;
+            } else if (this.name == "Unknown") {
+                PetlossTestClass.unknownCnt++;
+            } else if (this.name == "No") {
+                PetlossTestClass.noCnt++;
+            }
+
+            if (PetlossTestClass.testCnt == TESTNUM) {
+                // All Tests are done.
+                GameObject petlossTestObj = GameObject.FindGameObjectWithTag("PetLossTest");
+                petlossTestObj.SetActive(false);
+                PetlossTestClass.testCnt = 0;
+
+                hidePetLossTest();
+
+                // Move the character to Recommended Course
+                collision.transform.position = GameObject.Find("RecommendPos").transform.position;
+                
+                // Show the Character's petloss status and recommend the course
+                
+                GameObject testGuideText = GameObject.Find("PetLossGuide1");
+                string msg = "마음이 아직 완전히 회복되시지\\n않으신 것 같아요.\\n오늘은 탄이와의 추억을\\n이미지로 꾸며볼까요?";
+                msg = msg.Replace("\\n", "\n");
+                testGuideText.GetComponent<TextMeshProUGUI>().text = msg;
+                showTestGuide();
+                PetlossTestStart.isRecommended = true;
+
+
+            } else {
+                collision.transform.position = GameObject.Find("TestPosition").transform.position;
+            }
         }
-
-        if (PetlossTestClass.testCnt == TESTNUM) {
-            // All Tests are done.
-            GameObject petlossTestObj = GameObject.FindGameObjectWithTag("PetLossTest");
-            petlossTestObj.SetActive(false);
-            PetlossTestClass.testCnt = 0;
-
-            hidePetLossTest();
-
-            // Move the character to Recommended Course
-            collision.transform.position = GameObject.Find("RecommendPos").transform.position;
-            
-            // Show the Character's petloss status and recommend the course
-            
-            GameObject testGuideText = GameObject.Find("PetLossGuide1");
-            string msg = "마음이 아직 완전히 회복되시지\\n않으신 것 같아요.\\n오늘은 탄이와의 추억을\\n이미지로 꾸며볼까요?";
-            msg = msg.Replace("\\n", "\n");
-            testGuideText.GetComponent<TextMeshProUGUI>().text = msg;
-            showTestGuide();
-            PetlossTestStart.isRecommended = true;
-
-
-        } else {
-            collision.transform.position = GameObject.Find("TestPosition").transform.position;
-        }
-
-        
     }
 }
