@@ -71,6 +71,7 @@ public class PetlossTest : MonoBehaviour
             } else {
                 collision.transform.position = GameObject.Find("TestPosition").transform.position;
             }
+
         }
     }
 }
