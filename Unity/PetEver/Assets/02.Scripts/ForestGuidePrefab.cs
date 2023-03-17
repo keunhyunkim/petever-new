@@ -14,15 +14,6 @@ public class ForestGuidePrefab : MonoBehaviour
 
     void Awake()
     {
-        previousCanvas = GameObject.FindGameObjectWithTag("ForestGuide");
-        previouEventSystem = GameObject.FindGameObjectWithTag("MainEventSystem");
-        if (previousCanvas == null)
-        {
-            GameObject canvas = Instantiate(guidePrefab) as GameObject;
-        }
-        if (previouEventSystem == null)
-        {
-            GameObject eSystem = Instantiate(eventSystemPrefab) as GameObject;
-        }
+        GameObject canvas = Instantiate(guidePrefab) as GameObject;
     }
 }
