@@ -19,7 +19,19 @@ public class DogSummonScript : MonoBehaviour
         prefabName = "Prefabs/" + dogSpecies[1];
         dogNPC = Resources.Load<GameObject>(prefabName);
 
-        dogRandomScale = Random.Range(0.5f, 1.0f);
+
+        if (dogSpecies[1] == "Bichon")
+            dogRandomScale = Random.Range(0.85f, 1.0f);
+        else if(dogSpecies[1] == "PomeLong")
+            dogRandomScale = Random.Range(0.75f, 1.0f);
+        else if(dogSpecies[1] == "Pomeshort")
+            dogRandomScale = Random.Range(0.75f, 1.0f);       
+        else if(dogSpecies[1] == "Maltese")
+            dogRandomScale = Random.Range(0.75f, 1.0f);
+        else if(dogSpecies[1] == "Poodle")
+            dogRandomScale = Random.Range(0.85f, 1.0f);
+
+
         dogScale = new Vector3(1,1,1)*dogRandomScale;
 
         dogNPC.transform.localScale = dogScale;
