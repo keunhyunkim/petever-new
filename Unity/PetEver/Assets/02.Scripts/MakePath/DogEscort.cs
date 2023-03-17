@@ -14,6 +14,7 @@ public class DogEscort : MonoBehaviour
     private float dis_Owner2Point; // distance between owner and point
     private float dis_Dog2Point; // distance between dog and point
     private int escortPointNum;
+    private LineRenderer lineRenderer;
    
     void Awake()
     {
@@ -40,6 +41,13 @@ public class DogEscort : MonoBehaviour
         emotionBubble = GameObject.Find("emotionBubble");
         questionMark = GameObject.Find("questionMark");
 
+        // when dog starts to escort, make line it's path
+        lineRenderer = gameObject.GetComponent<LineRenderer>();
+        lineRenderer.startWidth = lineRenderer.endWidth = 0.5f;
+        lineRenderer.material.color = Color.blue;
+        lineRenderer.enabled = false;
+
+        
         StartCoroutine(DogEscorting());
 
     }
@@ -47,9 +55,6 @@ public class DogEscort : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Debug.Log(dis_Owner2Point);        
-        // Debug.Log(welcomeEscort);
-
 
         dis_Owner2Dog = Vector3.Distance(owner.transform.position, gameObject.transform.position);
         dis_Owner2Point = Vector3.Distance(owner.transform.position, escortPoint[escortPointNum]);
@@ -72,10 +77,15 @@ public class DogEscort : MonoBehaviour
         {
             if (welcomeEscort)
             {
+                lineRenderer.enabled = true;    
+                navMeshAgent.SetDestination(escortPoint[escortPointNum]);
+                lineRenderer.SetPosition(0,gameObject.transform.position);
+
                 if (dis_Owner2Dog > 12f)
                 {
                     waitOwner = true;
-                    navMeshAgent.enabled = false;
+                    navMeshAgent.isStopped = true;
+                    navMeshAgent.velocity = Vector3.zero;
 
                     emotionBubble.SetActive(true);
                     questionMark.SetActive(true);
@@ -87,16 +97,16 @@ public class DogEscort : MonoBehaviour
                 else
                 {
                     waitOwner = false;
-                    navMeshAgent.SetDestination(escortPoint[escortPointNum]);
+                    //navMeshAgent.SetDestination(escortPoint[escortPointNum]);
 
                     emotionBubble.SetActive(false);
                     questionMark.SetActive(false);
 
-                    navMeshAgent.enabled = true;   
+                    navMeshAgent.isStopped = false;   
                 }
 
 
-                if (dis_Owner2Point < 2f)
+                if (dis_Owner2Point < 4f)
                 {
                     if (escortPointNum < (escortPoint.Length-1))
                     {
@@ -110,6 +120,8 @@ public class DogEscort : MonoBehaviour
                 }
             }
             yield return new WaitForSeconds(0.25f);
+
+            drawPath();
         }
 
 
@@ -124,4 +136,13 @@ public class DogEscort : MonoBehaviour
         }
     }
 
+
+    void drawPath()
+    {
+        int length = navMeshAgent.path.corners.Length;
+        lineRenderer.positionCount = length;
+
+        for (int i = 1; i < length; i++)
+            lineRenderer.SetPosition(i, navMeshAgent.path.corners[i]);
+    }
 }
