@@ -31,7 +31,7 @@ public class ForestSetting : MonoBehaviour
     void SetBackPos() {
         PlayerInput.InitJoystick();
         PlayerController.isForest = false;
-        Vector3 backOffset = new Vector3(-13.51f, 2.4f, -20.45f);
+        Vector3 backOffset = new Vector3(-25.3f, 0.81f, -94.53f);
         manCharacter.transform.position = backOffset;
 
         Transform Target =  GameObject.Find("WalkLine").transform;
