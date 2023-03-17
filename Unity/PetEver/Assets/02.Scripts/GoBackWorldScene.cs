@@ -18,6 +18,8 @@ public class GoBackWorldScene : MonoBehaviour
 
     IEnumerator<object> GoWorldScene()
     {
+        
+        ManCharacter.transform.position = new Vector3(-11.07f, -1.14f, -60.66f);
         string sceneName = "WorldScene";
         
         Scene currentScene = SceneManager.GetActiveScene();
