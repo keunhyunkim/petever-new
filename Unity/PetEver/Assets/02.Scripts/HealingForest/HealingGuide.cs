@@ -11,7 +11,9 @@ public class HealingGuide : MonoBehaviour
     GameObject navi2;
     GameObject navi3;
     GameObject nextBtn1;
+    GameObject nextBtnHide1;
     GameObject nextBtn2;
+    GameObject nextBtnHide2;
     GameObject skipBtn;
     GameObject doneBtn;
     GameObject chatYellow;
@@ -67,6 +69,8 @@ public class HealingGuide : MonoBehaviour
             navi3 = GameObject.Find("Navigator_xxo");
             nextBtn1 = GameObject.Find("Navigator_right");
             nextBtn2 = GameObject.Find("Navigator_right2");
+            nextBtnHide1 = GameObject.Find("BtnHide1");
+            nextBtnHide2 = GameObject.Find("BtnHide2");
 
             skipBtn = GameObject.Find("HealingGuideSkip");
             doneBtn = GameObject.Find("HealingGuideDone");
@@ -79,7 +83,9 @@ public class HealingGuide : MonoBehaviour
             navi2.SetActive(false);
             navi3.SetActive(false);
             nextBtn1.SetActive(true);
+            nextBtnHide1.SetActive(true);
             nextBtn2.SetActive(false);
+            nextBtnHide2.SetActive(false);
         }
     }
 
@@ -118,6 +124,7 @@ public class HealingGuide : MonoBehaviour
         chatBlack.SetActive(true);
         navi2.SetActive(true);
         nextBtn2.SetActive(true);
+        nextBtnHide2.SetActive(true);
 
         guide3.SetActive(false);
     }
