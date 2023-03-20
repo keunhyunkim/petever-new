@@ -417,11 +417,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2607040016533766438}
   m_LocalRotation: {x: -0.00000013767877, y: 0.7071068, z: 0.70710677, w: 0.00000013767878}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2451301446852329248}
+  m_Father: {fileID: 4169711800021802690}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &7188991230301749994
@@ -625,7 +625,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2451301446852329248}
+  - component: {fileID: 4169711800021802690}
   - component: {fileID: 2706237662510307523}
   - component: {fileID: 2706237662510307522}
   - component: {fileID: 2706237662510307521}
@@ -633,6 +633,8 @@ GameObject:
   - component: {fileID: 2706237662510307535}
   - component: {fileID: 2706237662510307534}
   - component: {fileID: 2706237662510307533}
+  - component: {fileID: 9012424656350013821}
+  - component: {fileID: 5290300179457492954}
   m_Layer: 0
   m_Name: Bichon
   m_TagString: NPC
@@ -640,8 +642,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2451301446852329248
-Transform:
+--- !u!224 &4169711800021802690
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -658,6 +660,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!54 &2706237662510307523
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -771,6 +778,49 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   getCollider: {fileID: 0}
+--- !u!222 &9012424656350013821
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2976620973622093210}
+  m_CullTransparentMesh: 1
+--- !u!114 &5290300179457492954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2976620973622093210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\uC211\uC211\uC774,\uC0AC\uACFC\uB2D8\uC758 10\uC0B4 \uB3D9\uC0DD\\\\n\uBE44\uC211
+    \u2640"
 --- !u!1 &2985440437835388969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1499,7 +1549,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7429745340568450786}
-  m_Father: {fileID: 2451301446852329248}
+  m_Father: {fileID: 4169711800021802690}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6610301109590658776
@@ -1826,12 +1876,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8515683954107543767}
   m_LocalRotation: {x: -0.00000009415696, y: 0.7071068, z: 0.7071067, w: 0.00000009415697}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2148996778358622}
-  m_Father: {fileID: 2451301446852329248}
+  m_Father: {fileID: 4169711800021802690}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8728838095929382040

@@ -56,12 +56,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232625894387098083}
   m_LocalRotation: {x: -0.00000009415696, y: 0.7071068, z: 0.7071067, w: 0.00000009415697}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7977766021075706094}
-  m_Father: {fileID: 4954084620221913328}
+  m_Father: {fileID: 6397011137592776809}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &290132911629883325
@@ -122,11 +122,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390234832084133666}
   m_LocalRotation: {x: -0.00000013767877, y: 0.7071068, z: 0.70710677, w: 0.00000013767878}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4954084620221913328}
+  m_Father: {fileID: 6397011137592776809}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &8231403843467303357
@@ -659,7 +659,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4954084620221913328}
+  - component: {fileID: 6397011137592776809}
   - component: {fileID: 6205369919266190451}
   - component: {fileID: 3372058386567438861}
   - component: {fileID: 3181497221244152262}
@@ -667,6 +667,8 @@ GameObject:
   - component: {fileID: 7238486533183993911}
   - component: {fileID: 1079237181205468682}
   - component: {fileID: 5241749740064638589}
+  - component: {fileID: 8519662539728940508}
+  - component: {fileID: 4316862869114075372}
   m_Layer: 0
   m_Name: Maltese
   m_TagString: NPC
@@ -674,15 +676,15 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4954084620221913328
-Transform:
+--- !u!224 &6397011137592776809
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3996624596294023754}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.455902, y: 43.812702, z: 64.315605}
+  m_LocalPosition: {x: 0, y: 0, z: 64.315605}
   m_LocalScale: {x: 0.73619187, y: 0.73619187, z: 0.73619187}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -692,6 +694,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 26.455902, y: 43.812702}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!54 &6205369919266190451
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -805,6 +812,48 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   getCollider: {fileID: 0}
+--- !u!222 &8519662539728940508
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3996624596294023754}
+  m_CullTransparentMesh: 1
+--- !u!114 &4316862869114075372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3996624596294023754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\uD558\uC591\uC774,\uB77C\uB9AC\uB85C\uB2D8\uC758 16\uC0B4 \uB3D9\uC0DD\\\\n\uB9D0\uD2F0\uC988"
 --- !u!1 &4111825251770913978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,7 +1744,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 506420561473935777}
-  m_Father: {fileID: 4954084620221913328}
+  m_Father: {fileID: 6397011137592776809}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7999746617974442293
