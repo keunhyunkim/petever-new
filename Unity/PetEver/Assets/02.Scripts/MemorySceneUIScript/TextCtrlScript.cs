@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using TMPro;
 
 public class TextCtrlScript : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler
 {
 
     private GameObject UserInputTextBGD;
     private GameObject UserInputText;
-    private InputField inputField;
+    private TMP_InputField inputField;
 
     private float durationThreshold = 1f;
     private float timePressStarted; 
@@ -18,11 +18,16 @@ public class TextCtrlScript : MonoBehaviour, IPointerClickHandler, IPointerDownH
     private bool longPressTriggered = false; 
 
     // Start is called before the first frame update
+
+
     void Start()
     {
         UserInputTextBGD = GameObject.Find("UserInputTextBGD");
         UserInputText = GameObject.Find("UserInputText");
-        inputField = GameObject.Find("UserInputText").GetComponent<InputField>();
+        inputField = gameObject.GetComponent<TMP_InputField>();
+
+        inputField.onSubmit.AddListener(delegate{ LockInput(); });
+
 
     }
 
@@ -33,7 +38,6 @@ public class TextCtrlScript : MonoBehaviour, IPointerClickHandler, IPointerDownH
         {
             if(Time.time - timePressStarted > durationThreshold)
             {
-                Debug.Log("press");
                 longPressTriggered = true;
                 CompleteWriting();
             }
@@ -59,10 +63,21 @@ public class TextCtrlScript : MonoBehaviour, IPointerClickHandler, IPointerDownH
 
     private void CompleteWriting()
     {
+
         Destroy(UserInputTextBGD);
         gameObject.SetActive(true);
-        inputField.readOnly = true;
+        LockInput();
+    }
 
+
+    private void LockInput()
+    {
+        if (inputField.readOnly == true)
+            inputField.readOnly = false;
+        else if (inputField.readOnly == false)
+            inputField.readOnly = true;        
     }
 }
+
+
 
