@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
  
 public class DogInformation : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class DogInformation : MonoBehaviour
     public GameObject dogInfoCG;
     static GameObject dogInfoCanvas;
     static GameObject icanvas;
+    private string[] dogInfoText;
 
     void Start()
     {
@@ -22,13 +24,30 @@ public class DogInformation : MonoBehaviour
         controlDogInfoCG(false, null);
     }
 
+    private void parseDogInfo(string info)
+    {
+        dogInfoText = info.Split(',');
+    }
+
+    private GameObject GetChildWithName(GameObject obj, string childName)
+    {
+        return obj.transform.Find(childName)?.gameObject;
+    }
+
     private void controlDogInfoCG(bool showflag, Collider dog)
     {
         dogInfoCG = icanvas;
         if (showflag == true) {
             dogInfoCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().alpha = 1;
             GameObject targetDog = GameObject.Find(dog.name);
-            dogInfoCG.transform.GetChild(4).GetComponent<Image>().sprite = targetDog.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite;
+            GetChildWithName(dogInfoCG, "DogImage").GetComponent<Image>().sprite = GetChildWithName(targetDog, "Info/DogImage").GetComponent<Image>().sprite;
+            
+            parseDogInfo(targetDog.transform.GetComponent<Text>().text);
+            string msg = dogInfoText[1];
+            msg = msg.Replace("\\n", "\n").Replace("\\", "");
+
+            GetChildWithName(dogInfoCG, "PopupTitle").GetComponent<TextMeshProUGUI>().text = dogInfoText[0];
+            GetChildWithName(dogInfoCG, "PopupDetail").GetComponent<TextMeshProUGUI>().text = msg;
         } else {
             dogInfoCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().alpha = 0;
         }
