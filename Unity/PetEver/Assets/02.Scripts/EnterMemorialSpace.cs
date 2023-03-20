@@ -9,6 +9,7 @@ public class EnterMemorialSpace : MonoBehaviour
     GameObject ManCharacter;
     GameObject MainCanvas;
     GameObject MainEvent;
+    [SerializeField] RectTransform fader;
     private bool isEntered = false;
     private Vector3 m_currentDirection = Vector3.zero;
 
@@ -17,6 +18,7 @@ public class EnterMemorialSpace : MonoBehaviour
         ManCharacter = GameObject.FindGameObjectWithTag("Owner");
         MainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
         MainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
+
     }
 
     private void Awake()
@@ -54,13 +56,23 @@ public class EnterMemorialSpace : MonoBehaviour
         {
             if (isEntered == false)
             {
-                StartCoroutine(LoadYourAsyncScene());
+                fader.gameObject.SetActive(true);
+                LeanTween.scale(fader, new Vector3(30, 30, 30), 0f);
+                LeanTween.scale(fader, new Vector3(1, 1, 1), 1.0f).setOnComplete(() =>
+                {
+                    
+                    fader.gameObject.SetActive(false);
+                    StartCoroutine(LoadYourAsyncScene());
+                });
                 isEntered = true;
             }
         }
 
     }
+    public void SceneChangeAnimation()
+    {
 
+    }
     private void OnCollisionStay(Collision collision)
     {
 
