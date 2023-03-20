@@ -39,6 +39,4 @@ public class DragandDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         this.transform.position = touchPos;
     }
 
-
-
 }
