@@ -8,6 +8,7 @@ public class GoBackWorldScene : MonoBehaviour
     GameObject ManCharacter;
     GameObject MainCanvas;
     GameObject MainEvent;
+
     private bool isEntered = false;
     [SerializeField] RectTransform fader;
     void Start()
@@ -20,7 +21,7 @@ public class GoBackWorldScene : MonoBehaviour
     IEnumerator<object> GoWorldScene()
     {
 
-        ManCharacter.transform.position = new Vector3(-11.07f, -1.14f, -60.66f);
+        ManCharacter.transform.position = new Vector3(-13f,0f,-99f);
         string sceneName = "WorldScene";
 
         Scene currentScene = SceneManager.GetActiveScene();
