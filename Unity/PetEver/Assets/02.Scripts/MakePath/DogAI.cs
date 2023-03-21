@@ -157,6 +157,7 @@ public class DogAI : MonoBehaviour
             {
                 if (!meetOwner)
                 { 
+                    navMeshAgent.stoppingDistance = 10.0f;
                     trackingOwner = true;
                     arrived = false;
                 }
@@ -179,15 +180,17 @@ public class DogAI : MonoBehaviour
 
             else
             {
+                navMeshAgent.stoppingDistance = 3.0f;
+
                 switch (getCollider.collided_tag)
                 {
                     case ("Flower"): // enum value in 'GetColliderScript' (int -> 1)
                         {                       
                             navMeshAgent.SetDestination(getCollider.collided_object.transform.position);
                             collided_tag_number = 1;
-                            arrived = true;
                             break;
-                        }
+                                                       
+                        } 
 
                     case ("Butterfly"): // enum value in 'GetColliderScript' (int -> 2)
                         {
@@ -235,14 +238,22 @@ public class DogAI : MonoBehaviour
                 }
             }
         }
+
+        if (collided_tag_number == 1)
+        {
+            if (dogAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)
+            {
+                escapeCount = 1;
+                arrived = true; 
+            }
+        }
+
+
     }
 
     void VoiceButton()
     {
             voiceButton_bool = true;
     }
-    
-
-
 }
 
