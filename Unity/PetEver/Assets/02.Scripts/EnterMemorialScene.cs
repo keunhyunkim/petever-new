@@ -10,7 +10,7 @@ public class EnterMemorialScene : MonoBehaviour
     GameObject MainCanvas;
     GameObject MainEvent;
     private bool isEntered = false;
-   //private Vector3 m_currentDirection = Vector3.zero;
+    [SerializeField] RectTransform fader;
 
     void Start()
     {
@@ -54,7 +54,12 @@ public class EnterMemorialScene : MonoBehaviour
         {
             if (isEntered == false)
             {
-                StartCoroutine(LoadYourAsyncScene());
+                fader.gameObject.SetActive(true);
+                LeanTween.scale(fader, new Vector3(30, 30, 30), 0f);
+                LeanTween.scale(fader, new Vector3(1, 1, 1), 1.0f).setOnComplete(() =>
+                {
+                    StartCoroutine(LoadYourAsyncScene());
+                });
                 isEntered = true;
             }
         }

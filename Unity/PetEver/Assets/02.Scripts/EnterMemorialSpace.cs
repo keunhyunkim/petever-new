@@ -60,8 +60,6 @@ public class EnterMemorialSpace : MonoBehaviour
                 LeanTween.scale(fader, new Vector3(30, 30, 30), 0f);
                 LeanTween.scale(fader, new Vector3(1, 1, 1), 1.0f).setOnComplete(() =>
                 {
-                    
-                    fader.gameObject.SetActive(false);
                     StartCoroutine(LoadYourAsyncScene());
                 });
                 isEntered = true;
