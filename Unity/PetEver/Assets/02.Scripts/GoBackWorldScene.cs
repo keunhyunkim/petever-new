@@ -9,6 +9,7 @@ public class GoBackWorldScene : MonoBehaviour
     GameObject MainCanvas;
     GameObject MainEvent;
     private bool isEntered = false;
+    [SerializeField] RectTransform fader;
     void Start()
     {
         ManCharacter = GameObject.FindGameObjectWithTag("Owner");
@@ -18,34 +19,39 @@ public class GoBackWorldScene : MonoBehaviour
 
     IEnumerator<object> GoWorldScene()
     {
-        
+
         ManCharacter.transform.position = new Vector3(-11.07f, -1.14f, -60.66f);
         string sceneName = "WorldScene";
-        
+
         Scene currentScene = SceneManager.GetActiveScene();
-        
+
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
- 
+
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
-        
+
         SceneManager.MoveGameObjectToScene(ManCharacter, SceneManager.GetSceneByName(sceneName));
         SceneManager.MoveGameObjectToScene(MainEvent, SceneManager.GetSceneByName(sceneName));
         SceneManager.MoveGameObjectToScene(MainCanvas, SceneManager.GetSceneByName(sceneName));
         SceneManager.UnloadSceneAsync(currentScene);
-        
-       
+
+
     }
 
     private void OnCollisionEnter(Collision collision)
-    { 
-         if (collision.gameObject.tag == "Owner")
+    {
+        if (collision.gameObject.tag == "Owner")
         {
             if (isEntered == false)
             {
-                StartCoroutine(GoWorldScene());
+                fader.gameObject.SetActive(true);
+                LeanTween.scale(fader, new Vector3(30, 30, 30), 0f);
+                LeanTween.scale(fader, new Vector3(1, 1, 1), 1.0f).setOnComplete(() =>
+                {
+                    StartCoroutine(GoWorldScene());
+                });
                 isEntered = true;
             }
         }
