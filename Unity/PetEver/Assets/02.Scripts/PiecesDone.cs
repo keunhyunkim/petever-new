@@ -25,30 +25,38 @@ public class PiecesDone : MonoBehaviour
         ri = GameObject.Find("TempImg").GetComponent<RawImage>();
     }
 
+    private void SaveCreatedPicture(string path, byte[] bytes)
+    {
+        string filename = "petever.png";
+        File.WriteAllBytes(path + filename, bytes);
+    }
+
     private IEnumerator Screenshot(Action<Texture2D> onFinished)
     {
         yield return new WaitForEndOfFrame();
 
 
         // Set the ScreenShot Area
-        captureRect = captureArea.GetComponent<RectTransform>().rect;
-        captureWidth = (int)captureRect.width;
-        captureHeight = (int)captureRect.height;
-        var startX = captureArea.transform.position.x - captureWidth / 2;
-        var startY = captureArea.transform.position.y - captureHeight / 2;
+        // captureRect = captureArea.GetComponent<RectTransform>().rect;
+        // captureWidth = (int)captureRect.width;
+        // captureHeight = (int)captureRect.height;
+        // var startX = captureArea.transform.position.x - captureWidth / 2;
+        // var startY = captureArea.transform.position.y - captureHeight / 2;
 
         // Create Texture
-        Texture2D screenTex = new Texture2D(captureWidth, captureHeight, TextureFormat.RGB24, false);
+        Texture2D screenTex = new Texture2D(850, 850, TextureFormat.RGB24, false);
+        // Texture2D screenTex = new Texture2D(captureWidth, captureHeight, TextureFormat.RGB24, false);
 
-        Rect area = new Rect(startX, startY, captureWidth * 1000, captureHeight * 1000);
+        Rect area = new Rect(120, 830, 1080, 2340);
 
         // Read the current screen pixels
         screenTex.ReadPixels(area, 0, 0);
         screenTex.Apply();
 
-
         // Encode to byte[], and Read the Image
-        screenTex.LoadImage(screenTex.EncodeToPNG());
+        byte[] bytes = screenTex.EncodeToPNG();
+        screenTex.LoadImage(bytes);
+        SaveCreatedPicture("/storage/emulated/0/DCIM/petever.png", bytes);
         
         ri.texture = screenTex;
         ri.SetNativeSize();
