@@ -10,7 +10,7 @@ public class GoBackWorldScene : MonoBehaviour
     GameObject MainEvent;
 
     private bool isEntered = false;
-    [SerializeField] RectTransform fader;
+    RectTransform fader;
     void Start()
     {
         ManCharacter = GameObject.FindGameObjectWithTag("Owner");
