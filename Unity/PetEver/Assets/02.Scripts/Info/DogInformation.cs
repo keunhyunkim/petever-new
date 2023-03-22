@@ -15,7 +15,6 @@ public class DogInformation : MonoBehaviour
 
     void Start()
     {
-        GameObject canvas = null;
         dogInfoCanvas = GameObject.FindGameObjectWithTag("DogInfo");
         if (dogInfoCanvas == null)
         {

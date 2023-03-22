@@ -35,7 +35,7 @@ namespace BitBenderGames
 
         private Camera cam;
 
-        private Transform selectedPickableTransform;
+        // private Transform selectedPickableTransform;
         private Dictionary<Renderer, List<Color>> originalItemColorCache = new Dictionary<Renderer, List<Color>>();
 
         private void Awake()
@@ -209,7 +209,7 @@ namespace BitBenderGames
         public void OnPickableTransformDeselected(Transform pickableTransform)
         {
             pickableTransform.localScale = Vector3.one;
-            selectedPickableTransform = null;
+            // selectedPickableTransform = null;
             RevertToOriginalItemColor(pickableTransform);
         }
 
