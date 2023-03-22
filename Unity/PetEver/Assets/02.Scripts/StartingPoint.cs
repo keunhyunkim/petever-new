@@ -10,7 +10,7 @@ public class StartingPoint : MonoBehaviour
     void Awake()
     {
         Player = GameObject.FindGameObjectWithTag("Owner");
-        Player.transform.position = gameObject.transform.position;
+        Player.transform.position = gameObject.transform.position + new Vector3(0f, -2.0f, 4f);
 
     }
 
