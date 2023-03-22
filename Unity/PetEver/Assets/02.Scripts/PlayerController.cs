@@ -31,8 +31,8 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
 
-        Player.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        Player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        // Player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        // Player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
         if (isForest != true) {
             mov_x = inputValue.joystick_x;
