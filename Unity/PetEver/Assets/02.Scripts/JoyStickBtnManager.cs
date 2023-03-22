@@ -156,7 +156,7 @@ public class JoyStickBtnManager : MonoBehaviour
     public void OnShowPhotoClicked()
     {
 
-        GameObject frameGo = GetChildWithName(this.gameObject, "Plane/FrameImageCanvas/PictureImage");
+        GameObject frameGo = GetChildWithName(this.gameObject, "Plane/FrameImageCanvas/Mask Image/Image");
         Image uiImage = frameGo.GetComponent<Image>();
 
         GameObject panelGo = GetChildWithName(photoPanel.gameObject, "Background/Mask Image/MyImage");
