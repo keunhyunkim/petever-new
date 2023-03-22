@@ -18,7 +18,7 @@ public class NewpageUIManager : MonoBehaviour
     public Button ImageBtn, StickerBtn, TextBtn, CompleteBtn, XBtn;
     public Toggle UploadToggle;
     public static GameObject UserInputTextBundle, StickerInventory, rawImageText;
-    public Transform[] trashCan;
+    public static Transform[] trashCan;
 
     private Vector3 createPoint, stickercreatePoint;
 
@@ -124,7 +124,7 @@ public class NewpageUIManager : MonoBehaviour
             }
     }
 
-    public void CloseUI()
+    public static void CloseUI()
     {
         trashCan = GameObject.Find("MemorialSceneCanvas").GetComponentsInChildren<Transform>();    
 
