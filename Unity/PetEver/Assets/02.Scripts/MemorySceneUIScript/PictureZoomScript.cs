@@ -23,7 +23,7 @@ public class PictureZoomScript : MonoBehaviour
 
     void OnTriggerEnter(Collider coll) 
     {
-        if (coll.gameObject);
+        // if (coll.gameObject);
     }
 
 
