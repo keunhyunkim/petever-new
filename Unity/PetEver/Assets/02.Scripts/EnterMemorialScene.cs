@@ -17,6 +17,8 @@ public class EnterMemorialScene : MonoBehaviour
         ManCharacter = GameObject.FindGameObjectWithTag("Owner");
         MainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
         MainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
+        fader = GameObject.Find("FadeCanvas").transform.GetChild(0).GetComponent<RectTransform>();
+
     }
 
     private void Awake()
