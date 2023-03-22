@@ -44,10 +44,7 @@ public class GuideUIControl : MonoBehaviour
     public void turnpage()
     {
         circlePos += 1f;
-        GameObject clickObject = EventSystem.current.currentSelectedGameObject;
-
-        Debug.Log(circlePos);
-        
+        GameObject clickObject = EventSystem.current.currentSelectedGameObject;        
 
         if (clickObject.name == "skipCompleteBtn")
         {

@@ -16,12 +16,13 @@ public class GoBackWorldScene : MonoBehaviour
         ManCharacter = GameObject.FindGameObjectWithTag("Owner");
         MainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
         MainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
+        fader = GameObject.Find("MemorialSceneCanvas").transform.GetChild(1).GetComponent<RectTransform>();
     }
 
     IEnumerator<object> GoWorldScene()
     {
 
-        ManCharacter.transform.position = new Vector3(-13f,0f,-99f);
+        ManCharacter.transform.position = new Vector3(-28.7f,0f,-38.5f);
         string sceneName = "WorldScene";
 
         Scene currentScene = SceneManager.GetActiveScene();
