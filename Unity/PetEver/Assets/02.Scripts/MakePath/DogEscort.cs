@@ -24,10 +24,10 @@ public class DogEscort : MonoBehaviour
         escortPointNum = 0;
 
 
-        escortPoint = new Vector3[3]; 
+        escortPoint = new Vector3[2]; 
         escortPoint[0] = GameObject.Find("checkPoint1").GetComponent<Transform>().position;
         escortPoint[1] = GameObject.Find("checkPoint2").GetComponent<Transform>().position;
-        escortPoint[2] = GameObject.Find("checkPoint3").GetComponent<Transform>().position;
+       // escortPoint[2] = GameObject.Find("checkPoint3").GetComponent<Transform>().position;
         //owner = GameObject.FindGameObjectWithTag("Owner");
 
 
