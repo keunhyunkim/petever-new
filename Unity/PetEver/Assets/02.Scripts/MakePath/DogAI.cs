@@ -15,6 +15,7 @@ public class DogAI : MonoBehaviour
     private NavMeshAgent navMeshAgent; // assign navmeshagent component
     private Animator dogAnimator;
     private Button voiceButton; 
+    public static GameObject DogView;
 
     public GetColliderScript getCollider; 
 
@@ -98,6 +99,8 @@ public class DogAI : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         owner = GameObject.FindGameObjectWithTag("Owner");
 
+        DogView = GameObject.FindGameObjectWithTag("UICanvas").transform.GetChild(8).gameObject;
+        //DogView = GameObject.FindGameObjectWithTag("DogView");
 
         voiceButton.onClick.AddListener(delegate { VoiceButton(); });
         StartCoroutine(UpdatePath());
@@ -157,6 +160,7 @@ public class DogAI : MonoBehaviour
             {
                 if (!meetOwner)
                 { 
+                    DogView.SetActive(true);
                     navMeshAgent.stoppingDistance = 10.0f;
                     trackingOwner = true;
                     arrived = false;
@@ -234,6 +238,7 @@ public class DogAI : MonoBehaviour
                     arrived = true;
                     escapeCount = 0;
                     navMeshAgent.isStopped = false;
+                    DogView.SetActive(false);
 
                 }
             }
