@@ -4956,7 +4956,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2e0fd0404d328b5478f9e83521044d93, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e0fd0404d328b5478f9e83521044d93, type: 3}
       propertyPath: m_LocalScale.x
@@ -14655,7 +14655,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2bef35d98b4ef3847b2f40d07bce2ab1, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2bef35d98b4ef3847b2f40d07bce2ab1, type: 3}
       propertyPath: m_LocalScale.x
@@ -21507,7 +21507,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 8.11e-43, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 9.1835e-41, y: NaN, z: 9.78048e-39, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -50877,7 +50877,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1654160074}
   - component: {fileID: 1654160073}
-  - component: {fileID: 1654160072}
   - component: {fileID: 1654160071}
   - component: {fileID: 1654160070}
   - component: {fileID: 1654160069}
@@ -51154,14 +51153,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &1654160072
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1654160066}
-  m_Enabled: 1
 --- !u!20 &1654160073
 Camera:
   m_ObjectHideFlags: 0
@@ -51219,7 +51210,7 @@ Transform:
   m_Children:
   - {fileID: 569230253}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 45.742, y: 12.105, z: -3.301}
 --- !u!114 &1654160075
 MonoBehaviour:
