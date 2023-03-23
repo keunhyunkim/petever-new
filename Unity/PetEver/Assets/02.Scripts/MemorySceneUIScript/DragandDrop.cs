@@ -35,8 +35,14 @@ public class DragandDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        this.transform.position = touchPos;
+
+        if (gameObject.name == "UserInputText")
+        {
+            gameObject.GetComponent<TextCtrlScript>().LockInput();
+        }
+        //Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //this.transform.position = touchPos;
+
     }
 
 }
