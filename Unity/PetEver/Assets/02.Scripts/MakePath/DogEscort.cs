@@ -72,7 +72,6 @@ public class DogEscort : MonoBehaviour
         emotionBubble.SetActive(false);
         questionMark.SetActive(false);
 
-
         while(true)
         {
             if (welcomeEscort)
