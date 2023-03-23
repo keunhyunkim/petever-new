@@ -146,7 +146,7 @@ public class NewpageUIManager : MonoBehaviour
 
     public void GetSticker()
     {
-        stickercreatePoint = createPoint + new Vector3(0f, 468f, 0f);
+        stickercreatePoint = createPoint + new Vector3(0f, 0f, 0f);
         StickerInventory = Resources.Load<GameObject>("Prefabs/StickerInventory");
         StickerInventory = Instantiate(StickerInventory, stickercreatePoint, Quaternion.identity, GameObject.Find("MemorialSceneCanvas").GetComponent<RectTransform>());
     }
@@ -186,12 +186,12 @@ public class NewpageUIManager : MonoBehaviour
 
         var tempImage = File.ReadAllBytes(imagePath);
 
-        Texture2D texture = new Texture2D(1080, 1440);
+        Texture2D texture = new Texture2D(846, 1003);
         texture.LoadImage(tempImage); // transfer byte array to texture 2D
 
         rawImage.texture = texture;
         rawImage.SetNativeSize();
-        ImageSizeSetting(rawImage, 1130, 1376);
+        ImageSizeSetting(rawImage, 846, 1003);
         Destroy(rawImageText);
 
         yield return null;
