@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnterHealingForest : MonoBehaviour
 {
-    public static bool isHFEntered = false;
+    // public static bool isHFEntered = false;
     GameObject HealingForestStartPoint;
 
     public GameObject guidePrefab;
@@ -30,13 +30,13 @@ public class EnterHealingForest : MonoBehaviour
     {
         if (collision.gameObject.tag == "Owner")
         {
-            if (isHFEntered == false) {
+            // if (isHFEntered == false) {
                 //When try to enter Healing-Forest, move the position
                 collision.transform.position = HealingForestStartPoint.transform.position;
-                isHFEntered = true;
+                // isHFEntered = true;
 
                 showHealingForestGuide();
-            }
+            // }
         }
 
     }

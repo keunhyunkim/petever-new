@@ -21,11 +21,11 @@ public class ExitHealingForest : MonoBehaviour
     {
         if (collision.gameObject.tag == "Owner")
         {
-            if (EnterHealingForest.isHFEntered == true)
-            {
+            // if (EnterHealingForest.isHFEntered == true)
+            // {
                 collision.transform.position = VillageBackPoint.transform.position;
-                EnterHealingForest.isHFEntered = false;
-            }
+                // EnterHealingForest.isHFEntered = false;
+            // }
         }
 
     }
