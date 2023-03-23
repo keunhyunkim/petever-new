@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class JoyStickBtnManager : MonoBehaviour
 {
     public List<GameObject> Buttons { get; set; } = new List<GameObject>();
-    string resourceUrl = "Prefabs/Buttons/";
+    string btnResourceUrl = "Prefabs/Buttons/";
+    string resourceUrl = "Prefabs/";
+    GameObject owner;
+    GameObject wallArea;
     GameObject joyStickBtns;
 
     CanvasGroup stickyNoteInputPanel;
@@ -18,6 +21,8 @@ public class JoyStickBtnManager : MonoBehaviour
         joyStickBtns = GameObject.Find("JoystickBtns");
         stickyNoteInputPanel = GameObject.Find("StickyNotePanel").GetComponent<CanvasGroup>();
         photoPanel = GameObject.Find("PhotoPanel").GetComponent<CanvasGroup>();
+        wallArea = GameObject.Find("Wall Area");
+        owner = GameObject.FindGameObjectWithTag("Owner");
     }
     // Start is called before the first frame update
     void Start()
@@ -30,6 +35,20 @@ public class JoyStickBtnManager : MonoBehaviour
     {
 
     }
+    void candleAndFlowerBtns()
+    {
+        GameObject candleBtn = addIcon("CandleBtn");
+        candleBtn.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            OnCandleBtnClicked();
+        });
+        GameObject flowerBtn = addIcon("FlowerBtn");
+        flowerBtn.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            OnFlowerBtnClicked();
+        });
+    }
+
 
     public void showWallIcons()
     {
@@ -38,13 +57,11 @@ public class JoyStickBtnManager : MonoBehaviour
         {
             OnStickyNoteInputOpenClicked();
         });
-        GameObject candleBtn = addIcon("CandleBtn");
-        GameObject flowerBtn = addIcon("FlowerBtn");
+        candleAndFlowerBtns();
     }
     public void showTreeIcons()
     {
-        addIcon("CandleBtn");
-        addIcon("FlowerBtn");
+        candleAndFlowerBtns();
     }
     public void showPhotoIcons()
     {
@@ -53,8 +70,7 @@ public class JoyStickBtnManager : MonoBehaviour
         {
             OnShowPhotoClicked();
         });
-        addIcon("CandleBtn");
-        addIcon("FlowerBtn");
+        candleAndFlowerBtns();
     }
 
     void deleteIcons()
@@ -73,7 +89,7 @@ public class JoyStickBtnManager : MonoBehaviour
     }
     GameObject addIcon(string btnName)
     {
-        GameObject btnPrefab = Resources.Load<GameObject>(resourceUrl + btnName);
+        GameObject btnPrefab = Resources.Load<GameObject>(btnResourceUrl + btnName);
         GameObject btn = Instantiate(btnPrefab, btnPrefab.transform.position, btnPrefab.transform.rotation) as GameObject;
 
 
@@ -152,6 +168,35 @@ public class JoyStickBtnManager : MonoBehaviour
     public void OnStickyNoteInputOpenClicked()
     {
         showCanvasGroup(stickyNoteInputPanel);
+    }
+
+
+    public void OnCandleBtnClicked()
+    {
+        GameObject candlePrefab = Resources.Load<GameObject>(resourceUrl + "candle_1");
+        Vector3 pos =  owner.transform.localPosition + (owner.transform.forward * 3);
+        GameObject candle = Instantiate(candlePrefab, pos, candlePrefab.transform.rotation) as GameObject;
+
+        Transform candleParent = TransformExtension.FindChildByRecursive(wallArea.transform, "Candles");
+        if (candleParent != null)
+        {
+            candle.transform.SetParent(candleParent, false);
+        }
+    }
+    public void OnFlowerBtnClicked()
+    {
+        GameObject flowerPrefab = Resources.Load<GameObject>(resourceUrl + "flower_1");
+       
+        Vector3 pos =  owner.transform.localPosition + (owner.transform.forward * 3);
+        GameObject flower = Instantiate(flowerPrefab, pos, flowerPrefab.transform.rotation) as GameObject;
+
+        Transform flowerParent = TransformExtension.FindChildByRecursive(wallArea.transform, "Flowers");
+
+        if (flowerParent != null)
+        {
+            flower.transform.SetParent(flowerParent, false);
+        }
+
     }
     public void OnShowPhotoClicked()
     {
