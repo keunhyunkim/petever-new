@@ -12,10 +12,10 @@ public class TextCtrlScript : MonoBehaviour, IPointerClickHandler, IPointerDownH
     private GameObject UserInputText;
     private TMP_InputField inputField;
 
-    private float durationThreshold = 1f;
-    private float timePressStarted; 
+    private float durationThreshold = 0.2f;
+    private float timePressed; 
     private bool isPointerDown = false;
-    private bool longPressTriggered = false; 
+    //private bool longPressTriggered = false; 
 
     // Start is called before the first frame update
 
@@ -26,7 +26,7 @@ public class TextCtrlScript : MonoBehaviour, IPointerClickHandler, IPointerDownH
         UserInputText = GameObject.Find("UserInputText");
         inputField = gameObject.GetComponent<TMP_InputField>();
 
-        inputField.onSubmit.AddListener(delegate{ LockInput(); });
+        inputField.onEndEdit.AddListener(delegate{ CompleteWriting(); });
 
 
     }
@@ -34,14 +34,17 @@ public class TextCtrlScript : MonoBehaviour, IPointerClickHandler, IPointerDownH
     // Update is called once per frame
     void Update()
     {
-        if(isPointerDown && !longPressTriggered)
+
+       // Debug.Log(inputField.readOnly);
+        if(isPointerDown)
         {
-            if(Time.time - timePressStarted > durationThreshold)
-            {
-                longPressTriggered = true;
-                CompleteWriting();
-            }
+            timePressed = Time.deltaTime;                
         }
+        else
+        {
+            timePressed = 0;
+        }
+
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -51,31 +54,35 @@ public class TextCtrlScript : MonoBehaviour, IPointerClickHandler, IPointerDownH
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        timePressStarted = Time.time;
         isPointerDown = true;
-        longPressTriggered = false; 
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         isPointerDown = false;
+
+        if(timePressed <= durationThreshold)
+        {
+            inputField.readOnly = false;
+        }
+        else
+        {
+            inputField.readOnly = true;
+        }
+
     }
 
     private void CompleteWriting()
     {
-
+        LockInput();
         Destroy(UserInputTextBGD);
         gameObject.SetActive(true);
-        LockInput();
     }
 
 
-    private void LockInput()
+    public void LockInput()
     {
-        if (inputField.readOnly == true)
-            inputField.readOnly = false;
-        else if (inputField.readOnly == false)
-            inputField.readOnly = true;        
+        inputField.readOnly = true;
     }
 }
 
