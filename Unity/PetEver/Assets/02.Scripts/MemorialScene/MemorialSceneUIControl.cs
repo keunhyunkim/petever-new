@@ -30,8 +30,10 @@ public class MemorialSceneUIControl : MonoBehaviour
     }
     public void OnCompleteClicked()
     {
-        // TODO :  save input text into server..
+
         createPostIt();
+        // TODO :  save input text into server..
+        stickyNoteInput.text = "";
         hideCanvasGroup(stickyNoteInputPanel);
     }
 
