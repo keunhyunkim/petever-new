@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GoBackWorldScenefromMemorialScene : MonoBehaviour
 {
     GameObject ManCharacter;
     GameObject MainCanvas;
     GameObject MainEvent;
+    GameObject noticeText;
 
     private bool isEntered = false;
     [SerializeField] RectTransform fader;
@@ -17,13 +19,22 @@ public class GoBackWorldScenefromMemorialScene : MonoBehaviour
         MainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
         MainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
         fader = GameObject.Find("MemorialSceneCanvas").transform.GetChild(1).GetComponent<RectTransform>();
+        noticeText = GameObject.FindGameObjectWithTag("NoticeText");
     }
 
     IEnumerator<object> GoWorldScene()
     {
 
-        ManCharacter.transform.position = new Vector3(-28.7f,0f,-38.5f);
+        ManCharacter.transform.position = new Vector3(-28.7f, 0f, -38.5f);
         string sceneName = "WorldScene";
+
+        TextMeshProUGUI mText = noticeText.GetComponent<TextMeshProUGUI>();
+        if (mText != null)
+        {
+            {
+                mText.text = "지금 탄이의 추모식이 열리고 있어요";
+            }
+        }
 
         Scene currentScene = SceneManager.GetActiveScene();
 
