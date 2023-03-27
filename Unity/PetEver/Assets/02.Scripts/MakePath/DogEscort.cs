@@ -8,7 +8,7 @@ public class DogEscort : MonoBehaviour
     private NavMeshAgent navMeshAgent; 
     public static bool welcomeEscort;
     public static bool waitOwner;
-    private Vector3[] escortPoint; 
+    private Vector3[] escortPoint; // checkpoint when dog escorts Owner. if you want to add or delete checkpoint, modify 1.length of escortPoint array 2.number of checkPoint objects in WorldScene 
     private GameObject owner, emotionBubble, questionMark;
     private float dis_Owner2Dog; // distance between owner and dog
     private float dis_Owner2Point; // distance between owner and point
@@ -24,9 +24,14 @@ public class DogEscort : MonoBehaviour
         escortPointNum = 0;
 
 
-        escortPoint = new Vector3[2]; 
+        escortPoint = new Vector3[6]; 
         escortPoint[0] = GameObject.Find("checkPoint1").GetComponent<Transform>().position;
         escortPoint[1] = GameObject.Find("checkPoint2").GetComponent<Transform>().position;
+        escortPoint[2] = GameObject.Find("checkPoint3").GetComponent<Transform>().position;
+        escortPoint[3] = GameObject.Find("checkPoint4").GetComponent<Transform>().position;
+        escortPoint[4] = GameObject.Find("checkPoint5").GetComponent<Transform>().position;
+        escortPoint[5] = GameObject.Find("checkPoint6").GetComponent<Transform>().position;
+
        // escortPoint[2] = GameObject.Find("checkPoint3").GetComponent<Transform>().position;
         //owner = GameObject.FindGameObjectWithTag("Owner");
 
@@ -43,8 +48,8 @@ public class DogEscort : MonoBehaviour
 
         // when dog starts to escort, make line it's path
         lineRenderer = gameObject.GetComponent<LineRenderer>();
-        lineRenderer.startWidth = lineRenderer.endWidth = 0.5f;
-        lineRenderer.material.color = Color.blue;
+        //lineRenderer.startWidth = lineRenderer.endWidth = 0.5f;
+        //lineRenderer.material.color = Color.blue;
         lineRenderer.enabled = false;
 
         
@@ -79,8 +84,10 @@ public class DogEscort : MonoBehaviour
                 lineRenderer.enabled = true;    
                 navMeshAgent.SetDestination(escortPoint[escortPointNum]);
                 lineRenderer.SetPosition(0,gameObject.transform.position);
+                navMeshAgent.stoppingDistance = 3.0f;
 
-                if (dis_Owner2Dog > 12f)
+
+                if (dis_Owner2Dog > 10f)
                 {
                     waitOwner = true;
                     navMeshAgent.isStopped = true;
@@ -105,7 +112,7 @@ public class DogEscort : MonoBehaviour
                 }
 
 
-                if (dis_Owner2Point < 4f)
+                if (dis_Owner2Point < 7f)
                 {
                     if (escortPointNum < (escortPoint.Length-1))
                     {
@@ -115,6 +122,10 @@ public class DogEscort : MonoBehaviour
                     else
                     {
                         welcomeEscort = false;
+                        lineRenderer.enabled = false;
+                        DogAI.escortButton.SetActive(false);                           
+                        navMeshAgent.stoppingDistance = 10.0f;
+
                     }
                 }
             }
