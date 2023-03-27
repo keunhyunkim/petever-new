@@ -12,7 +12,7 @@ public class PictureZoomScript : MonoBehaviour
     void Start()
     {
         
-        refFrame = GameObject.Find("Frame1").GetComponent<Renderer>().material;
+        // refFrame = GameObject.Find("Frame1").GetComponent<Renderer>().material;
     }
 
     // Update is called once per frame

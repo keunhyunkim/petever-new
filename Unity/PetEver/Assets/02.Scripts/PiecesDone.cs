@@ -19,7 +19,7 @@ public class PiecesDone : MonoBehaviour
     void Start()
     {
         captureArea = GameObject.Find("CaptureArea");
-        picFrame = GameObject.Find("Frame/FrameForNew/CreatedPannel/MemorialSceneCanvas/CreatedImg");
+        picFrame = GameObject.Find("Frame/CreatedPannel/MemorialSceneCanvas/CreatedImg");
         displayImg = picFrame.GetComponent<RawImage>();
         displayImg.enabled = false;
         ri = GameObject.Find("TempImg").GetComponent<RawImage>();
