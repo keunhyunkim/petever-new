@@ -84,6 +84,7 @@ public class DogEscort : MonoBehaviour
                 lineRenderer.enabled = true;    
                 navMeshAgent.SetDestination(escortPoint[escortPointNum]);
                 lineRenderer.SetPosition(0,gameObject.transform.position);
+
                 navMeshAgent.stoppingDistance = 3.0f;
 
 
