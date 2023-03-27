@@ -8,11 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: dogEscortLine
-  m_Shader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _EMISSION
-  - _FRESNELHIGHLIGHTS_ON
+  m_Shader: {fileID: 4800000, guid: 7a06e458000b70b4daf220f2785b9711, type: 3}
+  m_ValidKeywords:
   - _MK_ARTISTIC_ANIMATION_STUTTER
   - _MK_DETAIL_BLEND_MIX
   - _MK_EMISSION
@@ -22,14 +19,18 @@ Material:
   - _MK_RECEIVE_SHADOWS
   - _MK_SPECULAR_ISOTROPIC
   - _MK_WRAPPED_DIFFUSE
+  m_InvalidKeywords:
+  - _EMISSION
+  - _FRESNELHIGHLIGHTS_ON
   - _RECEIVESHADOWS_ON
   - _WRAPPEDLIGHTING_ON
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap:
     IGNOREPROJECTOR: False
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -206,8 +207,12 @@ Material:
     - _BlendSrc: 1
     - _Brightness: 1
     - _BumpScale: 1
+    - _CameraFade: 0
+    - _CameraFadeFarDistance: 2
+    - _CameraFadeNearDistance: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _ColorBlend: 0
     - _ColorGrading: 0
     - _Contrast: 1
     - _Cull: 2
@@ -229,6 +234,7 @@ Material:
     - _DrawnMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 2
+    - _Flipbook: 0
     - _FresnelHighlights: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -263,6 +269,7 @@ Material:
     - _OutlineNoise: 0
     - _OutlineSize: 5
     - _Parallax: 0.005
+    - _ParticlesTab: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RenderFace: 2
@@ -276,6 +283,9 @@ Material:
     - _SketchMapScale: 1
     - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
+    - _SoftFade: 0
+    - _SoftFadeFarDistance: 1
+    - _SoftFadeNearDistance: 0
     - _Specular: 1
     - _SpecularHighlights: 1
     - _SpecularIntensity: 1
@@ -302,7 +312,7 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.6792453, g: 0.24029905, b: 0.24029905, a: 1}
+    - _AlbedoColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
