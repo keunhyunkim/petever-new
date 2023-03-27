@@ -16,7 +16,8 @@ public class DogAI : MonoBehaviour
     private Animator dogAnimator;
     private Button voiceButton; 
     public static GameObject DogView;
-
+    public static GameObject escortButtonPrefab, escortButton;
+    public GameObject escortButtonPos;
     public GetColliderScript getCollider; 
 
     private float dog_normalSpeed = 3.5f;
@@ -95,6 +96,7 @@ public class DogAI : MonoBehaviour
         dogAnimator.SetFloat("cycleOffset", Random.Range(0f,1/6f));
         dogAnimator.SetFloat("walkingSpeed", 1/(DogSummonScript.dogRandomScale)*1.5f);
         voiceButton = GameObject.Find("VoiceButton").GetComponent<Button>();
+        escortButtonPos = GameObject.Find("escortButtonPos");
 
         navMeshAgent = GetComponent<NavMeshAgent>();
         owner = GameObject.FindGameObjectWithTag("Owner");
@@ -103,6 +105,8 @@ public class DogAI : MonoBehaviour
         //DogView = GameObject.FindGameObjectWithTag("DogView");
 
         voiceButton.onClick.AddListener(delegate { VoiceButton(); });
+        //escortButton.onClick.AddListener(delegate { EscortButton(); });
+
         StartCoroutine(UpdatePath());
     }
 
@@ -170,7 +174,7 @@ public class DogAI : MonoBehaviour
                 {
                     trackingOwner = false;
                     arrived = true;
-                    DogEscort.welcomeEscort = true; 
+                    //DogEscort.welcomeEscort = true; 
                 }
                 voiceButton_bool = false; 
             }
@@ -190,8 +194,8 @@ public class DogAI : MonoBehaviour
                 {
                     case ("Flower"): // enum value in 'GetColliderScript' (int -> 1)
                         {                       
-                            navMeshAgent.SetDestination(getCollider.collided_object.transform.position);
-                            collided_tag_number = 1;
+                           // navMeshAgent.SetDestination(getCollider.collided_object.transform.position);
+                           // collided_tag_number = 1;
                             break;
                                                        
                         } 
@@ -240,6 +244,22 @@ public class DogAI : MonoBehaviour
                     navMeshAgent.isStopped = false;
                     DogView.SetActive(false);
 
+
+                    if (escortButtonPrefab == null)
+                    {
+                        escortButtonPrefab = Resources.Load<GameObject>("Prefabs/Buttons/EscortButton");
+                        escortButton = Instantiate(escortButtonPrefab, escortButtonPos.transform.position, escortButtonPos.transform.rotation);
+                        escortButton.transform.parent = GameObject.FindGameObjectWithTag("UICanvas").transform;
+                        escortButton.transform.localScale = new Vector3(1f,1f,1f);
+
+
+                    }
+                    else
+                    {
+                        escortButton.SetActive(true);                           
+                    }
+ 
+                    escortButton.GetComponent<Button>().onClick.AddListener(() => { EscortButton(); });
                 }
             }
         }
@@ -258,7 +278,12 @@ public class DogAI : MonoBehaviour
 
     void VoiceButton()
     {
-            voiceButton_bool = true;
+        voiceButton_bool = true;
+    }
+
+    void EscortButton()
+    {
+        DogEscort.welcomeEscort = true;
     }
 }
 
