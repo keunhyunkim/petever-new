@@ -128,8 +128,7 @@ public class DogEscort : MonoBehaviour
                     else
                     {
                         welcomeEscort = false;
-                        lineRenderer.enabled = false;
-                        DogAI.escortButton.SetActive(false);                           
+                        lineRenderer.enabled = false;                   
                         navMeshAgent.stoppingDistance = 10.0f;
 
                     }
