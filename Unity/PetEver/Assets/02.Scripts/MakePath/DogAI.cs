@@ -115,7 +115,7 @@ public class DogAI : MonoBehaviour
         timer += Time.deltaTime;
         DogAnimation();
 
-        if (!gameObject.CompareTag("NPC") && (DogEscort.welcomeEscort == false))
+        if (!gameObject.CompareTag("DogNPC") && (DogEscort.welcomeEscort == false))
         {
             Tracking();
         }
@@ -132,7 +132,7 @@ public class DogAI : MonoBehaviour
     {
         while (true)
         {
-            if (!DogEscort.welcomeEscort || gameObject.CompareTag("NPC"))
+            if (!DogEscort.welcomeEscort || gameObject.CompareTag("DogNPC"))
             {
                 if (arrived && !trackingOwner)
                 {

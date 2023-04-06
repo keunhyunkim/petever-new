@@ -22037,7 +22037,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 1.7757e-41, z: NaN, w: -1.4172856e+10}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -26886,7 +26886,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 864335085}
-  - component: {fileID: 864335086}
   - component: {fileID: 864335084}
   - component: {fileID: 864335083}
   - component: {fileID: 864335082}
@@ -26990,19 +26989,6 @@ Transform:
   m_Father: {fileID: 741692793}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &864335086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 864335080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7e39542b58ac894eaaf45efdb2a4e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dogInfoCG: {fileID: 744720040122711436, guid: a4b168e251923cd47b56168e331a082b, type: 3}
 --- !u!1 &869734718
 GameObject:
   m_ObjectHideFlags: 0
@@ -48575,7 +48561,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1555501071}
-  - component: {fileID: 1555501072}
   - component: {fileID: 1555501070}
   - component: {fileID: 1555501069}
   - component: {fileID: 1555501068}
@@ -48679,19 +48664,6 @@ Transform:
   m_Father: {fileID: 741692793}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1555501072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1555501066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7e39542b58ac894eaaf45efdb2a4e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dogInfoCG: {fileID: 0}
 --- !u!1001 &1557609315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62355,7 +62327,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1955690386}
-  - component: {fileID: 1955690387}
   - component: {fileID: 1955690385}
   - component: {fileID: 1955690384}
   - component: {fileID: 1955690383}
@@ -62459,19 +62430,6 @@ Transform:
   m_Father: {fileID: 741692793}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1955690387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1955690381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7e39542b58ac894eaaf45efdb2a4e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dogInfoCG: {fileID: 0}
 --- !u!1 &1957120515
 GameObject:
   m_ObjectHideFlags: 0
@@ -65103,7 +65061,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2045822217}
-  - component: {fileID: 2045822218}
   - component: {fileID: 2045822216}
   - component: {fileID: 2045822215}
   - component: {fileID: 2045822214}
@@ -65207,19 +65164,6 @@ Transform:
   m_Father: {fileID: 741692793}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2045822218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2045822212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7e39542b58ac894eaaf45efdb2a4e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dogInfoCG: {fileID: 0}
 --- !u!1001 &2047311309
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68278,7 +68222,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2139541483}
-  - component: {fileID: 2139541485}
   - component: {fileID: 2139541482}
   - component: {fileID: 2139541481}
   - component: {fileID: 2139541484}
@@ -68382,19 +68325,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dogNPC: {fileID: 0}
---- !u!114 &2139541485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2139541479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7e39542b58ac894eaaf45efdb2a4e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dogInfoCG: {fileID: 0}
 --- !u!1 &2142071529
 GameObject:
   m_ObjectHideFlags: 0

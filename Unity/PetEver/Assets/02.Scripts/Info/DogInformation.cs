@@ -83,7 +83,7 @@ public class DogInformation : MonoBehaviour
             if(Physics.Raycast(ray, out hit))
             {
                 // 어떤 오브젝트인지 로그를 찍습니다.
-                if (hit.collider.tag == "NPC" || hit.collider.tag == "OwnerDog") {
+                if (hit.collider.tag == "DogNPC" || hit.collider.tag == "OwnerDog") {
                     controlDogInfoCG(true, hit.collider);
                 }
             }
