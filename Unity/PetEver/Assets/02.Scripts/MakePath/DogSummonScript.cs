@@ -16,8 +16,6 @@ public class DogSummonScript : MonoBehaviour
     {
 
         dogSpecies = gameObject.name.Split('_');
-        prefabName = "Prefabs/" + dogSpecies[1];
-        dogNPC = Resources.Load<GameObject>(prefabName);
 
 
         if (dogSpecies[1] == "Bichon")
