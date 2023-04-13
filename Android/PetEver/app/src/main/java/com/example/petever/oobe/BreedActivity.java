@@ -91,6 +91,8 @@ public class BreedActivity extends AppCompatActivity {
                 // After extracting the color, launch the unity
                 Intent intent = new Intent(this, UnityPlayerActivity.class);
                 intent.putExtra("breed", breed);
+                intent.putExtra("section1Color", section1Color);
+                intent.putExtra("section2Color", section2Color);
                 petName = pf.getString("PetName", "NoName");
                 petRelationship = pf.getString("PetRelationship", "NoRelationship");
                 intent.putExtra("petname", petName);
