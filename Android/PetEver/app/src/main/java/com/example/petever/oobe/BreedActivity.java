@@ -71,6 +71,20 @@ public class BreedActivity extends AppCompatActivity {
         processView();
     }
 
+    private void intentUnity()
+    {
+        // After extracting the color, launch the unity
+        Intent intent = new Intent(this, UnityPlayerActivity.class);
+        intent.putExtra("breed", breed);
+        intent.putExtra("section1Color", section1Color);
+        intent.putExtra("section2Color", section2Color);
+        petName = pf.getString("PetName", "NoName");
+        petRelationship = pf.getString("PetRelationship", "NoRelationship");
+        intent.putExtra("petname", petName);
+        intent.putExtra("petrelationship", petRelationship);
+        startActivity(intent);
+    }
+
 
     private void initView() {
         btnCharacter = findViewById(R.id.btn_character);
@@ -81,23 +95,12 @@ public class BreedActivity extends AppCompatActivity {
             finish();
         });
         btnCharacter.setOnClickListener(view -> {
-            if (Breed.get(breed).getMLCode() >= 3) {
+            if (Breed.get(breed).getMLCode() >= 10) {
                 Toast.makeText(this, "Not Support T.T",
                         Toast.LENGTH_SHORT).show();
             } else {
                 // Send the image to Server, Server will give the breed and color
-                sendImageToServer(fileUri);
-
-                // After extracting the color, launch the unity
-                Intent intent = new Intent(this, UnityPlayerActivity.class);
-                intent.putExtra("breed", breed);
-                intent.putExtra("section1Color", section1Color);
-                intent.putExtra("section2Color", section2Color);
-                petName = pf.getString("PetName", "NoName");
-                petRelationship = pf.getString("PetRelationship", "NoRelationship");
-                intent.putExtra("petname", petName);
-                intent.putExtra("petrelationship", petRelationship);
-                startActivity(intent);
+                analyzeImgNmkCharacter(fileUri);
             }
         });
     }
@@ -130,7 +133,8 @@ public class BreedActivity extends AppCompatActivity {
         }
     }
 
-    private void sendImageToServer(Uri imageUri) {
+    private void analyzeImgNmkCharacter(Uri imageUri) {
+        // Send the image to Server
         // timeout setting
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
                 .connectTimeout(30, TimeUnit.SECONDS)
@@ -172,6 +176,9 @@ public class BreedActivity extends AppCompatActivity {
                                     + "Section 1: " + section1Color + "\n"
                                     + "Section 2: " + section2Color;
                             Log.d("RETROFIT", toastMessage);
+
+                            //Suceess to analyze the image, create the character based on the analyze result
+                            intentUnity();
                         } else {
                             Log.d("RETROFIT", message);
                         }
