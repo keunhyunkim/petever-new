@@ -51,7 +51,7 @@ public class WalkForest : MonoBehaviour
         manLookAt.transform.RotateAround(Target.position, Vector3.up, forestWalkSpeed * Time.deltaTime);
         manCharacter.transform.RotateAround(Target.position, Vector3.up, forestWalkSpeed * Time.deltaTime);
         forestMainCam_tr.RotateAround(Target.position, Vector3.up, forestWalkSpeed * Time.deltaTime);
-        PlayerController.playerAnimator.SetFloat("walking", forestWalkSpeed);
+        PlayerController.playerAnimator.SetFloat("walkingSpeed", forestWalkSpeed);
     }
 
     void Update()
