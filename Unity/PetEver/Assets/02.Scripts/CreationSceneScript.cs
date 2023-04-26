@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
-public class EnterWorldScene : MonoBehaviour
+public class CreationSceneScript : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class EnterWorldScene : MonoBehaviour
 
     IEnumerator<object> LoadYourAsyncScene()
     {
-        string sceneName = "WorldScene";
+        string sceneName = "MySpaceScene";
         // Set the current Scene to be able to unload it later
         Scene currentScene = SceneManager.GetActiveScene();
 

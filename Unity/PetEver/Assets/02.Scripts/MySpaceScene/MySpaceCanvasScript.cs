@@ -7,6 +7,7 @@ public class MySpaceCanvasScript : MonoBehaviour
 {
 
     public CanvasGroup questPopupPanel;
+    public CanvasGroup questDetailPopup;
     public GameObject questSelectionLight;
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,12 @@ public class MySpaceCanvasScript : MonoBehaviour
     public void onClickCloseBtn(){
         hideCanvasGroup(questPopupPanel);
         questSelectionLight.SetActive(false);
+    }
+    public void onClickQuestItem(){
+        showCanvasGroup(questDetailPopup);
+    }
+    public void onClickQuestDetailComplete(){
+        hideCanvasGroup(questDetailPopup);
     }
 
     void showCanvasGroup(CanvasGroup cg)

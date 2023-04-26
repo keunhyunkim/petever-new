@@ -542,7 +542,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.336184e+26, y: -9.866524e-21, z: 0.023750259, w: -1.5459899e+28}
+  m_BoundingSphereOverride: {x: 0, y: 1e-45, z: 1.3437e-41, w: 6e-44}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -812,7 +812,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 617331314}
-  - component: {fileID: 617331313}
+  - component: {fileID: 617331315}
   m_Layer: 0
   m_Name: Script
   m_TagString: Untagged
@@ -820,18 +820,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &617331313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 617331312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ec4238cb9e42c14aa0b554d9fdd5b29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &617331314
 Transform:
   m_ObjectHideFlags: 0
@@ -847,6 +835,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &617331315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617331312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5d42c867a9503141b5939d9e6c05397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &703227621
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,8 +969,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 617331313}
-        m_TargetAssemblyTypeName: EnterWorldScene, Assembly-CSharp
+      - m_Target: {fileID: 617331315}
+        m_TargetAssemblyTypeName: CreationSceneScript, Assembly-CSharp
         m_MethodName: OnClickContinue
         m_Mode: 1
         m_Arguments:
@@ -1180,8 +1180,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 617331313}
-        m_TargetAssemblyTypeName: EnterWorldScene, Assembly-CSharp
+      - m_Target: {fileID: 617331315}
+        m_TargetAssemblyTypeName: CreationSceneScript, Assembly-CSharp
         m_MethodName: OnClickRemake
         m_Mode: 1
         m_Arguments:
