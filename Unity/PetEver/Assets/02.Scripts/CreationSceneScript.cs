@@ -17,7 +17,7 @@ public class CreationSceneScript : MonoBehaviour
 
     public void OnClickContinue()
     {
-        StartCoroutine(LoadYourAsyncScene());
+        LoadSceneManager.Instance.LoadScene("MySpaceScene");
     }
 
     IEnumerator<object> LoadYourAsyncScene()

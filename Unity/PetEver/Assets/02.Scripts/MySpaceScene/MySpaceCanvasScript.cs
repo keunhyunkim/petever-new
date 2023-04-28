@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 public class MySpaceCanvasScript : MonoBehaviour
 {
 
-    public CanvasGroup questPopupPanel;
-    public CanvasGroup questDetailPopup;
-    public CanvasGroup worldScenePopup;
-    public GameObject questSelectionLight;
+    [SerializeField] private CanvasGroup questPopupPanel;
+    [SerializeField] private CanvasGroup questDetailPopup;
+    [SerializeField] private CanvasGroup worldScenePopup;
+    [SerializeField] private GameObject questSelectionLight;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +42,9 @@ public class MySpaceCanvasScript : MonoBehaviour
     }
     public void onClickGoToWorldScene()
     {
-        StartCoroutine(LoadYourAsyncScene());
+        //StartCoroutine(LoadYourAsyncScene());
+        
+        LoadSceneManager.Instance.LoadScene("WorldScene");
     }
     public void onClickWorldScene()
     {
