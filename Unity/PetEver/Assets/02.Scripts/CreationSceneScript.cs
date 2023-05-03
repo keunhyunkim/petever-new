@@ -3,7 +3,11 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 public class CreationSceneScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private CanvasGroup CustomPanel;
+    [SerializeField] private CanvasGroup FurColorToggleGroup;
+    [SerializeField] private CanvasGroup FurLengthToggleGroup;
+    
+
     void Start()
     {
 
@@ -18,6 +22,21 @@ public class CreationSceneScript : MonoBehaviour
     public void OnClickContinue()
     {
         LoadSceneManager.Instance.LoadScene("MySpaceScene");
+    }
+    public void OnClickCustomBtn(){
+        showCanvasGroup(CustomPanel);
+    }
+    public void OnClickCompleteCustomBtn(){
+        // save custom data
+        hideCanvasGroup(CustomPanel);
+    }
+    public void OnClickFurColor(){
+        hideCanvasGroup(FurLengthToggleGroup);
+        showCanvasGroup(FurColorToggleGroup);
+    }
+    public void OnClickFurLength(){
+        hideCanvasGroup(FurColorToggleGroup);
+        showCanvasGroup(FurLengthToggleGroup);
     }
 
     IEnumerator<object> LoadYourAsyncScene()
@@ -45,6 +64,17 @@ public class CreationSceneScript : MonoBehaviour
         Application.Quit();
     }
 
-
+    void showCanvasGroup(CanvasGroup cg)
+    {
+        cg.alpha = 1;
+        cg.interactable = true;
+        cg.blocksRaycasts = true;
+    }
+    void hideCanvasGroup(CanvasGroup cg)
+    {
+        cg.alpha = 0;
+        cg.interactable = false;
+        cg.blocksRaycasts = false;
+    }
 
 }

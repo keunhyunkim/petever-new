@@ -1822,7 +1822,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: 0, w: -7.8738974e-35}
+  m_BoundingSphereOverride: {x: -2.0000002, y: 8e-45, z: 1e-44, w: 1.1e-44}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -8736,7 +8736,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 617331315}
         m_TargetAssemblyTypeName: MySpaceCanvasScript, Assembly-CSharp
-        m_MethodName: onClickWorldScene
+        m_MethodName: onClickGoToWorldScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
