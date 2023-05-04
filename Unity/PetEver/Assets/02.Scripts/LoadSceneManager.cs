@@ -12,9 +12,12 @@ public class LoadSceneManager : MonoBehaviour
 
     [SerializeField] private GameObject loaderCanvas;
     [SerializeField] private Image progressBar;
+    [SerializeField] private GameObject mainText;
     [SerializeField] private GameObject progressText;
     [SerializeField] private GameObject dogModel;
-    private TextMeshProUGUI mText;
+    private TextMeshProUGUI mainTextTmp;
+    private TextMeshProUGUI progressTextTmp;
+    private string statusText;
     private int animFlag = 5;
     private Animator dogAnimator;
     private float _target;
@@ -33,8 +36,38 @@ public class LoadSceneManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        mText = progressText.GetComponent<TextMeshProUGUI>();
+        mainTextTmp = mainText.GetComponent<TextMeshProUGUI>();
+        progressTextTmp = progressText.GetComponent<TextMeshProUGUI>();
         dogAnimator = dogModel.GetComponent<Animator>();
+
+    }
+
+    private void setTitleText()
+    {
+        string name = SceneManager.GetActiveScene().name;
+        if ("MySpaceScene".Equals(name))
+        {
+            mainTextTmp.text = "무지개 우주로 떠나볼까요?";
+        }
+    }
+    private void setStatusText()
+    {
+        int randNum = Random.Range(0, 3);
+        switch (randNum)
+        {
+            case 0:
+                statusText = "방방 뛰는 댕댕이 진정시키는 중... ";
+                break;
+            case 1:
+                statusText = "무지개 우주 댕댕이들 집합 중... ";
+                break;
+            case 2:
+                statusText = "댕댕이 간식 준비 중... ";
+                break;        
+            default:
+                statusText = "댕댕이 간식 준비 중... ";
+                break;
+        }
     }
 
     public async void LoadScene(string sceneName)
@@ -42,6 +75,8 @@ public class LoadSceneManager : MonoBehaviour
 
         _target = 0;
         progressBar.fillAmount = 0;
+        setStatusText();
+        setTitleText();
         loaderCanvas.SetActive(true);
         var scene = SceneManager.LoadSceneAsync(sceneName);
         scene.allowSceneActivation = false;
@@ -63,9 +98,9 @@ public class LoadSceneManager : MonoBehaviour
         progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, _target, 3 * Time.deltaTime);
 
         var targetToInt = _target * 100;
-        if (mText != null)
+        if (progressTextTmp != null)
         {
-            mText.text = "(" + targetToInt.ToString("##") + "%)";
+            progressTextTmp.text = statusText + "(" + targetToInt.ToString("##") + "%)";
         }
     }
 }
