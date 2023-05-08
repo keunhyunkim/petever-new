@@ -180,21 +180,25 @@ public class BreedActivity extends AppCompatActivity {
                             //Suceess to analyze the image, create the character based on the analyze result
                             intentUnity();
                         } else {
+                            Toast.makeText(BreedActivity.this, "Status Error", Toast.LENGTH_SHORT).show();
                             Log.d("RETROFIT", message);
                         }
 
                     } catch (JSONException | IOException e) {
                         e.printStackTrace();
                         Log.d("RETROFIT", "Error1: "  + e.getMessage());
+                        Toast.makeText(BreedActivity.this, "JSON/IO Error", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Log.d("RETROFIT", "Error2: " + response.message());
+                    Toast.makeText(BreedActivity.this, "Response Error", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 t.printStackTrace();
+                Toast.makeText(BreedActivity.this, "Server Closed", Toast.LENGTH_SHORT).show();
                 Log.d("RETROFIT", "Error3: " + t.getMessage());
             }
         });
