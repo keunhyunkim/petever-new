@@ -164,7 +164,7 @@ public class BreedActivity extends AppCompatActivity {
                         JSONObject jsonObject = new JSONObject(response.body().string());
                         String status = jsonObject.getString("status");
                         String message = jsonObject.getString("message");
-                        String breedName = jsonObject.getString("breed");
+                        breed = jsonObject.getString("breed");
 
                         if (status.equals("success")) {
                             JSONObject breedObject = jsonObject.getJSONObject("content");
@@ -172,7 +172,7 @@ public class BreedActivity extends AppCompatActivity {
                             section1Color = breedObject.getString("section1");
                             section2Color = breedObject.getString("section2");
 
-                            String toastMessage = "Breed: " + breedName + "\n"
+                            String toastMessage = "Breed: " + breed + "\n"
                                     + "Section 1: " + section1Color + "\n"
                                     + "Section 2: " + section2Color;
                             Log.d("RETROFIT", toastMessage);
