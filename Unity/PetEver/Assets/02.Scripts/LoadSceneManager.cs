@@ -10,7 +10,7 @@ public class LoadSceneManager : MonoBehaviour
 {
     public static LoadSceneManager Instance;
 
-    [SerializeField] private GameObject loaderCanvas;
+    [SerializeField] private CanvasGroup loaderCanvas;
     [SerializeField] private Image progressBar;
     [SerializeField] private GameObject mainText;
     [SerializeField] private GameObject progressText;
@@ -63,34 +63,41 @@ public class LoadSceneManager : MonoBehaviour
                 break;
             case 2:
                 statusText = "댕댕이 간식 준비 중... ";
-                break;        
+                break;
             default:
                 statusText = "댕댕이 간식 준비 중... ";
                 break;
         }
     }
 
-    public async void LoadScene(string sceneName)
+    public IEnumerator LoadScene(string sceneName)
     {
 
+        yield return null;
         _target = 0;
         progressBar.fillAmount = 0;
         setStatusText();
         setTitleText();
-        loaderCanvas.SetActive(true);
-        var scene = SceneManager.LoadSceneAsync(sceneName);
-        scene.allowSceneActivation = false;
-        dogAnimator.SetInteger("animFlag", animFlag);
-
-        do
+        showCanvasGroup(loaderCanvas);
+        //Begin to load the Scene you specify
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("sceneName");
+        //Don't let the Scene activate until you allow it to
+        asyncOperation.allowSceneActivation = false;
+        //When the load is still in progress, output the Text and progress bar
+        while (!asyncOperation.isDone)
         {
-            await Task.Delay(100);
-            _target = scene.progress;
-        } while (scene.progress < 0.90f);
 
-        scene.allowSceneActivation = true;
-        loaderCanvas.SetActive(false);
-        dogAnimator.SetInteger("animFlag", 0);
+            _target = asyncOperation.progress;
+            // Check if the load has finished
+            if (asyncOperation.progress >= 0.9f)
+            {
+                //Activate the Scene
+                asyncOperation.allowSceneActivation = true;
+                hideCanvasGroup(loaderCanvas);
+            }
+
+            yield return null;
+        }
     }
 
     void Update()
@@ -102,5 +109,20 @@ public class LoadSceneManager : MonoBehaviour
         {
             progressTextTmp.text = statusText + "(" + targetToInt.ToString("##") + "%)";
         }
+
+
+    }
+
+    void showCanvasGroup(CanvasGroup cg)
+    {
+        cg.alpha = 1;
+        cg.interactable = true;
+        cg.blocksRaycasts = true;
+    }
+    void hideCanvasGroup(CanvasGroup cg)
+    {
+        cg.alpha = 0;
+        cg.interactable = false;
+        cg.blocksRaycasts = false;
     }
 }

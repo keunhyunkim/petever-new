@@ -27,11 +27,6 @@ namespace BitBenderGames
         private CanvasGroup treePopupCanvasGroup;
         private CanvasGroup treeCreatePopupPanelCanvasGroup;
 
-        private TouchInputController touchInputController;
-
-        private MobileTouchCamera mobileTouchCamera;
-
-        private MobilePickingController mobilePickingController;
 
         private Camera cam;
 
@@ -43,18 +38,10 @@ namespace BitBenderGames
             Application.targetFrameRate = 60;
 
             cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-            mobileTouchCamera = cam.GetComponent<MobileTouchCamera>();
-            touchInputController = cam.GetComponent<TouchInputController>();
-            mobilePickingController = cam.GetComponent<MobilePickingController>();
 
 
 
             #region detail callbacks
-            touchInputController.OnInputClick += OnInputClick;
-            touchInputController.OnDragStart += OnDragStart;
-            touchInputController.OnDragStop += OnDragStop;
-            touchInputController.OnDragUpdate += OnDragUpdate;
-            touchInputController.OnFingerDown += OnFingerDown;
             #endregion
 
         }
@@ -200,12 +187,7 @@ namespace BitBenderGames
 
         }
 
-        public void OnPickableTransformSelectedExtended(PickableSelectedData data)
-        {
-
-
-        }
-
+ 
         public void OnPickableTransformDeselected(Transform pickableTransform)
         {
             pickableTransform.localScale = Vector3.one;
@@ -223,14 +205,6 @@ namespace BitBenderGames
             Debug.Log("Moved transform: " + pickableTransform);
         }
 
-        public void OnPickableTransformMoveEnded(Vector3 startPos, Transform pickableTransform)
-        {
-            SetItemColor(pickableTransform, Color.green);
-            if (GetTransformPositionValid(pickableTransform) == false)
-            {
-                pickableTransform.position = startPos;
-            }
-        }
 
         private void SetItemColor(Transform itemTransform, Color color)
         {
@@ -261,37 +235,6 @@ namespace BitBenderGames
                     }
                 }
             }
-        }
-
-        /// <summary>
-        /// Method to check whether another MobileTouchPickable has the exact same position as the given transform.
-        /// NOTE: This is a demo implementation that makes use of slow unity function calls.
-        /// </summary>
-        private bool GetTransformPositionValid(Transform pickableTransform)
-        {
-
-            //Expensive call. Should be optimized in live environments.
-            List<MobileTouchPickable> allPickables = new List<MobileTouchPickable>(FindObjectsOfType<MobileTouchPickable>());
-
-            allPickables.RemoveAll(item => item.PickableTransform == pickableTransform);
-            foreach (var pickable in allPickables)
-            {
-                if (mobileTouchCamera.CameraAxes == CameraPlaneAxes.XY_2D_SIDESCROLL)
-                {
-                    if (Mathf.Approximately(pickableTransform.position.x, pickable.PickableTransform.position.x) && Mathf.Approximately(pickableTransform.position.y, pickable.PickableTransform.position.y))
-                    {
-                        return (false);
-                    }
-                }
-                else
-                {
-                    if (Mathf.Approximately(pickableTransform.position.x, pickable.PickableTransform.position.x) && Mathf.Approximately(pickableTransform.position.z, pickable.PickableTransform.position.z))
-                    {
-                        return (false);
-                    }
-                }
-            }
-            return (true);
         }
 
 

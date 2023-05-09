@@ -20,7 +20,6 @@ public class DogInteraction : MonoBehaviour
         {
             // 싱글 터치.
             Touch touch = Input.GetTouch(0);
-            Vector3 touchPos;
             Ray ray;
             RaycastHit hit;
  

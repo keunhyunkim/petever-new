@@ -30,10 +30,8 @@ public class MySpaceCanvasScript : MonoBehaviour
         hideCanvasGroup(questDetailPopup);
     }
     public void onClickGoToWorldScene()
-    {
-        //StartCoroutine(LoadYourAsyncScene());
-        
-        LoadSceneManager.Instance.LoadScene("WorldScene");
+    {        
+        StartCoroutine(LoadSceneManager.Instance.LoadScene("WorldScene"));
     }
     public void onClickWorldScene()
     {

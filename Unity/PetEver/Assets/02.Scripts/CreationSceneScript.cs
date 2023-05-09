@@ -9,7 +9,7 @@ public class CreationSceneScript : MonoBehaviour
 
     public void OnClickContinue()
     {
-        LoadSceneManager.Instance.LoadScene("MySpaceScene");
+       StartCoroutine(LoadSceneManager.Instance.LoadScene("MySpaceScene"));
     }
     public void OnClickCustomBtn()
     {
