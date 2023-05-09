@@ -105,8 +105,7 @@ public class NewpageUIManager : MonoBehaviour
             catch (Exception e)
             {
                 succeeded = false;
-                Debug.LogWarning($"Screen Shot Save Failed : {totalPath}");
-                Debug.LogWarning(e);
+
             }
             
 
@@ -114,8 +113,6 @@ public class NewpageUIManager : MonoBehaviour
 
             if (succeeded)
             {
-                Debug.Log($"Screen Shot Saved : {totalPath}");
-               // flash.Show(); //flash 
                 lastSavedPath = totalPath; // save in recent path
             }
     }

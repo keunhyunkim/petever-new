@@ -202,7 +202,7 @@ public class JoyStickBtnManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("panelGo null");
+
         }
 
         showCanvasGroup(photoPanel);
@@ -218,7 +218,7 @@ public class JoyStickBtnManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("CanvasGroup null in showCanvasGroup");
+
         }
 
     }

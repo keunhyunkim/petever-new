@@ -50,7 +50,7 @@ public class PinchZoom : MonoBehaviour
  
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                Debug.Log("I Begin!!!!!!!!!!!!");
+
                 firstRun = false;
                 distance = Vector2.Distance(midpoint, (touch0.position + touch1.position) / 2);
             }
@@ -69,14 +69,9 @@ public class PinchZoom : MonoBehaviour
                 newDistance = (newDistance0 + newDistance1) / 2;
             }
  
-            Debug.Log("Distance = " + distance);
-            Debug.Log("New Distance = " + newDistance);
-            Debug.Log("Subtracted together they eagual = " + (distance - newDistance));
- 
+
             scaleValue = (scaleSpeed * (newDistance - distance));  //Must move on slope scaleSpeed *   + 0.1f
- 
-            //Debug.Log(scaleValue);
-            //Debug.Log(gameObject.transform.localScale);
+
  
             if ((gameObject.transform.localScale.x > 10 && scaleValue < 0) || (gameObject.transform.localScale.x < 0.1f && scaleValue > 0) || (gameObject.transform.localScale.x < 10000 && gameObject.transform.localScale.x > 0.1f))
             {

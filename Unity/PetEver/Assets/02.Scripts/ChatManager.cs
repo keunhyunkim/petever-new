@@ -35,8 +35,7 @@ public class ChatManager : MonoBehaviour
                 chatUI.SetActive(true);
             }
         } else{
-            Debug.Log(chatUI);
-            Debug.Log(noticeUI);
+
         }
     }
 

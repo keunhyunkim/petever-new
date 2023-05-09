@@ -22,7 +22,7 @@ public class ChatInputManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("text null, myInstance.GetComponent<TextMeshPro>() : " + myInstance.GetComponent<TextMeshPro>());
+
             }
         }
     }

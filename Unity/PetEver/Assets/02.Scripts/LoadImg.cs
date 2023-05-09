@@ -86,7 +86,6 @@ public class LoadImg : MonoBehaviour
 
     public void showMyImage()
     {
-        Debug.Log("Show My Image!");
         GetImage();
         myImage.GetComponent<Image>().sprite = Sprite.Create(rawImage.texture as Texture2D, new Rect(0, 0, rawImage.texture.width, rawImage.texture.height), new Vector2(0.5f, 0.5f));
     } 
