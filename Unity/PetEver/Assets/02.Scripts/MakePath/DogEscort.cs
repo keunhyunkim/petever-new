@@ -25,16 +25,7 @@ public class DogEscort : MonoBehaviour
 
 
         escortPoint = new Vector3[10]; 
-        escortPoint[0] = GameObject.Find("checkPoint1").GetComponent<Transform>().position;
-        escortPoint[1] = GameObject.Find("checkPoint2").GetComponent<Transform>().position;
-        escortPoint[2] = GameObject.Find("checkPoint3").GetComponent<Transform>().position;
-        escortPoint[3] = GameObject.Find("checkPoint4").GetComponent<Transform>().position;
-        escortPoint[4] = GameObject.Find("checkPoint5").GetComponent<Transform>().position;
-        escortPoint[5] = GameObject.Find("checkPoint6").GetComponent<Transform>().position;
-        escortPoint[6] = GameObject.Find("checkPoint7").GetComponent<Transform>().position;
-        escortPoint[7] = GameObject.Find("checkPoint8").GetComponent<Transform>().position;
-        escortPoint[8] = GameObject.Find("checkPoint9").GetComponent<Transform>().position;
-        escortPoint[9] = GameObject.Find("checkPoint10").GetComponent<Transform>().position;
+
 
 
        // escortPoint[2] = GameObject.Find("checkPoint3").GetComponent<Transform>().position;
@@ -46,6 +37,17 @@ public class DogEscort : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        escortPoint[0] = GameObject.Find("checkPoint1").GetComponent<Transform>().position;
+        escortPoint[1] = GameObject.Find("checkPoint2").GetComponent<Transform>().position;
+        escortPoint[2] = GameObject.Find("checkPoint3").GetComponent<Transform>().position;
+        escortPoint[3] = GameObject.Find("checkPoint4").GetComponent<Transform>().position;
+        escortPoint[4] = GameObject.Find("checkPoint5").GetComponent<Transform>().position;
+        escortPoint[5] = GameObject.Find("checkPoint6").GetComponent<Transform>().position;
+        escortPoint[6] = GameObject.Find("checkPoint7").GetComponent<Transform>().position;
+        escortPoint[7] = GameObject.Find("checkPoint8").GetComponent<Transform>().position;
+        escortPoint[8] = GameObject.Find("checkPoint9").GetComponent<Transform>().position;
+        escortPoint[9] = GameObject.Find("checkPoint10").GetComponent<Transform>().position;
+        
         navMeshAgent = GetComponent<NavMeshAgent>();
         owner = GameObject.FindGameObjectWithTag("Owner");
         emotionBubble = GameObject.Find("emotionBubble");

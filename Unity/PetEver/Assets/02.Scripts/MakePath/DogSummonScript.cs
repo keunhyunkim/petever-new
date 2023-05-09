@@ -33,6 +33,8 @@ public class DogSummonScript : MonoBehaviour
         dogScale = new Vector3(1,1,1)*dogRandomScale;
 
         dogNPC.transform.localScale = dogScale;
+        dogNPC.tag = "DogNPC";
+        dogNPC.layer = 0;
 
         Instantiate(dogNPC, this.gameObject.transform.position, this.gameObject.transform.rotation);
     }

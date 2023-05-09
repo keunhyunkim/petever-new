@@ -5,11 +5,14 @@ using UnityEngine;
 public class DogInteraction : MonoBehaviour
 {
     public GameObject DogCamera;
+    public Animator dogAnimator;
+
 
     // Start is called before the first frame update
     void Start()
     {
         DogCamera = GameObject.Find("Camera");
+        dogAnimator = GameObject.FindGameObjectWithTag("OwnerDog").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -20,6 +23,7 @@ public class DogInteraction : MonoBehaviour
         {
             // 싱글 터치.
             Touch touch = Input.GetTouch(0);
+            //Vector3 touchPos;
             Ray ray;
             RaycastHit hit;
  
@@ -29,25 +33,23 @@ public class DogInteraction : MonoBehaviour
                     Debug.Log(touch.position.x);
                     Debug.Log(touch.position.y);
 
-                    Vector3 touchPosToVector3 = new Vector3(touch.position.x,touch.position.y,-900);
+                    Vector3 touchPosToVector3 = new Vector3(touch.position.x,touch.position.y, 0);
                     //touchPos = DogCamera.GetComponent<Camera>().ScreenToWorldPoint(touchPosToVector3);
                     ray = DogCamera.GetComponent<Camera>().ScreenPointToRay(touchPosToVector3); 
                     if (Physics.Raycast(ray,out hit))
                     {
-                        Debug.DrawLine(ray.origin, hit.point, Color.red, 10.5f);
-                        Debug.Log("ok"); 
+                        Debug.Log(hit.collider.gameObject.name); 
                         if(hit.collider.gameObject.name == "footTouch_R")
                         {
-                            Debug.Log("R");
+                            dogAnimator.SetTrigger("feetup_L");
                         }
                         else if(hit.collider.gameObject.name == "footTouch_L")
                         {
-                            Debug.Log("L");
+                            dogAnimator.SetTrigger("feetup_R");
                         }
                     }
                     else
                     {                        
-                        Debug.DrawLine(ray.origin, hit.point, Color.blue, 10.5f);
                         Debug.Log("fail");
                     }
  

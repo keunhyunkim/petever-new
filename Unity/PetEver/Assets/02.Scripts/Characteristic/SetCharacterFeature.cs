@@ -5,13 +5,16 @@ using TMPro;
 
 public class SetCharacterFeature : MonoBehaviour
 {
-    private Vector3 dogSummonPos = new Vector3(-0.21f, -1.66f, -0.24f);
-    private Vector3 dogScale = new Vector3(2f, 2f, 2f);
+    private Vector3 dogSummonPos = new Vector3(-550f, 1070f, -10f);
+    private Vector3 dogScale = new Vector3(60f, 60f, 60f);
 
     public GameObject maltesePrefab;
     public GameObject pomeLongPrefab;
     public GameObject pomeShortPrefab;
     public GameObject pugPrefab;
+    public GameObject shihtzuPrefab;
+    public GameObject retrieverPrefab;
+
 
     private Material dogMaterial;
     
@@ -104,6 +107,12 @@ public class SetCharacterFeature : MonoBehaviour
                 case "PUG":
                     dogPrefab = pugPrefab;
                     break;
+                case "SHIHTZU":
+                    dogPrefab = shihtzuPrefab;
+                    break;
+                case "GOLDEN":
+                    dogPrefab = retrieverPrefab;
+                    break;                                        
                 default:
                     dogPrefab = pomeShortPrefab;
                     break;
