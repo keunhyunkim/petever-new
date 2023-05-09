@@ -96,8 +96,4 @@ public class LoadImg : MonoBehaviour
         myImage = GameObject.Find("MyImage1");
     }
 
-    void Update()
-    {
-        
-    }
 }

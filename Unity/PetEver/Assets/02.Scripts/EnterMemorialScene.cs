@@ -68,9 +68,6 @@ public class EnterMemorialScene : MonoBehaviour
 
     }
 
-    private void Update()
-    {
 
-    }
 
 }

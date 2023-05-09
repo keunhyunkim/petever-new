@@ -21,9 +21,5 @@ public class PlayerPrefab_onlyPlayer: MonoBehaviour
 
 
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 }

@@ -39,9 +39,5 @@ public class PlayerPrefab : MonoBehaviour
 
 
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 }

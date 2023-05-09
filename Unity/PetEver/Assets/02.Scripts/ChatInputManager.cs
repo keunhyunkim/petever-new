@@ -8,18 +8,6 @@ public class ChatInputManager : MonoBehaviour
     public TMP_InputField chatInput;
     public GameObject chatTextPrefab;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void InputTextFinished()
     {
         if (chatInput.text != null)

@@ -10,17 +10,6 @@ public class MySpaceCanvasScript : MonoBehaviour
     [SerializeField] private CanvasGroup questDetailPopup;
     [SerializeField] private CanvasGroup worldScenePopup;
     [SerializeField] private GameObject questSelectionLight;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void onClickQuestBtn()
     {

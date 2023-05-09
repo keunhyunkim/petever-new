@@ -15,12 +15,6 @@ public class PictureZoomScript : MonoBehaviour
         // refFrame = GameObject.Find("Frame1").GetComponent<Renderer>().material;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnTriggerEnter(Collider coll) 
     {
         // if (coll.gameObject);

@@ -16,14 +16,4 @@ public class ManSummonScript : MonoBehaviour
         Instantiate(manNPC, this.gameObject.transform.position, this.gameObject.transform.rotation);
     }
 
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -34,10 +34,6 @@ public class CanvasControl : MonoBehaviour
     }
 
 
-    void Update()
-    {
-
-    }
 
     public void MoveBackToHome()
     {

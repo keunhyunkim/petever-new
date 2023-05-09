@@ -44,17 +44,4 @@ public class CameraScript : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-/*
-
-        nowScene = SceneManager.GetActiveScene();
-        if (nowScene.name == "MemorialScene")
-        {
-            cineTransposer.m_FollowOffset = new Vector3(0f, 3f, 16.2f);
-        }
-*/                
-
-    }
 }

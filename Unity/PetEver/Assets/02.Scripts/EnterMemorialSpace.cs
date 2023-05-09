@@ -82,9 +82,6 @@ public class EnterMemorialSpace : MonoBehaviour
 
     }
 
-    private void Update()
-    {
 
-    }
 
 }

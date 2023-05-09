@@ -11,12 +11,6 @@ public class ExitHealingForest : MonoBehaviour
         VillageBackPoint = GameObject.Find("VillageBackPoint");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Owner")

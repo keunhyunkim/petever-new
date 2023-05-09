@@ -42,9 +42,4 @@ public class DogSummonScript : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

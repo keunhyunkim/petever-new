@@ -16,11 +16,7 @@ public class DragandDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {

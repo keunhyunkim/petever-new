@@ -14,9 +14,4 @@ public class StartingPoint : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

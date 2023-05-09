@@ -28,8 +28,5 @@ public class UICanvasPrefab : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
 }

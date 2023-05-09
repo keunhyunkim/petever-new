@@ -7,17 +7,6 @@ public class CreationSceneScript : MonoBehaviour
     [SerializeField] private CanvasGroup FurColorToggleGroup;
     [SerializeField] private CanvasGroup FurLengthToggleGroup;
 
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void OnClickContinue()
     {
         LoadSceneManager.Instance.LoadScene("MySpaceScene");

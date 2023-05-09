@@ -24,17 +24,7 @@ public class JoyStickBtnManager : MonoBehaviour
         wallArea = GameObject.Find("Wall Area");
         owner = GameObject.FindGameObjectWithTag("Owner");
     }
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     void candleAndFlowerBtns()
     {
         GameObject candleBtn = addIcon("CandleBtn");

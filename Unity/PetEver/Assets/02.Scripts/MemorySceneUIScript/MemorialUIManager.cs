@@ -28,11 +28,7 @@ public class MemorialUIManager : MonoBehaviour
         LoadNewButton.onClick.AddListener(delegate { LoadNewpage(); });
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 
     public void LoadNewpage()
     {
