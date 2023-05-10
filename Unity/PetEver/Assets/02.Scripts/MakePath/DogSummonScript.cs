@@ -28,7 +28,12 @@ public class DogSummonScript : MonoBehaviour
             dogRandomScale = Random.Range(0.75f, 1.0f);
         else if(dogSpecies[1] == "Poodle")
             dogRandomScale = Random.Range(0.85f, 1.0f);
-
+        else if(dogSpecies[1] == "Retriever")
+            dogRandomScale = Random.Range(1.0f, 1.2f);
+        else if(dogSpecies[1] == "Shihtzu")
+            dogRandomScale = Random.Range(0.75f, 1.0f);
+        else if(dogSpecies[1] == "Pug")
+            dogRandomScale = Random.Range(0.75f, 1.0f);
 
         dogScale = new Vector3(1,1,1)*dogRandomScale;
 

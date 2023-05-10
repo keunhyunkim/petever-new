@@ -26,6 +26,7 @@ public class Creation2WorldScene : MonoBehaviour
             gameObject.GetComponent<DogEscort>().enabled = false;
             gameObject.GetComponent<LineRenderer>().enabled = false;
 
+
             gameObject.layer = 6;
             gameObject.GetComponent<Animator>().runtimeAnimatorController = animatorController_creationScene;
         }

@@ -122,6 +122,7 @@ public class SetCharacterFeature : MonoBehaviour
             GameObject dog = Instantiate(dogPrefab, GameObject.Find("Character").transform) as GameObject;
             dog.transform.localScale = dogScale;
             dog.transform.localPosition = dogSummonPos;
+            dog.tag = "OwnerDog";
 
         }
     }
