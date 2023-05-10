@@ -30,6 +30,8 @@ public class PlayerPrefab : MonoBehaviour
         else if(objectName[1]=="Dog")
         {
             dogCharacter = GameObject.FindGameObjectWithTag("OwnerDog");
+            dogCharacter.transform.position = this.gameObject.transform.position;
+            dogCharacter.transform.localScale = new Vector3(1f, 1f, 1f);
             if (dogCharacter == null)
             {
                 Instantiate(dogPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);

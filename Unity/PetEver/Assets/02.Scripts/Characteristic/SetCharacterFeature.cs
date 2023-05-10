@@ -38,6 +38,7 @@ public class SetCharacterFeature : MonoBehaviour
     private String section1Color = "";
     private String section2Color = "";
     private AndroidJavaObject activityContext = null;
+    [SerializeField] private GameObject CharacterParent;
 
     void Awake()
     {
@@ -123,6 +124,8 @@ public class SetCharacterFeature : MonoBehaviour
             dog.transform.localScale = dogScale;
             dog.transform.localPosition = dogSummonPos;
             dog.tag = "OwnerDog";
+
+            DontDestroyOnLoad(CharacterParent);
 
         }
     }

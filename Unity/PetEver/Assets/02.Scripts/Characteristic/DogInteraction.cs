@@ -11,7 +11,7 @@ public class DogInteraction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DogCamera = GameObject.Find("Camera");
+        DogCamera = GameObject.Find("CharacterCamera");
         dogAnimator = GameObject.FindGameObjectWithTag("OwnerDog").GetComponent<Animator>();
     }
 

@@ -14,7 +14,7 @@ public class Creation2WorldScene : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        scene = SceneManager.GetActiveScene(); 
+        scene = SceneManager.GetActiveScene();
 
         if (scene.name == "CreationScene")
         {
@@ -30,7 +30,7 @@ public class Creation2WorldScene : MonoBehaviour
             gameObject.layer = 6;
             gameObject.GetComponent<Animator>().runtimeAnimatorController = animatorController_creationScene;
         }
-        else if(scene.name == "WorldScene")
+        else if (scene.name == "WorldScene")
         {
             gameObject.GetComponent<SphereCollider>().enabled = true;
             gameObject.GetComponent<CapsuleCollider>().enabled = true;
@@ -45,16 +45,38 @@ public class Creation2WorldScene : MonoBehaviour
 
         }
         
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void Start()
     {
 
     }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        scene = SceneManager.GetActiveScene();
+        if (scene.name == "WorldScene")
+        {
+            gameObject.GetComponent<SphereCollider>().enabled = true;
+            gameObject.GetComponent<CapsuleCollider>().enabled = true;
+            gameObject.GetComponent<GetColliderScript>().enabled = true;
+            gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
+            gameObject.GetComponent<DogAI>().enabled = true;
+            gameObject.GetComponent<DogEscort>().enabled = true;
+            gameObject.GetComponent<LineRenderer>().enabled = true;
+
+            gameObject.layer = 0;
+            gameObject.GetComponent<Animator>().runtimeAnimatorController = animatorController_worldScene;
+
+        }
+
+        
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

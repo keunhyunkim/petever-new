@@ -17,7 +17,6 @@ public class LoadSceneManager : MonoBehaviour
     private TextMeshProUGUI mainTextTmp;
     private TextMeshProUGUI progressTextTmp;
     private string statusText;
-    private int animFlag = 5;
     private Animator dogAnimator;
     private float _target;
 
@@ -25,13 +24,9 @@ public class LoadSceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-
         mainTextTmp = mainText.GetComponent<TextMeshProUGUI>();
         progressTextTmp = progressText.GetComponent<TextMeshProUGUI>();
         dogModel = GameObject.FindGameObjectWithTag("OwnerDog");
-        
-
-
     }
 
     private void setTitleText()
@@ -91,9 +86,9 @@ public class LoadSceneManager : MonoBehaviour
             // Check if the load has finished
             if (asyncOperation.progress >= 0.9f)
             {
+                dogAnimator.SetBool("run", false);
                 //Activate the Scene
                 asyncOperation.allowSceneActivation = true;
-                dogAnimator.SetBool("run", false);
             }
 
             yield return null;
