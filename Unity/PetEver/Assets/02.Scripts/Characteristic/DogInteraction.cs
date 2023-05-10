@@ -6,6 +6,7 @@ public class DogInteraction : MonoBehaviour
 {
     public GameObject DogCamera;
     public Animator dogAnimator;
+    public GameObject touchtracking;
 
 
     // Start is called before the first frame update
@@ -13,6 +14,7 @@ public class DogInteraction : MonoBehaviour
     {
         DogCamera = GameObject.Find("CharacterCamera");
         dogAnimator = GameObject.FindGameObjectWithTag("OwnerDog").GetComponent<Animator>();
+        touchtracking = GameObject.Find("spine.033");
     }
 
     // Update is called once per frame
@@ -23,9 +25,11 @@ public class DogInteraction : MonoBehaviour
         {
             // 싱글 터치.
             Touch touch = Input.GetTouch(0);
-            //Vector3 touchPos;
+            Vector3 touchPos;
             Ray ray;
             RaycastHit hit;
+            Vector3 touchPosToVector3;
+
  
             switch (touch.phase)
             {
@@ -33,7 +37,7 @@ public class DogInteraction : MonoBehaviour
                     Debug.Log(touch.position.x);
                     Debug.Log(touch.position.y);
 
-                    Vector3 touchPosToVector3 = new Vector3(touch.position.x,touch.position.y, 0);
+                    touchPosToVector3 = new Vector3(touch.position.x,touch.position.y, 0);
                     //touchPos = DogCamera.GetComponent<Camera>().ScreenToWorldPoint(touchPosToVector3);
                     ray = DogCamera.GetComponent<Camera>().ScreenPointToRay(touchPosToVector3); 
                     if (Physics.Raycast(ray,out hit))
@@ -50,12 +54,13 @@ public class DogInteraction : MonoBehaviour
                     }
                     else
                     {                        
-                        Debug.Log("fail");
+
                     }
  
                     break;
                 case TouchPhase.Moved:
-                    // 터치 이동 시.
+              //  dogAnimator.StopPlayback();
+                  //  touchtracking.transform.forward = touchPos;
                     break;
  
                 case TouchPhase.Stationary:
@@ -63,7 +68,7 @@ public class DogInteraction : MonoBehaviour
                     break;
  
                 case TouchPhase.Ended:
-                    // 터치 종료 시. ( 손을 뗐을 시 )
+              //  dogAnimator.Play();
                     break;
  
                 case TouchPhase.Canceled:
