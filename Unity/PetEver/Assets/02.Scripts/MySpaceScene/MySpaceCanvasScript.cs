@@ -31,7 +31,7 @@ public class MySpaceCanvasScript : MonoBehaviour
     }
     public void onClickGoToWorldScene()
     {        
-        StartCoroutine(LoadSceneManager.Instance.LoadScene("WorldScene"));
+        //StartCoroutine(LoadSceneManager.Instance.LoadScene("WorldScene"));
     }
     public void onClickWorldScene()
     {

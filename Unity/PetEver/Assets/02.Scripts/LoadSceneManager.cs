@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 public class LoadSceneManager : MonoBehaviour
 {
-    public static LoadSceneManager Instance;
 
-    [SerializeField] private CanvasGroup loaderCanvas;
+    [SerializeField] private GameObject loaderCanvas;
     [SerializeField] private Image progressBar;
     [SerializeField] private GameObject mainText;
     [SerializeField] private GameObject progressText;
@@ -26,15 +25,6 @@ public class LoadSceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
 
         mainTextTmp = mainText.GetComponent<TextMeshProUGUI>();
         progressTextTmp = progressText.GetComponent<TextMeshProUGUI>();
@@ -69,18 +59,19 @@ public class LoadSceneManager : MonoBehaviour
                 break;
         }
     }
-
-    public IEnumerator LoadScene(string sceneName)
+    public void LoadScene(string sceneName){
+        StartCoroutine(LoadSceneAsync(sceneName));
+    }
+    IEnumerator LoadSceneAsync(string sceneName)
     {
 
         yield return null;
         _target = 0;
         progressBar.fillAmount = 0;
         setStatusText();
-        setTitleText();
-        showCanvasGroup(loaderCanvas);
+        loaderCanvas.SetActive(true);
         //Begin to load the Scene you specify
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("sceneName");
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
         //Don't let the Scene activate until you allow it to
         asyncOperation.allowSceneActivation = false;
         //When the load is still in progress, output the Text and progress bar
@@ -93,7 +84,6 @@ public class LoadSceneManager : MonoBehaviour
             {
                 //Activate the Scene
                 asyncOperation.allowSceneActivation = true;
-                hideCanvasGroup(loaderCanvas);
             }
 
             yield return null;

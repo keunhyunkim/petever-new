@@ -7,10 +7,6 @@ public class CreationSceneScript : MonoBehaviour
     [SerializeField] private CanvasGroup FurColorToggleGroup;
     [SerializeField] private CanvasGroup FurLengthToggleGroup;
 
-    public void OnClickContinue()
-    {
-       StartCoroutine(LoadSceneManager.Instance.LoadScene("MySpaceScene"));
-    }
     public void OnClickCustomBtn()
     {
         showCanvasGroup(CustomPanel);
