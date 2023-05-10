@@ -13,7 +13,7 @@ public class LoadSceneManager : MonoBehaviour
     [SerializeField] private Image progressBar;
     [SerializeField] private GameObject mainText;
     [SerializeField] private GameObject progressText;
-    [SerializeField] private GameObject dogModel;
+    private GameObject dogModel;
     private TextMeshProUGUI mainTextTmp;
     private TextMeshProUGUI progressTextTmp;
     private string statusText;
@@ -28,7 +28,9 @@ public class LoadSceneManager : MonoBehaviour
 
         mainTextTmp = mainText.GetComponent<TextMeshProUGUI>();
         progressTextTmp = progressText.GetComponent<TextMeshProUGUI>();
-        dogAnimator = dogModel.GetComponent<Animator>();
+        dogModel = GameObject.FindGameObjectWithTag("OwnerDog");
+        
+
 
     }
 
@@ -59,7 +61,8 @@ public class LoadSceneManager : MonoBehaviour
                 break;
         }
     }
-    public void LoadScene(string sceneName){
+    public void LoadScene(string sceneName)
+    {
         StartCoroutine(LoadSceneAsync(sceneName));
     }
     IEnumerator LoadSceneAsync(string sceneName)
@@ -70,6 +73,12 @@ public class LoadSceneManager : MonoBehaviour
         progressBar.fillAmount = 0;
         setStatusText();
         loaderCanvas.SetActive(true);
+        if (dogModel == null)
+        {
+            dogModel = GameObject.FindGameObjectWithTag("OwnerDog");
+        }
+        dogAnimator = dogModel.GetComponent<Animator>();
+        dogAnimator.SetBool("run", true);
         //Begin to load the Scene you specify
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
         //Don't let the Scene activate until you allow it to
@@ -84,6 +93,7 @@ public class LoadSceneManager : MonoBehaviour
             {
                 //Activate the Scene
                 asyncOperation.allowSceneActivation = true;
+                dogAnimator.SetBool("run", false);
             }
 
             yield return null;
