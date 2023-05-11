@@ -57,11 +57,7 @@ public class BreedActivity extends AppCompatActivity {
     private String section1Color;
     private String section2Color;
 
-    private static String baseUrl = "http://3.35.242.182:3200/";
-    private NetworkService networkService;
-
-    Retrofit retrofit;
-    Call<FaceColor> call;
+    private static final String baseUrl = "http://3.35.242.182:3200/";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -181,7 +177,7 @@ public class BreedActivity extends AppCompatActivity {
                                     + "Section 2: " + section2Color;
                             Log.d("RETROFIT", toastMessage);
 
-                            //Suceess to analyze the image, create the character based on the analyze result
+                            //Success to analyze the image, create the character based on the analyze result
                             intentUnity();
                         } else {
                             Toast.makeText(BreedActivity.this, "Status Error", Toast.LENGTH_SHORT).show();

@@ -27,7 +27,7 @@ public class MLClass {
 
     private static MLClass mlInstance = null;
 
-    private MLClass() {};
+    private MLClass() {}
 
     public static synchronized MLClass getInstance() {
         if (mlInstance == null) {

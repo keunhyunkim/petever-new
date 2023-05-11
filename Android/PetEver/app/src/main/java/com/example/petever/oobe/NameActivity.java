@@ -1,7 +1,6 @@
 package com.example.petever.oobe;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.camera.core.TorchState;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
@@ -31,7 +30,6 @@ public class NameActivity extends AppCompatActivity {
     private EditText relation_new;
     private Button btn_name;
     private ConstraintLayout nameLayout;
-    private float dimRatio = 0.9f;
     private InputMethodManager InputManager;
     private boolean isNameSet = false;
     private boolean isRelationSet = false;
@@ -92,7 +90,7 @@ public class NameActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    if (isNameSet == false) {
+                    if (!isNameSet) {
                         name_new.setText("");
                     }
                     hidden_layer.setVisibility(View.VISIBLE);
@@ -106,7 +104,7 @@ public class NameActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    if (isRelationSet == false) {
+                    if (!isRelationSet) {
                         relation_new.setText("");
                     }
                     hidden_layer.setVisibility(View.VISIBLE);

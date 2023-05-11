@@ -3,7 +3,6 @@ package com.example.petever.util;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 
 import com.example.petever.oobe.BreedActivity;
 
