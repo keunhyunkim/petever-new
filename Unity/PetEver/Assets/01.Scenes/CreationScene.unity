@@ -661,7 +661,19 @@ MonoBehaviour:
   m_Group: {fileID: 433300148}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1646036863}
+        m_TargetAssemblyTypeName: SetCharacterFeature, Assembly-CSharp
+        m_MethodName: FurLengthLong
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &214404519
 GameObject:
@@ -748,7 +760,19 @@ MonoBehaviour:
   m_Group: {fileID: 433300148}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1646036863}
+        m_TargetAssemblyTypeName: SetCharacterFeature, Assembly-CSharp
+        m_MethodName: FurLengthShort
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &214822789
 GameObject:
@@ -2142,7 +2166,19 @@ MonoBehaviour:
   m_Group: {fileID: 433300148}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1646036863}
+        m_TargetAssemblyTypeName: SetCharacterFeature, Assembly-CSharp
+        m_MethodName: FurLengthMiddle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &703227621
 GameObject:
@@ -4459,6 +4495,11 @@ MonoBehaviour:
   pugPrefab: {fileID: 2381932926484606986, guid: 20cac3d91a2ef2b42a42bdc7b8580cf9, type: 3}
   shihtzuPrefab: {fileID: 1489987582426127694, guid: 470780b6019880549941dd30e9d87a41, type: 3}
   retrieverPrefab: {fileID: 8565728337800232779, guid: e41d6a6c98cbe9644bf1a8f963d2383a, type: 3}
+  bodyfur_back: {fileID: 0}
+  bodyfur_middle: {fileID: 0}
+  bodyfur_front: {fileID: 0}
+  chinfur: {fileID: 0}
+  neckfur: {fileID: 0}
   pomeLong_black: {fileID: 2100000, guid: 3c6177ad02d024941ac01eca55fbd49b, type: 2}
   pomeLong_brown: {fileID: 2100000, guid: afd78e7c72b26ab4fbd75e80af8666d2, type: 2}
   pomeLong_white: {fileID: 2100000, guid: 8537050643108564dbf77ce8ee012dd2, type: 2}
