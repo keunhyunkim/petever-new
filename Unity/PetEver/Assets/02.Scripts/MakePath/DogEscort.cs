@@ -9,7 +9,8 @@ public class DogEscort : MonoBehaviour
     public static bool welcomeEscort;
     public static bool waitOwner;
     private Vector3[] escortPoint; // checkpoint when dog escorts Owner. if you want to add or delete checkpoint, modify 1.length of escortPoint array 2.number of checkPoint objects in WorldScene 
-    private GameObject owner, emotionBubble, questionMark;
+    private GameObject owner;
+    private GameObject emotionBubble, questionMark;
     private float dis_Owner2Dog; // distance between owner and dog
     private float dis_Owner2Point; // distance between owner and point
     private float dis_Dog2Point; // distance between dog and point
@@ -50,8 +51,8 @@ public class DogEscort : MonoBehaviour
         
         navMeshAgent = GetComponent<NavMeshAgent>();
         owner = GameObject.FindGameObjectWithTag("Owner");
-        emotionBubble = GameObject.Find("emotionBubble");
-        questionMark = GameObject.Find("questionMark");
+        emotionBubble = GameObject.Find("emotionCanvas").transform.Find("emotionBubble").gameObject;
+        questionMark = GameObject.Find("emotionCanvas").transform.Find("questionMark").gameObject;
 
         // when dog starts to escort, make line it's path
         lineRenderer = gameObject.GetComponent<LineRenderer>();
