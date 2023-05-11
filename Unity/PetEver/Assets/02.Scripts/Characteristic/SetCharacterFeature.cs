@@ -14,6 +14,7 @@ public class SetCharacterFeature : MonoBehaviour
     public GameObject pugPrefab;
     public GameObject shihtzuPrefab;
     public GameObject retrieverPrefab;
+    public GameObject poodlePrefab;
 
     //declare variables for control fur length 
     public GameObject bodyfur_back, bodyfur_middle, bodyfur_front;
@@ -120,7 +121,10 @@ public class SetCharacterFeature : MonoBehaviour
                     break;
                 case "GOLDEN":
                     dogPrefab = retrieverPrefab;
-                    break;                                        
+                    break;      
+                 case "POODLE":
+                    dogPrefab = poodlePrefab;
+                    break;                                                        
                 default:
                     dogPrefab = pomeShortPrefab;
                     break;
