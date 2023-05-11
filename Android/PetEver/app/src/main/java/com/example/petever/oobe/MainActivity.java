@@ -15,22 +15,22 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.PickVisualMediaRequest;
-import androidx.activity.result.contract.ActivityResultContracts;
+//import androidx.activity.result.ActivityResultLauncher;
+//import androidx.activity.result.PickVisualMediaRequest;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.petever.R;
-import com.example.petever.domain.Breed;
 import com.example.petever.util.IntentUtil;
 
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    private ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
+//    private ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
     private static Context context;
+
+    private final int PICK_IMAGE_REQUEST = 1001;
 
 
     @Override
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         context = this;
         setContentView(R.layout.activity_main);
         initView();
-        registerMediaPick();
+//        registerMediaPick();
     }
 
     private void photoPicked(Uri uri) {
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             // photo picker.
             if (uri != null) {
                 Log.d("PhotoPicker", "Selected URI: " + uri);
-                Bitmap bitmap = null;
+                Bitmap bitmap;
                 try {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                         bitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(getContentResolver(), uri));
@@ -74,10 +74,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void registerMediaPick() {
+//    private void registerMediaPick() {
         // https://developer.android.com/training/data-storage/shared/photopicker#custom-select-single
         // Registers a photo picker activity launcher in single-select mode.
-        pickMedia = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> photoPicked(uri));
+
+//        pickMedia = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> photoPicked(uri));
+//    }
+
+    // Handle the selected image
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri uri = data.getData();
+            photoPicked(uri);
+        }
     }
 
     private void initView() {
@@ -91,9 +102,14 @@ public class MainActivity extends AppCompatActivity {
         Button btn_album = findViewById(R.id.btn_album);
         btn_album.setOnClickListener(view -> {
             // Launch the photo picker and allow the user to choose only images.
-            pickMedia.launch(new PickVisualMediaRequest.Builder()
-                    .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
-                    .build());
+//            pickMedia.launch(new PickVisualMediaRequest.Builder()
+//                    .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
+//                    .build());
+
+            // Select image from gallery
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            startActivityForResult(intent, PICK_IMAGE_REQUEST);
         });
     }
 
