@@ -52,6 +52,7 @@ public class BreedActivity extends AppCompatActivity {
     private String petRelationship;
     private Uri fileUri;
     private SharedPreferences pf;
+    private boolean buttonPressed = false;
 
     private String section1Color;
     private String section2Color;
@@ -95,12 +96,15 @@ public class BreedActivity extends AppCompatActivity {
             finish();
         });
         btnCharacter.setOnClickListener(view -> {
-            if (Breed.get(breed).getMLCode() >= 10) {
-                Toast.makeText(this, "Not Support T.T",
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                // Send the image to Server, Server will give the breed and color
-                analyzeImgNmkCharacter(fileUri);
+            if(!buttonPressed){
+                if (Breed.get(breed).getMLCode() >= 10) {
+                    Toast.makeText(this, "Not Support T.T",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    // Send the image to Server, Server will give the breed and color
+                    analyzeImgNmkCharacter(fileUri);
+                }
+                buttonPressed = true;
             }
         });
     }
