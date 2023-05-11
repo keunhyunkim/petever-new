@@ -5,7 +5,10 @@
 # Gradle files
 .gradle/
 build/
-unityLibrary/
+unityLibrary/build/**
+unityLibrary/libs/**
+unityLibrary/symbols/**
+unityLibrary/src/*
 
 # Local configuration file (sdk path, etc)
 local.properties
