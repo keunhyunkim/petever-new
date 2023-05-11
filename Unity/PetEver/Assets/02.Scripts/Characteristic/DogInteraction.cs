@@ -7,6 +7,8 @@ public class DogInteraction : MonoBehaviour
     public GameObject DogCamera;
     public Animator dogAnimator;
     public GameObject touchtracking;
+    private float time_start;
+    private float reset_flag;
 
 
     // Start is called before the first frame update
@@ -15,6 +17,8 @@ public class DogInteraction : MonoBehaviour
         DogCamera = GameObject.Find("CharacterCamera");
         dogAnimator = GameObject.FindGameObjectWithTag("OwnerDog").GetComponent<Animator>();
         touchtracking = GameObject.Find("spine.033");
+        reset_flag = 0;
+
     }
 
     // Update is called once per frame
@@ -34,15 +38,14 @@ public class DogInteraction : MonoBehaviour
             switch (touch.phase)
             {
                 case TouchPhase.Began: // when touch starts
-                    Debug.Log(touch.position.x);
-                    Debug.Log(touch.position.y);
+
 
                     touchPosToVector3 = new Vector3(touch.position.x,touch.position.y, 0);
                     //touchPos = DogCamera.GetComponent<Camera>().ScreenToWorldPoint(touchPosToVector3);
                     ray = DogCamera.GetComponent<Camera>().ScreenPointToRay(touchPosToVector3); 
                     if (Physics.Raycast(ray,out hit))
                     {
-                        Debug.Log(hit.collider.gameObject.name); 
+                        //Debug.Log(hit.collider.gameObject.name); 
                         if(hit.collider.gameObject.name == "footTouch_R")
                         {
                             dogAnimator.SetTrigger("feetup_L");
@@ -59,8 +62,22 @@ public class DogInteraction : MonoBehaviour
  
                     break;
                 case TouchPhase.Moved:
-              //  dogAnimator.StopPlayback();
-                  //  touchtracking.transform.forward = touchPos;
+                    if (reset_flag == 0)
+                    {
+                        time_start = Time.time;
+                    }
+                    reset_flag = 1;
+                    Debug.Log(Time.time-time_start);
+                    touchPosToVector3 = new Vector3(touch.position.x,touch.position.y, 0);
+                    ray = DogCamera.GetComponent<Camera>().ScreenPointToRay(touchPosToVector3); 
+                    if (Physics.Raycast(ray,out hit))
+                    {
+                        Debug.Log(hit.collider.gameObject.name); 
+                        if((hit.collider.gameObject.name == "headTouch") && (Time.time-time_start) > 1.0f)
+                        {
+                            dogAnimator.SetTrigger("heading");
+                        }
+                    }
                     break;
  
                 case TouchPhase.Stationary:
@@ -68,7 +85,8 @@ public class DogInteraction : MonoBehaviour
                     break;
  
                 case TouchPhase.Ended:
-              //  dogAnimator.Play();
+                    Debug.Log("TouchEnd");
+                    reset_flag = 0;
                     break;
  
                 case TouchPhase.Canceled:

@@ -15,6 +15,13 @@ public class SetCharacterFeature : MonoBehaviour
     public GameObject shihtzuPrefab;
     public GameObject retrieverPrefab;
 
+    //declare variables for control fur length 
+    public GameObject bodyfur_back, bodyfur_middle, bodyfur_front;
+    public GameObject chinfur;
+    public GameObject neckfur; 
+    private Vector3 longFurValue_body, middleFurValue_body, shortFurValue_body, presentFurValue_body;
+    private Vector3 longFurValue_neck, middleFurValue_neck, shortFurValue_neck, presentFurValue_neck;
+    private Vector3 longFurValue_chin, middleFurValue_chin, shortFurValue_chin, presentFurValue_chin;
 
     private Material dogMaterial;
     
@@ -125,8 +132,72 @@ public class SetCharacterFeature : MonoBehaviour
             dog.transform.localPosition = dogSummonPos;
             dog.tag = "OwnerDog";
 
+            bodyfur_back = GameObject.Find("bodyfur_back");
+            bodyfur_middle = GameObject.Find("bodyfur_middle");
+            bodyfur_front = GameObject.Find("bodyfur_front");
+            neckfur = GameObject.Find("neckfur");
+            chinfur = GameObject.Find("chinfur");
+
+            longFurValue_body = new Vector3(1.2f, 1.2f, 1.2f );
+            middleFurValue_body = new Vector3(0.7f, 0.7f, 0.7f );
+            shortFurValue_body = new Vector3(0.4f, 0.4f, 0.4f );
+
+            longFurValue_neck = new Vector3(2.0f, 2.0f, 2.0f );
+            middleFurValue_neck = new Vector3(1.25f, 1.25f, 1.25f );
+            shortFurValue_neck = new Vector3(0.5f, 0.5f, 0.5f );
+
+            longFurValue_chin = new Vector3(1.6f, 1.6f, 1.6f );
+            middleFurValue_chin = new Vector3(0.9f, 0.9f, 0.9f );
+            shortFurValue_chin = new Vector3(0.2f, 0.2f, 0.2f );   
+
             DontDestroyOnLoad(CharacterParent);
 
+        }
+    }
+
+    public void FurColor()
+    {
+
+    }
+
+    public void FurLengthShort(bool isOn)
+    {
+        if (isOn){
+            Debug.Log("shortclick");
+            bodyfur_back.transform.localScale = shortFurValue_body;
+            bodyfur_middle.transform.localScale = shortFurValue_body;
+            bodyfur_front.transform.localScale = shortFurValue_body;
+
+            chinfur.transform.localScale = shortFurValue_chin;
+            neckfur.transform.localScale = shortFurValue_neck;
+        }
+    }
+
+
+    public void FurLengthMiddle(bool isOn)
+    {
+        Debug.Log(isOn);
+        if (isOn){
+            Debug.Log("middleclick");
+            bodyfur_back.transform.localScale = middleFurValue_body;
+            bodyfur_middle.transform.localScale = middleFurValue_body;
+            bodyfur_front.transform.localScale = middleFurValue_body;
+
+            chinfur.transform.localScale = middleFurValue_chin;
+            neckfur.transform.localScale = middleFurValue_neck;  
+        }
+    }
+
+    public void FurLengthLong(bool isOn)
+    {
+        if (isOn){
+            Debug.Log("longclick");           
+            bodyfur_back.transform.localScale = longFurValue_body;
+            bodyfur_middle.transform.localScale = longFurValue_body;
+            bodyfur_front.transform.localScale = longFurValue_body;
+
+            chinfur.transform.localScale = longFurValue_chin;
+            neckfur.transform.localScale = longFurValue_neck;
         }
     }
 }

@@ -26,6 +26,8 @@ public class Creation2WorldScene : MonoBehaviour
             gameObject.GetComponent<DogEscort>().enabled = false;
             gameObject.GetComponent<LineRenderer>().enabled = false;
 
+            gameObject.GetComponent<Creation2WorldScene>().enabled = true;
+
 
             gameObject.layer = 6;
             gameObject.GetComponent<Animator>().runtimeAnimatorController = animatorController_creationScene;
@@ -39,6 +41,8 @@ public class Creation2WorldScene : MonoBehaviour
             gameObject.GetComponent<DogAI>().enabled = true;
             gameObject.GetComponent<DogEscort>().enabled = true;
             gameObject.GetComponent<LineRenderer>().enabled = true;
+
+            GameObject.Find("Characteristic").GetComponent<DogInteraction>().enabled = false;
 
             gameObject.layer = 0;
             gameObject.GetComponent<Animator>().runtimeAnimatorController = animatorController_worldScene;
@@ -64,6 +68,9 @@ public class Creation2WorldScene : MonoBehaviour
             gameObject.GetComponent<DogAI>().enabled = true;
             gameObject.GetComponent<DogEscort>().enabled = true;
             gameObject.GetComponent<LineRenderer>().enabled = true;
+
+            GameObject.Find("Characteristic").GetComponent<DogInteraction>().enabled = false;
+
 
             gameObject.layer = 0;
             gameObject.GetComponent<Animator>().runtimeAnimatorController = animatorController_worldScene;
