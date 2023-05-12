@@ -135,6 +135,7 @@ public class SetCharacterFeature : MonoBehaviour
             dog.transform.localScale = dogScale;
             dog.transform.localPosition = dogSummonPos;
             dog.tag = "OwnerDog";
+            dog.layer = 6;
 
             bodyfur_back = GameObject.Find("bodyfur_back");
             bodyfur_middle = GameObject.Find("bodyfur_middle");
@@ -167,7 +168,6 @@ public class SetCharacterFeature : MonoBehaviour
     public void FurLengthShort(bool isOn)
     {
         if (isOn){
-            Debug.Log("shortclick");
             bodyfur_back.transform.localScale = shortFurValue_body;
             bodyfur_middle.transform.localScale = shortFurValue_body;
             bodyfur_front.transform.localScale = shortFurValue_body;
@@ -182,7 +182,6 @@ public class SetCharacterFeature : MonoBehaviour
     {
         Debug.Log(isOn);
         if (isOn){
-            Debug.Log("middleclick");
             bodyfur_back.transform.localScale = middleFurValue_body;
             bodyfur_middle.transform.localScale = middleFurValue_body;
             bodyfur_front.transform.localScale = middleFurValue_body;
@@ -195,7 +194,6 @@ public class SetCharacterFeature : MonoBehaviour
     public void FurLengthLong(bool isOn)
     {
         if (isOn){
-            Debug.Log("longclick");           
             bodyfur_back.transform.localScale = longFurValue_body;
             bodyfur_middle.transform.localScale = longFurValue_body;
             bodyfur_front.transform.localScale = longFurValue_body;

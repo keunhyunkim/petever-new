@@ -8,7 +8,9 @@ public class Creation2WorldScene : MonoBehaviour
 {
     private Scene scene;
     public RuntimeAnimatorController animatorController_creationScene;
-    public RuntimeAnimatorController animatorController_worldScene;
+    public RuntimeAnimatorController animatorController_worldScene_OwnerDog;
+    public RuntimeAnimatorController animatorController_worldScene_DogNPC;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -37,25 +39,30 @@ public class Creation2WorldScene : MonoBehaviour
             gameObject.GetComponent<GetColliderScript>().enabled = true;
             gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
             gameObject.GetComponent<DogAI>().enabled = true;
-            gameObject.GetComponent<DogEscort>().enabled = true;
-            gameObject.GetComponent<LineRenderer>().enabled = true;
-
             GameObject.Find("Characteristic").GetComponent<DogInteraction>().enabled = false;
+            gameObject.GetComponent<LineRenderer>().enabled = false;
 
             gameObject.layer = 0;
-            gameObject.GetComponent<Animator>().runtimeAnimatorController = animatorController_worldScene;
 
-        }
-        
-        
+            if (gameObject.tag == "DogNPC")
+            {
+                gameObject.GetComponent<Animator>().runtimeAnimatorController = animatorController_worldScene_DogNPC;
+                gameObject.GetComponent<DogEscort>().enabled = false;
+
+            }
+            else if(gameObject.tag == "OwnerDog")
+            {
+                gameObject.GetComponent<Animator>().runtimeAnimatorController = animatorController_worldScene_OwnerDog;
+                gameObject.GetComponent<DogEscort>().enabled = true;               
+            }           
+        }     
     }
     void Start(){
         SceneManager.activeSceneChanged += ChangedActiveScene;
     }
+
     private void ChangedActiveScene(Scene current, Scene next)
     {
-        Debug.Log(current.name + ", "+ next.name);
-
         if ("CreationScene".Equals(next.name))
         {
             gameObject.GetComponent<SphereCollider>().enabled = false;
@@ -80,12 +87,23 @@ public class Creation2WorldScene : MonoBehaviour
             gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
             gameObject.GetComponent<DogAI>().enabled = true;
             gameObject.GetComponent<DogEscort>().enabled = true;
-            gameObject.GetComponent<LineRenderer>().enabled = true;
+            gameObject.GetComponent<LineRenderer>().enabled = false;
 
             GameObject.Find("Characteristic").GetComponent<DogInteraction>().enabled = false;
 
             gameObject.layer = 0;
-            gameObject.GetComponent<Animator>().runtimeAnimatorController = animatorController_worldScene;
+
+            if (gameObject.tag == "DogNPC")
+            {
+                gameObject.GetComponent<Animator>().runtimeAnimatorController = animatorController_worldScene_DogNPC;
+                gameObject.GetComponent<DogEscort>().enabled = false;
+
+            }
+            else if(gameObject.tag == "OwnerDog")
+            {
+                gameObject.GetComponent<Animator>().runtimeAnimatorController = animatorController_worldScene_OwnerDog;
+                gameObject.GetComponent<DogEscort>().enabled = true;
+            }
 
         }
         

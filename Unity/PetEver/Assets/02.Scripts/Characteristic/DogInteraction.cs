@@ -24,7 +24,8 @@ public class DogInteraction : MonoBehaviour
     // Update is called once per frame
     // https://ssscool.tistory.com/336
     void Update()
-    {
+    {   
+
         if (Input.touchCount > 0)
         {
             // 싱글 터치.
@@ -67,12 +68,10 @@ public class DogInteraction : MonoBehaviour
                         time_start = Time.time;
                     }
                     reset_flag = 1;
-                    Debug.Log(Time.time-time_start);
                     touchPosToVector3 = new Vector3(touch.position.x,touch.position.y, 0);
                     ray = DogCamera.GetComponent<Camera>().ScreenPointToRay(touchPosToVector3); 
                     if (Physics.Raycast(ray,out hit))
                     {
-                        Debug.Log(hit.collider.gameObject.name); 
                         if((hit.collider.gameObject.name == "headTouch") && (Time.time-time_start) > 1.0f)
                         {
                             dogAnimator.SetTrigger("heading");
@@ -85,7 +84,6 @@ public class DogInteraction : MonoBehaviour
                     break;
  
                 case TouchPhase.Ended:
-                    Debug.Log("TouchEnd");
                     reset_flag = 0;
                     break;
  

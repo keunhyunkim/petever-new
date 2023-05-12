@@ -100,7 +100,10 @@ public class DogAI : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         owner = GameObject.FindGameObjectWithTag("Owner");
 
-        DogView = GameObject.FindGameObjectWithTag("UICanvas").transform.GetChild(8).gameObject;
+        if (gameObject.tag == "OwnerDog")
+        {
+            DogView = GameObject.FindGameObjectWithTag("UICanvas").transform.Find("DogView").gameObject;
+        }
         //DogView = GameObject.FindGameObjectWithTag("DogView");
 
         voiceButton.onClick.AddListener(delegate { VoiceButton(); });
@@ -220,28 +223,32 @@ public class DogAI : MonoBehaviour
 
     void DogAnimation()
     {
-        dogAnimator.SetBool("arrived", arrived);
-        dogAnimator.SetBool("meetOwner", meetOwner);
         dogAnimator.SetBool("walking", walking);
-        dogAnimator.SetBool("trackingOwner", trackingOwner);
-        dogAnimator.SetFloat("escapeCount", escapeCount);
-        dogAnimator.SetFloat("dogSpeed", navMeshAgent.velocity.magnitude);
-        dogAnimator.SetInteger("whatCollided", collided_tag_number);
-        dogAnimator.SetBool("waitOwner",DogEscort.waitOwner);
+
+        if (gameObject.tag == "OwnerDog")
+        {
+            dogAnimator.SetBool("arrived", arrived);
+            dogAnimator.SetBool("meetOwner", meetOwner);
+            dogAnimator.SetBool("trackingOwner", trackingOwner);
+            dogAnimator.SetFloat("escapeCount", escapeCount);
+            dogAnimator.SetFloat("dogSpeed", navMeshAgent.velocity.magnitude);
+            dogAnimator.SetInteger("whatCollided", collided_tag_number);
+            dogAnimator.SetBool("waitOwner",DogEscort.waitOwner);
 
         
-        if (meetOwner)
-        {           
-            if (dogAnimator.GetCurrentAnimatorStateInfo(0).IsName("turn_around") &&
-                     (dogAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f))
-            {
-                escapeCount++;
-                if (escapeCount > 3)
+            if (meetOwner)
+            {           
+                if (dogAnimator.GetCurrentAnimatorStateInfo(0).IsName("turn_around") &&
+                        (dogAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f))
                 {
-                    arrived = true;
-                    escapeCount = 0;
-                    navMeshAgent.isStopped = false;
-                    DogView.SetActive(false);
+                    escapeCount++;
+                    if (escapeCount > 3)
+                    {
+                        arrived = true;
+                        escapeCount = 0;
+                        navMeshAgent.isStopped = false;
+                        DogView.SetActive(false);
+                    }
                 }
             }
         }
