@@ -27,6 +27,7 @@ public class LoadSceneManager : MonoBehaviour
         mainTextTmp = mainText.GetComponent<TextMeshProUGUI>();
         progressTextTmp = progressText.GetComponent<TextMeshProUGUI>();
         dogModel = GameObject.FindGameObjectWithTag("OwnerDog");
+        SceneManager.activeSceneChanged += ChangedActiveScene;
     }
 
     private void setTitleText()
@@ -72,8 +73,13 @@ public class LoadSceneManager : MonoBehaviour
         {
             dogModel = GameObject.FindGameObjectWithTag("OwnerDog");
         }
+
         dogAnimator = dogModel.GetComponent<Animator>();
-        dogAnimator.SetBool("run", true);
+        if (dogAnimator != null)
+        {
+            dogAnimator.SetBool("run", true);
+        }
+
         //Begin to load the Scene you specify
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
         //Don't let the Scene activate until you allow it to
@@ -86,7 +92,10 @@ public class LoadSceneManager : MonoBehaviour
             // Check if the load has finished
             if (asyncOperation.progress >= 0.9f)
             {
-                dogAnimator.SetBool("run", false);
+                if (dogAnimator != null)
+                {
+                    dogAnimator.SetBool("run", false);
+                }
                 //Activate the Scene
                 asyncOperation.allowSceneActivation = true;
             }
@@ -94,7 +103,13 @@ public class LoadSceneManager : MonoBehaviour
             yield return null;
         }
     }
-
+    private void ChangedActiveScene(Scene current, Scene next)
+    {
+        if (dogAnimator != null)
+        {
+            dogAnimator.SetBool("run", false);
+        }
+    }
     void Update()
     {
         progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, _target, 3 * Time.deltaTime);

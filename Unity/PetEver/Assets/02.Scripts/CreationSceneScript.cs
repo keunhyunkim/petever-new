@@ -27,26 +27,6 @@ public class CreationSceneScript : MonoBehaviour
         showCanvasGroup(FurLengthToggleGroup);
     }
 
-    IEnumerator<object> LoadYourAsyncScene()
-    {
-        string sceneName = "MySpaceScene";
-        // Set the current Scene to be able to unload it later
-        Scene currentScene = SceneManager.GetActiveScene();
-
-        // The Application loads the Scene in the background at the same time as the current Scene.
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-
-        // Wait until the last operation fully loads to return anything
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-
-
-        // Unload the previous Scene
-        SceneManager.UnloadSceneAsync(currentScene);
-    }
-
     public void OnClickRemake()
     {
         Application.Quit();
