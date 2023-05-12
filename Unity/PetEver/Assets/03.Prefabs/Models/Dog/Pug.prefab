@@ -585,7 +585,7 @@ Transform:
   m_GameObject: {fileID: 2381932926484606986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.94574773, y: 0.94574773, z: 0.94574773}
+  m_LocalScale: {x: 0.880525, y: 0.880525, z: 0.880525}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 245215117723592804}
@@ -886,7 +886,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorController_creationScene: {fileID: 9100000, guid: b0fa1f65b5b278546b74530624a427cd, type: 2}
-  animatorController_worldScene: {fileID: 9100000, guid: 1f8a7d1b3e027914fa2e8d48914413c5, type: 2}
+  animatorController_worldScene_OwnerDog: {fileID: 9100000, guid: 1f8a7d1b3e027914fa2e8d48914413c5, type: 2}
+  animatorController_worldScene_DogNPC: {fileID: 9100000, guid: 7b1f6f3938f840345852443468bc44c5, type: 2}
 --- !u!1 &2391178459768475065
 GameObject:
   m_ObjectHideFlags: 0
