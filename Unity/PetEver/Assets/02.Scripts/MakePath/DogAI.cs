@@ -52,7 +52,7 @@ public class DogAI : MonoBehaviour
     {
         get
         {
-            if (!(gameObject.transform.position.x == lastpos.x))
+            if (Vector3.Distance(gameObject.transform.position, lastpos) > 0)
             {
                 return true;
             }
@@ -144,6 +144,7 @@ public class DogAI : MonoBehaviour
                     {
                         navMeshAgent.speed = dog_normalSpeed;
                         navMeshAgent.SetDestination(point);
+                        navMeshAgent.stoppingDistance = 4.0f;
                         //Debug.DrawRay(point, Vector3.up, Color.red, 10.0f);
                     }
                 }
@@ -167,7 +168,7 @@ public class DogAI : MonoBehaviour
                 if (!meetOwner)
                 { 
                     DogView.SetActive(true);
-                    navMeshAgent.stoppingDistance = 10.0f;
+                    navMeshAgent.stoppingDistance = 8.0f;
                     trackingOwner = true;
                     arrived = false;
                 }
@@ -190,7 +191,7 @@ public class DogAI : MonoBehaviour
 
             else
             {
-                navMeshAgent.stoppingDistance = 3.0f;
+                //navMeshAgent.stoppingDistance = 4.0f;
 
                 switch (getCollider.collided_tag)
                 {
@@ -230,19 +231,20 @@ public class DogAI : MonoBehaviour
             dogAnimator.SetBool("arrived", arrived);
             dogAnimator.SetBool("meetOwner", meetOwner);
             dogAnimator.SetBool("trackingOwner", trackingOwner);
-            dogAnimator.SetFloat("escapeCount", escapeCount);
             dogAnimator.SetFloat("dogSpeed", navMeshAgent.velocity.magnitude);
             dogAnimator.SetInteger("whatCollided", collided_tag_number);
             dogAnimator.SetBool("waitOwner",DogEscort.waitOwner);
 
         
             if (meetOwner)
-            {           
+            { 
                 if (dogAnimator.GetCurrentAnimatorStateInfo(0).IsName("turn_around") &&
                         (dogAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f))
                 {
                     escapeCount++;
-                    if (escapeCount > 3)
+                    dogAnimator.SetFloat("escapeCount", escapeCount);
+                    
+                    if (escapeCount >= 1)
                     {
                         arrived = true;
                         escapeCount = 0;
