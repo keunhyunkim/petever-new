@@ -19,11 +19,6 @@ public class EnterForest : MonoBehaviour
         MainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
     }
 
-    private void Awake()
-    {
-
-    }
-
     IEnumerator<object> LoadYourAsyncScene()
     {
         string sceneName = "TherapyForest";
