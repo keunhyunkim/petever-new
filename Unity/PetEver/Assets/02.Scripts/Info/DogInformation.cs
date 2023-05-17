@@ -45,8 +45,16 @@ public class DogInformation : MonoBehaviour
             string msg = dogInfoText[1];
             msg = msg.Replace("\\n", "\n").Replace("\\", "");
 
+            string detailTxt = dogInfoText[2];
+            detailTxt = detailTxt.Replace("\\n", "\n").Replace("\\", "");
+
+            string hashTags = dogInfoText[3];
+                        
             GetChildWithName(dogInfoCG, "PopupTitle").GetComponent<TextMeshProUGUI>().text = dogInfoText[0];
             GetChildWithName(dogInfoCG, "PopupDetail").GetComponent<TextMeshProUGUI>().text = msg;
+            GetChildWithName(dogInfoCG, "DetailTxt").GetComponent<TextMeshProUGUI>().text = detailTxt;
+            GetChildWithName(dogInfoCG, "DogHashTag").GetComponent<TextMeshProUGUI>().text = hashTags;
+            
         } else {
             dogInfoCG.GetComponent<Canvas>().GetComponent<CanvasGroup>().alpha = 0;
         }
