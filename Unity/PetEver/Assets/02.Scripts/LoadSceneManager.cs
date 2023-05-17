@@ -67,6 +67,7 @@ public class LoadSceneManager : MonoBehaviour
         yield return null;
         _target = 0;
         progressBar.fillAmount = 0;
+        setTitleText();
         setStatusText();
         loaderCanvas.SetActive(true);
         if (dogModel == null)
