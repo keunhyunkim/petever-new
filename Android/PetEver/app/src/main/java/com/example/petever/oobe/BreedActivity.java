@@ -57,7 +57,7 @@ public class BreedActivity extends AppCompatActivity {
     private String section1Color;
     private String section2Color;
 
-    private static final String baseUrl = "http://3.35.242.182:3200/";
+    private static final String baseUrl = "http://3.35.242.182:3000/";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
