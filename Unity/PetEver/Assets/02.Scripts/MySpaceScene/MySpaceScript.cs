@@ -11,7 +11,7 @@ public class MySpaceScript : MonoBehaviour
         dogModel = GameObject.FindGameObjectWithTag("OwnerDog");
         if (dogModel != null)
         {
-            ChangeLayersRecursively(dogModel.transform, "Default");
+            ChangeLayersRecursively(dogModel.transform, "TransparentFX");
             dogModel.transform.position = new Vector3(374, 573, 18);
         }
     }
