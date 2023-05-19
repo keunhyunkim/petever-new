@@ -63,6 +63,17 @@ public class Creation2WorldScene : MonoBehaviour
 
     private void ChangedActiveScene(Scene current, Scene next)
     {
+
+        if (!("CreationScene".Equals(next.name)) && !("WorldScene".Equals(next.name)) && !("MySpaceScene".Equals(next.name)))
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(true);
+
+        }
+
         if ("CreationScene".Equals(next.name))
         {
             gameObject.GetComponent<SphereCollider>().enabled = false;
@@ -106,6 +117,5 @@ public class Creation2WorldScene : MonoBehaviour
             }
 
         }
-        
     }
 }
