@@ -13,7 +13,6 @@ public class GuideUIControl : MonoBehaviour
     private Vector3 createPoint; 
     private float circlePos;
     public Sprite circle_empty, circle_filled;
-    public TextMeshProUGUI buttonText;
 
     
     void Awake() 
@@ -22,20 +21,14 @@ public class GuideUIControl : MonoBehaviour
         createPoint = GameObject.Find("MemorialSceneCanvas").GetComponent<RectTransform>().anchoredPosition;
         
         Tab = GameObject.Find("Tab").GetComponent<Transform>();
-       // left = GameObject.Find("left");
-        //middle = GameObject.Find("middle");
-       // right = GameObject.Find("right");
         triangleBtn = GameObject.Find("triangleBtn").GetComponent<Button>();
         skipCompleteBtn = GameObject.Find("skipCompleteBtn").GetComponent<Button>();
-        circle_empty = Resources.Load<Sprite>("circle_empty");
-        circle_filled = Resources.Load<Sprite>("circle_filled");
         circlePos = 0f;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        //Instantiate(GuideUI, createPoint, Quaternion.identity, GameObject.Find("MemorialSceneCanvas").GetComponent<RectTransform>());
         triangleBtn.onClick.AddListener(delegate { turnpage(); });
         skipCompleteBtn.onClick.AddListener(delegate {turnpage();} );
     }
@@ -57,7 +50,6 @@ public class GuideUIControl : MonoBehaviour
             {
                 Destroy(GuideUI);
             }
-            //buttonText = clickObject.GetComponentInChildren<TextMeshProUGUI>();
         }
            
         switch (circlePos%3)

@@ -36,14 +36,6 @@ public class PiecesDone : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
 
-
-        // Set the ScreenShot Area
-        // captureRect = captureArea.GetComponent<RectTransform>().rect;
-        // captureWidth = (int)captureRect.width;
-        // captureHeight = (int)captureRect.height;
-        // var startX = captureArea.transform.position.x - captureWidth / 2;
-        // var startY = captureArea.transform.position.y - captureHeight / 2;
-
         // Create Texture
         Texture2D screenTex = new Texture2D(850, 850, TextureFormat.RGB24, false);
         // Texture2D screenTex = new Texture2D(captureWidth, captureHeight, TextureFormat.RGB24, false);

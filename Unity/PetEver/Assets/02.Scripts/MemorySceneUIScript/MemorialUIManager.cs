@@ -6,21 +6,13 @@ using UnityEngine.EventSystems;
 
 
 public class MemorialUIManager : MonoBehaviour
-{ 
-    public GameObject NewpageUI;
-    private Vector3 createPoint;
+{
+    public CanvasGroup NewpageUI;
 
-    public Button LoadNewButton;
+    [SerializeField] private GameObject MemorialSceneCanvas;
+    [SerializeField] private Button LoadNewButton;
 
     // public UnityAction action;
-
-    void Awake()
-    {
-        createPoint = GameObject.Find("MemorialSceneCanvas").GetComponent<RectTransform>().anchoredPosition;
-        LoadNewButton = GameObject.Find("LoadNewButton").GetComponent<Button>();
- 
-        NewpageUI = Resources.Load<GameObject>("Prefabs/NewpageUI");
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +24,14 @@ public class MemorialUIManager : MonoBehaviour
 
     public void LoadNewpage()
     {
-        Instantiate(NewpageUI, createPoint, Quaternion.identity, GameObject.Find("MemorialSceneCanvas").GetComponent<RectTransform>());
+        ShowCanvasGroup(NewpageUI);
+
+    }
+
+    private void ShowCanvasGroup(CanvasGroup cg)
+    {
+        cg.alpha = 1;
+        cg.interactable = true;
+        cg.blocksRaycasts = true;
     }
 }
