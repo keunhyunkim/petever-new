@@ -28,6 +28,11 @@ public class DogTrackingCameraScript : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if (tPlayer == null)
+        {
+            tPlayer = GameObject.FindGameObjectWithTag("OwnerDog");
+        }
+        
         gameObject.transform.position = tPlayer.transform.position + offset;
 
     }

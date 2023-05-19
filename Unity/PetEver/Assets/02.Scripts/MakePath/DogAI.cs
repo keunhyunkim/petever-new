@@ -162,7 +162,7 @@ public class DogAI : MonoBehaviour
 
     void Tracking()
     {
-
+        if (owner.scene.name == "WorldScene"){
             if (voiceButton_bool) // give priority when Owner calls. When Owner calls, dog only chases Owner even it meets Dog, Flower, Butterfly or etc.   
             {
                 if (!meetOwner)
@@ -218,7 +218,7 @@ public class DogAI : MonoBehaviour
                         }
                 }
             }
-        
+        }
     }
 
 
