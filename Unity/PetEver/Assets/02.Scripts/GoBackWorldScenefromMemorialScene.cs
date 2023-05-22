@@ -15,15 +15,18 @@ public class GoBackWorldScenefromMemorialScene : MonoBehaviour
     [SerializeField] RectTransform fader;
     void Start()
     {
-        ManCharacter = GameObject.FindGameObjectWithTag("Owner");
-        MainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
-        MainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
+        //ManCharacter = GameObject.FindGameObjectWithTag("Owner");
+        //MainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
+        //MainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
         fader = GameObject.Find("MemorialSceneCanvas").transform.GetChild(1).GetComponent<RectTransform>();
         noticeText = GameObject.FindGameObjectWithTag("NoticeText");
     }
 
     IEnumerator<object> GoWorldScene()
     {
+        ManCharacter = GameObject.FindGameObjectWithTag("Owner");
+        MainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
+        MainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
 
         ManCharacter.transform.position = new Vector3(-28.7f, 0f, -38.5f);
         string sceneName = "WorldScene";

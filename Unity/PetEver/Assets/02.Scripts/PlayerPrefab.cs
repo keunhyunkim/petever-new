@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerPrefab : MonoBehaviour
 {
@@ -9,10 +10,11 @@ public class PlayerPrefab : MonoBehaviour
     public GameObject dogPrefab;
     GameObject manCharacter;
     GameObject dogCharacter;
+    private UnityEngine.AI.NavMeshAgent nav;
 
     private string[] objectName;
 
-    void Awake()
+    void Start()
     {
         objectName = gameObject.name.Split('_');
 
@@ -30,11 +32,17 @@ public class PlayerPrefab : MonoBehaviour
         else if(objectName[1]=="Dog")
         {
             dogCharacter = GameObject.FindGameObjectWithTag("OwnerDog");
+
+            nav = dogCharacter.GetComponent<NavMeshAgent>();
+            nav.enabled = false;
             dogCharacter.transform.position = this.gameObject.transform.position;
             dogCharacter.transform.localScale = new Vector3(1f, 1f, 1f);
+            nav.enabled = true;
+
+
             if (dogCharacter == null)
             {
-                Instantiate(dogPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
+                Instantiate(dogCharacter, this.gameObject.transform.position, this.gameObject.transform.rotation);
             }
         }
     }

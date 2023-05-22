@@ -55,8 +55,9 @@ public class Creation2WorldScene : MonoBehaviour
                 gameObject.GetComponent<Animator>().runtimeAnimatorController = animatorController_worldScene_OwnerDog;
                 gameObject.GetComponent<DogEscort>().enabled = true;               
             }           
-        }     
+        }  
     }
+    
     void Start(){
         SceneManager.activeSceneChanged += ChangedActiveScene;
     }

@@ -15,9 +15,9 @@ public class EnterMemorialSpace : MonoBehaviour
 
     void Start()
     {
-        ManCharacter = GameObject.FindGameObjectWithTag("Owner");
-        MainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
-        MainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
+        //ManCharacter = GameObject.FindGameObjectWithTag("Owner");
+        //MainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
+        //MainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
         fader = GameObject.Find("FadeCanvas").transform.GetChild(0).GetComponent<RectTransform>();
 
     }
@@ -29,6 +29,10 @@ public class EnterMemorialSpace : MonoBehaviour
 
     IEnumerator<object> LoadYourAsyncScene()
     {
+        ManCharacter = GameObject.FindGameObjectWithTag("Owner");
+        MainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
+        MainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
+
         string sceneName = "MemorialSpace";
         // Set the current Scene to be able to unload it later
         Scene currentScene = SceneManager.GetActiveScene();
