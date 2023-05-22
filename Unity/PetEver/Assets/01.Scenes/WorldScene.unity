@@ -20473,7 +20473,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.484599e+27, y: 7.0341797e+28, z: 1.7077771e+19, w: 4.2329707e+21}
+  m_BoundingSphereOverride: {x: 9.036895e-38, y: 0, z: 0, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -28713,7 +28713,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.001
+  near clip plane: -20
   far clip plane: 100
   field of view: 60
   orthographic: 1
@@ -40383,7 +40383,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 20
-    NearClipPlane: 0.001
+    NearClipPlane: -20
     FarClipPlane: 100
     Dutch: 0
     ModeOverride: 0
