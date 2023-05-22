@@ -5,19 +5,15 @@ using TMPro;
 
 public class MemorialSceneUIControl : MonoBehaviour
 {
-    CanvasGroup stickyNoteInputPanel;
-    CanvasGroup photoPanel;
-    TMP_InputField stickyNoteInput;    
+    [SerializeField] CanvasGroup stickyNoteInputPanel;
+    [SerializeField] CanvasGroup photoPanel;
+    [SerializeField] TMP_InputField stickyNoteInput;    
     string resourceUrl = "Prefabs/";
     GameObject owner;
-    GameObject wallArea;
+    [SerializeField] GameObject wallArea;
     void Start()
     {
-        stickyNoteInputPanel = GameObject.Find("StickyNotePanel").GetComponent<CanvasGroup>();
-        photoPanel = GameObject.Find("PhotoPanel").GetComponent<CanvasGroup>();
-        stickyNoteInput = GameObject.Find("StickyNoteInput").GetComponent<TMP_InputField>();
         owner = GameObject.FindGameObjectWithTag("Owner");
-        wallArea = GameObject.Find("Wall Area");
     }
     
     public void OnExitClicked()

@@ -18,7 +18,6 @@ public class GoBackWorldScenefromMemorialScene : MonoBehaviour
         //ManCharacter = GameObject.FindGameObjectWithTag("Owner");
         //MainCanvas = GameObject.FindGameObjectWithTag("UICanvas");
         //MainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
-        fader = GameObject.Find("MemorialSceneCanvas").transform.GetChild(1).GetComponent<RectTransform>();
         noticeText = GameObject.FindGameObjectWithTag("NoticeText");
     }
 
