@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInput inputValue;
     public static Animator playerAnimator;
 
-    public static float playerSpeed = 8.0f; // Player character speed
+    public static float playerSpeed = 12.0f; // Player character speed
     public static bool isForest;
     public static float mov_x;
     public static float mov_y;

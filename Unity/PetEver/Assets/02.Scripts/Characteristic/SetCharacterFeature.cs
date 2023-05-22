@@ -428,7 +428,6 @@ public class SetCharacterFeature : MonoBehaviour
 
     public void FurLengthMiddle(bool isOn)
     {
-        Debug.Log(isOn);
         if (isOn){
             bodyfur_back.transform.localScale = middleFurValue_body;
             bodyfur_middle.transform.localScale = middleFurValue_body;
