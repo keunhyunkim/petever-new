@@ -32,6 +32,7 @@ public class DogAI : MonoBehaviour
     private bool voiceButton_bool = false; 
     private float timer = 0f;
     private float escapeCount = 0f;
+    private bool animStop = false;
     private int collided_tag_number = -1; // give never-using value to initialize
     //private float cycleOffset;
 
@@ -235,25 +236,31 @@ public class DogAI : MonoBehaviour
             dogAnimator.SetInteger("whatCollided", collided_tag_number);
             dogAnimator.SetBool("waitOwner",DogEscort.waitOwner);
 
+
         
             if (meetOwner)
-            {           
+            {   
                 if (dogAnimator.GetCurrentAnimatorStateInfo(0).IsName("turn_around") &&
-                        (dogAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f))
+                        (dogAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f))
                 {
                     escapeCount++;
-                    dogAnimator.SetFloat("escapeCount", escapeCount);
+
                     if (escapeCount >= 1)
                     {
+                        animStop = true;
                         arrived = true;
-                        escapeCount = 0;
                         navMeshAgent.isStopped = false;
                         DogView.SetActive(false);
                     }
+                    else
+                    {
+                        animStop = false;
+                    }
+                
+                    dogAnimator.SetBool("animStop", animStop);
                 }
             }
         }
-
         if (collided_tag_number == 1)
         {
             if (dogAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)

@@ -137,8 +137,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
-    m_ConditionEvent: escapeCount
+  - m_ConditionMode: 1
+    m_ConditionEvent: animStop
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5906156398586409866}
@@ -146,9 +146,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.75
+  m_TransitionDuration: 0.09316361
+  m_TransitionOffset: 0.005986274
+  m_ExitTime: 0.884157
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -269,6 +269,12 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - m_Name: walkingSpeed
     m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: animStop
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -440,7 +446,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f828c325a6945164582e9e19496db9d6, type: 2}
+  m_Motion: {fileID: 7400000, guid: a10db6b390a91a1409c28a8b69c5b80d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
