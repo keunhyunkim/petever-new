@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class DogEscort : MonoBehaviour
 {
-    private NavMeshAgent navMeshAgent; 
+    private NavMeshAgent navMeshAgent;
     public static bool welcomeEscort;
     public static bool waitOwner;
     private Vector3[] escortPoint; // checkpoint when dog escorts Owner. if you want to add or delete checkpoint, modify 1.length of escortPoint array 2.number of checkPoint objects in WorldScene 
@@ -16,7 +16,7 @@ public class DogEscort : MonoBehaviour
     private float dis_Dog2Point; // distance between dog and point
     private int escortPointNum;
     private LineRenderer lineRenderer;
-   
+
     void Awake()
     {
         welcomeEscort = false;
@@ -25,11 +25,11 @@ public class DogEscort : MonoBehaviour
         escortPointNum = 0;
 
 
-        escortPoint = new Vector3[10]; 
+        escortPoint = new Vector3[10];
 
 
 
-       // escortPoint[2] = GameObject.Find("checkPoint3").GetComponent<Transform>().position;
+        // escortPoint[2] = GameObject.Find("checkPoint3").GetComponent<Transform>().position;
         //owner = GameObject.FindGameObjectWithTag("Owner");
 
 
@@ -48,7 +48,7 @@ public class DogEscort : MonoBehaviour
         escortPoint[7] = GameObject.Find("checkPoint8").GetComponent<Transform>().position;
         escortPoint[8] = GameObject.Find("checkPoint9").GetComponent<Transform>().position;
         escortPoint[9] = GameObject.Find("checkPoint10").GetComponent<Transform>().position;
-        
+
         navMeshAgent = GetComponent<NavMeshAgent>();
         owner = GameObject.FindGameObjectWithTag("Owner");
         emotionBubble = GameObject.Find("emotionCanvas").transform.Find("emotionBubble").gameObject;
@@ -60,7 +60,7 @@ public class DogEscort : MonoBehaviour
         //lineRenderer.material.color = Color.blue;
         lineRenderer.enabled = false;
 
-        
+
         StartCoroutine(DogEscorting());
 
     }
@@ -69,10 +69,12 @@ public class DogEscort : MonoBehaviour
     void Update()
     {
 
-        dis_Owner2Dog = Vector3.Distance(owner.transform.position, gameObject.transform.position);
-        dis_Owner2Point = Vector3.Distance(owner.transform.position, escortPoint[escortPointNum]);
+        if (owner != null)
+        {
+            dis_Owner2Dog = Vector3.Distance(owner.transform.position, gameObject.transform.position);
+            dis_Owner2Point = Vector3.Distance(owner.transform.position, escortPoint[escortPointNum]);
+        }
         dis_Dog2Point = Vector3.Distance(gameObject.transform.position, escortPoint[escortPointNum]);
-
 
 
     }
@@ -81,17 +83,17 @@ public class DogEscort : MonoBehaviour
     IEnumerator DogEscorting()
     {
 
-       // escortPoint.Length    
+        // escortPoint.Length    
         emotionBubble.SetActive(false);
         questionMark.SetActive(false);
 
-        while(true)
+        while (true)
         {
             if (welcomeEscort)
             {
-                lineRenderer.enabled = true;    
+                lineRenderer.enabled = true;
                 navMeshAgent.SetDestination(escortPoint[escortPointNum]);
-                lineRenderer.SetPosition(0,gameObject.transform.position);
+                lineRenderer.SetPosition(0, gameObject.transform.position);
 
                 navMeshAgent.stoppingDistance = 3.0f;
 
@@ -117,21 +119,21 @@ public class DogEscort : MonoBehaviour
                     emotionBubble.SetActive(false);
                     questionMark.SetActive(false);
 
-                    navMeshAgent.isStopped = false;   
+                    navMeshAgent.isStopped = false;
                 }
 
 
                 if (dis_Owner2Point < 7f)
                 {
-                    if (escortPointNum < (escortPoint.Length-1))
+                    if (escortPointNum < (escortPoint.Length - 1))
                     {
-                        escortPointNum++; 
+                        escortPointNum++;
                     }
 
                     else
                     {
                         welcomeEscort = false;
-                        lineRenderer.enabled = false;                   
+                        lineRenderer.enabled = false;
                         navMeshAgent.stoppingDistance = 10.0f;
 
                     }
@@ -149,8 +151,8 @@ public class DogEscort : MonoBehaviour
     {
         if (owner != null)
         {
-            Vector3 dir = (owner.transform.position-gameObject.transform.position);
-            gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, Quaternion.LookRotation(dir),Time.deltaTime*50f);
+            Vector3 dir = (owner.transform.position - gameObject.transform.position);
+            gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 50f);
         }
     }
 

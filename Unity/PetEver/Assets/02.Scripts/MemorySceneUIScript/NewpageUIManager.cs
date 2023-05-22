@@ -13,10 +13,7 @@ public class NewpageUIManager : MonoBehaviour
     public Button ImageBtn, StickerBtn, TextBtn, XBtn;
     public static GameObject UserInputTextBundle, StickerInventory, rawImageText;
     private static CanvasGroup newPageUI;
-
-    private Vector3 createPoint, stickercreatePoint;
-
-
+    public static Transform[] trashCan;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,20 +40,28 @@ public class NewpageUIManager : MonoBehaviour
     }
     public static void CloseUI()
     {
+        trashCan = GameObject.Find("TextAndSticker").GetComponentsInChildren<Transform>();    
+
+        if(trashCan != null)
+        {
+            for(int i = 1; i < trashCan.Length; i++)
+            {
+                Destroy(trashCan[i].gameObject);
+            }
+        }
         HideCanvasGroup(newPageUI);
     }
 
     public void GetText()
     {
         UserInputTextBundle = Resources.Load<GameObject>("Prefabs/UserInputTextBundle");
-        UserInputTextBundle = Instantiate(UserInputTextBundle, createPoint, Quaternion.identity, GameObject.Find("MemorialSceneCanvas").GetComponent<RectTransform>());
+        UserInputTextBundle = Instantiate(UserInputTextBundle, GameObject.Find("TextAndSticker").GetComponent<RectTransform>());
     }
 
     public void GetSticker()
     {
-        stickercreatePoint = createPoint + new Vector3(0f, 0f, 0f);
         StickerInventory = Resources.Load<GameObject>("Prefabs/StickerInventory");
-        StickerInventory = Instantiate(StickerInventory, stickercreatePoint, Quaternion.identity, GameObject.Find("MemorialSceneCanvas").GetComponent<RectTransform>());
+        StickerInventory = Instantiate(StickerInventory, GameObject.Find("TextAndSticker").GetComponent<RectTransform>());
     }
 
     public void GetImage()

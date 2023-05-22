@@ -23,7 +23,7 @@ public class StickerCtrlScript : MonoBehaviour, IPointerClickHandler, IPointerDo
     {
         stickerSprite = gameObject.GetComponent<Image>().sprite;
         stickerImage = gameObject.GetComponent<Image>();
-        MemorialSceneCanvas = GameObject.Find("MemorialSceneCanvas");
+        MemorialSceneCanvas = GameObject.Find("TextAndSticker");
 
         if (stickerSprite != null)
         {
@@ -41,7 +41,6 @@ public class StickerCtrlScript : MonoBehaviour, IPointerClickHandler, IPointerDo
         {
             if(Time.time - timePressStarted > durationThreshold)
             {
-                Debug.Log("press");
                 longPressTriggered = true;
                 SelectSticker();
             }

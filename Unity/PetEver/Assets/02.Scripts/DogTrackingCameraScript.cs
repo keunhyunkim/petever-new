@@ -10,7 +10,7 @@ public class DogTrackingCameraScript : MonoBehaviour
     private CinemachineVirtualCamera vcam, cineCam;
     private CinemachineTransposer cineTransposer;
     public GameObject tPlayer;
-    private Vector3 offset; 
+    private Vector3 offset;
 
 
 
@@ -19,9 +19,9 @@ public class DogTrackingCameraScript : MonoBehaviour
     void Start()
     {
 
-       tPlayer = GameObject.FindGameObjectWithTag("OwnerDog");
-       //offset = gameObject.transform.position - tPlayer.transform.position;
-       offset = new Vector3(0f,0.5f,0f);
+        tPlayer = GameObject.FindGameObjectWithTag("OwnerDog");
+        //offset = gameObject.transform.position - tPlayer.transform.position;
+        offset = new Vector3(0f, 0.5f, 0f);
 
     }
 
@@ -32,8 +32,11 @@ public class DogTrackingCameraScript : MonoBehaviour
         {
             tPlayer = GameObject.FindGameObjectWithTag("OwnerDog");
         }
-        
-        gameObject.transform.position = tPlayer.transform.position + offset;
+
+        if (tPlayer != null)
+        {
+            gameObject.transform.position = tPlayer.transform.position + offset;
+        }
 
     }
 }

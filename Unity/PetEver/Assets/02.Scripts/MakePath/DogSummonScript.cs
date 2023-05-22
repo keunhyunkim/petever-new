@@ -20,28 +20,30 @@ public class DogSummonScript : MonoBehaviour
 
         if (dogSpecies[1] == "Bichon")
             dogRandomScale = Random.Range(0.85f, 1.0f);
-        else if(dogSpecies[1] == "PomeLong")
+        else if (dogSpecies[1] == "PomeLong")
             dogRandomScale = Random.Range(0.75f, 1.0f);
-        else if(dogSpecies[1] == "Pomeshort")
-            dogRandomScale = Random.Range(0.75f, 1.0f);       
-        else if(dogSpecies[1] == "Maltese")
+        else if (dogSpecies[1] == "Pomeshort")
             dogRandomScale = Random.Range(0.75f, 1.0f);
-        else if(dogSpecies[1] == "Poodle")
+        else if (dogSpecies[1] == "Maltese")
+            dogRandomScale = Random.Range(0.75f, 1.0f);
+        else if (dogSpecies[1] == "Poodle")
             dogRandomScale = Random.Range(0.85f, 1.0f);
-        else if(dogSpecies[1] == "Retriever")
+        else if (dogSpecies[1] == "Retriever")
             dogRandomScale = Random.Range(1.0f, 1.2f);
-        else if(dogSpecies[1] == "Shihtzu")
+        else if (dogSpecies[1] == "Shihtzu")
             dogRandomScale = Random.Range(0.75f, 1.0f);
-        else if(dogSpecies[1] == "Pug")
+        else if (dogSpecies[1] == "Pug")
             dogRandomScale = Random.Range(0.75f, 1.0f);
 
-        dogScale = new Vector3(1,1,1)*dogRandomScale;
+        dogScale = new Vector3(1, 1, 1) * dogRandomScale;
 
         dogNPC.transform.localScale = dogScale;
         dogNPC.tag = "DogNPC";
         dogNPC.layer = 0;
 
+        
         Instantiate(dogNPC, this.gameObject.transform.position, this.gameObject.transform.rotation);
+        
     }
 
     void Start()
