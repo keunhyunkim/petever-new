@@ -26,6 +26,12 @@ public class DogInteraction : MonoBehaviour
     void Update()
     {   
 
+        if (DogCamera == null)
+        {
+            DogCamera = GameObject.Find("CharacterCamera");
+        }
+
+
         if (Input.touchCount > 0)
         {
             // 싱글 터치.
@@ -73,7 +79,7 @@ public class DogInteraction : MonoBehaviour
                     ray = DogCamera.GetComponent<Camera>().ScreenPointToRay(touchPosToVector3); 
                     if (Physics.Raycast(ray,out hit))
                     {
-                        if((hit.collider.gameObject.name == "headTouch") && (Time.time-time_start) > 1.0f)
+                        if((hit.collider.gameObject.name == "headTouch") && (Time.time-time_start) > 0.5f)
                         {
                             dogAnimator.SetTrigger("heading");
                         }
