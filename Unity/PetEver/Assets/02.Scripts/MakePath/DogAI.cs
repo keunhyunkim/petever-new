@@ -29,7 +29,7 @@ public class DogAI : MonoBehaviour
     private Vector3 lastpos; // for determine dog is walking or not  
     private bool arrived = true;
     private bool trackingOwner = false;
-    private bool voiceButton_bool = false; 
+    public static bool voiceButton_bool = false; 
     private float timer = 0f;
     private float escapeCount = 0f;
     private bool animStop = false;
@@ -95,8 +95,6 @@ public class DogAI : MonoBehaviour
         dogAnimator = GetComponent<Animator>();
         dogAnimator.SetFloat("cycleOffset", Random.Range(0f,1/6f));
         dogAnimator.SetFloat("walkingSpeed", 1/(DogSummonScript.dogRandomScale)*1.5f);
-        voiceButton = GameObject.Find("VoiceButton").GetComponent<Button>();
-        escortButton = GameObject.Find("EscortButton").GetComponent<Button>();
 
         navMeshAgent = GetComponent<NavMeshAgent>();
         owner = GameObject.FindGameObjectWithTag("Owner");
@@ -105,10 +103,6 @@ public class DogAI : MonoBehaviour
         {
             DogView = GameObject.FindGameObjectWithTag("UICanvas").transform.Find("DogView").gameObject;
         }
-        //DogView = GameObject.FindGameObjectWithTag("DogView");
-
-        voiceButton.onClick.AddListener(delegate { VoiceButton(); });
-        escortButton.onClick.AddListener(delegate { EscortButton(); });
 
         StartCoroutine(UpdatePath());
     }
@@ -122,10 +116,6 @@ public class DogAI : MonoBehaviour
         if (!gameObject.CompareTag("DogNPC") && (DogEscort.welcomeEscort == false))
         {
             Tracking();
-        }
-
-        else
-        { 
         }
 
         lastpos = gameObject.transform.position;
@@ -273,14 +263,6 @@ public class DogAI : MonoBehaviour
 
     }
 
-    void VoiceButton()
-    {
-        voiceButton_bool = true;
-    }
-
-    void EscortButton()
-    {
-        DogEscort.welcomeEscort = true;
-    }
+ 
 }
 

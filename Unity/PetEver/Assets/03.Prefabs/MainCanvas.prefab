@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9098020171264736361}
   - component: {fileID: 2794436801086176245}
   - component: {fileID: 7450564398586933673}
+  - component: {fileID: 7246012053139348553}
   m_Layer: 0
   m_Name: DogView
   m_TagString: DogView
@@ -73,6 +74,21 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &7246012053139348553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386709630911229073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &523489414833617000
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,6 +669,7 @@ RectTransform:
   - {fileID: 5683701888056365263}
   - {fileID: 9051574554272958100}
   - {fileID: 9098020171264736361}
+  - {fileID: 2112746543522025440}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3567,6 +3584,50 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &4150158224803835693
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2112746543522025440}
+  - component: {fileID: 8704668359980896047}
+  m_Layer: 5
+  m_Name: MainCanvasScript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2112746543522025440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4150158224803835693}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 744720040122711440}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8704668359980896047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4150158224803835693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb10f8e38e484514cb945681ab5fc5e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4173427803024886831
 GameObject:
   m_ObjectHideFlags: 0
@@ -4483,7 +4544,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4659477544871695272}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8704668359980896047}
+        m_TargetAssemblyTypeName: MainCanvasScript, Assembly-CSharp
+        m_MethodName: VoiceButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4669745263839886154
 GameObject:
   m_ObjectHideFlags: 0
@@ -7612,6 +7685,34 @@ PrefabInstance:
     - target: {fileID: 2132651646302365832, guid: 0b3d1cf926c5f4d4b8cfbafaaad981f5, type: 3}
       propertyPath: m_Name
       value: EscortButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 2637134250657550358, guid: 0b3d1cf926c5f4d4b8cfbafaaad981f5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2637134250657550358, guid: 0b3d1cf926c5f4d4b8cfbafaaad981f5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2637134250657550358, guid: 0b3d1cf926c5f4d4b8cfbafaaad981f5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8704668359980896047}
+    - target: {fileID: 2637134250657550358, guid: 0b3d1cf926c5f4d4b8cfbafaaad981f5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2637134250657550358, guid: 0b3d1cf926c5f4d4b8cfbafaaad981f5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EscortButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 2637134250657550358, guid: 0b3d1cf926c5f4d4b8cfbafaaad981f5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainCanvasScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2637134250657550358, guid: 0b3d1cf926c5f4d4b8cfbafaaad981f5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b3d1cf926c5f4d4b8cfbafaaad981f5, type: 3}
