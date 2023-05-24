@@ -11,14 +11,13 @@ GameObject:
   - component: {fileID: 9098020171264736361}
   - component: {fileID: 2794436801086176245}
   - component: {fileID: 7450564398586933673}
-  - component: {fileID: 7246012053139348553}
   m_Layer: 0
   m_Name: DogView
   m_TagString: DogView
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9098020171264736361
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28,15 +27,15 @@ RectTransform:
   m_GameObject: {fileID: 386709630911229073}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3333334, y: 1.3333334, z: 1.3333334}
+  m_LocalScale: {x: 0.95238096, y: 0.95238096, z: 0.95238096}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 744720040122711440}
-  m_RootOrder: 8
+  m_Father: {fileID: 8306966292677693359}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 150.00002, y: 150.00002}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2794436801086176245
@@ -74,21 +73,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &7246012053139348553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 386709630911229073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 5, y: 5}
-  m_UseGraphicAlpha: 1
 --- !u!1 &523489414833617000
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,7 +652,7 @@ RectTransform:
   - {fileID: 1810029946767985256}
   - {fileID: 5683701888056365263}
   - {fileID: 9051574554272958100}
-  - {fileID: 9098020171264736361}
+  - {fileID: 8306966292677693359}
   - {fileID: 2112746543522025440}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -7043,6 +7027,83 @@ RectTransform:
   m_AnchoredPosition: {x: 353, y: 576}
   m_SizeDelta: {x: 300, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &8414177930157409310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8306966292677693359}
+  - component: {fileID: 7024452979831877825}
+  - component: {fileID: 3244738504627850626}
+  m_Layer: 0
+  m_Name: DogViewOutline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &8306966292677693359
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8414177930157409310}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 9098020171264736361}
+  m_Father: {fileID: 744720040122711440}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -420, y: -1260}
+  m_SizeDelta: {x: -1140, y: -2820}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7024452979831877825
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8414177930157409310}
+  m_CullTransparentMesh: 1
+--- !u!114 &3244738504627850626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8414177930157409310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.98039216, g: 0.98039216, b: 0.98039216, a: 0.78431374}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &8417500114537002692
 GameObject:
   m_ObjectHideFlags: 0
