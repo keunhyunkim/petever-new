@@ -101,7 +101,7 @@ public class DogAI : MonoBehaviour
 
         if (gameObject.tag == "OwnerDog")
         {
-            DogView = GameObject.FindGameObjectWithTag("UICanvas").transform.Find("DogView").gameObject;
+            DogView = GameObject.FindGameObjectWithTag("UICanvas").transform.Find("DogViewOutline").gameObject;
         }
 
         StartCoroutine(UpdatePath());

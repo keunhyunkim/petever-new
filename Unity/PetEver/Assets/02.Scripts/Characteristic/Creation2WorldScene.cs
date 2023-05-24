@@ -39,7 +39,6 @@ public class Creation2WorldScene : MonoBehaviour
             gameObject.GetComponent<GetColliderScript>().enabled = true;
             gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
             gameObject.GetComponent<DogAI>().enabled = true;
-            GameObject.Find("Characteristic").GetComponent<DogInteraction>().enabled = false;
             gameObject.GetComponent<LineRenderer>().enabled = false;
 
             gameObject.layer = 0;
@@ -101,7 +100,6 @@ public class Creation2WorldScene : MonoBehaviour
             gameObject.GetComponent<DogEscort>().enabled = true;
             gameObject.GetComponent<LineRenderer>().enabled = false;
 
-            GameObject.Find("Characteristic").GetComponent<DogInteraction>().enabled = false;
 
             gameObject.layer = 0;
 
