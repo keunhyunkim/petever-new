@@ -344,7 +344,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1646036863}
+      - m_Target: {fileID: 617331317}
         m_TargetAssemblyTypeName: SetCharacterFeature, Assembly-CSharp
         m_MethodName: FurColorLight
         m_Mode: 0
@@ -443,7 +443,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1646036863}
+      - m_Target: {fileID: 617331317}
         m_TargetAssemblyTypeName: SetCharacterFeature, Assembly-CSharp
         m_MethodName: FurColorDeep
         m_Mode: 0
@@ -760,21 +760,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 92127546}
   m_CullTransparentMesh: 1
---- !u!114 &168543905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1646036861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 865429a9c1bcb8e43b20d53511ff5654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DogCamera: {fileID: 1527097497}
-  dogAnimator: {fileID: 0}
-  touchtracking: {fileID: 0}
 --- !u!1 &169727605
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,7 +922,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1646036863}
+      - m_Target: {fileID: 617331317}
         m_TargetAssemblyTypeName: SetCharacterFeature, Assembly-CSharp
         m_MethodName: FurLengthLong
         m_Mode: 0
@@ -1036,7 +1021,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1646036863}
+      - m_Target: {fileID: 617331317}
         m_TargetAssemblyTypeName: SetCharacterFeature, Assembly-CSharp
         m_MethodName: FurLengthShort
         m_Mode: 0
@@ -1387,7 +1372,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 52809.33, y: 7.191642e-39, z: 0, w: -10.264653}
+  m_BoundingSphereOverride: {x: 2.6564686e+20, y: 2.214207e-10, z: 0.0000026135945, w: 0.00000084334744}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -1729,7 +1714,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1646036863}
+      - m_Target: {fileID: 617331317}
         m_TargetAssemblyTypeName: SetCharacterFeature, Assembly-CSharp
         m_MethodName: FurColorOrigin
         m_Mode: 0
@@ -2438,6 +2423,8 @@ GameObject:
   m_Component:
   - component: {fileID: 617331314}
   - component: {fileID: 617331315}
+  - component: {fileID: 617331317}
+  - component: {fileID: 617331316}
   m_Layer: 0
   m_Name: Script
   m_TagString: Untagged
@@ -2475,6 +2462,81 @@ MonoBehaviour:
   CustomPanel: {fileID: 1596326005}
   FurColorToggleGroup: {fileID: 1440431581}
   FurLengthToggleGroup: {fileID: 433300151}
+--- !u!114 &617331316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617331312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 865429a9c1bcb8e43b20d53511ff5654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DogCamera: {fileID: 0}
+  dogAnimator: {fileID: 0}
+  touchtracking: {fileID: 0}
+--- !u!114 &617331317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617331312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d667f8bcef9584e4aad1c7538f4d93b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dogPrefab: {fileID: 0}
+  dog: {fileID: 0}
+  maltesePrefab: {fileID: 1969633365382911097, guid: 7c9e6f35873f78343a5c231e1cb8f4c6, type: 3}
+  pomeLongPrefab: {fileID: 7947789121627695448, guid: 07aa1d1f8fb19de4fa2b3db37e3f6811, type: 3}
+  pomeShortPrefab: {fileID: 1984549842080528140, guid: b385fe758b3de3945822b82b097f449b, type: 3}
+  pugPrefab: {fileID: 2381932926484606986, guid: 20cac3d91a2ef2b42a42bdc7b8580cf9, type: 3}
+  shihtzuPrefab: {fileID: 6058108287886012355, guid: b8a9352ad3c497f48b93b402a1372b74, type: 3}
+  retrieverPrefab: {fileID: 8565728337800232779, guid: e41d6a6c98cbe9644bf1a8f963d2383a, type: 3}
+  poodlePrefab: {fileID: 7249286159026639595, guid: a619b8c7220590b4fb6cd0a1651165cb, type: 3}
+  bodyfur_back: {fileID: 0}
+  bodyfur_middle: {fileID: 0}
+  bodyfur_front: {fileID: 0}
+  chinfur: {fileID: 0}
+  neckfur: {fileID: 0}
+  pomeLong_black: {fileID: 2100000, guid: 3c6177ad02d024941ac01eca55fbd49b, type: 2}
+  pomeLong_black_deep: {fileID: 2100000, guid: 5bd61913418a2fc4b9fbc3b0e7aa9c3f, type: 2}
+  pomeLong_black_light: {fileID: 2100000, guid: 8ba40b913ae1e4442a1eedb859650240, type: 2}
+  pomeLong_brown: {fileID: 2100000, guid: afd78e7c72b26ab4fbd75e80af8666d2, type: 2}
+  pomeLong_brown_deep: {fileID: 2100000, guid: 60251b80a81b8db4f87bf2bf87a9942d, type: 2}
+  pomeLong_brown_light: {fileID: 2100000, guid: c6e476ac7ed1d134bb481c965e98f812, type: 2}
+  pomeLong_white: {fileID: 2100000, guid: 8537050643108564dbf77ce8ee012dd2, type: 2}
+  pomeLong_white_light: {fileID: 2100000, guid: 5ae353a8c0eeb6c48b51da17defad502, type: 2}
+  pomeLong_white_deep: {fileID: 2100000, guid: 4409ec1c5ff0570468893ddaf5569c16, type: 2}
+  pomeShort_black: {fileID: 2100000, guid: 93539d069924b8640858fa38eb8080c3, type: 2}
+  pomeShort_black_deep: {fileID: 2100000, guid: 7e32e17e702faf349ab40988fcceee4a, type: 2}
+  pomeShort_black_light: {fileID: 2100000, guid: 3f5e08b79c996f04396f9c3161e3d29b, type: 2}
+  pomeShort_brown: {fileID: 2100000, guid: a04e719d58662094da90508e93d5dac7, type: 2}
+  pomeShort_brown_deep: {fileID: 2100000, guid: 7eacc940515a73b44b021597dccaa681, type: 2}
+  pomeShort_brown_light: {fileID: 2100000, guid: afc43e310a0f20c459b7937c03973d14, type: 2}
+  pomeShort_white: {fileID: 2100000, guid: f9feffc400d2c2a40a56d16fb77d8e6a, type: 2}
+  pomeShort_white_deep: {fileID: 2100000, guid: e69b3abb21f991a418e92da8cfa5cfab, type: 2}
+  pomeShort_white_light: {fileID: 2100000, guid: 0f52693ce4be3e44aabb3219d626bdc2, type: 2}
+  pug_black: {fileID: 2100000, guid: d6a90206e66e25b40828696ff9d46497, type: 2}
+  pug_black_deep: {fileID: 2100000, guid: a1b07861ffb140f459a93256acfec153, type: 2}
+  pug_black_light: {fileID: 2100000, guid: 364f0e32c635b0e4e823dd9359dffd2e, type: 2}
+  pug_brown: {fileID: 2100000, guid: 4f46246a2bd6e5544a991f75a7c8a023, type: 2}
+  pug_brown_deep: {fileID: 2100000, guid: c7c72cd6269fa7f46a86c31ff1931110, type: 2}
+  pug_brown_light: {fileID: 2100000, guid: 526090d440b82fb43b454f67e5aac7eb, type: 2}
+  maltese_white: {fileID: 2100000, guid: 8e774e6940db83543953fb095aa310a0, type: 2}
+  maltese_white_deep: {fileID: 2100000, guid: d657cc6d477ffe341846ffbf376fb4f4, type: 2}
+  maltese_white_light: {fileID: 2100000, guid: b22b32844efed5e4182b96b027c52c18, type: 2}
+  shihtzu_whitebrown: {fileID: 2100000, guid: 9d5b621086a4b2d45abb21d8738c86b6, type: 2}
+  shihtzu_whitebrown_deep: {fileID: 2100000, guid: 1d2ee51c0dc4ef749aff7431ea5d14eb, type: 2}
+  shihtzu_whitebrown_light: {fileID: 2100000, guid: 3cbe5a2ed5df6c04ab25fabd0787aec6, type: 2}
+  retriever_brown: {fileID: 2100000, guid: e885a999d69e936409b2975a421944ea, type: 2}
+  retriever_brown_deep: {fileID: 2100000, guid: ed1cce9193fb972448ec0810a02193c9, type: 2}
+  retriever_brown_light: {fileID: 2100000, guid: 65d0ca5144d38824791d44395938b2d5, type: 2}
+  CharacterParent: {fileID: 1582827732}
 --- !u!1 &655775360
 GameObject:
   m_ObjectHideFlags: 0
@@ -2697,7 +2759,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1646036863}
+      - m_Target: {fileID: 617331317}
         m_TargetAssemblyTypeName: SetCharacterFeature, Assembly-CSharp
         m_MethodName: FurLengthMiddle
         m_Mode: 0
@@ -5053,8 +5115,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1646036862}
-  - component: {fileID: 1646036863}
-  - component: {fileID: 168543905}
   m_Layer: 6
   m_Name: Characteristic
   m_TagString: Untagged
@@ -5077,66 +5137,6 @@ Transform:
   m_Father: {fileID: 1582827733}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1646036863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1646036861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d667f8bcef9584e4aad1c7538f4d93b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dogPrefab: {fileID: 0}
-  dog: {fileID: 0}
-  maltesePrefab: {fileID: 1969633365382911097, guid: 7c9e6f35873f78343a5c231e1cb8f4c6, type: 3}
-  pomeLongPrefab: {fileID: 7947789121627695448, guid: 07aa1d1f8fb19de4fa2b3db37e3f6811, type: 3}
-  pomeShortPrefab: {fileID: 1984549842080528140, guid: b385fe758b3de3945822b82b097f449b, type: 3}
-  pugPrefab: {fileID: 2381932926484606986, guid: 20cac3d91a2ef2b42a42bdc7b8580cf9, type: 3}
-  shihtzuPrefab: {fileID: 6058108287886012355, guid: b8a9352ad3c497f48b93b402a1372b74, type: 3}
-  retrieverPrefab: {fileID: 8565728337800232779, guid: e41d6a6c98cbe9644bf1a8f963d2383a, type: 3}
-  poodlePrefab: {fileID: 7249286159026639595, guid: a619b8c7220590b4fb6cd0a1651165cb, type: 3}
-  bodyfur_back: {fileID: 0}
-  bodyfur_middle: {fileID: 0}
-  bodyfur_front: {fileID: 0}
-  chinfur: {fileID: 0}
-  neckfur: {fileID: 0}
-  pomeLong_black: {fileID: 2100000, guid: 3c6177ad02d024941ac01eca55fbd49b, type: 2}
-  pomeLong_black_deep: {fileID: 2100000, guid: 5bd61913418a2fc4b9fbc3b0e7aa9c3f, type: 2}
-  pomeLong_black_light: {fileID: 2100000, guid: 8ba40b913ae1e4442a1eedb859650240, type: 2}
-  pomeLong_brown: {fileID: 2100000, guid: afd78e7c72b26ab4fbd75e80af8666d2, type: 2}
-  pomeLong_brown_deep: {fileID: 2100000, guid: 60251b80a81b8db4f87bf2bf87a9942d, type: 2}
-  pomeLong_brown_light: {fileID: 2100000, guid: c6e476ac7ed1d134bb481c965e98f812, type: 2}
-  pomeLong_white: {fileID: 2100000, guid: 8537050643108564dbf77ce8ee012dd2, type: 2}
-  pomeLong_white_light: {fileID: 2100000, guid: 5ae353a8c0eeb6c48b51da17defad502, type: 2}
-  pomeLong_white_deep: {fileID: 2100000, guid: 4409ec1c5ff0570468893ddaf5569c16, type: 2}
-  pomeShort_black: {fileID: 2100000, guid: 93539d069924b8640858fa38eb8080c3, type: 2}
-  pomeShort_black_deep: {fileID: 2100000, guid: 7e32e17e702faf349ab40988fcceee4a, type: 2}
-  pomeShort_black_light: {fileID: 2100000, guid: 3f5e08b79c996f04396f9c3161e3d29b, type: 2}
-  pomeShort_brown: {fileID: 2100000, guid: a04e719d58662094da90508e93d5dac7, type: 2}
-  pomeShort_brown_deep: {fileID: 2100000, guid: 7eacc940515a73b44b021597dccaa681, type: 2}
-  pomeShort_brown_light: {fileID: 2100000, guid: afc43e310a0f20c459b7937c03973d14, type: 2}
-  pomeShort_white: {fileID: 2100000, guid: f9feffc400d2c2a40a56d16fb77d8e6a, type: 2}
-  pomeShort_white_deep: {fileID: 2100000, guid: e69b3abb21f991a418e92da8cfa5cfab, type: 2}
-  pomeShort_white_light: {fileID: 2100000, guid: 0f52693ce4be3e44aabb3219d626bdc2, type: 2}
-  pug_black: {fileID: 2100000, guid: d6a90206e66e25b40828696ff9d46497, type: 2}
-  pug_black_deep: {fileID: 2100000, guid: a1b07861ffb140f459a93256acfec153, type: 2}
-  pug_black_light: {fileID: 2100000, guid: 364f0e32c635b0e4e823dd9359dffd2e, type: 2}
-  pug_brown: {fileID: 2100000, guid: 4f46246a2bd6e5544a991f75a7c8a023, type: 2}
-  pug_brown_deep: {fileID: 2100000, guid: c7c72cd6269fa7f46a86c31ff1931110, type: 2}
-  pug_brown_light: {fileID: 2100000, guid: 526090d440b82fb43b454f67e5aac7eb, type: 2}
-  maltese_white: {fileID: 2100000, guid: 8e774e6940db83543953fb095aa310a0, type: 2}
-  maltese_white_deep: {fileID: 2100000, guid: d657cc6d477ffe341846ffbf376fb4f4, type: 2}
-  maltese_white_light: {fileID: 2100000, guid: b22b32844efed5e4182b96b027c52c18, type: 2}
-  shihtzu_whitebrown: {fileID: 2100000, guid: 9d5b621086a4b2d45abb21d8738c86b6, type: 2}
-  shihtzu_whitebrown_deep: {fileID: 2100000, guid: 1d2ee51c0dc4ef749aff7431ea5d14eb, type: 2}
-  shihtzu_whitebrown_light: {fileID: 2100000, guid: 3cbe5a2ed5df6c04ab25fabd0787aec6, type: 2}
-  retriever_brown: {fileID: 2100000, guid: e885a999d69e936409b2975a421944ea, type: 2}
-  retriever_brown_deep: {fileID: 2100000, guid: ed1cce9193fb972448ec0810a02193c9, type: 2}
-  retriever_brown_light: {fileID: 2100000, guid: 65d0ca5144d38824791d44395938b2d5, type: 2}
-  CharacterParent: {fileID: 1582827732}
 --- !u!1 &1650652946
 GameObject:
   m_ObjectHideFlags: 0

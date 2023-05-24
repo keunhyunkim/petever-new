@@ -108,8 +108,8 @@ public class SetCharacterFeature : MonoBehaviour
                 Debug.Log("GameManager Exception : " + e.ToString());
             }
 
-            // breed = "SHIHTZU";
-            // section1Color = "c68642";
+             //breed = "POME_LONG";
+             //section1Color = "000000";
 
             switch (breed)
             {

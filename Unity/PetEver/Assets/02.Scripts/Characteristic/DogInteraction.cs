@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DogInteraction : MonoBehaviour
 {
@@ -14,9 +15,8 @@ public class DogInteraction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DogCamera = GameObject.Find("CharacterCamera");
         dogAnimator = GameObject.FindGameObjectWithTag("OwnerDog").GetComponent<Animator>();
-        touchtracking = GameObject.Find("spine.033");
+        DogCamera = GameObject.Find("CharacterCamera");
         reset_flag = 0;
 
     }
@@ -25,13 +25,6 @@ public class DogInteraction : MonoBehaviour
     // https://ssscool.tistory.com/336
     void Update()
     {   
-
-        if (DogCamera == null)
-        {
-            DogCamera = GameObject.Find("CharacterCamera");
-        }
-
-
         if (Input.touchCount > 0)
         {
             // 싱글 터치.
@@ -99,5 +92,10 @@ public class DogInteraction : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void UniqueAction()
+    {
+        dogAnimator.SetTrigger("uniqueMotion");
     }
 }

@@ -4196,7 +4196,8 @@ MonoBehaviour:
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
-  m_Cameras: []
+  m_Cameras:
+  - {fileID: 2079507772}
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
@@ -4252,7 +4253,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 51
+    m_Bits: 49
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -5082,6 +5083,7 @@ GameObject:
   - component: {fileID: 617331314}
   - component: {fileID: 617331315}
   - component: {fileID: 617331316}
+  - component: {fileID: 617331317}
   m_Layer: 0
   m_Name: Script
   m_TagString: Untagged
@@ -5132,6 +5134,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180292764f9efec4aa6af3c5a22b2ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DogCamera: {fileID: 2079507770}
+--- !u!114 &617331317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617331312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 865429a9c1bcb8e43b20d53511ff5654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DogCamera: {fileID: 0}
+  dogAnimator: {fileID: 0}
+  touchtracking: {fileID: 0}
 --- !u!1 &635316844
 GameObject:
   m_ObjectHideFlags: 0
@@ -8288,7 +8306,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 52809.33, y: 7.191642e-39, z: 0, w: -10.264653}
+  m_BoundingSphereOverride: {x: 0, y: 2.2e-44, z: 0, w: 4907.8594}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -13877,6 +13895,7 @@ GameObject:
   - component: {fileID: 1801729804}
   - component: {fileID: 1801729806}
   - component: {fileID: 1801729805}
+  - component: {fileID: 1801729807}
   m_Layer: 5
   m_Name: PetBtn
   m_TagString: Untagged
@@ -13943,6 +13962,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1801729803}
   m_CullTransparentMesh: 1
+--- !u!114 &1801729807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801729803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1801729805}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 617331316}
+        m_TargetAssemblyTypeName: MySpaceScript, Assembly-CSharp
+        m_MethodName: DogBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1802876345
 GameObject:
   m_ObjectHideFlags: 0
@@ -14053,7 +14128,7 @@ GameObject:
   - component: {fileID: 1809983323}
   - component: {fileID: 1809983322}
   - component: {fileID: 1809983321}
-  m_Layer: 1
+  m_Layer: 0
   m_Name: PersonalPlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15881,7 +15956,7 @@ MonoBehaviour:
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
+  m_CameraType: 1
   m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
@@ -15924,15 +15999,15 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 999.09
-  field of view: 38
+  field of view: 95
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2
+    m_Bits: 66
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 1021bdc4f14494d429e78122f0289d93, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -15950,7 +16025,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079507770}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 375, y: 655, z: -280}
+  m_LocalPosition: {x: 369, y: 686, z: -280}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
