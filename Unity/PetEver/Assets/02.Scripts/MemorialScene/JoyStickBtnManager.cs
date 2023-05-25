@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class JoyStickBtnManager : MonoBehaviour
 {
     public List<GameObject> Buttons { get; set; } = new List<GameObject>();
-    string btnResourceUrl = "Prefabs/Buttons/";
-    string resourceUrl = "Prefabs/";
     GameObject owner;
     GameObject wallArea;
     GameObject joyStickBtns;
 
     CanvasGroup stickyNoteInputPanel;
     CanvasGroup photoPanel;
+    [SerializeField] private GameObject candlePrefab, flowerPrefab;
+    [SerializeField] private GameObject albumBtnPrefab, candleBtnPrefab, flowerBtnPrefab, postItBtnPrefab;
 
     void Awake()
     {
@@ -27,12 +27,12 @@ public class JoyStickBtnManager : MonoBehaviour
 
     void candleAndFlowerBtns()
     {
-        GameObject candleBtn = addIcon("CandleBtn");
+        GameObject candleBtn = addIcon(candleBtnPrefab);
         candleBtn.GetComponent<Button>().onClick.AddListener(() =>
         {
             OnCandleBtnClicked();
         });
-        GameObject flowerBtn = addIcon("FlowerBtn");
+        GameObject flowerBtn = addIcon(flowerBtnPrefab);
         flowerBtn.GetComponent<Button>().onClick.AddListener(() =>
         {
             OnFlowerBtnClicked();
@@ -42,7 +42,7 @@ public class JoyStickBtnManager : MonoBehaviour
 
     public void showWallIcons()
     {
-        GameObject postItBtn = addIcon("PostItBtn");
+        GameObject postItBtn = addIcon(postItBtnPrefab);
         postItBtn.GetComponent<Button>().onClick.AddListener(() =>
         {
             OnStickyNoteInputOpenClicked();
@@ -55,7 +55,7 @@ public class JoyStickBtnManager : MonoBehaviour
     }
     public void showPhotoIcons()
     {
-        GameObject albumBtn = addIcon("AlbumBtn");
+        GameObject albumBtn = addIcon(albumBtnPrefab);
         albumBtn.GetComponent<Button>().onClick.AddListener(() =>
         {
             OnShowPhotoClicked();
@@ -63,7 +63,7 @@ public class JoyStickBtnManager : MonoBehaviour
         candleAndFlowerBtns();
     }
 
-    void deleteIcons()
+    public void deleteIcons()
     {
         if (Buttons.Count == 0)
         {
@@ -77,9 +77,9 @@ public class JoyStickBtnManager : MonoBehaviour
         Buttons.RemoveAll(item => item == null);
         Buttons.Clear();
     }
-    GameObject addIcon(string btnName)
+    GameObject addIcon(GameObject btnPrefab)
     {
-        GameObject btnPrefab = Resources.Load<GameObject>(btnResourceUrl + btnName);
+        
         GameObject btn = Instantiate(btnPrefab, btnPrefab.transform.position, btnPrefab.transform.rotation) as GameObject;
 
 
@@ -126,35 +126,7 @@ public class JoyStickBtnManager : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.gameObject.tag == "Owner")
-        {
-            if (this.gameObject.name == "Wall")
-            {
-                showWallIcons();
-            }
-            else if (this.gameObject.tag == "Frame")
-            {
-                showPhotoIcons();
-            }
-            else if (this.gameObject.name == "MemorialCube")
-            {
-                showTreeIcons();
-            }
-        }
-    }
 
-    private void OnTriggerExit(Collider collision)
-    {
-        if (collision.gameObject.tag == "Owner")
-        {
-            if (Buttons.Count > 0)
-            {
-                deleteIcons();
-            }
-        }
-    }
     public void OnStickyNoteInputOpenClicked()
     {
         showCanvasGroup(stickyNoteInputPanel);
@@ -163,7 +135,7 @@ public class JoyStickBtnManager : MonoBehaviour
 
     public void OnCandleBtnClicked()
     {
-        GameObject candlePrefab = Resources.Load<GameObject>(resourceUrl + "candle_1");
+        
         Vector3 pos =  owner.transform.localPosition + (owner.transform.forward * 3);
         GameObject candle = Instantiate(candlePrefab, pos, candlePrefab.transform.rotation) as GameObject;
 
@@ -175,7 +147,7 @@ public class JoyStickBtnManager : MonoBehaviour
     }
     public void OnFlowerBtnClicked()
     {
-        GameObject flowerPrefab = Resources.Load<GameObject>(resourceUrl + "flower_1");
+        
        
         Vector3 pos =  owner.transform.localPosition + (owner.transform.forward * 3);
         GameObject flower = Instantiate(flowerPrefab, pos, flowerPrefab.transform.rotation) as GameObject;

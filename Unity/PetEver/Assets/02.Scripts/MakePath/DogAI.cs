@@ -14,14 +14,14 @@ public class DogAI : MonoBehaviour
     private GameObject owner; // tracing target
     private NavMeshAgent navMeshAgent; // assign navmeshagent component
     private Animator dogAnimator;
-    private Button voiceButton; 
+    private Button voiceButton;
     public static GameObject DogView;
     public static Button escortButton;
-    public GetColliderScript getCollider; 
+    public GetColliderScript getCollider;
 
     private float dog_normalSpeed = 3.5f;
     private float dog_trackingSpeed = 8f;
-   // private float dog_collisionValue = 4.5f;
+    // private float dog_collisionValue = 4.5f;
 
 
     private float range = 20f; // standard range for generating random point  
@@ -29,7 +29,7 @@ public class DogAI : MonoBehaviour
     private Vector3 lastpos; // for determine dog is walking or not  
     private bool arrived = true;
     private bool trackingOwner = false;
-    public static bool voiceButton_bool = false; 
+    public static bool voiceButton_bool = false;
     private float timer = 0f;
     private float escapeCount = 0f;
     private bool animStop = false;
@@ -115,7 +115,11 @@ public class DogAI : MonoBehaviour
 
         if (!gameObject.CompareTag("DogNPC") && (DogEscort.welcomeEscort == false))
         {
-            Tracking();
+            if (owner != null)
+            {
+
+                Tracking();
+            }
         }
 
         lastpos = gameObject.transform.position;
@@ -153,11 +157,12 @@ public class DogAI : MonoBehaviour
 
     void Tracking()
     {
-        if (owner.scene.name == "WorldScene"){
+        if (owner.scene.name == "WorldScene")
+        {
             if (voiceButton_bool) // give priority when Owner calls. When Owner calls, dog only chases Owner even it meets Dog, Flower, Butterfly or etc.   
             {
                 if (!meetOwner)
-                { 
+                {
                     DogView.SetActive(true);
                     navMeshAgent.stoppingDistance = 8.0f;
                     trackingOwner = true;
@@ -170,7 +175,7 @@ public class DogAI : MonoBehaviour
                     arrived = true;
                     //DogEscort.welcomeEscort = true; 
                 }
-                voiceButton_bool = false; 
+                voiceButton_bool = false;
             }
 
             if (trackingOwner)
@@ -187,12 +192,12 @@ public class DogAI : MonoBehaviour
                 switch (getCollider.collided_tag)
                 {
                     case ("Flower"): // enum value in 'GetColliderScript' (int -> 1)
-                        {                       
-                           // navMeshAgent.SetDestination(getCollider.collided_object.transform.position);
-                           // collided_tag_number = 1;
+                        {
+                            // navMeshAgent.SetDestination(getCollider.collided_object.transform.position);
+                            // collided_tag_number = 1;
                             break;
-                                                       
-                        } 
+
+                        }
 
                     case ("Butterfly"): // enum value in 'GetColliderScript' (int -> 2)
                         {
@@ -224,12 +229,12 @@ public class DogAI : MonoBehaviour
             dogAnimator.SetBool("trackingOwner", trackingOwner);
             dogAnimator.SetFloat("dogSpeed", navMeshAgent.velocity.magnitude);
             dogAnimator.SetInteger("whatCollided", collided_tag_number);
-            dogAnimator.SetBool("waitOwner",DogEscort.waitOwner);
+            dogAnimator.SetBool("waitOwner", DogEscort.waitOwner);
 
 
-        
+
             if (meetOwner)
-            {   
+            {
                 if (dogAnimator.GetCurrentAnimatorStateInfo(0).IsName("turn_around") &&
                         (dogAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f))
                 {
@@ -246,7 +251,7 @@ public class DogAI : MonoBehaviour
                     {
                         animStop = false;
                     }
-                
+
                     dogAnimator.SetBool("animStop", animStop);
                 }
             }
@@ -256,13 +261,13 @@ public class DogAI : MonoBehaviour
             if (dogAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)
             {
                 escapeCount = 1;
-                arrived = true; 
+                arrived = true;
             }
         }
 
 
     }
 
- 
+
 }
 

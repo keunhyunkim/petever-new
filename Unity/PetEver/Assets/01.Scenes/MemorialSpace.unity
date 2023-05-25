@@ -2536,18 +2536,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c7731660b26e2ec449ac493170ada5d3, type: 3}
   m_PrefabInstance: {fileID: 321580029}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &321580032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 321580031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18dd1dde54f992649a0b5589a44537ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &321580033
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2590,6 +2578,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &321580036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321580031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d830a9897610a142b1c6ec39601f32e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  memorialSpaceScript: {fileID: 3442895779122791396}
 --- !u!1001 &324433028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3500,9 +3501,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 460435887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18dd1dde54f992649a0b5589a44537ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d830a9897610a142b1c6ec39601f32e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  memorialSpaceScript: {fileID: 3442895779122791396}
 --- !u!1001 &460495081
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5782,18 +5784,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c7731660b26e2ec449ac493170ada5d3, type: 3}
   m_PrefabInstance: {fileID: 721990575}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &721990578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 721990577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18dd1dde54f992649a0b5589a44537ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &721990579
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5836,6 +5826,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &721990582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721990577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d830a9897610a142b1c6ec39601f32e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  memorialSpaceScript: {fileID: 3442895779122791396}
 --- !u!1001 &734005454
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7072,9 +7075,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 844868981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18dd1dde54f992649a0b5589a44537ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d830a9897610a142b1c6ec39601f32e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  memorialSpaceScript: {fileID: 3442895779122791396}
 --- !u!1001 &847238325
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14101,18 +14105,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c7731660b26e2ec449ac493170ada5d3, type: 3}
   m_PrefabInstance: {fileID: 1065798336}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1065798339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065798338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18dd1dde54f992649a0b5589a44537ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1065798340
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15393,18 +15385,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e53849a6b7e08e94d8d96b8813ae973c, type: 3}
   m_PrefabInstance: {fileID: 1210713917}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1210713920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1210713919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18dd1dde54f992649a0b5589a44537ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1210713921
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15447,6 +15427,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &1210713924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210713919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d830a9897610a142b1c6ec39601f32e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  memorialSpaceScript: {fileID: 3442895779122791396}
 --- !u!1 &1217417203
 GameObject:
   m_ObjectHideFlags: 0
@@ -23116,6 +23109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2824765851156370894}
   - component: {fileID: 3442895779122791397}
+  - component: {fileID: 3442895779122791398}
   m_Layer: 0
   m_Name: MemorialSpaceScript
   m_TagString: Untagged
@@ -23139,6 +23133,24 @@ MonoBehaviour:
   photoPanel: {fileID: 542583476}
   stickyNoteInput: {fileID: 1720790882}
   wallArea: {fileID: 1488568422}
+--- !u!114 &3442895779122791398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3442895779122791396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18dd1dde54f992649a0b5589a44537ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  candlePrefab: {fileID: 8065661177859917948, guid: a26dda40e16515949abc91cf0c06be3c, type: 3}
+  flowerPrefab: {fileID: 4412175988185145300, guid: caab9ae152be60548988e654164a1a32, type: 3}
+  albumBtnPrefab: {fileID: 5444218707640731996, guid: 0a104c40a68cf2d44a185a653bc2db5b, type: 3}
+  candleBtnPrefab: {fileID: 6238086746002852934, guid: 1a4ed9ba9b4fa4946b890e2713cb851d, type: 3}
+  flowerBtnPrefab: {fileID: 578992291029960646, guid: 43e3c4017d65dde44b9eafdeb0beece5, type: 3}
+  postItBtnPrefab: {fileID: 7708614013703320324, guid: 5d84a6d5078298a46b486c0d3e2aa573, type: 3}
 --- !u!33 &3444110669719872250
 MeshFilter:
   m_ObjectHideFlags: 0

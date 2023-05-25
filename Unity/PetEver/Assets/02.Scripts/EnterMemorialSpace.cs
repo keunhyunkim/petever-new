@@ -21,11 +21,6 @@ public class EnterMemorialSpace : MonoBehaviour
 
     }
 
-    private void Awake()
-    {
-
-    }
-
     IEnumerator<object> LoadYourAsyncScene()
     {
         ManCharacter = GameObject.FindGameObjectWithTag("Owner");
@@ -71,20 +66,5 @@ public class EnterMemorialSpace : MonoBehaviour
         }
 
     }
-    public void SceneChangeAnimation()
-    {
-
-    }
-    private void OnCollisionStay(Collision collision)
-    {
-
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-
-    }
-
-
 
 }

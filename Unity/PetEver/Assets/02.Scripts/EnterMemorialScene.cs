@@ -19,12 +19,6 @@ public class EnterMemorialScene : MonoBehaviour
         //MainEvent = GameObject.FindGameObjectWithTag("MainEventSystem");
 
     }
-
-    private void Awake()
-    {
-
-    }
-
     IEnumerator<object> LoadYourAsyncScene()
     {
         ManCharacter = GameObject.FindGameObjectWithTag("Owner");

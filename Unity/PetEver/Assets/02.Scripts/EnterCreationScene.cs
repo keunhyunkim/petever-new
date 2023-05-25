@@ -7,7 +7,7 @@ public class EnterCreationScene : MonoBehaviour
 {
     IEnumerator<object> LoadYourAsyncScene()
     {
-        string sceneName = "CreationScene";
+        string sceneName = "MySpaceScene";
         // Set the current Scene to be able to unload it later
         Scene currentScene = SceneManager.GetActiveScene();
 
@@ -28,7 +28,6 @@ public class EnterCreationScene : MonoBehaviour
     {
         if (collision.gameObject.tag == "Owner")
         {
-            Debug.Log("@@@ HI!");
             StartCoroutine(LoadYourAsyncScene());
         }
 

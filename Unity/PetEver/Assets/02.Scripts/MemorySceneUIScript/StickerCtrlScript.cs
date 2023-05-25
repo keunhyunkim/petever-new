@@ -5,31 +5,23 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 //https://forum.unity.com/threads/long-press-gesture-on-ugui-button.264388/
-public class StickerCtrlScript : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler
+public class StickerCtrlScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
 
     private GameObject MemorialSceneCanvas;
     private Image stickerImage;
-    private Sprite stickerSprite;
 
     private float durationThreshold = 1f;
-    private float timePressStarted; 
+    private float timePressStarted;
     private bool isPointerDown = false;
-    private bool longPressTriggered = false; 
+    private bool longPressTriggered = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        stickerSprite = gameObject.GetComponent<Image>().sprite;
         stickerImage = gameObject.GetComponent<Image>();
         MemorialSceneCanvas = GameObject.Find("TextAndSticker");
-
-        if (stickerSprite != null)
-        {
-            SetColor(1f);
-        }
-
 
     }
 
@@ -37,34 +29,22 @@ public class StickerCtrlScript : MonoBehaviour, IPointerClickHandler, IPointerDo
     void Update()
     {
 
-        if(isPointerDown && !longPressTriggered)
+        if (isPointerDown && !longPressTriggered)
         {
-            if(Time.time - timePressStarted > durationThreshold)
+            if (Time.time - timePressStarted > durationThreshold)
             {
                 longPressTriggered = true;
                 SelectSticker();
             }
         }
-   
+
 
     }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        /*
-        if (eventData.clickTime > 1f)
-        {
-            gameObject.transform.SetParent(MemorialSceneCanvas.transform);
-            Destroy(NewpageUIManager.StickerInventory);
-        }
-        */
-    }
-
     public void OnPointerDown(PointerEventData eventData)
     {
         timePressStarted = Time.time;
         isPointerDown = true;
-        longPressTriggered = false; 
+        longPressTriggered = false;
     }
 
 
@@ -76,16 +56,8 @@ public class StickerCtrlScript : MonoBehaviour, IPointerClickHandler, IPointerDo
     private void SelectSticker()
     {
         gameObject.transform.SetParent(MemorialSceneCanvas.transform);
-        Destroy(NewpageUIManager.StickerInventory);
+        var StickerInventory = GameObject.Find("StickerInventory(Clone)");
+        Destroy(StickerInventory);
     }
-
-
-    private void SetColor(float alpha)
-    {
-        Color color = stickerImage.color;
-        color.a = alpha;
-        stickerImage.color = color;
-    }
-
 
 }

@@ -11,7 +11,7 @@ public class NewpageUIManager : MonoBehaviour
 {
     public RawImage rawImage; // take image RawImage
     public Button ImageBtn, StickerBtn, TextBtn, XBtn;
-    public static GameObject UserInputTextBundle, StickerInventory, rawImageText;
+    [SerializeField] public GameObject UserInputTextBundle, StickerInventory, rawImageText;
     private static CanvasGroup newPageUI;
     public static Transform[] trashCan;
     // Start is called before the first frame update
@@ -54,13 +54,11 @@ public class NewpageUIManager : MonoBehaviour
 
     public void GetText()
     {
-        UserInputTextBundle = Resources.Load<GameObject>("Prefabs/UserInputTextBundle");
         UserInputTextBundle = Instantiate(UserInputTextBundle, GameObject.Find("TextAndSticker").GetComponent<RectTransform>());
     }
 
     public void GetSticker()
     {
-        StickerInventory = Resources.Load<GameObject>("Prefabs/StickerInventory");
         StickerInventory = Instantiate(StickerInventory, GameObject.Find("TextAndSticker").GetComponent<RectTransform>());
     }
 
