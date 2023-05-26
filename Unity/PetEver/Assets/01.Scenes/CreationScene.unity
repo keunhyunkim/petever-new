@@ -2425,6 +2425,7 @@ GameObject:
   - component: {fileID: 617331315}
   - component: {fileID: 617331317}
   - component: {fileID: 617331316}
+  - component: {fileID: 617331318}
   m_Layer: 0
   m_Name: Script
   m_TagString: Untagged
@@ -2537,6 +2538,22 @@ MonoBehaviour:
   retriever_brown_deep: {fileID: 2100000, guid: ed1cce9193fb972448ec0810a02193c9, type: 2}
   retriever_brown_light: {fileID: 2100000, guid: 65d0ca5144d38824791d44395938b2d5, type: 2}
   CharacterParent: {fileID: 1582827732}
+--- !u!114 &617331318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617331312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2217b979118ebc94aa27ae56b774e4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnerDog: {fileID: 0}
+  animatorController_creationScene: {fileID: 9100000, guid: 22cd812c6e46506468225f1f99d0f9d4, type: 2}
+  animatorController_worldScene_OwnerDog: {fileID: 9100000, guid: 52505a6d8b0e5a34d85406dff6715bca, type: 2}
+  animatorController_worldScene_DogNPC: {fileID: 9100000, guid: 0eb36866efdc9684b9bfa464f494caf5, type: 2}
 --- !u!1 &655775360
 GameObject:
   m_ObjectHideFlags: 0

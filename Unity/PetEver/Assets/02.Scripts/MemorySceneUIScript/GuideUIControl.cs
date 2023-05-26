@@ -13,7 +13,6 @@ public class GuideUIControl : MonoBehaviour
     private Vector3 createPoint; 
     private float circlePos;
     public Sprite circle_empty, circle_filled;
-
     
     void Awake() 
     {

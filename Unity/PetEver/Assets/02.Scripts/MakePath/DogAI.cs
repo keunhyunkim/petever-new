@@ -11,7 +11,7 @@ public class DogAI : MonoBehaviour
 {
 
     public LayerMask isPlayer;
-    private GameObject owner; // tracing target
+    public GameObject owner; // tracing target
     private NavMeshAgent navMeshAgent; // assign navmeshagent component
     private Animator dogAnimator;
     private Button voiceButton;
@@ -81,9 +81,13 @@ public class DogAI : MonoBehaviour
 
 
 
-    void Awake()
+    void OnEnable()
     {
-
+        owner = GameObject.FindGameObjectWithTag("Owner");
+        if (gameObject.tag == "OwnerDog")
+        {
+            DogView = GameObject.FindGameObjectWithTag("UICanvas").transform.Find("DogViewOutline").gameObject;
+        }
 
     }
 
@@ -97,12 +101,12 @@ public class DogAI : MonoBehaviour
         dogAnimator.SetFloat("walkingSpeed", 1/(DogSummonScript.dogRandomScale)*1.5f);
 
         navMeshAgent = GetComponent<NavMeshAgent>();
-        owner = GameObject.FindGameObjectWithTag("Owner");
+       // owner = GameObject.FindGameObjectWithTag("Owner");
 
-        if (gameObject.tag == "OwnerDog")
-        {
-            DogView = GameObject.FindGameObjectWithTag("UICanvas").transform.Find("DogViewOutline").gameObject;
-        }
+     //   if (gameObject.tag == "OwnerDog")
+     //   {
+      //      DogView = GameObject.FindGameObjectWithTag("UICanvas").transform.Find("DogViewOutline").gameObject;
+      //  }
 
         StartCoroutine(UpdatePath());
     }
