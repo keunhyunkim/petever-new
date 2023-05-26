@@ -29,8 +29,9 @@ public class DogInteraction : MonoBehaviour
         {
             // 싱글 터치.
             Touch touch = Input.GetTouch(0);
-            Vector3 touchPos;
-            Ray ray, ray_main;
+            // Vector3 touchPos;
+            // Ray ray_main
+            Ray ray;
             RaycastHit hit;
             Vector3 touchPosToVector3;
 
@@ -41,10 +42,10 @@ public class DogInteraction : MonoBehaviour
 
 
                     touchPosToVector3 = new Vector3(touch.position.x,touch.position.y, 0);
-                    touchPos = Camera.main.GetComponent<Camera>().ScreenToWorldPoint(touchPosToVector3);
+                    //touchPos = Camera.main.GetComponent<Camera>().ScreenToWorldPoint(touchPosToVector3);
                     ray = DogCamera.GetComponent<Camera>().ScreenPointToRay(touchPosToVector3);
-                    ray_main = Camera.main.GetComponent<Camera>().ScreenPointToRay(touchPosToVector3);
-                    Debug.DrawLine(ray.origin,touchPos, Color.yellow, 1.5f); 
+                    //ray_main = Camera.main.GetComponent<Camera>().ScreenPointToRay(touchPosToVector3);
+                    //Debug.DrawLine(ray.origin,touchPos, Color.yellow, 1.5f); 
                     if (Physics.Raycast(ray,out hit))
                     {
                         if(hit.collider.gameObject.name == "footTouch_R")
