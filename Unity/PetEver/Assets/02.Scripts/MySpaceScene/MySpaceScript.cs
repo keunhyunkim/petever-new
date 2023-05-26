@@ -17,12 +17,12 @@ public class MySpaceScript : MonoBehaviour
 
         if (dogModel != null)
         {
-            ChangeLayersRecursively(dogModel.transform, "TransparentFX");
-            dogModel.transform.position = new Vector3(374, 573, 18);
+            dogModel.GetComponent<RectTransform>().position = new Vector3(1.73f, 2, -7.72f);
+            dogModel.transform.rotation = Quaternion.Euler(0, 175, 0);
         }
     }
 
-    
+
     private void ChangeLayersRecursively(Transform trans, string name)
     {
         trans.gameObject.layer = LayerMask.NameToLayer(name);

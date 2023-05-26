@@ -5,8 +5,6 @@ using TMPro;
 
 public class SetCharacterFeature : MonoBehaviour
 {
-    private Vector3 dogSummonPos = new Vector3(-550f, 1070f, -10f);
-    private Vector3 dogScale = new Vector3(60f, 60f, 60f);
 
     public GameObject dogPrefab;
     public GameObject dog;
@@ -180,8 +178,6 @@ public class SetCharacterFeature : MonoBehaviour
 
 
             dog = Instantiate(dogPrefab, GameObject.Find("Character").transform) as GameObject;
-            dog.transform.localScale = dogScale;
-            dog.transform.localPosition = dogSummonPos;
             dog.tag = "OwnerDog";
             dog.layer = 6;
 
