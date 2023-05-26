@@ -15,13 +15,13 @@ public class Creation2WorldScene : MonoBehaviour
     }
     
     void Start(){
-        SceneManager.activeSceneChanged += ChangedActiveScene;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void ChangedActiveScene(Scene current, Scene next)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
 
-        if (!("CreationScene".Equals(next.name)) && !("WorldScene".Equals(next.name)) && !("MySpaceScene".Equals(next.name)))
+        if (!("CreationScene".Equals(scene.name)) && !("WorldScene".Equals(scene.name)) && !("MySpaceScene".Equals(scene.name)))
         {
             gameObject.SetActive(false);
         }
