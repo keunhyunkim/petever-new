@@ -5,12 +5,11 @@ using UnityEngine.AI;
 
 public class PlayerPrefab : MonoBehaviour
 {
-
     public GameObject playerPrefab;
     public GameObject dogPrefab;
-    GameObject manCharacter;
-    GameObject dogCharacter;
-    private UnityEngine.AI.NavMeshAgent nav;
+    public GameObject manCharacter;
+    public GameObject dogCharacter;
+    private NavMeshAgent nav;
 
     private string[] objectName;
 
@@ -19,7 +18,7 @@ public class PlayerPrefab : MonoBehaviour
         objectName = gameObject.name.Split('_');
 
 
-        if (objectName[1]=="Man")
+        if (objectName[1] =="Man")
         {
             manCharacter = GameObject.FindGameObjectWithTag("Owner");
             if (manCharacter == null)
@@ -29,7 +28,7 @@ public class PlayerPrefab : MonoBehaviour
         }
 
 
-        else if(objectName[1]=="Dog")
+        else if(objectName[1] =="Dog")
         {
             dogCharacter = GameObject.FindGameObjectWithTag("OwnerDog");
 

@@ -6,7 +6,6 @@ public class PlayerPrefab_onlyPlayer: MonoBehaviour
 {
 
     public GameObject playerPrefab;
-    public GameObject dogPrefab;
     GameObject manCharacter;
     GameObject dogCharacter;
 

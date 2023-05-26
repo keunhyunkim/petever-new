@@ -1826,17 +1826,14 @@ GameObject:
   m_Component:
   - component: {fileID: 3428203248735845607}
   - component: {fileID: 7519826703523082178}
-  - component: {fileID: 7519826703523082181}
   - component: {fileID: 7519826703523082180}
   - component: {fileID: 7519826703523082183}
-  - component: {fileID: 7519826703523082182}
   - component: {fileID: 7519826703523082169}
   - component: {fileID: 7519826703523082168}
   - component: {fileID: 1913454382875018011}
   - component: {fileID: 2732571592472592764}
-  - component: {fileID: 9104735346461397197}
-  - component: {fileID: 3711002234622274696}
-  - component: {fileID: -5872482527684906274}
+  - component: {fileID: 1744845606004136446}
+  - component: {fileID: -2210756403219208830}
   m_Layer: 0
   m_Name: Poodle
   m_TagString: DogNPC
@@ -1853,7 +1850,7 @@ RectTransform:
   m_GameObject: {fileID: 7249286159026639595}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9798757, y: 0.9798757, z: 0.9798757}
+  m_LocalScale: {x: 0.8851868, y: 0.8851868, z: 0.8851868}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 685610322477540375}
@@ -1884,19 +1881,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &7519826703523082181
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7249286159026639595}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 6
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!136 &7519826703523082180
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1931,18 +1915,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7519826703523082182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7249286159026639595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5c2ef9d139a10342b113ce223741bdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &7519826703523082169
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1980,6 +1952,7 @@ MonoBehaviour:
   isPlayer:
     serializedVersion: 2
     m_Bits: 0
+  owner: {fileID: 0}
   getCollider: {fileID: 0}
 --- !u!222 &1913454382875018011
 CanvasRenderer:
@@ -2025,7 +1998,7 @@ MonoBehaviour:
   m_Text: "\uD0F1\uAE00\uC774,\uC2E0\uB09C\uB2E4\uB2D8\uC758 12\uC0B4 \uB3D9\uC0DD\\\\n\uD478\uB4E4
     \u2640,\uBCF5\uC2AC\uBA38\uB9AC\uAC00 \uADC0\uC5EC\uC6B4 \uC6B0\uB9AC \uD0F1\uAE00\uC774\\\\n\uC0DD\uADE4\uD0F1\uADE4~\uADC0\uC5EC\uC6CC\\\\n\uBC84\uBE14\uBC84\uBE14~~,#\uD558\uC580\uD478\uB4E4
     #\uD478\uB4E4\uCE5C\uAD6C\uCC3E\uAE30 #\uC0B0\uCC45\uBAA8\uC784\u200B"
---- !u!114 &9104735346461397197
+--- !u!114 &1744845606004136446
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2034,13 +2007,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7249286159026639595}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ae4fe7379fb0cd46901678c0aa8868c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2419d7ff1079be34ea16fb733c65da1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animatorController_creationScene: {fileID: 9100000, guid: 488cd1090de9f884ab2a339ee2c5707a, type: 2}
   animatorController_worldScene_OwnerDog: {fileID: 9100000, guid: bedaa20d1bc44344da8493c5f59c4d67, type: 2}
   animatorController_worldScene_DogNPC: {fileID: 9100000, guid: 9b5bfe62bf48f564fb813d608b0bdd3f, type: 2}
---- !u!114 &3711002234622274696
+--- !u!114 &-2210756403219208830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2049,111 +2022,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7249286159026639595}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32a8d8e2a0e0eaa418a551de2a31aa1a, type: 3}
+  m_Script: {fileID: 11500000, guid: e5c2ef9d139a10342b113ce223741bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!120 &-5872482527684906274
-LineRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7249286159026639595}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 0
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
-  - {x: 0, y: 0, z: 1}
-  - {x: 0, y: 0, z: 1}
-  - {x: 0, y: 0, z: 1}
-  m_Parameters:
-    serializedVersion: 3
-    widthMultiplier: 1.5
-    widthCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorGradient:
-      serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 0.30980393}
-      key2: {r: 1, g: 1, b: 1, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
-      key6: {r: 0, g: 0, b: 0, a: 0}
-      key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
-      ctime1: 32768
-      ctime2: 65535
-      ctime3: 0
-      ctime4: 0
-      ctime5: 0
-      ctime6: 0
-      ctime7: 0
-      atime0: 0
-      atime1: 32768
-      atime2: 65535
-      atime3: 0
-      atime4: 0
-      atime5: 0
-      atime6: 0
-      atime7: 0
-      m_Mode: 0
-      m_NumColorKeys: 3
-      m_NumAlphaKeys: 3
-    numCornerVertices: 5
-    numCapVertices: 5
-    alignment: 0
-    textureMode: 0
-    shadowBias: 0.5
-    generateLightingData: 0
-  m_UseWorldSpace: 1
-  m_Loop: 0
 --- !u!1 &7258637228246265688
 GameObject:
   m_ObjectHideFlags: 0
