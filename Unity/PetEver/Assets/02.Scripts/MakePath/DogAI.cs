@@ -98,15 +98,9 @@ public class DogAI : MonoBehaviour
 
         dogAnimator = GetComponent<Animator>();
         dogAnimator.SetFloat("cycleOffset", Random.Range(0f,1/6f));
-        dogAnimator.SetFloat("walkingSpeed", 1/(DogSummonScript.dogRandomScale)*1.5f);
+        dogAnimator.SetFloat("walkingSpeed", 1);
 
         navMeshAgent = GetComponent<NavMeshAgent>();
-       // owner = GameObject.FindGameObjectWithTag("Owner");
-
-     //   if (gameObject.tag == "OwnerDog")
-     //   {
-      //      DogView = GameObject.FindGameObjectWithTag("UICanvas").transform.Find("DogViewOutline").gameObject;
-      //  }
 
         StartCoroutine(UpdatePath());
     }
