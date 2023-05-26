@@ -12,7 +12,7 @@ public class DogAI : MonoBehaviour
 
     public LayerMask isPlayer;
     public GameObject owner; // tracing target
-    private NavMeshAgent navMeshAgent; // assign navmeshagent component
+    public NavMeshAgent navMeshAgent; // assign navmeshagent component
     private Animator dogAnimator;
     private Button voiceButton;
     public static GameObject DogView;

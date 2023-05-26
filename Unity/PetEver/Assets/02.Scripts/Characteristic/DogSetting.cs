@@ -28,12 +28,13 @@ public class DogSetting : MonoBehaviour
     {
         scene = SceneManager.GetActiveScene();
         OwnerDog = GameObject.FindGameObjectWithTag("OwnerDog");
-       
-
     }
+
+
     
     void Start()
     {
+        OwnerDog = GameObject.FindGameObjectWithTag("OwnerDog");
         nav = OwnerDog.GetComponent<NavMeshAgent>();
 
         if ("CreationScene".Equals(scene.name))
