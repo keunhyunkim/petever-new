@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3422928415020994064}
   - component: {fileID: 1742740048839033269}
   - component: {fileID: 4596912561990219135}
-  - component: {fileID: 1594300535813510399}
   - component: {fileID: 5673823850489851406}
   m_Layer: 0
   m_Name: tree2
@@ -86,20 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1594300535813510399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2651353468339131562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 468c629999295de49a59c3623c94b3c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickableTransform: {fileID: 0}
-  localSnapOffset: {x: 0, y: 0}
 --- !u!64 &5673823850489851406
 MeshCollider:
   m_ObjectHideFlags: 0

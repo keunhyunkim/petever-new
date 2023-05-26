@@ -22,6 +22,7 @@ namespace BitBenderGames
         private Sprite originalBtnSprite;
 
         private Dictionary<string, GameObject> treePrefabs;
+        [SerializeField] private GameObject treePrefab0, treePrefab1, treePrefab2;
         private GameObject[] treeButtons;
         private GameObject treeDetailUIPanel;
         private CanvasGroup treePopupCanvasGroup;
@@ -121,9 +122,9 @@ namespace BitBenderGames
         void LoadTreeResoures()
         {
             treePrefabs = new Dictionary<string, GameObject>();
-            treePrefabs.Add(treeName[0], Resources.Load<GameObject>("Prefabs/" + treeName[0]));
-            treePrefabs.Add(treeName[1], Resources.Load<GameObject>("Prefabs/" + treeName[1]));
-            treePrefabs.Add(treeName[2], Resources.Load<GameObject>("Prefabs/" + treeName[2]));
+            treePrefabs.Add(treeName[0], treePrefab0);
+            treePrefabs.Add(treeName[1], treePrefab1);
+            treePrefabs.Add(treeName[2], treePrefab2);
             selectedBtnSprite = Resources.Load<Sprite>("SelectedBtnBackground");
             originalBtnSprite = Resources.Load<Sprite>("OriginalBtnBackground");
         }
