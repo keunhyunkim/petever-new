@@ -199,7 +199,7 @@ public class BreedActivity extends AppCompatActivity {
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 t.printStackTrace();
                 Toast.makeText(BreedActivity.this, "Server Closed", Toast.LENGTH_SHORT).show();
-                Log.d("RETROFIT", "Error3: " + t.getMessage());
+                Toast.makeText(BreedActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.SceneManagement;
 using UnityEngine.AI; // add AI navigation system
 
 
@@ -13,8 +12,7 @@ public class DogSetting : MonoBehaviour
     private LineRenderer lr;
     private SphereCollider sc;
     private NavMeshAgent nav;
-
-
+    [SerializeField] private Material defaultline;
     public RuntimeAnimatorController animatorController_creationScene;
     public RuntimeAnimatorController animatorController_worldScene_OwnerDog;
     public RuntimeAnimatorController animatorController_worldScene_DogNPC;
@@ -59,9 +57,11 @@ public class DogSetting : MonoBehaviour
 
             //LineRenderer option setting
             lr = OwnerDog.GetComponent<LineRenderer>();
-            lr.SetColors(c1, c2);
-            lr.SetWidth(1.5f, 1.5f);
-            Material defaultline = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
+            lr.startColor = c1;
+            lr.endColor = c2;
+            lr.startWidth = 1.5f;
+            lr.endWidth = 1.5f;
+            
             lr.material = defaultline;
 
             //SphereCollider option setting
